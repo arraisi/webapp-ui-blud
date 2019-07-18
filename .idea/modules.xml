@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BLUD-Webapp.iml" filepath="$PROJECT_DIR$/.idea/BLUD-Webapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BLUD-webapp.iml" filepath="$PROJECT_DIR$/.idea/BLUD-webapp.iml" />
     </modules>
   </component>
 </project>
