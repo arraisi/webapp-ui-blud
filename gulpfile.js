@@ -30,8 +30,8 @@ gulp.task('serve', ['sass', 'webserver'], function () {
     // });
 
     gulp.watch(paths.src + 'scss/**/*.scss', ['sass']);
-    // gulp.watch(paths.src + '**/*.html');
-    // gulp.watch(paths.src + 'js/**/*.js');
+    gulp.watch(paths.src + '**/*.html');
+    gulp.watch(paths.src + 'js/**/*.js');
     // gulp.watch(paths.src + '**/*.html').on('change', browserSync.reload);
     // gulp.watch(paths.src + 'js/**/*.js').on('change', browserSync.reload);
 

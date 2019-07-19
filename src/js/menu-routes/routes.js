@@ -32,6 +32,81 @@ angular
                     }]
                 }
             })
+            .state('app.kas', {
+                url: '/kas-blud',
+                templateUrl: 'views/pages/kas.html',
+                ncyBreadcrumb: {
+                    label: 'Kas BLUD'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/kas.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.pendapatan', {
+                url: '/pendapatan',
+                templateUrl: 'views/pages/pendapatan.html',
+                ncyBreadcrumb: {
+                    label: 'Pendapatan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/pendapatan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.rincian', {
+                url: '/rincian-biaya',
+                templateUrl: 'views/pages/pendapatan.html',
+                ncyBreadcrumb: {
+                    label: 'Pendapatan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/rincian.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.kegiatan', {
+                url: '/kegiatan',
+                templateUrl: 'views/pages/kegiatan.html',
+                ncyBreadcrumb: {
+                    label: 'Kegiatan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/kegiatan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.laporan', {
+                url: '/laporan',
+                templateUrl: 'views/pages/laporan.html',
+                ncyBreadcrumb: {
+                    label: 'Laporan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/laporan.js']
+                        });
+                    }]
+                }
+            })
             .state('app.widgets', {
                 url: '/widgets',
                 templateUrl: 'views/widgets.html',
