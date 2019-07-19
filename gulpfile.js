@@ -25,29 +25,16 @@ require('require-dir')('./gulp-tasks');
 // Static Server + watching scss/html files
 gulp.task('serve', ['sass', 'webserver'], function () {
 
-    // browserSync.init({
-    //     server: ['./', './src'],
-    // });
-
-    // connect.server({
-    //     port: 3000,
-    //     livereload: true
-    // });
+    browserSync.init({
+        server: ['./', './src'],
+    });
 
     gulp.watch(paths.src + 'scss/**/*.scss', ['sass']);
+    // gulp.watch(paths.src + '**/*.html');
+    // gulp.watch(paths.src + 'js/**/*.js');
     gulp.watch(paths.src + '**/*.html').on('change', browserSync.reload);
     gulp.watch(paths.src + 'js/**/*.js').on('change', browserSync.reload);
-    // gulp.src(paths.dist)
-    //     .pipe(webserver({
-    //         port: 3000,
-    //         livereload: true,
-    //         open: 'http://localhost:3000',
-    //         proxies: [
-    //             {
-    //                 source: '/auth-dkipp', target: 'http://192.168.1.50:80/auth-dkipp'
-    //             }
-    //         ]
-    //     }));
+
 
 });
 
@@ -110,7 +97,7 @@ gulp.task('webserver', function() {
             port: 3000,
             proxies: [
                 {
-                    source: '/auth-dkipp', target: 'http://192.168.1.50:80/auth-dkipp'
+                    source: '/blud-auth-server', target: 'http://localhost:8080/blud-auth-server'
                 }
             ]
         }));

@@ -11,7 +11,7 @@ angular
             const authBase64 = btoa('client-web' + ':' + '123456');
             const req = {
                 method: 'POST',
-                url: '/auth-dkipp/oauth/token',
+                url: '/blud-auth-server/oauth/token',
                 headers: {
                     'Authorization': `Basic ${authBase64}`,
                     "Accept": "application/json",
