@@ -25,15 +25,15 @@ require('require-dir')('./gulp-tasks');
 // Static Server + watching scss/html files
 gulp.task('serve', ['sass', 'webserver'], function () {
 
-    browserSync.init({
-        server: ['./', './src'],
-    });
+    // browserSync.init({
+    //     server: ['./', './src'],
+    // });
 
     gulp.watch(paths.src + 'scss/**/*.scss', ['sass']);
     // gulp.watch(paths.src + '**/*.html');
     // gulp.watch(paths.src + 'js/**/*.js');
-    gulp.watch(paths.src + '**/*.html').on('change', browserSync.reload);
-    gulp.watch(paths.src + 'js/**/*.js').on('change', browserSync.reload);
+    // gulp.watch(paths.src + '**/*.html').on('change', browserSync.reload);
+    // gulp.watch(paths.src + 'js/**/*.js').on('change', browserSync.reload);
 
 
 });
