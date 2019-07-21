@@ -10,7 +10,7 @@ angular
 .directive('div', bootstrapCarouselDirective)
 .directive('toggle', bootstrapTooltipsPopoversDirective)
 .directive('tab', bootstrapTabsDirective)
-.directive('button', cardCollapseDirective)
+.directive('button', cardCollapseDirective);
 
 function includeReplace() {
   var directive = {

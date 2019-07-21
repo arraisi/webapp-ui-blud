@@ -1,7 +1,7 @@
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-lg-12">
-            <div class="card">
+            <div class="card" ng-controller="KasController as showCase">
                 <div class="card-header">
                     <i class="fa fa-list"></i>Card Khas BLUD
                     <div class="card-actions">
@@ -13,9 +13,33 @@
                 </div>
                 <div class="card-body collapse show text-center" id="collapseExample1">
                     <h6>Khas BLUD</h6>
+                    <br>
+
+                    <table datatable="ng" class="row-border hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="person in ::showCase.persons">
+                            <td>{{ person.id }}</td>
+                            <td>{{ person.firstName }}</td>
+                            <td>{{ person.lastName }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <button class="btn btn-warning" type="button" ng-click="testToastr()"><i class="fa fa-check"></i>
+                        Test Service
+                    </button>
                 </div>
             </div>
         </div>
         <!--/.col-->
     </div>
 </div>
+<toaster-container toaster-options="{'close-button': true}"></toaster-container>

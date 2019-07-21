@@ -12,6 +12,8 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import url(../../node_modules/angularjs-toaster/toaster.min.css);
+@import url(../../node_modules/datatables.net-dt/css/jquery.dataTables.css);
 :root {
   --blue: #20a8d8;
   --indigo: #6610f2;

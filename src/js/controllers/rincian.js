@@ -2,6 +2,7 @@ angular
     .module('app')
     .controller('RincianController', ['$scope', 'formExampleService', function ($scope, formExampleService) {
 
+
         console.log('Init Controller Form Example');
         $scope.nameEmail = "";
         $scope.formTesting = {
