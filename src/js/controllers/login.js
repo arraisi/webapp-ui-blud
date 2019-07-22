@@ -51,7 +51,8 @@ angular
                     // $localStorage.put('myKey', 'myValue');
                     // $localStorage.setItem('currentUser', JSON.stringify(response.data));
                     localStorage.setItem('currentUser', JSON.stringify(result.data));
-                    $location.path('/components/forms');
+                    // $http.defaults.headers.common.Authorization = 'Bearer ' + result.data.access_token;
+                    $location.path('/components/list-example');
                 }
             });
         };

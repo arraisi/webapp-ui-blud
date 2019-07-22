@@ -11,7 +11,7 @@ angular
             const authBase64 = btoa('client-web' + ':' + '123456');
             const req = {
                 method: 'POST',
-                url: '/blud-auth-server/oauth/token',
+                url: '/auth-dkipp/oauth/token',
                 headers: {
                     'Authorization': `Basic ${authBase64}`,
                     "Accept": "application/json",
@@ -31,6 +31,11 @@ angular
                     console.log(response);
                     callback(response);
                 });
+        },
+
+        logout: function () {
+            delete localStorage.currentUser;
+            $http.defaults.headers.common.Authorization = '';
         }
     }
 }]);

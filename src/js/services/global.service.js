@@ -29,6 +29,73 @@ angular
                         // login successful if there's a token in the response
                         callback(response);
                     })
-            }
+            },
+
+            serviceGetData: function (url, params, callback) {
+                const local = JSON.parse(localStorage.getItem('currentUser'));
+                const token = 'Bearer ' + local.access_token;
+                const req = {
+                    method: 'GET',
+                    url: url,
+                    headers: {
+                        'Authorization': token,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json;charset=utf-8"
+                    },
+                    params: params
+                };
+                $http(req)
+                    .then(function (response) {
+                        // login successful if there's a token in the response
+                        console.log(`service response api get ${url} :`);
+                        console.log(response);
+                        callback(response);
+                    });
+            },
+
+            servicePostData: function (url, params, body, callback) {
+                const local = JSON.parse(localStorage.getItem('currentUser'));
+                const token = 'Bearer ' + local.access_token;
+                const req = {
+                    method: 'POST',
+                    url: url,
+                    headers: {
+                        'Authorization': token,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json;charset=utf-8"
+                    },
+                    params: params,
+                    data: body
+                };
+                $http(req)
+                    .then(function (response) {
+                        // login successful if there's a token in the response
+                        console.log(`service response api get ${url} :`);
+                        console.log(response);
+                        callback(response);
+                    });
+            },
+
+            serviceDeleteData: function (url, params, callback) {
+                const local = JSON.parse(localStorage.getItem('currentUser'));
+                const token = 'Bearer ' + local.access_token;
+                const req = {
+                    method: 'DELETE',
+                    url: url,
+                    headers: {
+                        'Authorization': token,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json;charset=utf-8"
+                    },
+                    params: params
+                };
+                $http(req)
+                    .then(function (response) {
+                        // login successful if there's a token in the response
+                        console.log(`service response api get ${url} :`);
+                        console.log(response);
+                        callback(response);
+                    });
+            },
         }
     }]);

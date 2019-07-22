@@ -12725,3 +12725,6 @@ hr.transparent {
       float: left; }
   *[dir="rtl"] .callout-default {
     border-right-color: #536c79; }
+
+.bg-modal {
+  background: rgba(0, 0, 0, 0.5); }

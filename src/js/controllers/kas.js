@@ -1,6 +1,6 @@
 angular
     .module('app', ['toaster', 'ngAnimate', 'datatables'])
-    .controller('KasController', function ($scope, toaster, globalService) {
+    .controller('KasController', function ($scope, $location, toaster, globalService) {
 
         const vm = this;
         globalService.datatablesData(function (result) {
@@ -16,6 +16,15 @@ angular
             }
         });
 
+        globalService.serviceGetData('/dkipp/api/chart/pelanggaran/jumlah/list', null, function (result) {
+           console.log('Result Data Get Master DKIPP');
+           console.log(result.data);
+        });
+
+        const queryUser = $location.search().kasId;
+        console.log('kasId data : ');
+        console.log('kasId data : '+ queryUser);
+
         $scope.pop = function () {
             toaster.pop('info', "title", "text");
         };
@@ -29,5 +38,9 @@ angular
                 body: 'Body text',
                 timeout: 3000
             });
+        };
+
+        $scope.tambahData = function () {
+            $location.path('/components/forms');
         }
     });

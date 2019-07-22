@@ -17,9 +17,24 @@ angular
                     label: 'Components'
                 }
             })
+            .state('app.components.list-forms', {
+                url: '/list-example',
+                templateUrl: 'views/pages/form-example/list-example.html',
+                ncyBreadcrumb: {
+                    label: 'Forms'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/form-example.js']
+                        });
+                    }]
+                }
+            })
             .state('app.components.forms', {
                 url: '/forms',
-                templateUrl: 'views/pages/form-example.html',
+                templateUrl: 'views/pages/form-example/form-example.html',
                 ncyBreadcrumb: {
                     label: 'Forms'
                 },

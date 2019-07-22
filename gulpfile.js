@@ -101,6 +101,12 @@ gulp.task('webserver', function() {
                 },
                 {
                     source: '/blud-resource-server', target: 'http://localhost:9090/blud-resource-server'
+                },
+                {
+                    source: '/auth-dkipp', target: 'http://localhost:5001/auth-dkipp'
+                },
+                {
+                    source: '/dkipp', target: 'http://localhost:5000/dkipp'
                 }
             ]
         }));

@@ -1,8 +1,8 @@
 angular
     .module('app')
-    .controller('PendapatanController', ['$scope', 'formExampleService', function ($scope, formExampleService) {
+    .controller('PendapatanController', ['$scope', '$location', 'formExampleService', function ($scope, $location, formExampleService) {
 
-        console.log('Init Controller Form Example');
+        console.log('Init Controller Form Pendapatan');
         $scope.nameEmail = "";
         $scope.formTesting = {
             name: "",
@@ -30,6 +30,12 @@ angular
                     // $scope.vm.loading = false;
                 }
             });
+        };
+
+        $scope.routeToKas = function () {
+            console.log('Method Route To Kas');
+            $location.search('kasId', 'tesfsdgdfg-324sdsdf-i2394sdf');
+            $location.path('/kas-blud');
         };
 
     }]);
