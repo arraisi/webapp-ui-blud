@@ -55,24 +55,44 @@
     </div>
 </div>
 
-<div class="modal {{disp}} {{bg}}" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document" style="top: {{tp}}px !important">
+<!--<div class="modal {{disp}} {{bg}}" tabindex="-1" role="dialog">-->
+<!--    <div class="modal-dialog" role="document" style="top: {{tp}}px !important">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title">Modal title</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeModalDelete()">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body text-center">-->
+<!--                <h4>Cara Membuat Animasi Modal Dengan Menggunakan AngularJs</h4>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- Confirmation Dialog -->
+<div class="modal" aria-modal="showModal" onclose="cancel()">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeModalDelete()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Delete confirmation</h4>
             </div>
-            <div class="modal-body text-center">
-                <h4>Cara Membuat Animasi Modal Dengan Menggunakan AngularJs</h4>
+            <div class="modal-body">
+                <p>Are you sure?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">No</button>
+                <button type="button" class="btn btn-primary" ng-click="ok()">Yes</button>
             </div>
         </div>
     </div>
 </div>
+<!-- End of Confirmation Dialog -->
 
 <toaster-container toaster-options="{'close-button': true}"></toaster-container>

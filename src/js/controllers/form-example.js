@@ -153,15 +153,28 @@ function ListExampleController($scope, $location, toaster, formExampleService, g
         $location.path('/components/forms');
     };
 
-    $scope.openModalDelete = function () {
-        console.log('Open Modal');
-        $scope.tp= -237;
-        $scope.bg = "bg-modal";
-        $scope.disp = "d-block";
-    };
+    // $scope.openModalDelete = function () {
+    //     console.log('Open Modal');
+    //     $scope.tp= -237;
+    //     $scope.bg = "bg-modal";
+    //     $scope.disp = "d-block";
+    // };
 
     $scope.closeModalDelete = function() {
         $scope.display = "d-none";
         $scope.bg = "";
+    };
+
+    $scope.openModalDelete = function () {
+        console.log('Open Modal');
+        $scope.showModal = true;
+    };
+
+    $scope.ok = function () {
+        $scope.showModal = false;
+    };
+
+    $scope.cancel = function () {
+        $scope.showModal = false;
     };
 }
