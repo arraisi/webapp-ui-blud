@@ -4,6 +4,7 @@ angular
     .controller('ListExampleController', ListExampleController);
 
 function FormExampleController($scope, $location, toaster, formExampleService, globalService) {
+
     console.log('Init Controller Form Example');
     $scope.nameEmail = "";
     $scope.idDelete = null;
@@ -12,6 +13,25 @@ function FormExampleController($scope, $location, toaster, formExampleService, g
         jenisPelanggaran: null,
         kode: null
     };
+
+    // Get Data From Query Param
+    const id = $location.search().id;
+    if (id) {
+        globalService.serviceGetData(`/dkipp/api/master/jenis-pelanggaran/${id}/findById`, null, function (result) {
+            console.log('Result Data Get Jenis Pelanggaran By ID');
+            console.log(result.data);
+            if (result.status === 200) {
+                console.log('Response Result Get Jenis Pelanggaran By ID');
+                console.log(result);
+                $scope.formTesting = result.data;
+            } else {
+                console.log('Response Result Get Jenis Pelanggaran By ID');
+                console.log(result);
+                // $scope.vm.error = 'Username or password is incorrect';
+                // $scope.vm.loading = false;
+            }
+        });
+    }
 
     $scope.getFormValue = function () {
         console.log($scope.formTesting);
@@ -126,6 +146,11 @@ function ListExampleController($scope, $location, toaster, formExampleService, g
                 console.log(result);
             }
         });
+    };
+
+    $scope.editData = function (id) {
+        $location.search('id', id);
+        $location.path('/components/forms');
     };
 
     $scope.openModalDelete = function () {
