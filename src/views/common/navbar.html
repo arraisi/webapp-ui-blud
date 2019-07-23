@@ -1,4 +1,4 @@
-<header class="app-header navbar">
+<header class="app-header navbar" ng-controller="NavBarController">
     <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,6 +11,18 @@
         </li>
 
     </ul>
-    <ul class="nav navbar-nav ml-auto d-md-down-none">
+    <ul class="nav navbar-nav ml-auto mr-2">
+        <li class="nav-item dropdown" dropdown placement="bottom right">
+            <a class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false" dropdownToggle>
+                <button type="button" class="btn btn-primary">
+                    <i class="fa fa-user-circle"></i>&nbsp;
+                    <span>Welcome: {{namaLogin}}</span>
+                </button>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                <a class="dropdown-item" ng-click="logout()"><i class="fa fa-lock"></i> Logout</a>
+            </div>
+        </li>
     </ul>
 </header>

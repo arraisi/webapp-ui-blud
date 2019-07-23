@@ -11,6 +11,7 @@ var historyApiFallback = require('connect-history-api-fallback');
 var webserver = require("gulp-webserver");
 var plugins = require('gulp-load-plugins')();
 var connect = require('gulp-connect');
+var environments = require('gulp-environments');
 
 gulp.paths = {
     dist: 'dist/',
@@ -101,9 +102,6 @@ gulp.task('webserver', function() {
                 },
                 {
                     source: '/blud-resource-server', target: 'http://localhost:9090/blud-resource-server'
-                },
-                {
-                    source: '/auth-dkipp', target: 'http://192.168.1.50:80/auth-dkipp'
                 },
                 {
                     source: '/dkipp', target: 'http://192.168.1.50:80/dkipp'

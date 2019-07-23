@@ -1,3 +1,5 @@
+// const environment = require('../../../environment');
+
 angular
     .module('app')
     .factory('authenticationService', ['$http', '$q', function($http, $q) {
@@ -8,10 +10,10 @@ angular
             // params.set('username', username);
             // params.set('password', password);
             // params.set('grant_type', 'password');
-            const authBase64 = btoa('client-web' + ':' + '123456');
+            const authBase64 = btoa('itime-registration' + ':' + 123456);
             const req = {
                 method: 'POST',
-                url: '/auth-dkipp/oauth/token',
+                url: '/blud-auth-server/oauth/token',
                 headers: {
                     'Authorization': `Basic ${authBase64}`,
                     "Accept": "application/json",

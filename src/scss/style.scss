@@ -5,26 +5,33 @@
  * Copyright (c) 2018 creativeLabs Łukasz Holeczek
  * @license MIT
  */
-
 // Override Boostrap variables
 @import "bootstrap-variables";
-
 // Import Bootstrap source files
 @import "node_modules/bootstrap/scss/bootstrap";
-
 // Override core variables
 @import "core-variables";
-
 // Import core styles
 @import "core/core";
-
 // Custom styles
 @import "custom";
-
 @import "../../node_modules/angularjs-toaster/toaster.min.css";
-
 @import "../../node_modules/datatables.net-dt/css/jquery.dataTables.css";
 
-.bg-modal{
-  background: rgba(0,0,0,0.5);
+.bg-modal {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.bg-card-login {
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
 }
