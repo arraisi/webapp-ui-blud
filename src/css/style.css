@@ -1710,7 +1710,7 @@ select.form-control:focus::-ms-value {
 .col-form-label-sm {
   padding-top: calc(0.25rem + 1px);
   padding-bottom: calc(0.25rem + 1px);
-  font-size: 0.76562rem;
+  font-size: 0.76563rem;
   line-height: 1.5; }
 
 .form-control-plaintext {
@@ -1741,7 +1741,7 @@ select.form-control:focus::-ms-value {
 .input-group-sm > .input-group-prepend > .btn,
 .input-group-sm > .input-group-append > .btn {
   padding: 0.25rem 0.5rem;
-  font-size: 0.76562rem;
+  font-size: 0.76563rem;
   line-height: 1.5; }
 
 select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.form-control:not([size]):not([multiple]),
@@ -1765,7 +1765,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 .input-group-lg > .input-group-append > select.input-group-text:not([size]):not([multiple]),
 .input-group-lg > .input-group-prepend > select.btn:not([size]):not([multiple]),
 .input-group-lg > .input-group-append > select.btn:not([size]):not([multiple]) {
-  height: calc(2.64062rem + 2px); }
+  height: calc(2.64063rem + 2px); }
 
 .form-group {
   margin-bottom: 1rem; }
@@ -3324,7 +3324,7 @@ fieldset:disabled a.btn {
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.25rem 0.5rem;
-  font-size: 0.76562rem;
+  font-size: 0.76563rem;
   line-height: 1.5;
   border-radius: 0; }
 
@@ -3507,7 +3507,7 @@ tbody.collapse.show {
   display: block;
   padding: 0 1.5rem;
   margin-bottom: 0;
-  font-size: 0.76562rem;
+  font-size: 0.76563rem;
   color: #536c79;
   white-space: nowrap; }
 
@@ -3800,7 +3800,7 @@ tbody.collapse.show {
   font-size: 75%; }
 
 .custom-select-lg {
-  height: calc(2.64062rem + 2px);
+  height: calc(2.64063rem + 2px);
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
   font-size: 125%; }
@@ -4470,7 +4470,7 @@ tbody.collapse.show {
 
 .pagination-sm .page-link, .pagination-sm .pagination-datatables li a, .pagination-datatables li .pagination-sm a, .pagination-sm .pagination li a, .pagination li .pagination-sm a {
   padding: 0.25rem 0.5rem;
-  font-size: 0.76562rem;
+  font-size: 0.76563rem;
   line-height: 1.5; }
 
 .badge {
@@ -5545,7 +5545,7 @@ button.close {
   word-spacing: normal;
   white-space: normal;
   line-break: auto;
-  font-size: 0.76562rem;
+  font-size: 0.76563rem;
   word-wrap: break-word;
   opacity: 0; }
   .tooltip.show {
@@ -5629,7 +5629,7 @@ button.close {
   word-spacing: normal;
   white-space: normal;
   line-break: auto;
-  font-size: 0.76562rem;
+  font-size: 0.76563rem;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: padding-box;
@@ -8923,8 +8923,8 @@ button {
     .btn-group-lg > .btn-foursquare.btn::before,
     .btn-vimeo.btn-lg::before,
     .btn-group-lg > .btn-vimeo.btn::before {
-      width: 2.64062rem;
-      height: 2.64062rem;
+      width: 2.64063rem;
+      height: 2.64063rem;
       padding: 0.5rem 0;
       font-size: 1.09375rem;
       line-height: 1.5; }
@@ -8977,7 +8977,7 @@ button {
     .btn-group-lg > .btn-foursquare.btn span,
     .btn-vimeo.btn-lg span,
     .btn-group-lg > .btn-vimeo.btn span {
-      margin-left: 2.64062rem; }
+      margin-left: 2.64063rem; }
     .btn-facebook.btn-lg.icon, .btn-group-lg > .btn-facebook.icon.btn,
     .btn-twitter.btn-lg.icon,
     .btn-group-lg > .btn-twitter.icon.btn,
@@ -9027,8 +9027,8 @@ button {
     .btn-group-lg > .btn-foursquare.icon.btn,
     .btn-vimeo.btn-lg.icon,
     .btn-group-lg > .btn-vimeo.icon.btn {
-      width: 2.64062rem;
-      height: 2.64062rem; }
+      width: 2.64063rem;
+      height: 2.64063rem; }
   .btn-facebook.btn-sm, .btn-group-sm > .btn-facebook.btn,
   .btn-twitter.btn-sm,
   .btn-group-sm > .btn-twitter.btn,
@@ -9079,7 +9079,7 @@ button {
   .btn-vimeo.btn-sm,
   .btn-group-sm > .btn-vimeo.btn {
     padding: 0.25rem 0.5rem;
-    font-size: 0.76562rem;
+    font-size: 0.76563rem;
     line-height: 1.5;
     border: 0; }
     .btn-facebook.btn-sm::before, .btn-group-sm > .btn-facebook.btn::before,
@@ -9134,7 +9134,7 @@ button {
       width: 1.64844rem;
       height: 1.64844rem;
       padding: 0.25rem 0;
-      font-size: 0.76562rem;
+      font-size: 0.76563rem;
       line-height: 1.5; }
     .btn-facebook.btn-sm span, .btn-group-sm > .btn-facebook.btn span,
     .btn-twitter.btn-sm span,

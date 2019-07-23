@@ -97,7 +97,7 @@ gulp.task('webserver', function() {
             port: 3000,
             proxies: [
                 {
-                    source: '/blud-auth-server', target: 'http://localhost:8080/blud-auth-server'
+                    source: '/blud-auth-server', target: 'http://localhost:8888/blud-auth-server'
                 },
                 {
                     source: '/blud-resource-server', target: 'http://localhost:9090/blud-resource-server'
