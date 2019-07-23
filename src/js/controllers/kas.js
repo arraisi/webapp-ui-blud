@@ -1,46 +1,36 @@
 angular
-    .module('app', ['toaster', 'ngAnimate', 'datatables'])
-    .controller('KasController', function ($scope, $location, toaster, globalService) {
+    .module('app', ['toaster', 'ngAnimate', 'datatables','angularMoment'])
+    .controller('KasController',KasController);
 
-        const vm = this;
-        globalService.datatablesData(function (result) {
-            if (result.status === 200) {
-                console.log('Response Result Datatable Data');
-                console.log(result);
-                vm.persons = result.data;
-            } else {
-                console.log('Response Result Datatable Data');
-                console.log(result);
-                // $scope.vm.error = 'Username or password is incorrect';
-                // $scope.vm.loading = false;
-            }
-        });
+    function KasController(DTOptionsBuilder, DTColumnBuilder,$scope,moment) {
+        $scope.tahun = new Date();
+        $scope.exampleDate =moment($scope.tahun).format('YYYY');
+        console.log($scope.exampleDate)
+        var vm = this;
+        var local = JSON.parse(localStorage.getItem('currentUser'));
+        var authorization = 'Bearer ' + local.access_token;
+        console.log(authorization)
+        vm.dtOptions = DTOptionsBuilder.newOptions()
+            .withOption('ajax', {
+             // Either you specify the AjaxDataProp here
+             // dataSrc: 'data',
+             headers: { 'Authorization': authorization,'Content-Type': 'application/json; charset=UTF-8' },
+             url: '/blud-auth-server/api/oauth/token/current/datatables',
+             type: 'POST',
+             data: function(data){
+                return JSON.stringify(data);
+             }
 
-        globalService.serviceGetData('/dkipp/api/chart/pelanggaran/jumlah/list', null, function (result) {
-           console.log('Result Data Get Master DKIPP');
-           console.log(result.data);
-        });
-
-        const queryUser = $location.search().kasId;
-        console.log('kasId data : ');
-        console.log('kasId data : '+ queryUser);
-
-        $scope.pop = function () {
-            toaster.pop('info', "title", "text");
-        };
-
-        $scope.testToastr = function () {
-            console.log('Testing Toastr');
-            // toaster.pop('info', "title", "text");
-            toaster.pop({
-                type: 'error',
-                title: 'Title text',
-                body: 'Body text',
-                timeout: 3000
-            });
-        };
-
-        $scope.tambahData = function () {
-            $location.path('/components/forms');
-        }
-    });
+         })
+         // or here
+         .withDataProp('data')
+            .withOption('processing', true)
+            .withOption('searching', false)
+            .withOption('serverSide', true)
+            .withPaginationType('full_numbers');
+        vm.dtColumns = [
+            DTColumnBuilder.newColumn('username').withTitle('Kode Akun'),
+            DTColumnBuilder.newColumn('clientId').withTitle('Perkiraan Saldo Kas Per 31 Desember ' + $scope.exampleDate),
+            DTColumnBuilder.newColumn('clientId').withTitle('Perkiraan Saldo Kas Per 31 Desember ')
+        ];
+    }
