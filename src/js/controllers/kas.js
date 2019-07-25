@@ -14,7 +14,8 @@ angular
         //formBuild
         $scope.formData;
         $scope.valData;
-        $scope.amount
+        $scope.amount;
+        $scope.updateData;
 
         $scope.price 
 
@@ -41,7 +42,7 @@ angular
             var total = 0;
             angular.forEach($scope.valData, function(value, key) {
                 $scope.amount = value
-                var saldo = $scope.amount.saldo
+                var saldo = $scope.amount.v_KAS_AUDITED
                 
                 total += (+saldo); //<-- convert to number
                 $scope.price = total;
@@ -51,9 +52,14 @@ angular
         }
         
         $scope.saveData = function () {
-
-            kasService.saveData($scope.valData, function (result) {
+            angular.forEach($scope.valData, function(value, key) {
+            
+                $scope.updateData = value
+                console.log($scope.updateData);
+              });
+            kasService.saveData($scope.updateData, function (result) {
                 console.log(result.data);
+                
                 if (result.status === 200) {
                     console.log('Response Result Delete Data');
                     console.log(result);
@@ -63,7 +69,6 @@ angular
                         body: 'Data Jenis Pelanggaran Berhasil Dihapus',
                         timeout: 5000
                     });
-                    $location.path('/components/list-example');
                 } else {
                     console.log('Response Result Delete Data');
                     console.log(result);
