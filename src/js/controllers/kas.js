@@ -1,20 +1,34 @@
 angular
-    .module('app', ['toaster', 'ngAnimate', 'datatables'])
-    .controller('KasController', function ($scope, toaster,kasService) {
+    .module('app', ['toaster', 'ngAnimate', 'datatables','fcsa-number','ngMask'])
+    .controller('KasController', function ($scope,$filter, toaster,kasService) {
         
         const vm = this;
         $scope.readonlySaldo = false;
-
+        // 
+        var myDate = new Date();
+        var nextYear = new Date(myDate);
+        var skpd = nextYear.setYear(myDate.getFullYear()+1);
+ 
+        $scope.tahun = myDate;
+        $scope.skpd = skpd;
         //formBuild
         $scope.formData;
         $scope.valData;
-        
+        $scope.amount
+
+        $scope.price 
+
         kasService.findDataApi(function (result) {
             if (result.status === 200) {
                 console.log('Response Result Datatable Data');
                 console.log(result.data);
                 $scope.valData = result.data;
-                console.log()
+               
+                angular.forEach($scope.valData, function(value, key) {
+                    $scope.amount = value
+                    // console.log($scope.amount.saldo)
+                  });
+            
             } else {
                 console.log('Response Result Datatable Data');
                 console.log(result);
@@ -23,41 +37,39 @@ angular
             }
         });
 
-        // $scope.saveData = function() {
-        //     console.log('you can save all the valData as a document: ');
-        //     console.log($scope.valData);
-        //     console.log('or save row by row:');
-        //     var index = 0;
-        //     $scope.valData.forEach(function (row) {
-        //         console.log('row #' + (index++) + ': ' + JSON.stringify(row));
-        //     });
-        // }
-
+        $scope.getTotal = function(){
+            var total = 0;
+            angular.forEach($scope.valData, function(value, key) {
+                $scope.amount = value
+                var saldo = $scope.amount.saldo
+                
+                total += (+saldo); //<-- convert to number
+                $scope.price = total;
+              });
+              
+            return total;
+        }
         
-    $scope.saveData = function () {
-        $scope.valData.forEach(function (row) {
-                    console.log('row #'+ ': ' + JSON.stringify(row));
-                });
-        kasService.saveData(null,$scope.valData, function (result) {
-            console.log(result.data);
-            if (result.status === 200) {
-                console.log('Response Result Delete Data');
-                console.log(result);
-                toaster.pop({
-                    type: 'success',
-                    title: 'Berhasil Hapus Data',
-                    body: 'Data Jenis Pelanggaran Berhasil Dihapus',
-                    timeout: 5000
-                });
-                $location.path('/components/list-example');
-            } else {
-                console.log('Response Result Delete Data');
-                console.log(result);
-            }
-        });
-    };
+        $scope.saveData = function () {
 
-     
+            kasService.saveData($scope.valData, function (result) {
+                console.log(result.data);
+                if (result.status === 200) {
+                    console.log('Response Result Delete Data');
+                    console.log(result);
+                    toaster.pop({
+                        type: 'success',
+                        title: 'Berhasil Hapus Data',
+                        body: 'Data Jenis Pelanggaran Berhasil Dihapus',
+                        timeout: 5000
+                    });
+                    $location.path('/components/list-example');
+                } else {
+                    console.log('Response Result Delete Data');
+                    console.log(result);
+                }
+            });
+        };
 
         $scope.suntingAnggaran = function(){
           $scope.readonlySaldo = true;
@@ -78,4 +90,24 @@ angular
                 timeout: 3000
             });
         }
+    }).directive('numbersOnly', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, element, attr, ngModelCtrl) {
+                console.log("ngmodel",ngModelCtrl)
+                function fromUser(text) {
+                    if (text) {
+                        var transformedInput = text.replace(/[^0-9,.]/g, '');
+    
+                        if (transformedInput !== text) {
+                            ngModelCtrl.$setViewValue(transformedInput);
+                            ngModelCtrl.$render();
+                        }
+                        return transformedInput;
+                    }
+                    return undefined;
+                }            
+                ngModelCtrl.$parsers.push(fromUser);
+            }
+        };
     });

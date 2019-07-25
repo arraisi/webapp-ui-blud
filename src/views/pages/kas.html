@@ -17,7 +17,7 @@
                             </div>
                             <br>
                             <div class="">
-                                SKPD : 2020
+                                SKPD : {{skpd| date:'yyyy'}}
                             </div>
                         </div>
                         <hr>
@@ -30,14 +30,14 @@
                             </button>   
                         </div>
                         
-                        <table datatable="ng" class="row-border hover " style="width:100%">
+                        <table datatable="ng" class="row-border hover col-lg-12 " dt-options="showCase.dtOptions"   style="width:100%" dt-options="dtOptions" dt-columns="dtColumns">
                             <thead>
                                     <tr>
                                         <th colspan="3" >Saldo Kas Tahun : {{tahun| date:'yyyy'}} </th>
                                     </tr>
                                     <tr>
                                         <th colspan="2">Kode Akun</th>
-                                        <th >Perkiraan Saldo Kas Per 31 Desember </th>
+                                        <th>Perkiraan Saldo Kas Per 31 Desember </th>
                                     </tr>
                                     <tr hidden>
                                         <th ></th>
@@ -47,11 +47,16 @@
                             </thead>
                             <tbody>
                             <tr ng-repeat="data in valData">
-                                <td class="text-left">{{ data.kode }}</td>
-                                <td>{{ data.akun }}</td>
-                                <td class="text-right" ><input type="text" ng-readonly="!readonlySaldo" ng-model="data.saldo"></td>
+                                <td style="width:25%">{{ data.kode }}</td>
+                                <td style="width:25%">{{ data.akun }}</td>
+                                <td class="text-right"><input class="text-right form-control" numbers-only mask="999.999.999"  style="width:100%" 
+                                    type="text" ng-readonly="!readonlySaldo" ng-model="data.saldo"> </td>
                             </tr>
                             </tbody>
+                            <tfoot>
+                                <td colspan="2"> Total </td>
+                                <td class="text-right" >Grand Total {{ getTotal() }}</td>
+                            </tfoot>
                         </table>
                         <button type="submit" class="btn btn-primary float-right" ng-click="saveData()"><i
                             class="fa fa-save"></i> Save

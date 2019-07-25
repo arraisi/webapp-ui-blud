@@ -16,10 +16,8 @@ angular
                         callback(response);
                     })
             },
-            saveData: function (params, body, callback) {
-                console.log(params)
-                console.log(body)
-                console.log(callback)
+            saveData: function (body, callback) {
+                console.log("save",body)
                 // const local = JSON.parse(localStorage.getItem('currentUser'));
                 // const token = 'Bearer ' + local.access_token;
                 // const req = {
