@@ -64,9 +64,39 @@ angular
             })
             .state('app.pendapatan', {
                 url: '/pendapatan',
-                templateUrl: 'views/pages/pendapatan.html',
+                templateUrl: 'views/pages/pendapatan/pendapatan.html',
                 ncyBreadcrumb: {
                     label: 'Pendapatan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/pendapatan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.rincian-pendapatan', {
+                url: '/pendapatan/rincian',
+                templateUrl: 'views/pages/pendapatan/rincian-pendapatan.html',
+                ncyBreadcrumb: {
+                    label: 'Pendapatan / Rincian'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/pendapatan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.akb-pendapatan', {
+                url: '/pendapatan/akb',
+                templateUrl: 'views/pages/pendapatan/akb-pendapatan.html',
+                ncyBreadcrumb: {
+                    label: 'Pendapatan / AKB Bulan'
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {

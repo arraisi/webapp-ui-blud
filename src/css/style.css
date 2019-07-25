@@ -12742,3 +12742,9 @@ hr.transparent {
   width: 100%;
   padding: 20px;
   text-align: center; }
+
+.form-group {
+  margin-bottom: 5px !important; }
+
+.spaceLeft {
+  padding-left: 1.5rem; }
