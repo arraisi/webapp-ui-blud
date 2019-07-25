@@ -25,7 +25,7 @@ angular
                     })
             },
             saveData: function (body, callback) {
-                console.log(body)
+                console.log("body",body)
              
                 const local = JSON.parse(localStorage.getItem('currentUser'));
                 const token = 'Bearer ' + local.access_token;
