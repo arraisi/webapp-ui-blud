@@ -19,22 +19,20 @@ angular
 
         $scope.price 
 
+        $scope.pop = function () {
+            toaster.pop('info', "title", "text");
+        };
+
         kasService.findDataApi(function (result) {
             if (result.status === 200) {
-                console.log('Response Result Datatable Data');
-                console.log(result.data);
                 $scope.valData = result.data;
-               
                 angular.forEach($scope.valData, function(value, key) {
                     $scope.amount = value
-                    // console.log($scope.amount.saldo)
                   });
             
             } else {
                 console.log('Response Result Datatable Data');
                 console.log(result);
-                // $scope.vm.error = 'Username or password is incorrect';
-                // $scope.vm.loading = false;
             }
         });
 
@@ -52,19 +50,17 @@ angular
         }
         
         $scope.saveData = function () {
-            angular.forEach($scope.valData, function(value, key) {
-                $scope.updateData = value
-              });
+            $scope.readonlySaldo = false;
             kasService.saveData($scope.valData, function (result) {
                 console.log(result.data);
                 
                 if (result.status === 200) {
-                    console.log('Response Result Delete Data');
+                    console.log('Response Result Update Data');
                     console.log(result);
                     toaster.pop({
                         type: 'success',
-                        title: 'Berhasil Hapus Data',
-                        body: 'Data Jenis Pelanggaran Berhasil Dihapus',
+                        title: 'Berhasil Update Data',
+                        body: 'Data Kas Berhasil DiUpdate',
                         timeout: 5000
                     });
                 } else {
@@ -97,7 +93,6 @@ angular
         return {
             require: 'ngModel',
             link: function (scope, element, attr, ngModelCtrl) {
-                console.log("ngmodel",ngModelCtrl)
                 function fromUser(text) {
                     if (text) {
                         var transformedInput = text.replace(/[^0-9,.]/g, '');
