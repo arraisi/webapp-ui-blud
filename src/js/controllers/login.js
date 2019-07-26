@@ -35,6 +35,7 @@ angular
         $scope.loginForm = {
             username: "",
             password: "",
+            tahunAnggaran: "",
             captcha: null
         };
         $scope.captchaValue = "";
@@ -63,6 +64,7 @@ angular
                     // $localStorage.put('myKey', 'myValue');
                     // $localStorage.setItem('currentUser', JSON.stringify(response.data));
                     localStorage.setItem('currentUser', JSON.stringify(result.data));
+                    localStorage.setItem('tahunAnggaran', $scope.loginForm.tahunAnggaran);
                     // $http.defaults.headers.common.Authorization = 'Bearer ' + result.data.access_token;
                     $location.path('/components/list-example');
                 }

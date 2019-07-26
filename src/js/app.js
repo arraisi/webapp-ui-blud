@@ -31,7 +31,7 @@ angular
     }])
     .controller('NavBarController', ['$scope', '$location', function ($scope, $location) {
         const local = JSON.parse(localStorage.getItem('currentUser'));
-        $scope.namaLogin = local.username;
+        $scope.namaLogin = local.pengguna.nama ? local.pengguna.nama : 'nama';
         $scope.logout = function () {
             $location.path('/login');
         }
