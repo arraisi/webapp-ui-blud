@@ -66,7 +66,7 @@ angular
                     localStorage.setItem('currentUser', JSON.stringify(result.data));
                     localStorage.setItem('tahunAnggaran', $scope.loginForm.tahunAnggaran);
                     // $http.defaults.headers.common.Authorization = 'Bearer ' + result.data.access_token;
-                    $location.path('/components/list-example');
+                    $location.path('/dashboard');
                 }
             });
         };

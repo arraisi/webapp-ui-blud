@@ -17,20 +17,20 @@ function FormExampleController($scope, $location, toaster, formExampleService, g
     // Get Data From Query Param
     const id = $location.search().id;
     if (id) {
-        globalService.serviceGetData(`/dkipp/api/master/jenis-pelanggaran/${id}/findById`, null, function (result) {
-            console.log('Result Data Get Jenis Pelanggaran By ID');
-            console.log(result.data);
-            if (result.status === 200) {
-                console.log('Response Result Get Jenis Pelanggaran By ID');
-                console.log(result);
-                $scope.formTesting = result.data;
-            } else {
-                console.log('Response Result Get Jenis Pelanggaran By ID');
-                console.log(result);
-                // $scope.vm.error = 'Username or password is incorrect';
-                // $scope.vm.loading = false;
-            }
-        });
+        // globalService.serviceGetData(`/dkipp/api/master/jenis-pelanggaran/${id}/findById`, null, function (result) {
+        //     console.log('Result Data Get Jenis Pelanggaran By ID');
+        //     console.log(result.data);
+        //     if (result.status === 200) {
+        //         console.log('Response Result Get Jenis Pelanggaran By ID');
+        //         console.log(result);
+        //         $scope.formTesting = result.data;
+        //     } else {
+        //         console.log('Response Result Get Jenis Pelanggaran By ID');
+        //         console.log(result);
+        //         // $scope.vm.error = 'Username or password is incorrect';
+        //         // $scope.vm.loading = false;
+        //     }
+        // });
     }
 
     $scope.getFormValue = function () {

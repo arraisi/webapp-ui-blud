@@ -6,14 +6,55 @@ angular
 
 // Function Untuk Kontroller Pendapatan List
 function PendapatanController($scope, $location, toaster, globalService) {
+
+    // ======== Awal Init Porject
     console.log('Init Controller Form Pendapatan');
+    // $scope.loadPendapatan('2020', '12835');
+    globalService.serviceGetData(`/blud-resource-server/api/pendapatan/load`, {
+        tahunAnggaran: 2020,
+        skpdId: 12835
+    }, function (result) {
+        console.log('Result Data Load Pendapatan');
+        console.log(result.data);
+        if (result.status === 200) {
+            console.log('Response Result Load Pendapatan');
+            console.log(result);
+            $scope.loadDataPendapatan = result.data;
+            console.log('Value Data Load Pendatan :');
+            console.log($scope.loadDataPendapatan);
+        } else {
+            console.log('Response Result Load Pendapatan');
+            console.log(result);
+        }
+    });
+
+    // ======== Akhir Init Project
+
+
+    // ======== Awal Inisialisasi Variable
     $scope.nameEmail = "";
     $scope.formTesting = {
         name: "",
         email: "",
         phone: ""
     };
+    $scope.loadDataPendapatan = [];
+    // $scope.loadDataPendapatan = {
+    //     idTrx: null,
+    //     tahunAnggaran: null,
+    //     idSkpd: null,
+    //     skpd: null,
+    //     namaSkpd: null,
+    //     idBas: null,
+    //     kodeAkun: null,
+    //     namaAkun: null,
+    //     anggaranDpa: null,
+    //     anggaranTapd: null
+    // };
+    // ======== Awal Inisialisasi Variable
 
+
+    // ======== Awal Function
     $scope.getFormValue = function () {
         console.log($scope.formTesting);
         console.log('Name ' + $scope.formTesting.name);
