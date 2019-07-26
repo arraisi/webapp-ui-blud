@@ -32,42 +32,42 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>4.1.4.12.01</td>
-                                <td>Pendapatan Jasa Layanan BLUD</td>
-                                <td class="text-right">Rp. 1.493.000,00</td>
+                            <tr ng-repeat="data in loadDataPendapatan">
+                                <td>{{data.kodeAkun}}</td>
+                                <td>{{data.namaAkun}}</td>
+                                <td class="text-right">{{data.anggaranTapd}}</td>
                                 <td class="text-center">
                                     <button class="btn btn-success rounded" ng-click="goToRincian()"> Rincian</button>
                                     <button class="btn btn-primary rounded" ng-click="goToAkb()"> AKB Bulan</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>4.1.4.12.02</td>
-                                <td>Pendapatan Hasil Kerjasama Dengan Pihak Lain</td>
-                                <td class="text-right">Rp. 700.000,00</td>
-                                <td class="text-center">
-                                    <button class="btn btn-success rounded" ng-click="goToRincian()"> Rincian</button>
-                                    <button class="btn btn-primary rounded" ng-click="goToAkb()"> AKB Bulan</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4.1.4.12.03</td>
-                                <td>Lain-lain Pendapatan BLUD Yang Sah</td>
-                                <td class="text-right">Rp. 300.000,00</td>
-                                <td class="text-center">
-                                    <button class="btn btn-success rounded" ng-click="goToRincian()"> Rincian</button>
-                                    <button class="btn btn-primary rounded" ng-click="goToAkb()"> AKB Bulan</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4.1.4.12.04</td>
-                                <td>Pendapatan Hibah BLUD</td>
-                                <td class="text-right">Rp. 1.000.000,00</td>
-                                <td class="text-center">
-                                    <button class="btn btn-success rounded" ng-click="goToRincian()"> Rincian</button>
-                                    <button class="btn btn-primary rounded" ng-click="goToAkb()"> AKB Bulan</button>
-                                </td>
-                            </tr>
+<!--                            <tr>-->
+<!--                                <td>4.1.4.12.02</td>-->
+<!--                                <td>Pendapatan Hasil Kerjasama Dengan Pihak Lain</td>-->
+<!--                                <td class="text-right">Rp. 700.000,00</td>-->
+<!--                                <td class="text-center">-->
+<!--                                    <button class="btn btn-success rounded" ng-click="goToRincian()"> Rincian</button>-->
+<!--                                    <button class="btn btn-primary rounded" ng-click="goToAkb()"> AKB Bulan</button>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>4.1.4.12.03</td>-->
+<!--                                <td>Lain-lain Pendapatan BLUD Yang Sah</td>-->
+<!--                                <td class="text-right">Rp. 300.000,00</td>-->
+<!--                                <td class="text-center">-->
+<!--                                    <button class="btn btn-success rounded" ng-click="goToRincian()"> Rincian</button>-->
+<!--                                    <button class="btn btn-primary rounded" ng-click="goToAkb()"> AKB Bulan</button>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>4.1.4.12.04</td>-->
+<!--                                <td>Pendapatan Hibah BLUD</td>-->
+<!--                                <td class="text-right">Rp. 1.000.000,00</td>-->
+<!--                                <td class="text-center">-->
+<!--                                    <button class="btn btn-success rounded" ng-click="goToRincian()"> Rincian</button>-->
+<!--                                    <button class="btn btn-primary rounded" ng-click="goToAkb()"> AKB Bulan</button>-->
+<!--                                </td>-->
+<!--                            </tr>-->
                             </tbody>
                             <tfoot>
                             <tr>
