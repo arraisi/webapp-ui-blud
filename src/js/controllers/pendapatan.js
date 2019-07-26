@@ -10,9 +10,11 @@ function PendapatanController($scope, $location, toaster, globalService) {
     // ======== Awal Init Porject
     console.log('Init Controller Form Pendapatan');
     // $scope.loadPendapatan('2020', '12835');
+    const tahun = localStorage.getItem('tahunAnggaran');
+    const local = JSON.parse(localStorage.getItem('currentUser'));
     globalService.serviceGetData(`/blud-resource-server/api/pendapatan/load`, {
-        tahunAnggaran: 2020,
-        skpdId: 12835
+        tahunAnggaran: tahun,
+        skpdId: local.pengguna.skpdId
     }, function (result) {
         console.log('Result Data Load Pendapatan');
         console.log(result.data);
