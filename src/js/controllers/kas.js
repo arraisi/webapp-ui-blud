@@ -53,11 +53,9 @@ angular
         
         $scope.saveData = function () {
             angular.forEach($scope.valData, function(value, key) {
-            
                 $scope.updateData = value
-                console.log($scope.updateData);
               });
-            kasService.saveData($scope.updateData, function (result) {
+            kasService.saveData($scope.valData, function (result) {
                 console.log(result.data);
                 
                 if (result.status === 200) {
