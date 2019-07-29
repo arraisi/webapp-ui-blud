@@ -47,10 +47,11 @@
 
                             <!-- Anggaran Rincian Field -->
                             <div class="form-group row">
-                                <label for="anggaranRincian" class="col-4 col-form-label">Anggaran Rincian <sup
+                                <label for="rincianAnggaran" class="col-4 col-form-label">Anggaran Rincian <sup
                                         style="color: red;">(*)</sup></label>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" name="anggaranRincian" id="anggaranRincian">
+                                    <input type="text" class="form-control" name="rincianAnggaran" id="rincianAnggaran"
+                                           ng-model="formRincian.rincianAnggaran">
                                 </div>
                             </div>
 
@@ -59,7 +60,8 @@
                                 <label for="satuan" class="col-4 col-form-label">Satuan <sup
                                         style="color: red;">(*)</sup></label>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" name="satuan" id="satuan">
+                                    <input type="text" class="form-control" name="satuan" id="satuan"
+                                           ng-model="formRincian.namaBarangSatuanTapd">
                                 </div>
                             </div>
 
@@ -68,7 +70,8 @@
                                 <label for="volume" class="col-4 col-form-label">Volume <sup
                                         style="color: red;">(*)</sup></label>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" name="volume" id="volume">
+                                    <input type="text" class="form-control" name="volume" id="volume"
+                                           ng-model="formRincian.jumlahBarangTapd" ng-keypress="onlyNumberKey($event)">
                                 </div>
                             </div>
                         </div>
@@ -79,7 +82,9 @@
                                 <label for="harga" class="col-4 col-form-label">Harga <sup
                                         style="color: red;">(*)</sup></label>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" name="harga" id="harga">
+                                    <input type="text" class="form-control" name="harga" id="harga"
+                                           ng-model="formRincian.hargaBarangSatuanTapd"
+                                           ng-keypress="onlyNumberKey($event)">
                                 </div>
                             </div>
 
@@ -89,7 +94,16 @@
                                         style="color: red;">(*)</sup></label>
                                 <div class="col-6">
                                     <input readonly type="text" class="form-control" name="totalAnggaran"
-                                           id="totalAnggaran">
+                                           id="totalAnggaran" ng-model="formRincian.anggaranTapd"
+                                           ng-click="getTotalHarga()">
+                                </div>
+                            </div>
+
+                            <!-- Simpan Button -->
+                            <div class="form-group row">
+                                <span class="col-4 col-form-label"></span>
+                                <div class="col-6 text-right">
+                                    <button class="btn btn-success rounded" ng-click="simpanRincian()">Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -114,33 +128,24 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>Rawat Inap</td>
-                                <td>Paket</td>
-                                <td class="text-center">2</td>
-                                <td class="text-right">Rp. 7.000.000,00</td>
-                                <td class="text-right">Rp. 14.000.000,00</td>
+                            <tr ng-repeat="data in loadDataRincianPendapatan">
+                                <td class="text-center">{{data.anggaranNoUrut}}</td>
+                                <td>{{data.rincianAnggaran}}</td>
+                                <td>{{data.namaBarangSatuanTapd}}</td>
+                                <td class="text-center">{{data.jumlahBarangTapd}}</td>
+                                <td class="text-right">{{data.hargaBarangSatuanTapd}}</td>
+                                <td class="text-right">{{data.anggaranTapd}}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-link" title="Sunting Rinci"><i class="fa fa-edit"></i>
+                                    <button class="btn btn-link" title="Sunting Rinci" ng-click="editRincian(data)"><i
+                                            class="fa fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-link" title="Hapus Rinci"><i class="fa fa-trash"></i>
+                                    <button class="btn btn-link" title="Hapus Rinci" ng-click="hapusRincian(data)"><i
+                                            class="fa fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>Rawat Jalan</td>
-                                <td>Paket</td>
-                                <td class="text-center">1</td>
-                                <td class="text-right">Rp. 900.000,00</td>
-                                <td class="text-right">Rp. 900.000,00</td>
-                                <td class="text-center">
-                                    <button class="btn btn-link" title="Sunting Rinci"><i class="fa fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-link" title="Hapus Rinci"><i class="fa fa-trash"></i>
-                                    </button>
-                                </td>
+                            <tr ng-if="loadDataRincianPendapatan.length <= 0">
+                                <td colspan="8" class="text-center"><b>Tidak Ada Data Rincian</b></td>
                             </tr>
                             </tbody>
                         </table>
@@ -148,10 +153,12 @@
                 </div>
                 <div class="card-footer text-center">
                     <button class="btn btn-secondary rounded" ng-click="goToPendapatan()">Kembali</button>
-                    <button class="btn btn-success rounded" ng-click="simpanDataRinci()">Simpan</button>
+                    <button class="btn btn-success rounded" ng-click="simpanDataRincianAll()">Simpan</button>
                 </div>
             </div>
         </div>
         <!--/.col-->
     </div>
 </div>
+
+<toaster-container toaster-options="{'close-button': true}"></toaster-container>
