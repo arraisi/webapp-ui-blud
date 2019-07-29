@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="836dd38f-21df-43ae-b562-c4c2df06aa1c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/controllers/pendapatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/pendapatan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/akb-pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/akb-pendapatan.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/pendapatan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/rincian-pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/rincian-pendapatan.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +128,7 @@
       <workItem from="1564041730596" duration="868000" />
       <workItem from="1564054036195" duration="14845000" />
       <workItem from="1564369033341" duration="815000" />
-      <workItem from="1564370201224" duration="15747000" />
+      <workItem from="1564370201224" duration="18650000" />
     </task>
     <servers />
   </component>

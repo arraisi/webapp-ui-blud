@@ -109,9 +109,9 @@ function PendapatanController($scope, $location, toaster, globalService) {
         }
     };
 
-    $scope.goToAkb = function () {
+    $scope.goToAkb = function (valueDpt) {
         console.log('Method Route To AKB');
-        $location.search('idDpt', '1');
+        $location.search('idDpt', valueDpt.idTrx);
         $location.path('/pendapatan/akb');
     };
 }
@@ -201,12 +201,10 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
 
     // Only Number
     $scope.onlyNumberKey = function (event) {
-        console.log('Only Number ' + event);
-        console.log(event);
         if (event.charCode > 31 && (event.charCode < 48 || event.charCode > 57)) {
             console.log('Not Number');
             toaster.pop({
-                type: 'success',
+                type: 'warning',
                 title: 'Hanya Angka',
                 body: 'Tidak Bisa Input Selain Angka',
                 timeout: 5000
@@ -285,10 +283,124 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
 
 // Function Untuk Controller AKB Pendapatan
 function AkbPendapatanController($scope, $location, toaster, globalService) {
+    $scope.formAkbPendapatan = {
+        anggaranDpa: null,
+        anggaranTapd: null,
+        id: null,
+        idBas: null,
+        idRekamPengguna: null,
+        idSkpd: null,
+        idUbahPengguna: null,
+        jenis: null,
+        rpaBulan1: null,
+        rpaBulan2: null,
+        rpaBulan3: null,
+        rpaBulan4: null,
+        rpaBulan5: null,
+        rpaBulan6: null,
+        rpaBulan7: null,
+        rpaBulan8: null,
+        rpaBulan9: null,
+        rpaBulan10: null,
+        rpaBulan11: null,
+        rpaBulan12: null,
+        tahunAnggaran: null,
+        tanggalRekamPengguna: null,
+        tanggalUbahPengguna: null
+    };
+    $scope.totalRpaBulan = 0;
+
     const idDpt = $location.search().idDpt;
     if (idDpt) {
         console.log(`ID DPT ${idDpt}`);
+        console.log(`ID DPT ${idDpt}`);
+        globalService.serviceGetData(`/blud-resource-server/api/pendapatan/${idDpt}`, null, function (result) {
+            console.log('Result Data Pendapatan');
+            console.log(result.data);
+            if (result.status === 200) {
+                console.log('Response Result Pendapatan Ok');
+                console.log(result);
+                $scope.formAkbPendapatan = result.data;
+                console.log('Value Data Pendatan :');
+                console.log($scope.formAkbPendapatan);
+                if ($scope.formAkbPendapatan.jenis == null) {
+                    $scope.formAkbPendapatan.jenis = 0
+                }
+                let totalRpa = (
+                    $scope.formAkbPendapatan.rpaBulan1 +
+                    $scope.formAkbPendapatan.rpaBulan2 +
+                    $scope.formAkbPendapatan.rpaBulan3 +
+                    $scope.formAkbPendapatan.rpaBulan4 +
+                    $scope.formAkbPendapatan.rpaBulan5 +
+                    $scope.formAkbPendapatan.rpaBulan6 +
+                    $scope.formAkbPendapatan.rpaBulan7 +
+                    $scope.formAkbPendapatan.rpaBulan8 +
+                    $scope.formAkbPendapatan.rpaBulan9 +
+                    $scope.formAkbPendapatan.rpaBulan10 +
+                    $scope.formAkbPendapatan.rpaBulan11 +
+                    $scope.formAkbPendapatan.rpaBulan12);
+                $scope.totalRpaBulan = totalRpa;
+
+            } else if (result.status === 204) {
+                console.log('Response Result Pendatan Not Ok');
+                console.log(result);
+            } else {
+                $location.path('/pendapatan');
+            }
+        });
     } else {
         $location.path('/pendapatan');
     }
+
+    // Kembali Ke Page Pendapatan List
+    $scope.goToPendapatan = function () {
+        $location.url($location.path());
+        $location.path('/pendapatan');
+    };
+
+    $scope.simpanAkb = function () {
+        console.log('Save AKB');
+        console.log($scope.formAkbPendapatan);
+        globalService.servicePostData(`/blud-resource-server/api/pendapatan/akb/save`, null, $scope.formAkbPendapatan, function (result) {
+            console.log('Result Data Save AKB Pendapatan');
+            console.log(result.data);
+            if (result.status === 201) {
+                console.log('Response Save AKB Pendapatan Succes');
+                console.log(result);
+                // $location.path('/pendapatan');
+            } else {
+                console.log('Response Error Save AKB Pendapatan');
+                console.log(result);
+            }
+        })
+    };
+
+    // Only Number
+    $scope.onlyNumberKey = function (event) {
+        console.log(event.originalEvent.key);
+        // let totalRpa = (
+        //     $scope.formAkbPendapatan.rpaBulan1 +
+        //     $scope.formAkbPendapatan.rpaBulan2 +
+        //     $scope.formAkbPendapatan.rpaBulan3 +
+        //     $scope.formAkbPendapatan.rpaBulan4 +
+        //     $scope.formAkbPendapatan.rpaBulan5 +
+        //     $scope.formAkbPendapatan.rpaBulan6 +
+        //     $scope.formAkbPendapatan.rpaBulan7 +
+        //     $scope.formAkbPendapatan.rpaBulan8 +
+        //     $scope.formAkbPendapatan.rpaBulan9 +
+        //     $scope.formAkbPendapatan.rpaBulan10 +
+        //     $scope.formAkbPendapatan.rpaBulan11 +
+        //     $scope.formAkbPendapatan.rpaBulan12);
+        // console.log(totalRpa);
+        // $scope.totalRpaBulan = $scope.totalRpaBulan - totalRpa;
+        if (event.charCode > 31 && (event.charCode < 48 || event.charCode > 57)) {
+            toaster.pop({
+                type: 'warning',
+                title: 'Hanya Angka',
+                body: 'Tidak Bisa Input Selain Angka',
+                timeout: 5000
+            });
+            event.preventDefault();
+        }
+    };
 }
