@@ -34,30 +34,33 @@
                             <div class="form-group row" style="margin-bottom: 1px !important;">
                                 <label class="col-3 col-form-label">Anggaran</label>
                                 <div class="col-8">
-                                    <label class="col-form-label">Rp. {{formAkbPendapatan.anggaranTapd}}</label>
+                                    <label class="col-form-label">{{formAkbPendapatan.anggaranTapd | currency: "Rp. " :
+                                        2 }}</label>
                                 </div>
                             </div>
                             <div class="form-group row" style="margin-bottom: 1px !important;">
                                 <label class="col-3 col-form-label">Sisa Anggaran</label>
                                 <div class="col-8">
-                                    <label class="col-form-label">Rp. {{formAkbPendapatan.anggaranTapd -
-                                        totalRpaBulan}}</label>
+                                    <label class="col-form-label">{{formAkbPendapatan.anggaranTapd -
+                                        totalRpaBulan | currency: "Rp. " : 2 }}</label>
                                 </div>
                             </div>
                             <div class="form-group row" style="margin-bottom: 1px !important;">
                                 <label class="col-3 col-form-label">Jenis</label>
                                 <div class="col-8 row" style="margin-left: 1px !important;">
                                     <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" ng-value="0" id="perItem"
-                                               name="jenis" ng-model="formAkbPendapatan.jenis">
+                                        <input class="form-check-input" type="radio" ng-value="'0'" id="perItem"
+                                               name="jenis" ng-model="formAkbPendapatan.jenis"
+                                               ng-change="changeJenis()">
                                         <label class="form-check-label" for="perItem">
                                             Bagi Per Item
                                         </label>
                                     </div>
                                     <span style="width: 20px"></span>
                                     <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" ng-value="1" id="rata"
-                                               name="jenis" ng-model="formAkbPendapatan.jenis">
+                                        <input class="form-check-input" type="radio" ng-value="'1'" id="rata"
+                                               name="jenis" ng-model="formAkbPendapatan.jenis"
+                                               ng-change="changeJenis()">
                                         <label class="form-check-label" for="rata">
                                             Bagi Rata
                                         </label>
@@ -79,8 +82,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="januari" name="januari" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan1" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="januari" name="januari"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan1"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -93,8 +98,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="februari" name="februari" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan2" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="februari" name="februari"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan2"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -107,8 +114,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="maret" name="maret" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan3" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="maret" name="maret"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan3"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -121,8 +130,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="april" name="april" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan4" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="april" name="april"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan4"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -135,8 +146,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="mei" name="mei" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan5" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="mei" name="mei"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan5"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -149,8 +162,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="juni" name="juni" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan6" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="juni" name="juni"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan6"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -165,8 +180,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="juli" name="juli" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan7" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="juli" name="juli"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan7"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -179,8 +196,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="agustus" name="agustus" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan8" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="agustus" name="agustus"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan8"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -193,8 +212,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="september" name="september" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan9" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="september" name="september"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan9"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -207,8 +228,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="oktober" name="oktober" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan10" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="oktober" name="oktober"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan10"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -221,8 +244,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="november" name="november" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan11" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="november" name="november"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan11"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>
@@ -235,8 +260,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
                                         </div>
-                                        <input type="text" id="desember" name="desember" class="form-control"
-                                               ng-model="formAkbPendapatan.rpaBulan12" ng-keypress="onlyNumberKey($event)">
+                                        <input input-currency type="text" id="desember" name="desember"
+                                               class="form-control text-right"
+                                               ng-model="formAkbPendapatan.rpaBulan12"
+                                               ng-keypress="onlyNumberKey($event)">
                                     </div>
                                 </div>
                             </div>

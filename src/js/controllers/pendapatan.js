@@ -378,21 +378,23 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
     // Only Number
     $scope.onlyNumberKey = function (event) {
         console.log(event.originalEvent.key);
-        // let totalRpa = (
-        //     $scope.formAkbPendapatan.rpaBulan1 +
-        //     $scope.formAkbPendapatan.rpaBulan2 +
-        //     $scope.formAkbPendapatan.rpaBulan3 +
-        //     $scope.formAkbPendapatan.rpaBulan4 +
-        //     $scope.formAkbPendapatan.rpaBulan5 +
-        //     $scope.formAkbPendapatan.rpaBulan6 +
-        //     $scope.formAkbPendapatan.rpaBulan7 +
-        //     $scope.formAkbPendapatan.rpaBulan8 +
-        //     $scope.formAkbPendapatan.rpaBulan9 +
-        //     $scope.formAkbPendapatan.rpaBulan10 +
-        //     $scope.formAkbPendapatan.rpaBulan11 +
-        //     $scope.formAkbPendapatan.rpaBulan12);
-        // console.log(totalRpa);
-        // $scope.totalRpaBulan = $scope.totalRpaBulan - totalRpa;
+        let totalRpa = (
+            $scope.formAkbPendapatan.rpaBulan1 +
+            $scope.formAkbPendapatan.rpaBulan2 +
+            $scope.formAkbPendapatan.rpaBulan3 +
+            $scope.formAkbPendapatan.rpaBulan4 +
+            $scope.formAkbPendapatan.rpaBulan5 +
+            $scope.formAkbPendapatan.rpaBulan6 +
+            $scope.formAkbPendapatan.rpaBulan7 +
+            $scope.formAkbPendapatan.rpaBulan8 +
+            $scope.formAkbPendapatan.rpaBulan9 +
+            $scope.formAkbPendapatan.rpaBulan10 +
+            $scope.formAkbPendapatan.rpaBulan11 +
+            $scope.formAkbPendapatan.rpaBulan12);
+        console.log('totalRpa');
+        console.log(totalRpa);
+        console.log('totalRpaBulan');
+        $scope.totalRpaBulan = $scope.totalRpaBulan + totalRpa;
         if (event.charCode > 31 && (event.charCode < 48 || event.charCode > 57)) {
             toaster.pop({
                 type: 'warning',
@@ -403,4 +405,67 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
             event.preventDefault();
         }
     };
+
+    let formCadangan = {
+        rpaBulan1: null,
+        rpaBulan2: null,
+        rpaBulan3: null,
+        rpaBulan4: null,
+        rpaBulan5: null,
+        rpaBulan6: null,
+        rpaBulan7: null,
+        rpaBulan8: null,
+        rpaBulan9: null,
+        rpaBulan10: null,
+        rpaBulan11: null,
+        rpaBulan12: null,
+    };
+
+    // Change Jenis
+    $scope.changeJenis = function () {
+        console.log('Change');
+        console.log($scope.formAkbPendapatan.jenis);
+        if ($scope.formAkbPendapatan.jenis === '1') {
+            formCadangan.rpaBulan1 = $scope.formAkbPendapatan.rpaBulan1;
+            formCadangan.rpaBulan2 = $scope.formAkbPendapatan.rpaBulan2;
+            formCadangan.rpaBulan3 = $scope.formAkbPendapatan.rpaBulan3;
+            formCadangan.rpaBulan4 = $scope.formAkbPendapatan.rpaBulan4;
+            formCadangan.rpaBulan5 = $scope.formAkbPendapatan.rpaBulan5;
+            formCadangan.rpaBulan6 = $scope.formAkbPendapatan.rpaBulan6;
+            formCadangan.rpaBulan7 = $scope.formAkbPendapatan.rpaBulan7;
+            formCadangan.rpaBulan8 = $scope.formAkbPendapatan.rpaBulan8;
+            formCadangan.rpaBulan9 = $scope.formAkbPendapatan.rpaBulan9;
+            formCadangan.rpaBulan10 = $scope.formAkbPendapatan.rpaBulan10;
+            formCadangan.rpaBulan11 = $scope.formAkbPendapatan.rpaBulan11;
+            formCadangan.rpaBulan12 = $scope.formAkbPendapatan.rpaBulan12;
+            const bagiRata = $scope.formAkbPendapatan.anggaranTapd / 12;
+            console.log(bagiRata);
+            $scope.formAkbPendapatan.rpaBulan1 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan2 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan3 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan4 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan5 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan6 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan7 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan8 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan9 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan10 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan11 = bagiRata;
+            $scope.formAkbPendapatan.rpaBulan12 = bagiRata;
+        } else {
+            console.log('Jenis 0');
+            $scope.formAkbPendapatan.rpaBulan1 = formCadangan.rpaBulan1;
+            $scope.formAkbPendapatan.rpaBulan2 = formCadangan.rpaBulan2;
+            $scope.formAkbPendapatan.rpaBulan3 = formCadangan.rpaBulan3;
+            $scope.formAkbPendapatan.rpaBulan4 = formCadangan.rpaBulan4;
+            $scope.formAkbPendapatan.rpaBulan5 = formCadangan.rpaBulan5;
+            $scope.formAkbPendapatan.rpaBulan6 = formCadangan.rpaBulan6;
+            $scope.formAkbPendapatan.rpaBulan7 = formCadangan.rpaBulan7;
+            $scope.formAkbPendapatan.rpaBulan8 = formCadangan.rpaBulan8;
+            $scope.formAkbPendapatan.rpaBulan9 = formCadangan.rpaBulan9;
+            $scope.formAkbPendapatan.rpaBulan10 = formCadangan.rpaBulan10;
+            $scope.formAkbPendapatan.rpaBulan11 = formCadangan.rpaBulan11;
+            $scope.formAkbPendapatan.rpaBulan12 = formCadangan.rpaBulan12;
+        }
+    }
 }
