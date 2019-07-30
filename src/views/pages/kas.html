@@ -49,14 +49,26 @@
                                 <tr ng-repeat="data in valData">
                                     <td style="width:25%">{{ data.cakun }}</td>
                                     <td style="width:25%">{{ data.nakun }}</td>
-                                    <td><input class="float-right text-right form-control"  style="border-radius:5px;width:50%" 
-                                        type="number" ng-readonly="!readonlySaldo" ng-model="data.vkasAudited"> </td>
+                                        <td>
+                                                <div class="controls col-9 float-right">
+                                                    <div class="input-prepend input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Rp</span>
+                                                        </div>
+                                                        <input type="text" class="form-control text-right"
+                                                            input-currency    
+                                                            ng-readonly="!readonlySaldo"
+                                                            ng-model="data.vkasAudited"
+                                                            ng-keypress="onlyNumberKey($event)">
+                                                    </div>
+                                                </div>
+                                        </td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th class="text-center" colspan="2">Total</th>
-                                        <th class="text-right"> <strong>{{ getTotal() }}</strong> </th>
+                                        <th class="text-right"> <strong>{{ getTotal() | number:0 }}</strong> </th>
                                     </tr>
                                 </tfoot>
                             </table>

@@ -40,7 +40,7 @@ angular
             var total = 0;
             angular.forEach($scope.valData, function(value, key) {
                 $scope.amount = value
-                var saldo = $scope.amount.v_KAS_AUDITED
+                var saldo = $scope.amount.vkasAudited
                 
                 total += (+saldo); //<-- convert to number
                 $scope.price = total;
@@ -88,7 +88,7 @@ angular
                 body: 'Body text',
                 timeout: 3000
             });
-        }
+        }   
     }).directive('numbersOnly', function () {
         return {
             require: 'ngModel',
