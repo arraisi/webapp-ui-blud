@@ -3,6 +3,7 @@ angular
     .controller("LoginFormController", LoginFormController);
 
 function LoginFormController($scope, $http, $location, authenticationService, toaster) {
+    $scope.submitted = false;
     localStorage.clear();
     $scope.loginForm = {
         username: "",
@@ -23,7 +24,14 @@ function LoginFormController($scope, $http, $location, authenticationService, to
         return result;
     };
     $scope.randomCaptcha(5);
-    $scope.loginFunction = function () {
+    $scope.loginFunction = function (form) {
+        console.log(form.$valid);
+        if (!form.$valid) {
+            console.log('Form Not Valid');
+            $scope.submitted = true;
+            return;
+        }
+        console.log('Form Valid');
         console.log('Login Function');
         // $location.path('/components/forms');
         authenticationService.login($scope.loginForm.username, $scope.loginForm.password, function (result) {
