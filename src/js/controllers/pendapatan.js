@@ -10,10 +10,12 @@ function PendapatanController($scope, $location, toaster, globalService) {
     // ======== Awal Init Porject
     console.log('Init Controller Form Pendapatan');
     // $scope.loadPendapatan('2020', '12835');
-    const tahun = localStorage.getItem('tahunAnggaran');
+    $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
+
+    /** Load Pendapatan */
     globalService.serviceGetData(`/blud-resource-server/api/pendapatan/load`, {
-        tahunAnggaran: tahun,
+        tahunAnggaran: $scope.tahun,
         skpdId: local.pengguna.skpdId
     }, function (result) {
         console.log('Result Data Load Pendapatan');
@@ -31,6 +33,21 @@ function PendapatanController($scope, $location, toaster, globalService) {
             console.log($scope.totalTargetPendapatan);
         } else {
             console.log('Response Result Load Pendapatan');
+            console.log(result);
+        }
+    });
+
+    /** Load SKPD By ID SKPD */
+    globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
+        console.log('Result Data Detail SKPD');
+        console.log(result.data);
+        if (result.status === 200) {
+            console.log('Response Result Detail SKPD');
+            console.log(result);
+            $scope.skpdDetail = result.data;
+            console.log('Value Data Load Detail SKPD :');
+        } else {
+            console.log('Response Result Load Detail SKPD');
             console.log(result);
         }
     });
@@ -120,8 +137,11 @@ function PendapatanController($scope, $location, toaster, globalService) {
 function RincianPendapatanController($scope, $location, toaster, globalService) {
     $scope.noUrut = 0;
     const idDpt = $location.search().idDpt;
+    $scope.tahun = localStorage.getItem('tahunAnggaran');
+    const local = JSON.parse(localStorage.getItem('currentUser'));
     if (idDpt) {
         console.log(`ID DPT ${idDpt}`);
+        /** Load Rincian By ID DPT */
         globalService.serviceGetData(`/blud-resource-server/api/pendapatan/rincian/load/${idDpt}`, null, function (result) {
             console.log('Result Data Load Rincian Pendapatan');
             console.log(result.data);
@@ -138,6 +158,25 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
                 console.log(result);
             } else {
                 $location.path('/pendapatan');
+            }
+        });
+
+        /** Load SKPD DAN DPT */
+        globalService.serviceGetData(`/blud-resource-server/api/pendapatan/get`, {
+            tahunAnggaran: $scope.tahun,
+            skpdId: local.pengguna.skpdId,
+            dptId: idDpt
+        }, function (result) {
+            console.log('Result Data Detail SKPD DAN DPT');
+            console.log(result.data);
+            if (result.status === 200) {
+                console.log('Response Result Detail SKPD DAN DPT');
+                console.log(result);
+                $scope.skpdDetail = result.data;
+                console.log('Value Data Load Detail SKPD DAN DPT :');
+            } else {
+                console.log('Response Result Load Detail SKPD DAN DPT');
+                console.log(result);
             }
         });
     } else {
@@ -309,11 +348,14 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
         tanggalUbahPengguna: null
     };
     $scope.totalRpaBulan = 0;
-
+    $scope.tahun = localStorage.getItem('tahunAnggaran');
+    const local = JSON.parse(localStorage.getItem('currentUser'));
     const idDpt = $location.search().idDpt;
     if (idDpt) {
         console.log(`ID DPT ${idDpt}`);
         console.log(`ID DPT ${idDpt}`);
+
+        /** Get Pendapatan BY ID DPT */
         globalService.serviceGetData(`/blud-resource-server/api/pendapatan/${idDpt}`, null, function (result) {
             console.log('Result Data Pendapatan');
             console.log(result.data);
@@ -346,6 +388,25 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
                 console.log(result);
             } else {
                 $location.path('/pendapatan');
+            }
+        });
+
+        /** Load SKPD DAN DPT */
+        globalService.serviceGetData(`/blud-resource-server/api/pendapatan/get`, {
+            tahunAnggaran: $scope.tahun,
+            skpdId: local.pengguna.skpdId,
+            dptId: idDpt
+        }, function (result) {
+            console.log('Result Data Detail SKPD DAN DPT');
+            console.log(result.data);
+            if (result.status === 200) {
+                console.log('Response Result Detail SKPD DAN DPT');
+                console.log(result);
+                $scope.skpdDetail = result.data;
+                console.log('Value Data Load Detail SKPD DAN DPT :');
+            } else {
+                console.log('Response Result Load Detail SKPD DAN DPT');
+                console.log(result);
             }
         });
     } else {

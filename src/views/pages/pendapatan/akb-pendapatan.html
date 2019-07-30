@@ -4,16 +4,35 @@
             <div class="card" ng-controller="AkbPendapatanController">
                 <div class="card-body" id="collapseExample1">
                     <div class="border rounded">
-                        <div class="form-group row col-5" style="margin-bottom: 1px !important;">
-                            <label class="col-4 col-form-label">Tahun Anggaran</label>
-                            <div class="col-8">
-                                <label class="col-form-label">: 2019</label>
+                        <div class="row col-12">
+                            <div class="col-7">
+                                <div class="form-group row col-12" style="margin-bottom: 1px !important;">
+                                    <label class="col-3 col-form-label">Tahun Anggaran</label>
+                                    <div class="col-8">
+                                        <label class="col-form-label">: {{skpdDetail.tahunAnggaran}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-12">
+                                    <label class="col-3 col-form-label">SKPD</label>
+                                    <div class="col-9">
+                                        <label class="col-form-label">: {{skpdDetail.namaSkpd}}</label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row col-5">
-                            <label class="col-4 col-form-label">SKPD</label>
-                            <div class="col-8">
-                                <label class="col-form-label">: 1234567 / Puskesmas Rancasari</label>
+
+                            <div class="col-5">
+                                <div class="form-group row col-12" style="margin-bottom: 1px !important;">
+                                    <label class="col-4 col-form-label">Kode Akun</label>
+                                    <div class="col-8">
+                                        <label class="col-form-label">: {{skpdDetail.kodeAkun}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-12">
+                                    <label class="col-4 col-form-label">Nama Akun</label>
+                                    <div class="col-8">
+                                        <label class="col-form-label">: {{skpdDetail.namaAkun}}</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -25,12 +44,12 @@
 
                     <div class="row" style="margin-top: 13px">
                         <div class="col-6">
-                            <div class="form-group row" style="margin-bottom: 1px !important;">
-                                <label class="col-3 col-form-label">Kode Akun</label>
-                                <div class="col-8">
-                                    <label class="col-form-label">1234567 / Puskesmas Rancasari</label>
-                                </div>
-                            </div>
+<!--                            <div class="form-group row" style="margin-bottom: 1px !important;">-->
+<!--                                <label class="col-3 col-form-label">Kode Akun</label>-->
+<!--                                <div class="col-8">-->
+<!--                                    <label class="col-form-label">{{skpdDetail.kodeAkun}}</label>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="form-group row" style="margin-bottom: 1px !important;">
                                 <label class="col-3 col-form-label">Anggaran</label>
                                 <div class="col-8">

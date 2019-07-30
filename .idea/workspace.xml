@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="836dd38f-21df-43ae-b562-c4c2df06aa1c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/controllers/pendapatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/pendapatan.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/akb-pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/akb-pendapatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/pendapatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/rincian-pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/rincian-pendapatan.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,11 +47,6 @@
     <exe-path />
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="828" />
   </component>
   <component name="ProjectId" id="1OfWFowqhZV28P5wMoBWYYAZRw2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -128,7 +124,8 @@
       <workItem from="1564041730596" duration="868000" />
       <workItem from="1564054036195" duration="14845000" />
       <workItem from="1564369033341" duration="815000" />
-      <workItem from="1564370201224" duration="27905000" />
+      <workItem from="1564370201224" duration="27951000" />
+      <workItem from="1564453220278" duration="3326000" />
     </task>
     <servers />
   </component>
