@@ -1,6 +1,6 @@
 angular
     .module('app')
-    .config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$breadcrumbProvider', function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $breadcrumbProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$breadcrumbProvider', function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $breadcrumbProvider) {
         $stateProvider
             .state('app.icons.fontawesome', {
                 url: '/font-awesome',
@@ -24,7 +24,7 @@ angular
                     label: 'Forms'
                 },
                 resolve: {
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
                             files: ['js/controllers/form-example.js']
@@ -39,7 +39,7 @@ angular
                     label: 'Forms'
                 },
                 resolve: {
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
                             files: ['js/controllers/form-example.js']
@@ -54,7 +54,7 @@ angular
                     label: 'Kas BLUD'
                 },
                 resolve: {
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
                             files: ['js/controllers/kas.js']
@@ -69,7 +69,7 @@ angular
                     label: 'Pendapatan'
                 },
                 resolve: {
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
                             files: ['js/controllers/pendapatan.js']
@@ -84,7 +84,7 @@ angular
                     label: 'Pendapatan / Rincian'
                 },
                 resolve: {
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
                             files: ['js/controllers/pendapatan.js']
@@ -99,7 +99,7 @@ angular
                     label: 'Pendapatan / AKB Bulan'
                 },
                 resolve: {
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
                             files: ['js/controllers/pendapatan.js']
@@ -109,12 +109,12 @@ angular
             })
             .state('app.rincian', {
                 url: '/rincian-biaya',
-                templateUrl: 'views/pages/pendapatan.html',
+                templateUrl: 'views/pages/rincian.html',
                 ncyBreadcrumb: {
-                    label: 'Pendapatan'
+                    label: 'Rincian Biaya'
                 },
                 resolve: {
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
                             files: ['js/controllers/rincian.js']
@@ -129,7 +129,7 @@ angular
                     label: 'Kegiatan'
                 },
                 resolve: {
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
                             files: ['js/controllers/kegiatan.js']
@@ -144,7 +144,7 @@ angular
                     label: 'Laporan'
                 },
                 resolve: {
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
                             files: ['js/controllers/laporan.js']
@@ -159,7 +159,7 @@ angular
                     label: 'Widgets'
                 },
                 resolve: {
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load controllers
                         return $ocLazyLoad.load({
                             files: ['js/controllers/widgets.js']
@@ -183,7 +183,7 @@ angular
                     //         }
                     //     ]);
                     // }],
-                    loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
                             files: ['js/controllers/charts.js']
