@@ -41,80 +41,117 @@
                     <div class="form-group">
                         <strong> <u> Rincian Pendapatan </u> </strong>
                     </div>
+                    <form name="rincianForm" ng-submit="simpanRincian(rincianForm)">
+                        <div class="row" style="margin-top: 13px">
+                            <div class="col-6">
+                                <!-- Anggaran Rincian Field -->
+                                <div class="form-group row">
+                                    <label for="rincianAnggaran" class="col-4 col-form-label">Anggaran Rincian <sup
+                                            style="color: red;">(*)</sup></label>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="rincianAnggaran"
+                                               id="rincianAnggaran"
+                                               ng-model="formRincian.rincianAnggaran"
+                                               ng-class="{'is-invalid': rincianForm.rincianAnggaran.$error.required && submitted}"
+                                               required>
+                                        <span class="input-group" style="color:red"
+                                              ng-show="rincianForm.rincianAnggaran.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="rincianForm.rincianAnggaran.$error.required">Anggaran Rincian harus diisi.</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
 
-                    <div class="row" style="margin-top: 13px">
-                        <div class="col-6">
+                                <!-- Satuan Field -->
+                                <div class="form-group row">
+                                    <label for="satuan" class="col-4 col-form-label">Satuan <sup
+                                            style="color: red;">(*)</sup></label>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="satuan" id="satuan"
+                                               ng-model="formRincian.namaBarangSatuanTapd"
+                                               ng-class="{'is-invalid': rincianForm.satuan.$error.required && submitted}"
+                                               required>
+                                        <span class="input-group" style="color:red"
+                                              ng-show="rincianForm.satuan.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="rincianForm.satuan.$error.required">Satuan harus diisi.</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
 
-                            <!-- Anggaran Rincian Field -->
-                            <div class="form-group row">
-                                <label for="rincianAnggaran" class="col-4 col-form-label">Anggaran Rincian <sup
-                                        style="color: red;">(*)</sup></label>
-                                <div class="col-6">
-                                    <input type="text" class="form-control" name="rincianAnggaran" id="rincianAnggaran"
-                                           ng-model="formRincian.rincianAnggaran">
+                                <!-- Volume Field -->
+                                <div class="form-group row">
+                                    <label for="volume" class="col-4 col-form-label">Volume <sup
+                                            style="color: red;">(*)</sup></label>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="volume" id="volume"
+                                               ng-model="formRincian.jumlahBarangTapd"
+                                               ng-keypress="onlyNumberKey($event)"
+                                               ng-class="{'is-invalid': rincianForm.volume.$error.required && submitted}"
+                                               required>
+                                        <span class="input-group" style="color:red"
+                                              ng-show="rincianForm.volume.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="rincianForm.volume.$error.required">Volume harus diisi.</span>
+                                            </small>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Satuan Field -->
-                            <div class="form-group row">
-                                <label for="satuan" class="col-4 col-form-label">Satuan <sup
-                                        style="color: red;">(*)</sup></label>
-                                <div class="col-6">
-                                    <input type="text" class="form-control" name="satuan" id="satuan"
-                                           ng-model="formRincian.namaBarangSatuanTapd">
+                            <div class="col-6">
+                                <!-- Harga Field -->
+                                <div class="form-group row">
+                                    <label for="harga" class="col-4 col-form-label">Harga <sup
+                                            style="color: red;">(*)</sup></label>
+                                    <div class="col-6">
+                                        <input input-currency type="text"
+                                               class="form-control text-right"
+                                               name="harga"
+                                               id="harga"
+                                               ng-model="formRincian.hargaBarangSatuanTapd"
+                                               ng-keypress="onlyNumberKey($event)"
+                                               ng-class="{'is-invalid': rincianForm.harga.$error.required && submitted}"
+                                               required>
+                                        <span class="input-group" style="color:red"
+                                              ng-show="rincianForm.harga.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="rincianForm.harga.$error.required">Harga harus diisi.</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Total Anggaran Field -->
+                                <div class="form-group row">
+                                    <label for="totalAnggaran" class="col-4 col-form-label">Total Anggaran <sup
+                                            style="color: red;">(*)</sup></label>
+                                    <div class="col-6">
+                                        <input input-currency
+                                               readonly
+                                               type="text"
+                                               class="form-control text-right"
+                                               name="totalAnggaran"
+                                               id="totalAnggaran" ng-model="formRincian.anggaranTapd"
+                                               ng-click="getTotalHarga()">
+                                    </div>
+                                </div>
+
+                                <!-- Simpan Button -->
+                                <div class="form-group row">
+                                    <span class="col-4 col-form-label"></span>
+                                    <div class="col-6 text-right">
+                                        <button class="btn btn-success rounded" ng-click="simpanRincian(rincianForm)">
+                                            Simpan
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Volume Field -->
-                            <div class="form-group row">
-                                <label for="volume" class="col-4 col-form-label">Volume <sup
-                                        style="color: red;">(*)</sup></label>
-                                <div class="col-6">
-                                    <input type="text" class="form-control" name="volume" id="volume"
-                                           ng-model="formRincian.jumlahBarangTapd" ng-keypress="onlyNumberKey($event)">
-                                </div>
-                            </div>
                         </div>
-
-                        <div class="col-6">
-                            <!-- Harga Field -->
-                            <div class="form-group row">
-                                <label for="harga" class="col-4 col-form-label">Harga <sup
-                                        style="color: red;">(*)</sup></label>
-                                <div class="col-6">
-                                    <input input-currency type="text"
-                                           class="form-control text-right"
-                                           name="harga"
-                                           id="harga"
-                                           ng-model="formRincian.hargaBarangSatuanTapd"
-                                           ng-keypress="onlyNumberKey($event)">
-                                </div>
-                            </div>
-
-                            <!-- Total Anggaran Field -->
-                            <div class="form-group row">
-                                <label for="totalAnggaran" class="col-4 col-form-label">Total Anggaran <sup
-                                        style="color: red;">(*)</sup></label>
-                                <div class="col-6">
-                                    <input input-currency
-                                           readonly
-                                           type="text"
-                                           class="form-control text-right"
-                                           name="totalAnggaran"
-                                           id="totalAnggaran" ng-model="formRincian.anggaranTapd"
-                                           ng-click="getTotalHarga()">
-                                </div>
-                            </div>
-
-                            <!-- Simpan Button -->
-                            <div class="form-group row">
-                                <span class="col-4 col-form-label"></span>
-                                <div class="col-6 text-right">
-                                    <button class="btn btn-success rounded" ng-click="simpanRincian()">Simpan</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
 
 
                     <br>

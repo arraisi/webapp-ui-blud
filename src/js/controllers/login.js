@@ -31,6 +31,7 @@ function LoginFormController($scope, $http, $location, authenticationService, to
             $scope.submitted = true;
             return;
         }
+        $scope.submitted = false;
         console.log('Form Valid');
         console.log('Login Function');
         // $location.path('/components/forms');
