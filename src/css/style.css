@@ -12748,3 +12748,16 @@ hr.transparent {
 
 .spaceLeft {
   padding-left: 1.5rem; }
+
+.app-header.navbar .navbar-brand {
+  display: inline-block;
+  width: 155px;
+  height: 55px;
+  padding: 0.5rem 1rem;
+  margin-right: 0;
+  background-color: #fff;
+  background-image: url("../img/dki_logo.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 70px auto;
+  border-bottom: 1px solid #a4b7c1; }

@@ -1,4 +1,4 @@
-<header class="app-header navbar" ng-controller="NavBarController">
+<header class="app-header navbar">
     <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,7 +11,7 @@
         </li>
 
     </ul>
-    <ul class="nav navbar-nav ml-auto mr-2">
+    <ul class="nav navbar-nav ml-auto mr-2" ng-controller="NavBarController">
         <li class="nav-item dropdown" dropdown placement="bottom right">
             <a class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false" dropdownToggle>
