@@ -82,7 +82,10 @@
                                 <label for="harga" class="col-4 col-form-label">Harga <sup
                                         style="color: red;">(*)</sup></label>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" name="harga" id="harga"
+                                    <input input-currency type="text"
+                                           class="form-control text-right"
+                                           name="harga"
+                                           id="harga"
                                            ng-model="formRincian.hargaBarangSatuanTapd"
                                            ng-keypress="onlyNumberKey($event)">
                                 </div>
@@ -93,7 +96,11 @@
                                 <label for="totalAnggaran" class="col-4 col-form-label">Total Anggaran <sup
                                         style="color: red;">(*)</sup></label>
                                 <div class="col-6">
-                                    <input readonly type="text" class="form-control" name="totalAnggaran"
+                                    <input input-currency
+                                           readonly
+                                           type="text"
+                                           class="form-control text-right"
+                                           name="totalAnggaran"
                                            id="totalAnggaran" ng-model="formRincian.anggaranTapd"
                                            ng-click="getTotalHarga()">
                                 </div>
@@ -133,8 +140,8 @@
                                 <td>{{data.rincianAnggaran}}</td>
                                 <td>{{data.namaBarangSatuanTapd}}</td>
                                 <td class="text-center">{{data.jumlahBarangTapd}}</td>
-                                <td class="text-right">{{data.hargaBarangSatuanTapd}}</td>
-                                <td class="text-right">{{data.anggaranTapd}}</td>
+                                <td class="text-right">{{data.hargaBarangSatuanTapd | currency: "Rp. " : 0}}</td>
+                                <td class="text-right">{{data.anggaranTapd | currency: "Rp. " : 0}}</td>
                                 <td class="text-center">
                                     <button class="btn btn-link" title="Sunting Rinci" ng-click="editRincian(data)"><i
                                             class="fa fa-edit"></i>

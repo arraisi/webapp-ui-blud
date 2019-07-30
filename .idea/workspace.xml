@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/controllers/pendapatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/pendapatan.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/akb-pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/akb-pendapatan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/pendapatan.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/rincian-pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/rincian-pendapatan.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -125,7 +124,7 @@
       <workItem from="1564054036195" duration="14845000" />
       <workItem from="1564369033341" duration="815000" />
       <workItem from="1564370201224" duration="27951000" />
-      <workItem from="1564453220278" duration="3326000" />
+      <workItem from="1564453220278" duration="6830000" />
     </task>
     <servers />
   </component>

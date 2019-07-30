@@ -368,6 +368,10 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
                 if ($scope.formAkbPendapatan.jenis == null) {
                     $scope.formAkbPendapatan.jenis = 0
                 }
+                if ($scope.formAkbPendapatan.jenis === '1') {
+                    $scope.changeJenis();
+                    $scope.simpanAkb();
+                }
                 let totalRpa = (
                     $scope.formAkbPendapatan.rpaBulan1 +
                     $scope.formAkbPendapatan.rpaBulan2 +
@@ -382,7 +386,7 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
                     $scope.formAkbPendapatan.rpaBulan11 +
                     $scope.formAkbPendapatan.rpaBulan12);
                 $scope.totalRpaBulan = totalRpa;
-
+                $scope.sisaAnggaran = $scope.formAkbPendapatan.anggaranTapd - $scope.totalRpaBulan;
             } else if (result.status === 204) {
                 console.log('Response Result Pendatan Not Ok');
                 console.log(result);
@@ -422,6 +426,15 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
     $scope.simpanAkb = function () {
         console.log('Save AKB');
         console.log($scope.formAkbPendapatan);
+        if ($scope.sisaAnggaranMinus === true) {
+            toaster.pop({
+                type: 'error',
+                title: 'Sisa Anggaran Tidak Mencukupi',
+                body: 'Jumlah AKB 12 Bulan Dengan Anggaran Tidak Sesuai',
+                timeout: 5000
+            });
+            return;
+        }
         globalService.servicePostData(`/blud-resource-server/api/pendapatan/akb/save`, null, $scope.formAkbPendapatan, function (result) {
             console.log('Result Data Save AKB Pendapatan');
             console.log(result.data);
@@ -438,24 +451,6 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
 
     // Only Number
     $scope.onlyNumberKey = function (event) {
-        console.log(event.originalEvent.key);
-        let totalRpa = (
-            $scope.formAkbPendapatan.rpaBulan1 +
-            $scope.formAkbPendapatan.rpaBulan2 +
-            $scope.formAkbPendapatan.rpaBulan3 +
-            $scope.formAkbPendapatan.rpaBulan4 +
-            $scope.formAkbPendapatan.rpaBulan5 +
-            $scope.formAkbPendapatan.rpaBulan6 +
-            $scope.formAkbPendapatan.rpaBulan7 +
-            $scope.formAkbPendapatan.rpaBulan8 +
-            $scope.formAkbPendapatan.rpaBulan9 +
-            $scope.formAkbPendapatan.rpaBulan10 +
-            $scope.formAkbPendapatan.rpaBulan11 +
-            $scope.formAkbPendapatan.rpaBulan12);
-        console.log('totalRpa');
-        console.log(totalRpa);
-        console.log('totalRpaBulan');
-        $scope.totalRpaBulan = $scope.totalRpaBulan + totalRpa;
         if (event.charCode > 31 && (event.charCode < 48 || event.charCode > 57)) {
             toaster.pop({
                 type: 'warning',
@@ -467,38 +462,58 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
         }
     };
 
-    let formCadangan = {
-        rpaBulan1: null,
-        rpaBulan2: null,
-        rpaBulan3: null,
-        rpaBulan4: null,
-        rpaBulan5: null,
-        rpaBulan6: null,
-        rpaBulan7: null,
-        rpaBulan8: null,
-        rpaBulan9: null,
-        rpaBulan10: null,
-        rpaBulan11: null,
-        rpaBulan12: null,
+    $scope.kalkulasiSisaAnggaran = function () {
+        console.log('Total RPA BULAN');
+        console.log(totalRpaBulanAdded());
+        if (totalRpaBulanAdded()) {
+            const sisa = $scope.formAkbPendapatan.anggaranTapd - totalRpaBulanAdded();
+            if (sisa < 0) {
+                toaster.pop({
+                    type: 'error',
+                    title: 'Anggaran',
+                    body: 'Sisa Anggaran Tidak Mencukupi',
+                    timeout: 5000
+                });
+                $scope.sisaAnggaranMinus = true;
+            } else {
+                $scope.sisaAnggaran = sisa;
+                $scope.sisaAnggaranMinus = false;
+            }
+        }
     };
+
+    // let formCadangan = {
+    //     rpaBulan1: null,
+    //     rpaBulan2: null,
+    //     rpaBulan3: null,
+    //     rpaBulan4: null,
+    //     rpaBulan5: null,
+    //     rpaBulan6: null,
+    //     rpaBulan7: null,
+    //     rpaBulan8: null,
+    //     rpaBulan9: null,
+    //     rpaBulan10: null,
+    //     rpaBulan11: null,
+    //     rpaBulan12: null,
+    // };
 
     // Change Jenis
     $scope.changeJenis = function () {
         console.log('Change');
         console.log($scope.formAkbPendapatan.jenis);
         if ($scope.formAkbPendapatan.jenis === '1') {
-            formCadangan.rpaBulan1 = $scope.formAkbPendapatan.rpaBulan1;
-            formCadangan.rpaBulan2 = $scope.formAkbPendapatan.rpaBulan2;
-            formCadangan.rpaBulan3 = $scope.formAkbPendapatan.rpaBulan3;
-            formCadangan.rpaBulan4 = $scope.formAkbPendapatan.rpaBulan4;
-            formCadangan.rpaBulan5 = $scope.formAkbPendapatan.rpaBulan5;
-            formCadangan.rpaBulan6 = $scope.formAkbPendapatan.rpaBulan6;
-            formCadangan.rpaBulan7 = $scope.formAkbPendapatan.rpaBulan7;
-            formCadangan.rpaBulan8 = $scope.formAkbPendapatan.rpaBulan8;
-            formCadangan.rpaBulan9 = $scope.formAkbPendapatan.rpaBulan9;
-            formCadangan.rpaBulan10 = $scope.formAkbPendapatan.rpaBulan10;
-            formCadangan.rpaBulan11 = $scope.formAkbPendapatan.rpaBulan11;
-            formCadangan.rpaBulan12 = $scope.formAkbPendapatan.rpaBulan12;
+            // formCadangan.rpaBulan1 = $scope.formAkbPendapatan.rpaBulan1;
+            // formCadangan.rpaBulan2 = $scope.formAkbPendapatan.rpaBulan2;
+            // formCadangan.rpaBulan3 = $scope.formAkbPendapatan.rpaBulan3;
+            // formCadangan.rpaBulan4 = $scope.formAkbPendapatan.rpaBulan4;
+            // formCadangan.rpaBulan5 = $scope.formAkbPendapatan.rpaBulan5;
+            // formCadangan.rpaBulan6 = $scope.formAkbPendapatan.rpaBulan6;
+            // formCadangan.rpaBulan7 = $scope.formAkbPendapatan.rpaBulan7;
+            // formCadangan.rpaBulan8 = $scope.formAkbPendapatan.rpaBulan8;
+            // formCadangan.rpaBulan9 = $scope.formAkbPendapatan.rpaBulan9;
+            // formCadangan.rpaBulan10 = $scope.formAkbPendapatan.rpaBulan10;
+            // formCadangan.rpaBulan11 = $scope.formAkbPendapatan.rpaBulan11;
+            // formCadangan.rpaBulan12 = $scope.formAkbPendapatan.rpaBulan12;
             const bagiRata = $scope.formAkbPendapatan.anggaranTapd / 12;
             console.log(bagiRata);
             $scope.formAkbPendapatan.rpaBulan1 = bagiRata;
@@ -513,20 +528,40 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
             $scope.formAkbPendapatan.rpaBulan10 = bagiRata;
             $scope.formAkbPendapatan.rpaBulan11 = bagiRata;
             $scope.formAkbPendapatan.rpaBulan12 = bagiRata;
+            $scope.sisaAnggaran = $scope.formAkbPendapatan.anggaranTapd - $scope.formAkbPendapatan.anggaranTapd;
         } else {
             console.log('Jenis 0');
-            $scope.formAkbPendapatan.rpaBulan1 = formCadangan.rpaBulan1;
-            $scope.formAkbPendapatan.rpaBulan2 = formCadangan.rpaBulan2;
-            $scope.formAkbPendapatan.rpaBulan3 = formCadangan.rpaBulan3;
-            $scope.formAkbPendapatan.rpaBulan4 = formCadangan.rpaBulan4;
-            $scope.formAkbPendapatan.rpaBulan5 = formCadangan.rpaBulan5;
-            $scope.formAkbPendapatan.rpaBulan6 = formCadangan.rpaBulan6;
-            $scope.formAkbPendapatan.rpaBulan7 = formCadangan.rpaBulan7;
-            $scope.formAkbPendapatan.rpaBulan8 = formCadangan.rpaBulan8;
-            $scope.formAkbPendapatan.rpaBulan9 = formCadangan.rpaBulan9;
-            $scope.formAkbPendapatan.rpaBulan10 = formCadangan.rpaBulan10;
-            $scope.formAkbPendapatan.rpaBulan11 = formCadangan.rpaBulan11;
-            $scope.formAkbPendapatan.rpaBulan12 = formCadangan.rpaBulan12;
+            $scope.formAkbPendapatan.rpaBulan1 = 0;
+            $scope.formAkbPendapatan.rpaBulan2 = 0;
+            $scope.formAkbPendapatan.rpaBulan3 = 0;
+            $scope.formAkbPendapatan.rpaBulan4 = 0;
+            $scope.formAkbPendapatan.rpaBulan5 = 0;
+            $scope.formAkbPendapatan.rpaBulan6 = 0;
+            $scope.formAkbPendapatan.rpaBulan7 = 0;
+            $scope.formAkbPendapatan.rpaBulan8 = 0;
+            $scope.formAkbPendapatan.rpaBulan9 = 0;
+            $scope.formAkbPendapatan.rpaBulan10 = 0;
+            $scope.formAkbPendapatan.rpaBulan11 = 0;
+            $scope.formAkbPendapatan.rpaBulan12 = 0;
+            $scope.sisaAnggaran = $scope.formAkbPendapatan.anggaranTapd - totalRpaBulanAdded();
         }
+    };
+
+    const totalRpaBulanAdded = function () {
+        console.log($scope.formAkbPendapatan);
+        const b1 = $scope.formAkbPendapatan.rpaBulan1 ? $scope.formAkbPendapatan.rpaBulan1 : 0;
+        const b2 = $scope.formAkbPendapatan.rpaBulan2 ? $scope.formAkbPendapatan.rpaBulan2 : 0;
+        const b3 = $scope.formAkbPendapatan.rpaBulan3 ? $scope.formAkbPendapatan.rpaBulan3 : 0;
+        const b4 = $scope.formAkbPendapatan.rpaBulan4 ? $scope.formAkbPendapatan.rpaBulan4 : 0;
+        const b5 = $scope.formAkbPendapatan.rpaBulan5 ? $scope.formAkbPendapatan.rpaBulan5 : 0;
+        const b6 = $scope.formAkbPendapatan.rpaBulan6 ? $scope.formAkbPendapatan.rpaBulan6 : 0;
+        const b7 = $scope.formAkbPendapatan.rpaBulan7 ? $scope.formAkbPendapatan.rpaBulan7 : 0;
+        const b8 = $scope.formAkbPendapatan.rpaBulan8 ? $scope.formAkbPendapatan.rpaBulan8 : 0;
+        const b9 = $scope.formAkbPendapatan.rpaBulan9 ? $scope.formAkbPendapatan.rpaBulan9 : 0;
+        const b10 = $scope.formAkbPendapatan.rpaBulan10 ? $scope.formAkbPendapatan.rpaBulan10 : 0;
+        const b11 = $scope.formAkbPendapatan.rpaBulan11 ? $scope.formAkbPendapatan.rpaBulan11 : 0;
+        const b12 = $scope.formAkbPendapatan.rpaBulan12 ? $scope.formAkbPendapatan.rpaBulan12 : 0;
+        const total = (b1 + b2 + b3 + b4 + b5 + b6 + b7 + b8 + b9 + b10 + b11 + b12);
+        return total;
     }
 }
