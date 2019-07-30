@@ -75,23 +75,6 @@ gulp.task('sass:watch', function () {
 
 gulp.task('default', ['serve']);
 
-// gulp.task('webserver', function() {
-//     plugins.connect.server({
-//         root: './src',
-//         port: 3000,
-//         livereload: true,
-//         middleware: function(connect, o) {
-//             return [ (function() {
-//                 var url = require('url');
-//                 var proxy = require('proxy-middleware');
-//                 var options = url.parse('http://192.168.1.50:80/auth-dkipp');
-//                 options.route = '/auth-dkipp';
-//                 return proxy(options);
-//             })(), historyApiFallback() ];
-//         }
-//     });
-// });
-
 gulp.task('webserver', function() {
     gulp.src(['./', './src'])
         .pipe(webserver({
@@ -109,17 +92,3 @@ gulp.task('webserver', function() {
             ]
         }));
 });
-
-// gulp.task('webserver', function() {
-//     gulp.src(paths.dist)
-//         .pipe(webserver({
-//             port: 3000,
-//             livereload: true,
-//             open: 'http://localhost:3000',
-//             proxies: [
-//                 {
-//                     source: '/auth-dkipp', target: 'http://192.168.1.50:80/auth-dkipp'
-//                 }
-//             ]
-//         }));
-// });
