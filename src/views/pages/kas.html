@@ -47,10 +47,10 @@
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="data in valData">
-                                    <td style="width:25%">{{ data.c_AKUN }}</td>
-                                    <td style="width:25%">{{ data.n_AKUN }}</td>
+                                    <td style="width:25%">{{ data.cakun }}</td>
+                                    <td style="width:25%">{{ data.nakun }}</td>
                                     <td><input class="float-right text-right form-control"  style="border-radius:5px;width:50%" 
-                                        type="number" ng-readonly="!readonlySaldo" ng-model="data.v_KAS_AUDITED"> </td>
+                                        type="number" ng-readonly="!readonlySaldo" ng-model="data.vkasAudited"> </td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
@@ -67,9 +67,10 @@
                                 <h6><i class="fa fa-save "> Simpan </h6></i>
                             </button>   
                         </div> 
-                        <!-- <button type="submit" class="btn btn-primary float-right" ng-click="saveData()"><i
+                        <!-- <button type="submit" class="btn btn-primary float-right"ng-click="testToastr()"><i
                             class="fa "></i> Save
                         </button> -->
         <!--/.col-->
     </div>
 </div>
+<toaster-container toaster-options="{'close-button': true}"></toaster-container>
