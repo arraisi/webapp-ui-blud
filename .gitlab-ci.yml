@@ -1,6 +1,6 @@
 variables:
-  APP_DIR: "/var/www/public/rba-blud"
-  APP_NAME: "rba-blud"
+  APP_DIR: "/var/www/html/rba-blud"
+  APP_NAME: "blud"
 
 stages:
   - build
