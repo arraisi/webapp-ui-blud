@@ -3,7 +3,7 @@ angular
     .controller('TabKegiatanController', TabKegiatanController);
 
 // Function Untuk Kontroller TabKegiatanController
-function TabKegiatanController($scope, $location, toaster, globalService) {
+function TabKegiatanController($scope, $location, toaster, globalService, ModalCustomService) {
 
     // ======== Awal Init Porject
     $scope.tahun = localStorage.getItem('tahunAnggaran');
@@ -68,6 +68,18 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
 
     $scope.simpanTambahKegiatan = function (form) {
         console.log(form);
-    }
+    };
+
+    /** For Modal*/
+
+    $scope.bodyText = "Test Modal";
+
+    $scope.openModal = function (id) {
+        ModalCustomService.Open(id);
+    };
+
+    $scope.closeModal = function (id) {
+        ModalCustomService.Close(id);
+    };
 
 }

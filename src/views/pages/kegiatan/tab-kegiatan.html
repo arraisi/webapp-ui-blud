@@ -39,7 +39,8 @@
                                                        ng-class="{'is-invalid': tambahForm.urusan.$error.required && submitted}"
                                                        required>
                                                 <div class="input-group-prepend">
-                                                    <button class="btn btn-success"><i
+                                                    <button class="btn btn-success"
+                                                            ng-click="openModal('moda-tambah-kegiatan')"><i
                                                             class="fa fa-search"></i></button>
                                                 </div>
                                             </div>
@@ -241,5 +242,19 @@
         <!--/.col-->
     </div>
 </div>
+
+<!-- Modal -->
+<modal id="moda-tambah-kegiatan">
+    <div class="modal">
+        <div class="modal-body">
+            <h1>A Custom Modal!</h1>
+            <p>
+                Home page text: <input type="text" ng-model="bodyText"/>
+            </p>
+            <button ng-click="closeModal('moda-tambah-kegiatan');">Close</button>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
 
 <toaster-container toaster-options="{'close-button': true}"></toaster-container>
