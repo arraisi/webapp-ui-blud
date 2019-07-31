@@ -12727,6 +12727,15 @@ hr.transparent {
   *[dir="rtl"] .callout-default {
     border-right-color: #536c79; }
 
+.login-bg-style {
+  background-image: url(../../img/login_bg.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  height: 100%; }
+
 .bg-modal {
   background: rgba(0, 0, 0, 0.5); }
 
