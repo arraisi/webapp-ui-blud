@@ -1,94 +1,241 @@
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-lg-12">
-            <div class="card" ng-controller="TabKegiatanController">
-                <div class="card-body" id="collapseExample1">
+            <form name="tambahForm" ng-submit="simpanRincian(tambahForm)">
+                <div class="card" ng-controller="TabKegiatanController">
+                    <div class="card-body" id="collapseExample1">
 
-                    <div class="tab-wrap">
-                        <input type="radio" id="tab1" name="tabGroup1" class="tab" checked
-                               ng-click="tabGoTo('kegiatan')">
-                        <label for="tab1">KEGIATAN</label>
+                        <div class="tab-wrap">
+                            <input type="radio" id="tab1" name="tabGroup1" class="tab" checked
+                                   ng-click="tabGoTo('kegiatan')">
+                            <label for="tab1">KEGIATAN</label>
 
-                        <input type="radio" id="tab2" name="tabGroup1" class="tab" ng-click="tabGoTo('komponen')">
-                        <label for="tab2">KOMPONEN</label>
+                            <input type="radio" id="tab2" name="tabGroup1" class="tab" ng-click="tabGoTo('komponen')">
+                            <label for="tab2">KOMPONEN</label>
 
-                        <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="tabGoTo('rpa')">
-                        <label for="tab3">RPA PER KOMPONEN</label>
-                    </div>
+                            <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="tabGoTo('rpa')">
+                            <label for="tab3">RPA PER KOMPONEN</label>
+                        </div>
 
-                    <div class="border rounded">
-                        <div class="row col-12">
-                            <div class="col-8">
-                                <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                                    <label class="col-3 col-form-label">Tahun Anggaran</label>
-                                    <div class="col-9">
-                                        <label class="col-form-label">: tahun</label>
+                        <div class="border rounded">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <small class="text-red">Batas Akhir Pengisian 28/07/2019</small>
+                                </div>
+                                <div class="form-group">
+                                    <strong> <u> Data Kegiatan </u> </strong>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 3px !important;">
+                                <div class="col-6">
+                                    <div class="form-group row col-12">
+                                        <label class="col-4 col-form-label">Urusan <sup
+                                                style="color: red;">(*)</sup></label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" name="urusan"
+                                                   id="urusan"
+                                                   ng-model="formTambahKegiatan.urusan"
+                                                   ng-class="{'is-invalid': tambahForm.urusan.$error.required && submitted}"
+                                                   required>
+                                            <span class="input-group" style="color:red"
+                                                  ng-show="tambahForm.urusan.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="tambahForm.urusan.$error.required">Urusan harus diisi.</span>
+                                            </small>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label class="col-4 col-form-label">Program <sup
+                                                style="color: red;">(*)</sup></label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" name="program"
+                                                   id="program"
+                                                   ng-model="formTambahKegiatan.program"
+                                                   ng-class="{'is-invalid': tambahForm.program.$error.required && submitted}"
+                                                   required>
+                                            <span class="input-group" style="color:red"
+                                                  ng-show="tambahForm.program.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="tambahForm.program.$error.required">Program harus diisi.</span>
+                                            </small>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label class="col-4 col-form-label">No. Kegiatan <sup
+                                                style="color: red;">(*)</sup></label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" name="noKegiatan"
+                                                   id="noKegiatan"
+                                                   ng-model="formTambahKegiatan.noKegiatan"
+                                                   ng-class="{'is-invalid': tambahForm.noKegiatan.$error.required && submitted}"
+                                                   required>
+                                            <span class="input-group" style="color:red"
+                                                  ng-show="tambahForm.noKegiatan.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="tambahForm.noKegiatan.$error.required">No. Kegiatan harus diisi.</span>
+                                            </small>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label class="col-4 col-form-label">Nama Kegiatan <sup
+                                                style="color: red;">(*)</sup></label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" name="namaKegiatan"
+                                                   id="namaKegiatan"
+                                                   ng-model="formTambahKegiatan.namaKegiatan"
+                                                   ng-class="{'is-invalid': tambahForm.namaKegiatan.$error.required && submitted}"
+                                                   required>
+                                            <span class="input-group" style="color:red"
+                                                  ng-show="tambahForm.namaKegiatan.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="tambahForm.namaKegiatan.$error.required">Nama Kegiatan harus diisi.</span>
+                                            </small>
+                                        </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group row col-12">
-                                    <label class="col-3 col-form-label">SKPD</label>
-                                    <div class="col-9">
-                                        <label class="col-form-label">: skpd</label>
+                                <div class="col-6">
+                                    <div class="form-group row col-12">
+                                        <label class="col-4 col-form-label">Sasaran <sup
+                                                style="color: red;">(*)</sup></label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" name="sasaran"
+                                                   id="sasaran"
+                                                   ng-model="formTambahKegiatan.sasaran"
+                                                   ng-class="{'is-invalid': tambahForm.sasaran.$error.required && submitted}"
+                                                   required>
+                                            <span class="input-group" style="color:red"
+                                                  ng-show="tambahForm.sasaran.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="tambahForm.sasaran.$error.required">Sasaran harus diisi.</span>
+                                            </small>
+                                        </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row col-12">
-                                    <label class="col-3 col-form-label">Total Anggaran</label>
-                                    <div class="col-9">
-                                        <label class="col-form-label">: Total</label>
+                                    <div class="form-group row col-12">
+                                        <label class="col-4 col-form-label">Waktu Pelaksanaan <sup
+                                                style="color: red;">(*)</sup></label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" name="waktuPelaksanaan"
+                                                   id="waktuPelaksanaan"
+                                                   ng-model="formTambahKegiatan.waktuPelaksanaan"
+                                                   ng-class="{'is-invalid': tambahForm.waktuPelaksanaan.$error.required && submitted}"
+                                                   required>
+                                            <span class="input-group" style="color:red"
+                                                  ng-show="tambahForm.waktuPelaksanaan.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="tambahForm.waktuPelaksanaan.$error.required">Waktu Pelaksanaan harus diisi.</span>
+                                            </small>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label class="col-4 col-form-label">Lokasi Kegiatan <sup
+                                                style="color: red;">(*)</sup></label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" name="lokasiKegiatan"
+                                                   id="lokasiKegiatan"
+                                                   ng-model="formTambahKegiatan.lokasiKegiatan"
+                                                   ng-class="{'is-invalid': tambahForm.lokasiKegiatan.$error.required && submitted}"
+                                                   required>
+                                            <span class="input-group" style="color:red"
+                                                  ng-show="tambahForm.lokasiKegiatan.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="tambahForm.lokasiKegiatan.$error.required">Lokasi Kegiatan harus diisi.</span>
+                                            </small>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label class="col-4 col-form-label">Sumber Dana <sup
+                                                style="color: red;">(*)</sup></label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" name="sumberDana"
+                                                   id="sumberDana"
+                                                   ng-model="formTambahKegiatan.sumberDana"
+                                                   ng-class="{'is-invalid': tambahForm.sumberDana.$error.required && submitted}"
+                                                   required>
+                                            <span class="input-group" style="color:red"
+                                                  ng-show="tambahForm.sumberDana.$invalid && submitted">
+                                            <small>
+                                                <span ng-show="tambahForm.sumberDana.$error.required">Sumber Dana harus diisi.</span>
+                                            </small>
+                                        </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 align-self-center text-right">
-                                <button class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Kegiatan
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group row">
+                            <div class="col-6"><strong> <u> Data Kinerja </u> </strong></div>
+                            <div class="col-6 text-right">
+                                <button class="btn btn-primary"><i
+                                        class="fa fa-plus"></i>
+                                    Tambah Kinerja
                                 </button>
                             </div>
                         </div>
-                    </div>
 
-                    <br>
-
-                    <div class="form-group" style="margin-top: 13px">
-                        <table class="table table-bordered table-striped rounded">
-                            <thead>
-                            <tr class="text-center">
-                                <th>No</th>
-                                <th>No Kegiatan</th>
-                                <th>Nama Kegiatan</th>
-                                <th>Nilai Anggaran</th>
-                                <th>Aksi</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>7.14.03.001</td>
-                                <td>Penyuluhan Ketenagakerjaan Masyarakat</td>
-                                <td class="text-right">Rp. 20.524.000</td>
-                                <td class="text-center">
-                                    <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-link" title="Detail"><i class="fa fa-list"></i></button>
-                                    <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i></button>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>7.14.03.002</td>
-                                <td>Penyediaan Alat Kedokteran Gigi</td>
-                                <td class="text-right">Rp. 174.550.000</td>
-                                <td class="text-center">
-                                    <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-link" title="Detail"><i class="fa fa-list"></i></button>
-                                    <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i></button>
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="form-group" style="margin-top: 13px">
+                            <table class="table table-bordered table-striped rounded">
+                                <thead>
+                                <tr class="text-center">
+                                    <th>Kode Indikator</th>
+                                    <th>No Urut</th>
+                                    <th>Tolak Ukur</th>
+                                    <th>Target Kinerja</th>
+                                    <th>Aksi</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>01-Masukkan</td>
+                                    <td>1</td>
+                                    <td>Dana Yang Dibutuhkan</td>
+                                    <td>Rp. 85.0000</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i></button>
+                                        <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i></button>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>2</td>
+                                    <td>Panitia Yang Dibutuhkan</td>
+                                    <td>30 Orang</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i></button>
+                                        <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i></button>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>02-Keluaran</td>
+                                    <td>1</td>
+                                    <td>Jumlah Dokumen Hasil Penyuluhan</td>
+                                    <td>1 Laporan</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i></button>
+                                        <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i></button>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         <!--/.col-->
     </div>
 </div>
+
+<toaster-container toaster-options="{'close-button': true}"></toaster-container>

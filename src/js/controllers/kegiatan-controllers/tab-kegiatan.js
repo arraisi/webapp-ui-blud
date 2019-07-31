@@ -25,6 +25,17 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         }
     });
 
+    $scope.formTambahKegiatan = {
+        urusan: '',
+        program: '',
+        noKegiatan: '',
+        namaKegiatan: '',
+        sasaran: '',
+        waktuPelaksanaan: '',
+        lokasiKegiatan: '',
+        sumberDana: ''
+    };
+
     $scope.tabGoTo = function (jenisTab) {
         console.log(jenisTab);
         switch (jenisTab) {
@@ -34,13 +45,29 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
                 break;
             case 'komponen':
                 // $location.search('idDpt', valueDpt.idTrx);
-                $location.path('/kegiatan/komponen');
+                // $location.path('/kegiatan/komponen');
+                toaster.pop({
+                    type: 'success',
+                    title: 'On Progress',
+                    body: '',
+                    timeout: 3000
+                });
                 break;
             case 'rpa':
                 // $location.search('idDpt', valueDpt.idTrx);
-                $location.path('/kegiatan/rpa');
+                // $location.path('/kegiatan/rpa');
+                toaster.pop({
+                    type: 'success',
+                    title: 'On Progress',
+                    body: '',
+                    timeout: 3000
+                });
                 break;
         }
+    };
+
+    $scope.simpanTambahKegiatan = function (form) {
+        console.log(form);
     }
 
 }
