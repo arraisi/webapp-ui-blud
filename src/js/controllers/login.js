@@ -25,10 +25,12 @@ function LoginFormController($scope, $http, $location, authenticationService, to
     };
     $scope.randomCaptcha(5);
     $scope.loginFunction = function (form) {
+        document.getElementById('login-loader').style.display = 'inline';
         console.log(form.$valid);
         if (!form.$valid) {
             console.log('Form Not Valid');
             $scope.submitted = true;
+            document.getElementById('login-loader').style.display = 'none';
             return;
         }
         $scope.submitted = false;
