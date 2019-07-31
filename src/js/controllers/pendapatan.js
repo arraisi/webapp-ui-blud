@@ -9,7 +9,6 @@ function PendapatanController($scope, $location, toaster, globalService) {
 
     // ======== Awal Init Porject
     console.log('Init Controller Form Pendapatan');
-    // $scope.loadPendapatan('2020', '12835');
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
 

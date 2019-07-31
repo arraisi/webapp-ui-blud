@@ -124,15 +124,60 @@ angular
             })
             .state('app.kegiatan', {
                 url: '/kegiatan',
-                templateUrl: 'views/pages/kegiatan.html',
+                templateUrl: 'views/pages/kegiatan/kegiatan.html',
                 ncyBreadcrumb: {
-                    label: 'Kegiatan'
+                    label: 'Daftar Kegiatan'
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
-                            files: ['js/controllers/kegiatan.js']
+                            files: ['js/controllers/kegiatan-controllers/kegiatan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.tambah-kegiatan', {
+                url: '/kegiatan/tambah',
+                templateUrl: 'views/pages/kegiatan/tab-kegiatan.html',
+                ncyBreadcrumb: {
+                    label: 'Tambah Kegiatan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/kegiatan-controllers/tab-kegiatan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.komponen-kegiatan', {
+                url: '/kegiatan/komponen',
+                templateUrl: 'views/pages/kegiatan/tab-komponen.html',
+                ncyBreadcrumb: {
+                    label: 'Komponen Kegiatan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/kegiatan-controllers/tab-komponen.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.rpa-komponen-kegiatan', {
+                url: '/kegiatan/rpa',
+                templateUrl: 'views/pages/kegiatan/tab-rpa-komponen.html',
+                ncyBreadcrumb: {
+                    label: 'RPA Per Komponen'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/kegiatan-controllers/tab-rpa-komponen.js']
                         });
                     }]
                 }

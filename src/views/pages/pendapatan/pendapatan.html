@@ -39,7 +39,9 @@
                                 <td class="text-center">
                                     <button class="btn btn-success rounded" ng-click="goToRincian(data)"> Rincian
                                     </button>
-                                    <button class="btn btn-primary rounded" ng-click="goToAkb(data)"> AKB Bulan</button>
+                                    <button class="btn btn-primary rounded" ng-click="goToAkb(data)"
+                                            ng-disabled="data.anggaranTapd <= 0"> AKB Bulan
+                                    </button>
                                 </td>
                             </tr>
                             </tbody>
