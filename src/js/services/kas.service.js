@@ -4,26 +4,6 @@ angular
         return {
             //Code edited to create a function as when you require service it returns object by default so you can't return function directly. That's what understand...
             
-            findDataApi: function (callback) {
-                const local = JSON.parse(localStorage.getItem('currentUser'));
-                const token = 'Bearer ' + local.access_token;
-                const req = {
-                    method: 'GET',
-                    url: 'blud-resource-server/api/kasController/findAll',
-                    headers: {
-                        'Authorization': token,
-                        "Accept": "application/json",
-                        "Content-Type": "application/json;charset=utf-8"
-                    }
-                };
-                $http(req)
-                    .then(function (response) {
-                        console.log('Service Response Find Data');
-                        console.log(response);
-                        // login successful if there's a token in the response
-                        callback(response);
-                    })
-            },
             saveData: function (body, callback) {
                 console.log("body",body)
              
