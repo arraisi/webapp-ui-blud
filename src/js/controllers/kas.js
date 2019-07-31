@@ -12,7 +12,7 @@ angular
         $scope.amount;
         $scope.updateData;
 
-        $scope.price 
+        $scope.price;
 
         $scope.pop = function () {
             toaster.pop('info', "title", "text");
