@@ -1,0 +1,31 @@
+variables:
+  APP_DIR: "/var/www/public/rba-blud"
+  APP_NAME: "rba-blud"
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+build_localhost:
+  stage: build
+  before_script:
+    - 'npm install'
+  script:
+    - gulp build:dist
+  artifacts:
+    paths:
+      - dist/*
+  only:
+    - /-release$/
+
+deploy_localhost:
+  stage: deploy
+  script:
+    - 'rm -rf $APP_DIR/*'
+    - 'cp -r dist/* $APP_DIR/'
+  only:
+    - /-release$/
