@@ -535,7 +535,7 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
             // formCadangan.rpaBulan10 = $scope.formAkbPendapatan.rpaBulan10;
             // formCadangan.rpaBulan11 = $scope.formAkbPendapatan.rpaBulan11;
             // formCadangan.rpaBulan12 = $scope.formAkbPendapatan.rpaBulan12;
-            const bagiRata = $scope.formAkbPendapatan.anggaranTapd / 12;
+            const bagiRata = Math.floor($scope.formAkbPendapatan.anggaranTapd / 12);
             console.log(bagiRata);
             $scope.formAkbPendapatan.rpaBulan1 = bagiRata;
             $scope.formAkbPendapatan.rpaBulan2 = bagiRata;
@@ -549,7 +549,8 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
             $scope.formAkbPendapatan.rpaBulan10 = bagiRata;
             $scope.formAkbPendapatan.rpaBulan11 = bagiRata;
             $scope.formAkbPendapatan.rpaBulan12 = bagiRata;
-            $scope.sisaAnggaran = $scope.formAkbPendapatan.anggaranTapd - $scope.formAkbPendapatan.anggaranTapd;
+            const sisa = $scope.formAkbPendapatan.anggaranTapd - totalRpaBulanAdded();
+            $scope.sisaAnggaran = sisa;
         } else {
             console.log('Jenis 0');
             $scope.formAkbPendapatan.rpaBulan1 = 0;
