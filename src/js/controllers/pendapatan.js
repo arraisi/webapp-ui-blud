@@ -136,6 +136,7 @@ function PendapatanController($scope, $location, toaster, globalService) {
 // Function Untuk Kontroller Rincian Pendapatan
 function RincianPendapatanController($scope, $location, toaster, globalService) {
     $scope.noUrut = 0;
+    $scope.submitted = false;
     const idDpt = $location.search().idDpt;
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
@@ -246,7 +247,7 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
                 type: 'warning',
                 title: 'Hanya Angka',
                 body: 'Tidak Bisa Input Selain Angka',
-                timeout: 5000
+                timeout: 3000
             });
             event.preventDefault();
         }
@@ -279,7 +280,15 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
     };
 
     // Simpan Rincian Pendapatan
-    $scope.simpanRincian = function () {
+    $scope.simpanRincian = function (form) {
+        console.log(form.$valid);
+        if (!form.$valid) {
+            console.log('Form Not Valid');
+            $scope.submitted = true;
+            return;
+        }
+        $scope.submitted = false;
+        console.log('Form Valid');
         console.log('Form Rincian ==> ');
         console.log($scope.formRincian);
         $scope.formRincian.anggaranTapd = $scope.formRincian.jumlahBarangTapd * $scope.formRincian.hargaBarangSatuanTapd;
@@ -299,7 +308,6 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
 
     // Simpan Data Rincian Pendapatan
     $scope.simpanDataRincianAll = function () {
-        // $location.path('/pendapatan');
         console.log('Load Data Rincian Pendapatan ==> ');
         console.log($scope.loadDataRincianPendapatan);
         console.log('List Id Rincian Delete');
@@ -310,7 +318,14 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
             if (result.status === 201) {
                 console.log('Response Save Rincian Pendapatan Succes');
                 console.log(result);
-                // $location.path('/pendapatan');
+                toaster.pop({
+                    type: 'success',
+                    title: 'Berhasil',
+                    body: 'Berhasil menyimpan data',
+                    timeout: 5000
+                });
+                $location.url($location.path());
+                $location.path('/pendapatan');
             } else {
                 console.log('Response Error Save Rincian Pendapatan');
                 console.log(result);
@@ -441,7 +456,14 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
             if (result.status === 201) {
                 console.log('Response Save AKB Pendapatan Succes');
                 console.log(result);
-                // $location.path('/pendapatan');
+                toaster.pop({
+                    type: 'success',
+                    title: 'Berhasil',
+                    body: 'Berhasil menyimpan data',
+                    timeout: 5000
+                });
+                $location.url($location.path());
+                $location.path('/pendapatan');
             } else {
                 console.log('Response Error Save AKB Pendapatan');
                 console.log(result);
@@ -456,7 +478,7 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
                 type: 'warning',
                 title: 'Hanya Angka',
                 body: 'Tidak Bisa Input Selain Angka',
-                timeout: 5000
+                timeout: 3000
             });
             event.preventDefault();
         }
