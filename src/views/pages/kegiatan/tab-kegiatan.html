@@ -32,11 +32,17 @@
                                         <label class="col-4 col-form-label">Urusan <sup
                                                 style="color: red;">(*)</sup></label>
                                         <div class="col-8">
-                                            <input type="text" class="form-control" name="urusan"
-                                                   id="urusan"
-                                                   ng-model="formTambahKegiatan.urusan"
-                                                   ng-class="{'is-invalid': tambahForm.urusan.$error.required && submitted}"
-                                                   required>
+                                            <div class="input-group input-group-prepend">
+                                                <input type="text" class="form-control" name="urusan"
+                                                       id="urusan"
+                                                       ng-model="formTambahKegiatan.urusan"
+                                                       ng-class="{'is-invalid': tambahForm.urusan.$error.required && submitted}"
+                                                       required>
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-success"><i
+                                                            class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
                                             <span class="input-group" style="color:red"
                                                   ng-show="tambahForm.urusan.$invalid && submitted">
                                             <small>
@@ -49,11 +55,17 @@
                                         <label class="col-4 col-form-label">Program <sup
                                                 style="color: red;">(*)</sup></label>
                                         <div class="col-8">
-                                            <input type="text" class="form-control" name="program"
-                                                   id="program"
-                                                   ng-model="formTambahKegiatan.program"
-                                                   ng-class="{'is-invalid': tambahForm.program.$error.required && submitted}"
-                                                   required>
+                                            <div class="input-group input-group-prepend">
+                                                <input type="text" class="form-control" name="program"
+                                                       id="program"
+                                                       ng-model="formTambahKegiatan.program"
+                                                       ng-class="{'is-invalid': tambahForm.program.$error.required && submitted}"
+                                                       required>
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-success"><i
+                                                            class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
                                             <span class="input-group" style="color:red"
                                                   ng-show="tambahForm.program.$invalid && submitted">
                                             <small>
@@ -66,17 +78,9 @@
                                         <label class="col-4 col-form-label">No. Kegiatan <sup
                                                 style="color: red;">(*)</sup></label>
                                         <div class="col-8">
-                                            <input type="text" class="form-control" name="noKegiatan"
+                                            <input readonly type="text" class="form-control" name="noKegiatan"
                                                    id="noKegiatan"
-                                                   ng-model="formTambahKegiatan.noKegiatan"
-                                                   ng-class="{'is-invalid': tambahForm.noKegiatan.$error.required && submitted}"
-                                                   required>
-                                            <span class="input-group" style="color:red"
-                                                  ng-show="tambahForm.noKegiatan.$invalid && submitted">
-                                            <small>
-                                                <span ng-show="tambahForm.noKegiatan.$error.required">No. Kegiatan harus diisi.</span>
-                                            </small>
-                                        </span>
+                                                   ng-model="formTambahKegiatan.noKegiatan">
                                         </div>
                                     </div>
                                     <div class="form-group row col-12">
