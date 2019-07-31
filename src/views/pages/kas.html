@@ -7,13 +7,14 @@
                             <div class="form-group row col-5" style="margin-bottom: 1px !important;">
                                 <label class="col-4 col-form-label">Tahun Anggaran</label>
                                 <div class="col-8">
-                                    <label class="col-form-label">:  {{skpd| date:'yyyy'}}</label>
+                                    <label class="col-form-label">:  {{tahun}}</label>
                                 </div>
                             </div>
                             <div class="form-group row col-5" style="margin-bottom: 1px !important;">
                                 <label class="col-4 col-form-label">SKPD</label>
                                 <div class="col-8">
-                                        <label class="col-form-label">: 1234567 / Puskesmas Rancasari</label>
+                                        <label class="col-form-label">: {{skpdDetail.kodeSkpd}} / {{skpdDetail.namaSkpd}}</label>
+                                        
                                 </div>
                             </div>
                         </div>

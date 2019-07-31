@@ -1,16 +1,11 @@
 angular
     .module('app', ['toaster', 'ngAnimate', 'datatables','fcsa-number','ngMask'])
-    .controller('KasController', function ($scope,$filter, toaster,kasService) {
+    .controller('KasController', function ($scope,$filter, toaster,kasService,globalService) {
         
-        const vm = this;
+        $scope.tahun = localStorage.getItem('tahunAnggaran');
+        const local = JSON.parse(localStorage.getItem('currentUser'));
+
         $scope.readonlySaldo = false;
-        // 
-        var myDate = new Date();
-        var nextYear = new Date(myDate);
-        var skpd = nextYear.setYear(myDate.getFullYear()+1);
- 
-        $scope.tahun = myDate;
-        $scope.skpd = skpd;
         //formBuild
         $scope.formData;
         $scope.valData;
@@ -22,16 +17,34 @@ angular
         $scope.pop = function () {
             toaster.pop('info', "title", "text");
         };
-
-        kasService.findDataApi(function (result) {
+        
+        /** Load Pendapatan */
+        globalService.serviceGetData(`/blud-resource-server/api/kasController/findAll`, {
+            tahunAnggaran: $scope.tahun,
+            skpdId: local.pengguna.skpdId
+        }, function (result) {
+            console.log('Result Data Load Kas');
+            console.log(result.data);
+            $scope.valData = result.data
             if (result.status === 200) {
-                $scope.valData = result.data;
-                angular.forEach($scope.valData, function(value, key) {
-                    $scope.amount = value
-                  });
-            
             } else {
-                console.log('Response Result Datatable Data');
+                console.log('Response Result Load Pendapatan');
+                console.log(result);
+            }
+        });
+
+            
+        /** Load SKPD By ID SKPD */
+        globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
+            console.log('Result Data Detail SKPD');
+            console.log(result.data);
+            if (result.status === 200) {
+                console.log('Response Result Detail SKPD');
+                console.log(result);
+                $scope.skpdDetail = result.data;
+                console.log('Value Data Load Detail SKPD :');
+            } else {
+                console.log('Response Result Load Detail SKPD');
                 console.log(result);
             }
         });
