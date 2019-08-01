@@ -41,6 +41,7 @@
     "node_modules/popper.js/dist/umd/popper.min.js.map",
     "node_modules/datatables.net/js/jquery.dataTables.js",
     "node_modules/angularjs-toaster/toaster.min.js",
-    "node_modules/angular-datatables/dist/angular-datatables.min.js"
+    "node_modules/angular-datatables/dist/angular-datatables.min.js",
+    "node_modules/lodash/lodash.min.js"
   ]
 }
