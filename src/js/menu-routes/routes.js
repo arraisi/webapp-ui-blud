@@ -77,6 +77,36 @@ angular
                     }]
                 }
             })
+            .state('app.ListPersetujuan', {
+                url: '/ListPersetujuan',
+                templateUrl: 'views/pages/persetujuan-view/ListPersetujuan.html',
+                ncyBreadcrumb: {
+                    label: 'ListPersetujuan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/ListPersetujuan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.DetailKasPersetujuan', {
+                url: '/persetujuan/DetailKasPersetujuan',
+                templateUrl: 'views/pages/persetujuan-view/DetailKasPersetujuan.html',
+                ncyBreadcrumb: {
+                    label: 'Persetujuan / Detail Kas '
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/DetailKasPersetujuan.js']
+                        });
+                    }]
+                }
+            })
             .state('app.rincian-pendapatan', {
                 url: '/pendapatan/rincian',
                 templateUrl: 'views/pages/pendapatan/rincian-pendapatan.html',
