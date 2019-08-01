@@ -55,13 +55,7 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
                 break;
             case 'rpa':
                 // $location.search('idDpt', valueDpt.idTrx);
-                // $location.path('/kegiatan/rpa');
-                toaster.pop({
-                    type: 'success',
-                    title: 'On Progress',
-                    body: '',
-                    timeout: 3000
-                });
+                $location.path('/kegiatan/rpa');
                 break;
         }
     };
