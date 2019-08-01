@@ -19,7 +19,7 @@ function KasController($scope, $location, toaster, globalService, kasService) {
         toaster.pop('info', "title", "text");
     };
 
-    /** Load Pendapatan */
+    /** Load Kas */
     globalService.serviceGetData(`/blud-resource-server/api/kasController/findAll`, {
         tahunAnggaran: $scope.tahun,
         skpdId: local.pengguna.skpdId
@@ -29,7 +29,7 @@ function KasController($scope, $location, toaster, globalService, kasService) {
         $scope.valData = result.data
         if (result.status === 200) {
         } else {
-            console.log('Response Result Load Pendapatan');
+            console.log('Response Result Load Kas');
             console.log(result);
         }
     });
@@ -104,26 +104,3 @@ function KasController($scope, $location, toaster, globalService, kasService) {
         });
     }
 }
-
-// angular
-//     .module('app', ['toaster', 'ngAnimate', 'datatables','fcsa-number','ngMask'])
-//     .directive('numbersOnly', function () {
-//         return {
-//             require: 'ngModel',
-//             link: function (scope, element, attr, ngModelCtrl) {
-//                 function fromUser(text) {
-//                     if (text) {
-//                         var transformedInput = text.replace(/[^0-9,.]/g, '');
-//
-//                         if (transformedInput !== text) {
-//                             ngModelCtrl.$setViewValue(transformedInput);
-//                             ngModelCtrl.$render();
-//                         }
-//                         return transformedInput;
-//                     }
-//                     return undefined;
-//                 }
-//                 ngModelCtrl.$parsers.push(fromUser);
-//             }
-//         };
-//     });
