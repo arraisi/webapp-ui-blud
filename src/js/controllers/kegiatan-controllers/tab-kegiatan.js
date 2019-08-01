@@ -45,23 +45,23 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
                 break;
             case 'komponen':
                 // $location.search('idDpt', valueDpt.idTrx);
-                // $location.path('/kegiatan/komponen');
-                toaster.pop({
-                    type: 'success',
-                    title: 'On Progress',
-                    body: '',
-                    timeout: 3000
-                });
+                $location.path('/kegiatan/komponen');
+                // toaster.pop({
+                //     type: 'success',
+                //     title: 'On Progress',
+                //     body: '',
+                //     timeout: 3000
+                // });
                 break;
             case 'rpa':
                 // $location.search('idDpt', valueDpt.idTrx);
-                // $location.path('/kegiatan/rpa');
-                toaster.pop({
-                    type: 'success',
-                    title: 'On Progress',
-                    body: '',
-                    timeout: 3000
-                });
+                $location.path('/kegiatan/rpa');
+                // toaster.pop({
+                //     type: 'success',
+                //     title: 'On Progress',
+                //     body: '',
+                //     timeout: 3000
+                // });
                 break;
         }
     };

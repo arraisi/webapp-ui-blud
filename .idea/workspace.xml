@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="836dd38f-21df-43ae-b562-c4c2df06aa1c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/kas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/services/kas.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/services/kas.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-kegiatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-kegiatan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/kegiatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-kegiatan.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +132,7 @@
       <workItem from="1564370201224" duration="27951000" />
       <workItem from="1564453220278" duration="14884000" />
       <workItem from="1564483949129" duration="20407000" />
-      <workItem from="1564627333060" duration="10600000" />
+      <workItem from="1564627333060" duration="14757000" />
     </task>
     <servers />
   </component>
