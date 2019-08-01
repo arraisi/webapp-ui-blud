@@ -77,17 +77,32 @@ angular
                     }]
                 }
             })
-            .state('app.kasPersetujuan', {
-                url: '/kasPersetujuan',
-                templateUrl: 'views/pages/persetujuan-view/KasPersetujuan.html',
+            .state('app.ListPersetujuan', {
+                url: '/ListPersetujuan',
+                templateUrl: 'views/pages/persetujuan-view/ListPersetujuan.html',
                 ncyBreadcrumb: {
-                    label: 'kasPersetujuan'
+                    label: 'ListPersetujuan'
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
-                            files: ['js/controllers/persetujuan-controllers/kasPersetujuan.js']
+                            files: ['js/controllers/persetujuan-controllers/ListPersetujuan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.DetailKasPersetujuan', {
+                url: '/persetujuan/DetailKasPersetujuan',
+                templateUrl: 'views/pages/persetujuan-view/DetailKasPersetujuan.html',
+                ncyBreadcrumb: {
+                    label: 'Persetujuan / Detail Kas '
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/DetailKasPersetujuan.js']
                         });
                     }]
                 }

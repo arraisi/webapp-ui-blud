@@ -1,10 +1,11 @@
 angular
     .module('app', ['toaster', 'ngAnimate', 'datatables'])
-    .controller('KasPersetujuanController', KasPersetujuanController);
+    .controller('ListPersetujuanController', ListPersetujuanController);
 
-function KasPersetujuanController($scope,globalService) {
+function ListPersetujuanController($scope,$location,globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
+    const token = 'Bearer ' + local.access_token;
 
        /** Get Data Pengguna */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
@@ -36,16 +37,18 @@ function KasPersetujuanController($scope,globalService) {
         }
     });
 
-    $scope.getTotal = function () {
-        var total = 0;
-        angular.forEach($scope.valData, function (value, key) {
-            $scope.amount = value
-            var saldo = $scope.amount.vkasAudited
 
-            total += (+saldo); //<-- convert to number
-            $scope.price = total;
-        });
+    $scope.goToList = function (valueDpt) {
+        console.log("Detail",valueDpt.idTmrbakasBlud)
+        $location.search('idTmrbakasBlud', valueDpt.idTmrbakasBlud);
+        $location.path('/persetujuan/DetailKasPersetujuan');
+    }
 
-        return total;
+    
+    $scope.doCheck = function (valueDpt) {
+        console.log("Setuju",valueDpt.idTmrbakasBlud)
+    }
+    $scope.doReject = function (valueDpt) {
+        console.log("Reject",valueDpt.idTmrbakasBlud)
     }
 }
