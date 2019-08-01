@@ -41,10 +41,6 @@ function LoginFormController($scope, $http, $location, authenticationService, to
             console.log(result);
             if (result.status === 200) {
                 console.log(result.data);
-                // $localStorage.setItem('currentUser', result.data);
-                // $localStorage.put('currentUser', result.data);
-                // $localStorage.put('myKey', 'myValue');
-                // $localStorage.setItem('currentUser', JSON.stringify(response.data));
                 localStorage.setItem('currentUser', JSON.stringify(result.data));
                 localStorage.setItem('tahunAnggaran', $scope.loginForm.tahunAnggaran);
                 toaster.pop({

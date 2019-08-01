@@ -40,7 +40,7 @@
                                                        required>
                                                 <div class="input-group-prepend">
                                                     <button class="btn btn-success"
-                                                            ng-click="openModal('moda-tambah-kegiatan')"><i
+                                                            data-toggle="modal" data-target="#modalTambahKegiatan"><i
                                                             class="fa fa-search"></i></button>
                                                 </div>
                                             </div>
@@ -241,20 +241,58 @@
         </div>
         <!--/.col-->
     </div>
+
 </div>
 
 <!-- Modal -->
-<modal id="moda-tambah-kegiatan">
-    <div class="modal">
-        <div class="modal-body">
-            <h1>A Custom Modal!</h1>
-            <p>
-                Home page text: <input type="text" ng-model="bodyText"/>
-            </p>
-            <button ng-click="closeModal('moda-tambah-kegiatan');">Close</button>
+<div id="modalTambahKegiatan" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Header</h4>
+                <button type="button" class="close" data-dismiss="modal" data-target="#modalTambahKegiatan">&times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer text-center col-12">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTambahKegiatan2">
+                    Open Another
+                </button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal" data-target="#modalTambahKegiatan">
+                    Close
+                </button>
+            </div>
         </div>
+
     </div>
-    <div class="modal-background"></div>
-</modal>
+</div>
+
+<!-- Modal -->
+<div id="modalTambahKegiatan2" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Header 2</h4>
+                <button type="button" class="close" data-dismiss="modal" data-target="#modalTambahKegiatan2">&times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal 2.</p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-dark" data-dismiss="modal" data-target="#modalTambahKegiatan2">
+                    Close
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <toaster-container toaster-options="{'close-button': true}"></toaster-container>
