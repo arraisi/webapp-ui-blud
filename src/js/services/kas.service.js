@@ -5,13 +5,13 @@ angular
             //Code edited to create a function as when you require service it returns object by default so you can't return function directly. That's what understand...
             
             saveData: function (body, callback) {
-                console.log("body",body)
+                console.log("body",body);
              
                 const local = JSON.parse(localStorage.getItem('currentUser'));
                 const token = 'Bearer ' + local.access_token;
                 const req = {
                     method: 'POST',
-                    url: 'blud-resource-server/api/kasController/save',
+                    url: '/blud-resource-server/api/kasController/save',
                     headers: {
                         'Authorization': token,
                         "Accept": "application/json",

@@ -61,7 +61,7 @@ function KasController($scope, $location, toaster, globalService, kasService) {
         });
 
         return total;
-    }
+    };
 
     $scope.saveData = function () {
         $scope.readonlySaldo = false;
