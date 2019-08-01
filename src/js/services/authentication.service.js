@@ -2,45 +2,51 @@
 
 angular
     .module('app')
-    .factory('authenticationService', ['$http', '$q', function($http, $q) {
-    return {
-        //Code edited to create a function as when you require service it returns object by default so you can't return function directly. That's what understand...
-        login: function (username, password, callback) {
-            // let params = new $http.params;
-            // params.set('username', username);
-            // params.set('password', password);
-            // params.set('grant_type', 'password');
-            const authBase64 = btoa('client-web' + ':' + 123456);
-            const req = {
-                method: 'POST',
-                url: '/blud-auth-server/oauth/token',
-                headers: {
-                    'Authorization': `Basic ${authBase64}`,
-                    "Accept": "application/json",
-                    "Content-Type": "application/json;charset=utf-8"
-                },
-                data: {},
-                params: {
-                    'username': username,
-                    'password': password,
-                    'grant_type': 'password'
-                }
-            };
-            $http(req)
-                .then(function (response) {
-                    // login successful if there's a token in the response
-                    console.log('service response api auth:');
-                    console.log(response);
-                    callback(response);
-                });
-        },
+    .factory('authenticationService', ['$http', '$q', function ($http, $q) {
+        return {
+            //Code edited to create a function as when you require service it returns object by default so you can't return function directly. That's what understand...
+            login: function (username, password, callback) {
+                // let params = new $http.params;
+                // params.set('username', username);
+                // params.set('password', password);
+                // params.set('grant_type', 'password');
+                const authBase64 = btoa('client-web' + ':' + 123456);
+                const req = {
+                    method: 'POST',
+                    url: '/blud-auth-server/oauth/token',
+                    headers: {
+                        'Authorization': `Basic ${authBase64}`,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json;charset=utf-8"
+                    },
+                    data: {},
+                    params: {
+                        'username': username,
+                        'password': password,
+                        'grant_type': 'password'
+                    }
+                };
+                $http(req)
+                    .then(
+                        function (response) {
+                            // login successful if there's a token in the response
+                            console.log('service response api auth:');
+                            console.log(response);
+                            callback(response);
+                        }, function (response) {
+                            // login failed
+                            console.log('service error response api auth:');
+                            console.log(response);
+                            callback(response);
+                        });
+            },
 
-        logout: function () {
-            delete localStorage.currentUser;
-            $http.defaults.headers.common.Authorization = '';
+            logout: function () {
+                delete localStorage.currentUser;
+                $http.defaults.headers.common.Authorization = '';
+            }
         }
-    }
-}]);
+    }]);
 
 
 // angular

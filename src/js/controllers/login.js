@@ -36,7 +36,6 @@ function LoginFormController($scope, $http, $location, authenticationService, to
         $scope.submitted = false;
         console.log('Form Valid');
         console.log('Login Function');
-        // $location.path('/components/forms');
         authenticationService.login($scope.loginForm.username, $scope.loginForm.password, function (result) {
             console.log('result login');
             console.log(result);
@@ -48,8 +47,30 @@ function LoginFormController($scope, $http, $location, authenticationService, to
                 // $localStorage.setItem('currentUser', JSON.stringify(response.data));
                 localStorage.setItem('currentUser', JSON.stringify(result.data));
                 localStorage.setItem('tahunAnggaran', $scope.loginForm.tahunAnggaran);
+                toaster.pop({
+                    type: 'success',
+                    title: 'Berhasil Login',
+                    body: 'Selamat Datang',
+                    timeout: 3000
+                });
                 // $http.defaults.headers.common.Authorization = 'Bearer ' + result.data.access_token;
                 $location.path('/kas-blud');
+            } else if (result.status === 400) {
+                toaster.pop({
+                    type: 'warning',
+                    title: 'Gagal Login',
+                    body: 'Periksa kembali User / Password',
+                    timeout: 3000
+                });
+                document.getElementById('login-loader').style.display = 'none';
+            } else {
+                toaster.pop({
+                    type: 'error',
+                    title: 'Gagal Login',
+                    body: 'Hubungi Admin',
+                    timeout: 3000
+                });
+                document.getElementById('login-loader').style.display = 'none';
             }
         });
     };
