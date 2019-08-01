@@ -1,35 +1,35 @@
 <div class="animated fadeIn">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
             <div class="card" ng-controller="AkbPendapatanController">
                 <div class="card-body" id="collapseExample1">
                     <div class="border rounded">
-                        <div class="row col-12">
-                            <div class="col-7">
-                                <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                                    <label class="col-3 col-form-label">Tahun Anggaran</label>
-                                    <div class="col-8">
+                        <div class="row" style="margin-left: 1px !important;">
+                            <div class="col-md-7">
+                                <div class="form-group row" style="margin-bottom: 1px !important;">
+                                    <label class="col-md-3 col-form-label">Tahun Anggaran</label>
+                                    <div class="col-md-8">
                                         <label class="col-form-label">: {{skpdDetail.tahunAnggaran}}</label>
                                     </div>
                                 </div>
-                                <div class="form-group row col-12">
-                                    <label class="col-3 col-form-label">SKPD</label>
-                                    <div class="col-9">
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">SKPD</label>
+                                    <div class="col-md-9">
                                         <label class="col-form-label">: {{skpdDetail.namaSkpd}}</label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-5">
-                                <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                                    <label class="col-4 col-form-label">Kode Akun</label>
-                                    <div class="col-8">
+                            <div class="col-md-5">
+                                <div class="form-group row" style="margin-bottom: 1px !important;">
+                                    <label class="col-md-4 col-form-label">Kode Akun</label>
+                                    <div class="col-md-8">
                                         <label class="col-form-label">: {{skpdDetail.kodeAkun}}</label>
                                     </div>
                                 </div>
-                                <div class="form-group row col-12">
-                                    <label class="col-4 col-form-label">Nama Akun</label>
-                                    <div class="col-8">
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Nama Akun</label>
+                                    <div class="col-md-8">
                                         <label class="col-form-label">: {{skpdDetail.namaAkun}}</label>
                                     </div>
                                 </div>
@@ -43,30 +43,30 @@
                     </div>
 
                     <div class="row" style="margin-top: 13px">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <!--                            <div class="form-group row" style="margin-bottom: 1px !important;">-->
-                            <!--                                <label class="col-3 col-form-label">Kode Akun</label>-->
-                            <!--                                <div class="col-8">-->
+                            <!--                                <label class="col-md-3 col-form-label">Kode Akun</label>-->
+                            <!--                                <div class="col-md-8">-->
                             <!--                                    <label class="col-form-label">{{skpdDetail.kodeAkun}}</label>-->
                             <!--                                </div>-->
                             <!--                            </div>-->
                             <div class="form-group row" style="margin-bottom: 1px !important;">
-                                <label class="col-3 col-form-label">Anggaran</label>
-                                <div class="col-8">
+                                <label class="col-md-3 col-form-label">Anggaran</label>
+                                <div class="col-md-8">
                                     <label class="col-form-label">{{formAkbPendapatan.anggaranTapd | currency: "Rp. " :
                                         2 }}</label>
                                 </div>
                             </div>
                             <div class="form-group row" style="margin-bottom: 1px !important;">
-                                <label class="col-3 col-form-label">Sisa Anggaran</label>
-                                <div class="col-8">
+                                <label class="col-md-3 col-form-label">Sisa Anggaran</label>
+                                <div class="col-md-8">
                                     <label class="col-form-label">{{sisaAnggaran | currency: "Rp. " : 2 }}</label>
                                     <span ng-if="sisaAnggaranMinus"><b><i class="fa fa-warning text-red"></i></b></span>
                                 </div>
                             </div>
                             <div class="form-group row" style="margin-bottom: 1px !important;">
-                                <label class="col-3 col-form-label">Jenis</label>
-                                <div class="col-8 row" style="margin-left: 1px !important;">
+                                <label class="col-md-3 col-form-label">Jenis</label>
+                                <div class="col-md-8 row" style="margin-left: 1px !important;">
                                     <div class="form-check col-form-label">
                                         <input class="form-check-input" type="radio" ng-value="'0'" id="perItem"
                                                name="jenis" ng-model="formAkbPendapatan.jenis"
@@ -92,11 +92,11 @@
                     <hr>
 
                     <div class="form-group row" style="margin-top: 13px">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <!-- Januari -->
-                            <div class="form-group col-12 row">
-                                <label class="col-2 col-form-label">Januari</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label class="col-md-2 col-form-label">Januari</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -111,9 +111,9 @@
                             </div>
 
                             <!-- Februari -->
-                            <div class="form-group col-12 row">
-                                <label class="col-2 col-form-label">Februari</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label class="col-md-2 col-form-label">Februari</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -128,9 +128,9 @@
                             </div>
 
                             <!-- Maret -->
-                            <div class="form-group col-12 row">
-                                <label for="maret" class="col-2 col-form-label">Maret</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label for="maret" class="col-md-2 col-form-label">Maret</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -145,9 +145,9 @@
                             </div>
 
                             <!-- April -->
-                            <div class="form-group col-12 row">
-                                <label for="april" class="col-2 col-form-label">April</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label for="april" class="col-md-2 col-form-label">April</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -162,9 +162,9 @@
                             </div>
 
                             <!-- Mei -->
-                            <div class="form-group col-12 row">
-                                <label for="mei" class="col-2 col-form-label">Mei</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label for="mei" class="col-md-2 col-form-label">Mei</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -179,9 +179,9 @@
                             </div>
 
                             <!-- Juni -->
-                            <div class="form-group col-12 row">
-                                <label for="juni" class="col-2 col-form-label">Juni</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label for="juni" class="col-md-2 col-form-label">Juni</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -196,11 +196,11 @@
                             </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <!-- Juli -->
-                            <div class="form-group col-12 row">
-                                <label for="juli" class="col-3 col-form-label">Juli</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label for="juli" class="col-md-3 col-form-label">Juli</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -215,9 +215,9 @@
                             </div>
 
                             <!-- Agustus -->
-                            <div class="form-group col-12 row">
-                                <label for="agustus" class="col-3 col-form-label">Agustus</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label for="agustus" class="col-md-3 col-form-label">Agustus</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -232,9 +232,9 @@
                             </div>
 
                             <!-- September -->
-                            <div class="form-group col-12 row">
-                                <label for="september" class="col-3 col-form-label">September</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label for="september" class="col-md-3 col-form-label">September</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -249,9 +249,9 @@
                             </div>
 
                             <!-- Oktober -->
-                            <div class="form-group col-12 row">
-                                <label for="oktober" class="col-3 col-form-label">Oktober</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label for="oktober" class="col-md-3 col-form-label">Oktober</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -266,9 +266,9 @@
                             </div>
 
                             <!-- November -->
-                            <div class="form-group col-12 row">
-                                <label for="november" class="col-3 col-form-label">November</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label for="november" class="col-md-3 col-form-label">November</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>
@@ -283,9 +283,9 @@
                             </div>
 
                             <!-- Desember -->
-                            <div class="form-group col-12 row">
-                                <label for="desember" class="col-3 col-form-label">Desember</label>
-                                <div class="controls col-9">
+                            <div class="form-group col-md-12 row">
+                                <label for="desember" class="col-md-3 col-form-label">Desember</label>
+                                <div class="controls col-md-9">
                                     <div class="input-prepend input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp</span>

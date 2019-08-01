@@ -1,35 +1,35 @@
 <div class="animated fadeIn">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
             <div class="card" ng-controller="RincianPendapatanController">
                 <div class="card-body" id="collapseExample1">
                     <div class="border rounded">
-                        <div class="row col-12">
-                            <div class="col-7">
-                                <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                                    <label class="col-3 col-form-label">Tahun Anggaran</label>
-                                    <div class="col-8">
+                        <div class="row" style="margin-left: 1px !important;">
+                            <div class="col-md-7">
+                                <div class="form-group row" style="margin-bottom: 1px !important;">
+                                    <label class="col-md-3 col-form-label">Tahun Anggaran</label>
+                                    <div class="col-md-8">
                                         <label class="col-form-label">: {{skpdDetail.tahunAnggaran}}</label>
                                     </div>
                                 </div>
-                                <div class="form-group row col-12">
-                                    <label class="col-3 col-form-label">SKPD</label>
-                                    <div class="col-9">
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">SKPD</label>
+                                    <div class="col-md-9">
                                         <label class="col-form-label">: {{skpdDetail.namaSkpd}}</label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-5">
-                                <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                                    <label class="col-4 col-form-label">Kode Akun</label>
-                                    <div class="col-8">
+                            <div class="col-md-5">
+                                <div class="form-group row" style="margin-bottom: 1px !important;">
+                                    <label class="col-md-4 col-form-label">Kode Akun</label>
+                                    <div class="col-md-8">
                                         <label class="col-form-label">: {{skpdDetail.kodeAkun}}</label>
                                     </div>
                                 </div>
-                                <div class="form-group row col-12">
-                                    <label class="col-4 col-form-label">Nama Akun</label>
-                                    <div class="col-8">
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Nama Akun</label>
+                                    <div class="col-md-8">
                                         <label class="col-form-label">: {{skpdDetail.namaAkun}}</label>
                                     </div>
                                 </div>
@@ -43,12 +43,12 @@
                     </div>
                     <form name="rincianForm" ng-submit="simpanRincian(rincianForm)">
                         <div class="row" style="margin-top: 13px">
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <!-- Anggaran Rincian Field -->
                                 <div class="form-group row">
-                                    <label for="rincianAnggaran" class="col-4 col-form-label">Anggaran Rincian <sup
+                                    <label for="rincianAnggaran" class="col-md-4 col-form-label">Anggaran Rincian <sup
                                             style="color: red;">(*)</sup></label>
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <input type="text" class="form-control" name="rincianAnggaran"
                                                id="rincianAnggaran"
                                                ng-model="formRincian.rincianAnggaran"
@@ -65,9 +65,9 @@
 
                                 <!-- Satuan Field -->
                                 <div class="form-group row">
-                                    <label for="satuan" class="col-4 col-form-label">Satuan <sup
+                                    <label for="satuan" class="col-md-4 col-form-label">Satuan <sup
                                             style="color: red;">(*)</sup></label>
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <input type="text" class="form-control" name="satuan" id="satuan"
                                                ng-model="formRincian.namaBarangSatuanTapd"
                                                ng-class="{'is-invalid': rincianForm.satuan.$error.required && submitted}"
@@ -83,9 +83,9 @@
 
                                 <!-- Volume Field -->
                                 <div class="form-group row">
-                                    <label for="volume" class="col-4 col-form-label">Volume <sup
+                                    <label for="volume" class="col-md-4 col-form-label">Volume <sup
                                             style="color: red;">(*)</sup></label>
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <input type="text" class="form-control" name="volume" id="volume"
                                                ng-model="formRincian.jumlahBarangTapd"
                                                ng-keypress="onlyNumberKey($event)"
@@ -101,12 +101,12 @@
                                 </div>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <!-- Harga Field -->
                                 <div class="form-group row">
-                                    <label for="harga" class="col-4 col-form-label">Harga <sup
+                                    <label for="harga" class="col-md-4 col-form-label">Harga <sup
                                             style="color: red;">(*)</sup></label>
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <input input-currency type="text"
                                                class="form-control text-right"
                                                name="harga"
@@ -126,9 +126,9 @@
 
                                 <!-- Total Anggaran Field -->
                                 <div class="form-group row">
-                                    <label for="totalAnggaran" class="col-4 col-form-label">Total Anggaran <sup
+                                    <label for="totalAnggaran" class="col-md-4 col-form-label">Total Anggaran <sup
                                             style="color: red;">(*)</sup></label>
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <input input-currency
                                                readonly
                                                type="text"
@@ -141,8 +141,8 @@
 
                                 <!-- Simpan Button -->
                                 <div class="form-group row">
-                                    <span class="col-4 col-form-label"></span>
-                                    <div class="col-6 text-right">
+                                    <span class="col-md-4 col-form-label"></span>
+                                    <div class="col-md-6 text-right">
                                         <button class="btn btn-success rounded" ng-click="simpanRincian(rincianForm)">
                                             Simpan
                                         </button>
