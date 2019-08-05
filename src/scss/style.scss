@@ -18,6 +18,16 @@
 @import "../../node_modules/angularjs-toaster/toaster.min.css";
 @import "../../node_modules/datatables.net-dt/css/jquery.dataTables.css";
 
+// Modal
+.modal-xxl {
+  max-width: 96%;
+}
+
+.modal-xl {
+  max-width: 80%;
+}
+
+
 .login-bg-style {
   //background-image: url('https://i.ibb.co/HBy17X1/login-bg.jpg');
   background-image: url('../img/login_bg.jpeg');
