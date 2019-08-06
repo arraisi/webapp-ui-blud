@@ -14,6 +14,11 @@ angular
                         console.log(response);
                         // login successful if there's a token in the response
                         callback(response);
+                    }, function (response) {
+                        // login failed
+                        console.log('service error response');
+                        console.log(response);
+                        callback(response);
                     })
             },
 
@@ -27,6 +32,11 @@ angular
                         console.log('Service Response Find Data');
                         console.log(response);
                         // login successful if there's a token in the response
+                        callback(response);
+                    }, function (response) {
+                        // login failed
+                        console.log('service error response');
+                        console.log(response);
                         callback(response);
                     })
             },
@@ -48,6 +58,11 @@ angular
                     .then(function (response) {
                         // login successful if there's a token in the response
                         console.log(`service response api get ${url} :`);
+                        console.log(response);
+                        callback(response);
+                    }, function (response) {
+                        // login failed
+                        console.log(`service error response ${url} :`);
                         console.log(response);
                         callback(response);
                     });
@@ -73,6 +88,11 @@ angular
                         console.log(`service response api get ${url} :`);
                         console.log(response);
                         callback(response);
+                    }, function (response) {
+                        // login failed
+                        console.log('service error response');
+                        console.log(response);
+                        callback(response);
                     });
             },
 
@@ -93,6 +113,11 @@ angular
                     .then(function (response) {
                         // login successful if there's a token in the response
                         console.log(`service response api get ${url} :`);
+                        console.log(response);
+                        callback(response);
+                    }, function (response) {
+                        // login failed
+                        console.log('service error response');
                         console.log(response);
                         callback(response);
                     });

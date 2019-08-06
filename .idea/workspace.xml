@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="836dd38f-21df-43ae-b562-c4c2df06aa1c" name="Default Changelist" comment="">
+    <list default="true" id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/BLUD-webapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blud-webapp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-kegiatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-kegiatan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/kegiatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/services/global.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/services/global.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-kegiatan.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,75 +21,20 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-        <option value="HTML File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JsFlowSettings">
-    <service-enabled>true</service-enabled>
-    <exe-path />
-    <other-services-enabled>true</other-services-enabled>
-    <auto-save>true</auto-save>
-  </component>
-  <component name="ProjectId" id="1OfWFowqhZV28P5wMoBWYYAZRw2" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1P081NAsQQswhnGOBxWz0RA0CnN" />
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="editor.config.ad.shown" value="true" />
-    <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views/pages" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/js/controllers/kegiatan" />
-      <recent name="$PROJECT_DIR$/src/views/pages/kegiatan" />
-      <recent name="$PROJECT_DIR$/src/img" />
-      <recent name="$PROJECT_DIR$/src/views/pages/pendapatan" />
-      <recent name="$PROJECT_DIR$/src/views/pages/form-example" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/views/pages" />
-      <recent name="$PROJECT_DIR$/src/js/controllers/kegiatan" />
-      <recent name="$PROJECT_DIR$/src/views/pages/kegiatan" />
-      <recent name="$PROJECT_DIR$/src/views/pages/pendapatan" />
-      <recent name="$PROJECT_DIR$/src/js/controllers" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -95,44 +48,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="js.build_tools.gulp">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="836dd38f-21df-43ae-b562-c4c2df06aa1c" name="Default Changelist" comment="" />
-      <created>1563346862898</created>
+      <changelist id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="" />
+      <created>1564999437678</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1563346862898</updated>
-      <workItem from="1563346864419" duration="8847000" />
-      <workItem from="1563415727874" duration="18539000" />
-      <workItem from="1563503315139" duration="186000" />
-      <workItem from="1563504363405" duration="4903000" />
-      <workItem from="1563527847986" duration="20348000" />
-      <workItem from="1563714523051" duration="9252000" />
-      <workItem from="1563771146373" duration="7330000" />
-      <workItem from="1563848171565" duration="17297000" />
-      <workItem from="1563937796193" duration="5163000" />
-      <workItem from="1564022040858" duration="9575000" />
-      <workItem from="1564041730596" duration="868000" />
-      <workItem from="1564054036195" duration="14845000" />
-      <workItem from="1564369033341" duration="815000" />
-      <workItem from="1564370201224" duration="27951000" />
-      <workItem from="1564453220278" duration="14884000" />
-      <workItem from="1564483949129" duration="20407000" />
-      <workItem from="1564627333060" duration="14757000" />
+      <updated>1564999437678</updated>
+      <workItem from="1564999438823" duration="433000" />
+      <workItem from="1565062393605" duration="361000" />
+      <workItem from="1565064683193" duration="3839000" />
     </task>
     <servers />
   </component>
