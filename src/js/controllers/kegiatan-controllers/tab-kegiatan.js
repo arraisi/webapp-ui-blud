@@ -5,6 +5,32 @@ angular
 // Function Untuk Kontroller TabKegiatanController
 function TabKegiatanController($scope, $location, toaster, globalService) {
 
+    const kegiatanId = $location.search().idKegiatan;
+    if (kegiatanId) {
+        $scope.idKegiatan = kegiatanId;
+        globalService.serviceGetData(`/blud-resource-server/api/kegiatan/${kegiatanId}`, null, function (result) {
+            console.log('Result Data Kegiatan');
+            console.log(result.data);
+            if (result.status === 200) {
+                console.log('Response Result Kegiatan');
+                console.log(result);
+                $scope.formTambahKegiatan = result.data;
+                console.log('Value Data Load Kegiatan :');
+                console.log($scope.formTambahKegiatan);
+                $scope.urusanGetId = $scope.formTambahKegiatan.urusan.id;
+                $scope.urusan = $scope.formTambahKegiatan.urusan;
+                $scope.programGetId = $scope.formTambahKegiatan.program.id;
+                $scope.program = $scope.formTambahKegiatan.program;
+            } else {
+                console.log('Response Result Load Kegiatan');
+                console.log(result);
+            }
+        });
+    } else {
+        $location.url($location.path());
+        $location.path('/kegiatan/tambah');
+    }
+
     /** DT Options For Datatables */
     $scope.persons = [];
     $scope.dtInstanceUrusan = {};
@@ -58,6 +84,22 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         }
     });
 
+    /** Load List Lokasi Kegiatan */
+    globalService.serviceGetData(`/blud-resource-server/api/kegiatan/lokasi/list`, null, function (result) {
+        console.log('Result Data Lokasi Kegiatan');
+        console.log(result.data);
+        if (result.status === 200) {
+            console.log('Response Result Lokasi Kegiatan');
+            console.log(result);
+            $scope.lokasiKegiatanList = result.data;
+            console.log('Value Data Lokasi Kegiatan :');
+            console.log($scope.lokasiKegiatanList);
+        } else {
+            console.log('Response Result Lokasi Kegiatan Error');
+            console.log(result);
+        }
+    });
+
     /** Get List Urusan */
     globalService.serviceGetData(`/blud-resource-server/api/urusan/list`, {tahunAnggaran: $scope.tahun}, function (result) {
         console.log('Result Data Urusan');
@@ -99,11 +141,11 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
             if (result.status === 200) {
                 console.log('Response Result No Kegiatan');
                 console.log(result);
-                $scope.formTambahKegiatan.noKegiatan = result.data.noKegiatan;
+                $scope.formTambahKegiatan.kodeKegiatan = result.data.noKegiatan;
             } else {
                 console.log('Response Result No Kegiatan Error');
                 console.log(result);
-                $scope.formTambahKegiatan.noKegiatan = 'No. Kegiatan Tidak Ditemukan';
+                $scope.formTambahKegiatan.kodeKegiatan = `${$scope.program.kodeProgram}.01`;
             }
         });
     };
@@ -118,12 +160,14 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
             id: null,
             namaProgram: null
         },
-        noKegiatan: null,
+        idProgram: null,
+        kodeKegiatan: null,
         namaKegiatan: null,
-        sasaran: null,
-        waktuPelaksanaan: null,
-        lokasiKegiatan: null,
-        sumberDana: null
+        sasaranKegiatan: null,
+        bulanMulai: null,
+        bulanAkhir: null,
+        kodeLokasiKegiatan: null,
+        namaSumberDana: null
     };
 
     /** For Get Urusan */
@@ -137,7 +181,8 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
     $scope.programGetId = null;
     $scope.program = {
         id: null,
-        namaProgram: null
+        namaProgram: null,
+        kodeProgram: null
     };
 
 
@@ -228,9 +273,42 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         console.log('Get Program :');
         console.log($scope.program);
         $scope.formTambahKegiatan.program = $scope.program;
+        $scope.formTambahKegiatan.idProgram = $scope.program.id;
         console.log($scope.formTambahKegiatan);
         console.log($scope.formTambahKegiatan.program);
         $scope.getNoKegiatan($scope.program.id);
+    };
+
+
+    /** Save Function */
+    $scope.saveKegiatan = function () {
+        console.log('JSON Save Kegiatan: ');
+        console.log($scope.formTambahKegiatan);
+        globalService.servicePostData(`/blud-resource-server/api/kegiatan/save`, null, $scope.formTambahKegiatan, function (result) {
+            console.log('Result Data Save Kegiatan');
+            console.log(result.data);
+            if (result.status === 201) {
+                console.log('Response Save Kegiatan');
+                console.log(result);
+                toaster.pop({
+                    type: 'success',
+                    title: 'Berhasil',
+                    body: 'Berhasil Simpan Data Kegiatan',
+                    timeout: 3000
+                });
+                $location.search('idKegiatan', result.data.id);
+                $location.path('/kegiatan/tambah');
+            } else {
+                console.log('Response Error Save Kegiatan');
+                console.log(result);
+                toaster.pop({
+                    type: 'warning',
+                    title: 'Gagal',
+                    body: 'Gagal Simpan Data Kegiatan',
+                    timeout: 3000
+                });
+            }
+        });
     }
 
 }

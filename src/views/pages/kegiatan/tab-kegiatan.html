@@ -12,10 +12,11 @@
                                 <label for="tab1">KEGIATAN</label>
 
                                 <input type="radio" id="tab2" name="tabGroup1" class="tab"
-                                       ng-click="tabGoTo('komponen')">
+                                       ng-click="tabGoTo('komponen')" ng-disabled="!idKegiatan">
                                 <label for="tab2">KOMPONEN</label>
 
-                                <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="tabGoTo('rpa')">
+                                <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="tabGoTo('rpa')"
+                                       ng-disabled="!idKegiatan">
                                 <label for="tab3">RPA PER KOMPONEN</label>
                             </div>
 
@@ -33,7 +34,7 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Urusan <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <div class="input-group input-group-prepend">
                                                     <input readonly type="text" class="form-control" name="urusan"
                                                            id="urusan"
@@ -58,7 +59,7 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Program <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <div class="input-group input-group-prepend">
                                                     <input readonly type="text" class="form-control" name="program"
                                                            id="program"
@@ -84,16 +85,16 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">No. Kegiatan <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <input readonly type="text" class="form-control" name="noKegiatan"
                                                        id="noKegiatan"
-                                                       ng-model="formTambahKegiatan.noKegiatan">
+                                                       ng-model="formTambahKegiatan.kodeKegiatan">
                                             </div>
                                         </div>
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Nama Kegiatan <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <input type="text" class="form-control" name="namaKegiatan"
                                                        id="namaKegiatan"
                                                        ng-model="formTambahKegiatan.namaKegiatan"
@@ -112,10 +113,10 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Sasaran <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <input type="text" class="form-control" name="sasaran"
                                                        id="sasaran"
-                                                       ng-model="formTambahKegiatan.sasaran"
+                                                       ng-model="formTambahKegiatan.sasaranKegiatan"
                                                        ng-class="{'is-invalid': tambahForm.sasaran.$error.required && submitted}"
                                                        oninvalid="this.setCustomValidity('Isian ini wajib diisi')"
                                                        required/>
@@ -130,16 +131,24 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Waktu Pelaksanaan <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" name="waktuPelaksanaan"
-                                                       id="waktuPelaksanaan"
-                                                       ng-model="formTambahKegiatan.waktuPelaksanaan"
-                                                       ng-class="{'is-invalid': tambahForm.waktuPelaksanaan.$error.required && submitted}"
+                                            <div class="row col-md-8">
+                                                <input type="text" class="form-control col-md-5" name="bulanMulai"
+                                                       id="bulanMulai"
+                                                       placeholder="Bulan Mulai (01-12)"
+                                                       ng-model="formTambahKegiatan.bulanMulai"
+                                                       ng-class="{'is-invalid': tambahForm.bulanMulai.$error.required && submitted}"
+                                                       required>
+                                                <span class="col-md-2"></span>
+                                                <input type="text" class="form-control col-md-5" name="bulanAkhir"
+                                                       id="bulanAkhir"
+                                                       placeholder="Bulan Selesai (01-12)"
+                                                       ng-model="formTambahKegiatan.bulanAkhir"
+                                                       ng-class="{'is-invalid': tambahForm.bulanAkhir.$error.required && submitted}"
                                                        required>
                                                 <span class="input-group" style="color:red"
-                                                      ng-show="tambahForm.waktuPelaksanaan.$invalid && submitted">
+                                                      ng-show="tambahForm.bulanAkhir.$invalid && submitted">
                                             <small>
-                                                <span ng-show="tambahForm.waktuPelaksanaan.$error.required">Waktu Pelaksanaan harus diisi.</span>
+                                                <span ng-show="tambahForm.bulanAkhir.$error.required">Waktu Pelaksanaan harus diisi.</span>
                                             </small>
                                         </span>
                                             </div>
@@ -147,12 +156,17 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Lokasi Kegiatan <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" name="lokasiKegiatan"
-                                                       id="lokasiKegiatan"
-                                                       ng-model="formTambahKegiatan.lokasiKegiatan"
-                                                       ng-class="{'is-invalid': tambahForm.lokasiKegiatan.$error.required && submitted}"
-                                                       required>
+                                            <div class="row col-md-8">
+                                                <select id="lokasiKegiatan" name="lokasiKegiatan"
+                                                        class="form-control input-lg"
+                                                        ng-model="formTambahKegiatan.kodeLokasiKegiatan"
+                                                        ng-class="{'is-invalid': tambahForm.lokasiKegiatan.$error.required && submitted}"
+                                                        required>
+                                                    <option ng-value=val.kodeLokasi
+                                                            ng-repeat="val in ::lokasiKegiatanList">
+                                                        {{val.kodeLokasi}} - {{val.namaLokasi}}
+                                                    </option>
+                                                </select>
                                                 <span class="input-group" style="color:red"
                                                       ng-show="tambahForm.lokasiKegiatan.$invalid && submitted">
                                             <small>
@@ -164,10 +178,10 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Sumber Dana <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <input type="text" class="form-control" name="sumberDana"
                                                        id="sumberDana"
-                                                       ng-model="formTambahKegiatan.sumberDana"
+                                                       ng-model="formTambahKegiatan.namaSumberDana"
                                                        ng-class="{'is-invalid': tambahForm.sumberDana.$error.required && submitted}"
                                                        required>
                                                 <span class="input-group" style="color:red"
@@ -181,7 +195,7 @@
                                         <br>
                                         <div class="form-group">
                                             <div class="col-md-12 text-right">
-                                                <button class="btn btn-primary">
+                                                <button type="button" class="btn btn-primary" ng-click="saveKegiatan()">
                                                     Simpan Kegiatan
                                                 </button>
                                             </div>
@@ -195,7 +209,7 @@
                             <div class="form-group row">
                                 <div class="col-md-6"><strong> <u> Data Kinerja </u> </strong></div>
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-primary"><i
+                                    <button class="btn btn-primary" ng-disabled="!idKegiatan"><i
                                             class="fa fa-plus"></i>
                                         Tambah Kinerja
                                     </button>

@@ -9,7 +9,7 @@
                         <label for="tab1">KEGIATAN</label>
 
                         <input type="radio" id="tab2" name="tabGroup1" class="tab" checked
-                            ng-click="tabGoTo('komponen')">
+                               ng-click="tabGoTo('komponen')">
                         <label for="tab2">KOMPONEN</label>
 
                         <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="tabGoTo('rpa')">
@@ -30,13 +30,9 @@
                                     </label>
                                     <div class="col-8">
                                         <div class="input-group input-group-prepend">
-                                            <input type="text" name="urusan" id="urusan" class="form-control">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-success" data-toggle="modal"
-                                                    data-target="#modalUrusan">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </div>
+                                            <input readonly type="text" class="form-control" name="urusan"
+                                                   id="urusan"
+                                                   ng-model="formTambahKegiatan.urusan.namaUrusan">
                                         </div>
                                     </div>
                                 </div>
@@ -46,13 +42,9 @@
                                     </label>
                                     <div class="col-8">
                                         <div class="input-group input-group-prepend">
-                                            <input type="text" name="program" id="program" class="form-control">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-success" data-toggle="modal"
-                                                    data-target="#modalProgram">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </div>
+                                            <input readonly type="text" class="form-control" name="program"
+                                                   id="program"
+                                                   ng-model="formTambahKegiatan.program.namaProgram"/>
                                         </div>
                                     </div>
                                 </div>
@@ -61,16 +53,19 @@
                                             style="color: red;">(*)</sup>
                                     </label>
                                     <div class="col-8">
-                                        <input type="text" readonly name="noKegiatan" id="noKegiatan"
-                                            class="form-control">
+                                        <input readonly type="text" class="form-control" name="noKegiatan"
+                                               id="noKegiatan"
+                                               ng-model="formTambahKegiatan.kodeKegiatan">
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
-                                    <label for="namaKegiatan" class="col-4 col-form-label">Lama Kegiatan <sup
+                                    <label for="namaKegiatan" class="col-4 col-form-label">Nama Kegiatan <sup
                                             style="color: red;">(*)</sup>
                                     </label>
                                     <div class="col-8">
-                                        <input type="text" name="namaKegiatan" id="namaKegiatan" class="form-control">
+                                        <input readonly type="text" class="form-control" name="namaKegiatan"
+                                               id="namaKegiatan"
+                                               ng-model="formTambahKegiatan.namaKegiatan">
                                     </div>
                                 </div>
                             </div>
@@ -81,15 +76,15 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" readonly name="paguKegiatan" id="paguKegiatan"
-                                            class="form-control">
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
                                     <label for="belanjaPegawai" class="col-4 col-form-label"> Belanja Pegawai
                                     </label>
                                     <div class="col-8">
-                                        <input type="text" readonly name="noKegiatan" id="noKegiatan"
-                                            class="form-control">
+                                        <input type="text" readonly name="belanjaPegawai" id="belanjaPegawai"
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
@@ -97,7 +92,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" readonly name="belanjaBarangJasa" id="belanjaBarangJasa"
-                                            class="form-control">
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
@@ -105,7 +100,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" readonly name="belanjaModal" id="belanjaModal"
-                                            class="form-control">
+                                               class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -134,33 +129,34 @@
 
                         <div class="col-12 text-right">
                             <button class="btn btn-success" data-toggle="modal"
-                                data-target="#modalSuntingKomponen">Tambah Komponen</button>
+                                    data-target="#modalSuntingKomponen">Tambah Komponen
+                            </button>
                         </div>
 
                         <br>
 
                         <form style="padding-right: unset !important;">
                             <div class="row col-md-12 justify-content-end"
-                                style="margin-right: 0px !important; padding-right: unset !important;">
+                                 style="margin-right: 0px !important; padding-right: unset !important;">
                                 <input type="text" name="kodeAkun" id="kodeAkun"
-                                    class="form-control col-md-1 pl-0 pr-0">
+                                       class="form-control col-md-1 pl-0 pr-0">
                                 <input type="text" name="kodeKomponen" id="kodeKomponen"
-                                    class="form-control col-md-1 pl-0 pr-0">
+                                       class="form-control col-md-1 pl-0 pr-0">
                                 <input type="text" name="namaKomponen" id="namaKomponen"
-                                    class="form-control col-md-1 pl-0 pr-0">
+                                       class="form-control col-md-1 pl-0 pr-0">
                                 <input type="text" name="keterangan" id="keterangan"
-                                    class="form-control col-md-1 pl-0 pr-0">
+                                       class="form-control col-md-1 pl-0 pr-0">
                                 <input type="text" name="spek" id="spek" class="form-control col-md-1 pl-0 pr-0">
                                 <input type="text" name="merk" id="merk" class="form-control col-md-1 pl-0 pr-0">
                                 <input type="text" name="volume" id="volume" class="form-control col-md-1 pl-0 pr-0">
                                 <input type="text" name="koefisien" id="koefisien"
-                                    class="form-control col-md-1 pl-0 pr-0">
+                                       class="form-control col-md-1 pl-0 pr-0">
                                 <input type="text" name="satuan" id="satuan" class="form-control col-md-1 pl-0 pr-0">
                                 <input type="text" name="harga" id="harga" class="form-control col-md-1 pl-0 pr-0">
                                 <input type="text" name="totalHarga" id="totalHarga"
-                                    class="form-control col-md-1 pl-0 pr-0">
+                                       class="form-control col-md-1 pl-0 pr-0">
                                 <button type="submit" class="btn btn-success col-md-1 rounded"
-                                    style="margin-right: 0px !important;">Cari
+                                        style="margin-right: 0px !important;">Cari
                                 </button>
                             </div>
                         </form>
@@ -214,32 +210,32 @@
                             <div class="col-12">
                                 <table datatable="ng" class="row-border hover">
                                     <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th class="text-left">Jenis Pelanggaran</th>
-                                            <th>Kode</th>
-                                            <th>Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th class="text-left">Jenis Pelanggaran</th>
+                                        <th>Kode</th>
+                                        <th>Action</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="val in ::data.master">
-                                            <td>{{ val.id }}</td>
-                                            <td class="text-left">{{ val.jenisPelanggaran }}</td>
-                                            <td>{{ val.kode }}</td>
-                                            <td>
-                                                <div class="btn-group btn-group-sm" role="group"
-                                                    aria-label="Button group with nested dropdown">
-                                                    <button id="btnDelete" class="btn btn-link" style="color: #000000"
+                                    <tr ng-repeat="val in ::data.master">
+                                        <td>{{ val.id }}</td>
+                                        <td class="text-left">{{ val.jenisPelanggaran }}</td>
+                                        <td>{{ val.kode }}</td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm" role="group"
+                                                 aria-label="Button group with nested dropdown">
+                                                <button id="btnDelete" class="btn btn-link" style="color: #000000"
                                                         ng-click="openModalDelete()">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                    <button id="btnEdit" class="btn btn-link" style="color: #000000"
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                                <button id="btnEdit" class="btn btn-link" style="color: #000000"
                                                         ng-click="editData(val.id)">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -272,57 +268,57 @@
             <div class="modal-body">
                 <form style="padding-right: unset !important;">
                     <div class="row col-md-12 justify-content-end"
-                        style="margin-right: 0px !important; padding-right: unset !important;">
+                         style="margin-right: 0px !important; padding-right: unset !important;">
                         <input type="text" class="form-control col-md-4" name="kodeUrusan" id="kodeUrusan"
-                            placeholder="Kode Urusan" style="margin-right: 10px">
+                               placeholder="Kode Urusan" style="margin-right: 10px">
                         <input type="text" class="form-control col-md-4" name="namaUrusan" id="namaUrusan"
-                            placeholder="Nama Urusan" style="margin-right: 10px">
+                               placeholder="Nama Urusan" style="margin-right: 10px">
                         <button type="submit" class="btn btn-success col-md-1 rounded"
-                            style="margin-right: 0px !important;">Cari
+                                style="margin-right: 0px !important;">Cari
                         </button>
                     </div>
                 </form>
                 <div class="form-group" style="margin-top: 13px">
                     <table class="table table-bordered table-striped rounded">
                         <thead>
-                            <tr class="text-center">
-                                <th></th>
-                                <th>No.</th>
-                                <th>Kode Urusan</th>
-                                <th>Nama Urusan</th>
-                            </tr>
+                        <tr class="text-center">
+                            <th></th>
+                            <th>No.</th>
+                            <th>Kode Urusan</th>
+                            <th>Nama Urusan</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center">
-                                    <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" id="urusan1" name="pilihUrusan">
-                                    </div>
-                                </td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1.02</td>
-                                <td>Kesehatan</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" id="urusan2" name="pilihUrusan">
-                                    </div>
-                                </td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">1.02</td>
-                                <td>Kesehatan</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" id="urusan3" name="pilihUrusan">
-                                    </div>
-                                </td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">1.02</td>
-                                <td>Kesehatan</td>
-                            </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="urusan1" name="pilihUrusan">
+                                </div>
+                            </td>
+                            <td class="text-center">1</td>
+                            <td class="text-center">1.02</td>
+                            <td>Kesehatan</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="urusan2" name="pilihUrusan">
+                                </div>
+                            </td>
+                            <td class="text-center">2</td>
+                            <td class="text-center">1.02</td>
+                            <td>Kesehatan</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="urusan3" name="pilihUrusan">
+                                </div>
+                            </td>
+                            <td class="text-center">3</td>
+                            <td class="text-center">1.02</td>
+                            <td>Kesehatan</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -354,57 +350,57 @@
             <div class="modal-body">
                 <form style="padding-right: unset !important;">
                     <div class="row col-md-12 justify-content-end"
-                        style="margin-right: 0px !important; padding-right: unset !important;">
+                         style="margin-right: 0px !important; padding-right: unset !important;">
                         <input type="text" class="form-control col-md-4" name="kodeProgram" id="kodeProgram"
-                            placeholder="Kode Program" style="margin-right: 10px">
+                               placeholder="Kode Program" style="margin-right: 10px">
                         <input type="text" class="form-control col-md-4" name="namaProgram" id="namaProgram"
-                            placeholder="Nama Program" style="margin-right: 10px">
+                               placeholder="Nama Program" style="margin-right: 10px">
                         <button type="submit" class="btn btn-success col-md-1 rounded"
-                            style="margin-right: 0px !important;">Cari
+                                style="margin-right: 0px !important;">Cari
                         </button>
                     </div>
                 </form>
                 <div class="form-group" style="margin-top: 13px">
                     <table class="table table-bordered table-striped rounded">
                         <thead>
-                            <tr class="text-center">
-                                <th></th>
-                                <th>No.</th>
-                                <th>Kode Program</th>
-                                <th>Nama Program</th>
-                            </tr>
+                        <tr class="text-center">
+                            <th></th>
+                            <th>No.</th>
+                            <th>Kode Program</th>
+                            <th>Nama Program</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center">
-                                    <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" id="program1" name="pilihProgram">
-                                    </div>
-                                </td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1.06.09</td>
-                                <td>Program Pengelolaan Kendaraan Dinas</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" id="program2" name="pilihProgram">
-                                    </div>
-                                </td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">1.06.10</td>
-                                <td>Program Peningkatan Disiplin dan Kinerja Aparatur</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" id="program3" name="pilihProgram">
-                                    </div>
-                                </td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">1.06.11</td>
-                                <td>Program Fasilitas Pindah / Purna Tugas PNS</td>
-                            </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="program1" name="pilihProgram">
+                                </div>
+                            </td>
+                            <td class="text-center">1</td>
+                            <td class="text-center">1.06.09</td>
+                            <td>Program Pengelolaan Kendaraan Dinas</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="program2" name="pilihProgram">
+                                </div>
+                            </td>
+                            <td class="text-center">2</td>
+                            <td class="text-center">1.06.10</td>
+                            <td>Program Peningkatan Disiplin dan Kinerja Aparatur</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="program3" name="pilihProgram">
+                                </div>
+                            </td>
+                            <td class="text-center">3</td>
+                            <td class="text-center">1.06.11</td>
+                            <td>Program Fasilitas Pindah / Purna Tugas PNS</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -437,76 +433,76 @@
                 <form>
                     <div class="row col-md-12">
                         <input type="text" name="kodeAkun" id="kodeAkun" class="form-control col-md-1"
-                            placeholder="Kode Akun" style="margin-right: 5px">
+                               placeholder="Kode Akun" style="margin-right: 5px">
                         <input type="text" name="kodeKomponen" id="kodeKomponen" placeholder="Kode Komponen"
-                            class="form-control col-md-2" style="margin-right: 5px">
+                               class="form-control col-md-2" style="margin-right: 5px">
                         <input type="text" name="namaKomponen" id="namaKomponen" placeholder="Nama Komponen"
-                            class="form-control col-md-2" style="margin-right: 5px">
+                               class="form-control col-md-2" style="margin-right: 5px">
                         <input type="text" name="hargaSatuan" id="hargaSatuan" placeholder="Harga Satuan"
-                            class="form-control col-md-2" style="margin-right: 5px">
+                               class="form-control col-md-2" style="margin-right: 5px">
                         <input type="text" name="spek" id="spek" class="form-control col-md-1" placeholder="Spek"
-                            style="margin-right: 5px">
+                               style="margin-right: 5px">
                         <input type="text" name="merk" id="merk" class="form-control col-md-2" placeholder="Merk"
-                            style="margin-right: 5px">
+                               style="margin-right: 5px">
                         <input type="text" name="satuan" id="satuan" class="form-control col-md-1" placeholder="Satuan"
-                            style="margin-right: 5px">
+                               style="margin-right: 5px">
                         <button type="submit" class="btn btn-success col-md-1 rounded"
-                            style="margin-right: 0px !important;">Cari
+                                style="margin-right: 0px !important;">Cari
                         </button>
                     </div>
                 </form>
                 <div class="form-group" style="margin-top: 13px">
                     <table class="table table-bordered table-striped rounded">
                         <thead>
-                            <tr class="text-center">
-                                <th></th>
-                                <th>No.</th>
-                                <th>Kode Program</th>
-                                <th>Nama Program</th>
-                            </tr>
+                        <tr class="text-center">
+                            <th></th>
+                            <th>No.</th>
+                            <th>Kode Program</th>
+                            <th>Nama Program</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center">
-                                    <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" id="program1" name="pilihProgram">
-                                    </div>
-                                </td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1.06.09</td>
-                                <td>Program Pengelolaan Kendaraan Dinas</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" id="program2" name="pilihProgram">
-                                    </div>
-                                </td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">1.06.10</td>
-                                <td>Program Peningkatan Disiplin dan Kinerja Aparatur</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <div class="form-check col-form-label">
-                                        <input class="form-check-input" type="radio" id="program3" name="pilihProgram">
-                                    </div>
-                                </td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">1.06.11</td>
-                                <td>Program Fasilitas Pindah / Purna Tugas PNS</td>
-                            </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="program1" name="pilihProgram">
+                                </div>
+                            </td>
+                            <td class="text-center">1</td>
+                            <td class="text-center">1.06.09</td>
+                            <td>Program Pengelolaan Kendaraan Dinas</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="program2" name="pilihProgram">
+                                </div>
+                            </td>
+                            <td class="text-center">2</td>
+                            <td class="text-center">1.06.10</td>
+                            <td>Program Peningkatan Disiplin dan Kinerja Aparatur</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="program3" name="pilihProgram">
+                                </div>
+                            </td>
+                            <td class="text-center">3</td>
+                            <td class="text-center">1.06.11</td>
+                            <td>Program Fasilitas Pindah / Purna Tugas PNS</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-dark rounded" data-toggle="modal"
-                    data-target="#modalTambahKomponen">
+                        data-target="#modalTambahKomponen">
                     Batal
                 </button>
                 <button type="button" class="btn btn-success rounded" data-dismiss="modal"
-                    data-target="#modalTambahKomponen">
+                        data-target="#modalTambahKomponen">
                     Kirim
                 </button>
             </div>
@@ -536,7 +532,7 @@
                         <label for="namaKomponen" class="col-form-label">Nama Komponen</label>
                     </div>
                     <div class="col-3">
-    
+
                     </div>
                     <div class="col-3">
                         <label for="spek" class="col-form-label">Spek</label>
@@ -545,7 +541,7 @@
                         <label for="harga" class="col-form-label">Harga</label>
                     </div>
                     <div class="col-3">
-    
+
                     </div>
                 </div>
                 <hr>
@@ -588,11 +584,11 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-dark rounded" data-toggle="modal"
-                    data-target="#modalSuntingKomponen">
+                        data-target="#modalSuntingKomponen">
                     Batal
                 </button>
                 <button type="button" class="btn btn-success rounded" data-dismiss="modal"
-                    data-target="#modalSuntingKomponen">
+                        data-target="#modalSuntingKomponen">
                     Simpan
                 </button>
             </div>
@@ -617,11 +613,11 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-dark rounded" data-toggle="modal"
-                    data-target="#modalDeleteComponent">
+                        data-target="#modalDeleteComponent">
                     Batal
                 </button>
                 <button type="button" class="btn btn-success rounded" data-dismiss="modal"
-                    data-target="#modalDeleteComponent">
+                        data-target="#modalDeleteComponent">
                     Hapus
                 </button>
             </div>
