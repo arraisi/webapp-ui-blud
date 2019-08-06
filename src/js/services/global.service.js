@@ -62,7 +62,7 @@ angular
                         callback(response);
                     }, function (response) {
                         // login failed
-                        console.log('service error response');
+                        console.log(`service error response ${url} :`);
                         console.log(response);
                         callback(response);
                     });

@@ -64,7 +64,8 @@
                                                            id="program"
                                                            ng-model="formTambahKegiatan.program.namaProgram"
                                                            ng-class="{'is-invalid': tambahForm.program.$error.required && submitted}"
-                                                           required>
+                                                           required
+                                                           oninvalid="this.setCustomValidity('Isian ini wajib diisi')"/>
                                                     <div class="input-group-prepend">
                                                         <button class="btn btn-success"
                                                                 data-toggle="modal" data-target="#modalProgram"
@@ -116,7 +117,8 @@
                                                        id="sasaran"
                                                        ng-model="formTambahKegiatan.sasaran"
                                                        ng-class="{'is-invalid': tambahForm.sasaran.$error.required && submitted}"
-                                                       required>
+                                                       oninvalid="this.setCustomValidity('Isian ini wajib diisi')"
+                                                       required/>
                                                 <span class="input-group" style="color:red"
                                                       ng-show="tambahForm.sasaran.$invalid && submitted">
                                             <small>
@@ -289,7 +291,7 @@
                     <!--                </form>-->
                     <div class="form-group" style="margin-top: 13px">
                         <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
-                               dt-instance="dtInstance"
+                               dt-instance="dtInstanceUrusan"
                                class="table table-bordered table-striped row-border hover rounded">
                             <thead>
                             <tr class="text-center">
@@ -344,20 +346,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!--                <form style="padding-right: unset !important;">-->
-                    <!--                    <div class="row col-md-12 justify-content-end"-->
-                    <!--                         style="margin-right: 0px !important; padding-right: unset !important;">-->
-                    <!--                        <input type="text" class="form-control col-md-4" name="kodeProgram" id="kodeProgram"-->
-                    <!--                               placeholder="Kode Program" style="margin-right: 10px">-->
-                    <!--                        <input type="text" class="form-control col-md-4" name="namaProgram" id="namaProgram"-->
-                    <!--                               placeholder="Nama Program" style="margin-right: 10px">-->
-                    <!--                        <button type="submit" class="btn btn-success col-md-1 rounded"-->
-                    <!--                                style="margin-right: 0px !important;">Cari-->
-                    <!--                        </button>-->
-                    <!--                    </div>-->
-                    <!--                </form>-->
-                    <div class="form-group" style="margin-top: 13px">
+                    <div class="form-group text-center" style="margin-top: 13px">
+                        <div class="text-red" ng-show="formTambahKegiatan.urusan.id === null"><h5>Silahkan Pilih Urusan
+                            Terlebih Dahulu</h5></div>
                         <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
+                               dt-instance="dtInstanceProgram"
                                class="table table-bordered table-striped row-border hover rounded">
                             <thead>
                             <tr class="text-center">
@@ -379,7 +372,7 @@
                                 </td>
                                 <td class="text-center">{{val.id}}</td>
                                 <td class="text-center">{{val.kodeProgram}}</td>
-                                <td>{{val.namaProgram}}</td>
+                                <td class="text-left">{{val.namaProgram}}</td>
                             </tr>
                             </tbody>
                         </table>
