@@ -6,7 +6,7 @@ function ListPersetujuanController($scope,$location,globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
     const token = 'Bearer ' + local.access_token;
-
+    
        /** Get Data Pengguna */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
         console.log('Result Data Detail SKPD');
@@ -49,8 +49,13 @@ function ListPersetujuanController($scope,$location,globalService) {
     }
 
     $scope.doReject = function (valueDpt) {
-        console.log("Reject",valueDpt.idTmrbakasBlud)
-
+        console.log("doReject",valueDpt.idTmrbakasBlud)      
     }
 
-}
+    $scope.doOpenModal = function (valueDpt) {
+        valModal = function (valueDpt) {
+            value = valueDpt.idTmrbakasBlud;
+            return value;
+        }
+    }
+}   

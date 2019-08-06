@@ -47,7 +47,7 @@
                                         <button class="btn  rounded" ng-click="doCheck(data)"> <i
                                                 class="fa fa-check"></i>
                                         </button>
-                                        <button class="btn  rounded" ng-click="doReject(data)"> <i
+                                        <button class="btn  rounded" data-toggle="modal" data-target="#modalReject" ng-click="doOpenModal(data)"> <i
                                                 class="fa fa-times"></i>
                                         </button>
                                     </td>
@@ -61,5 +61,40 @@
         </div>
     </div>
 </div>
-
 <toaster-container toaster-options="{'close-button': true}"></toaster-container>
+
+<!-- Modal Look Up Urusan -->
+<div id="modalReject" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+    
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                        <h6 class="modal-title"><i class="fa fa-list"></i> Penolakan {{valModal()}} </h6>
+                </div>
+                <div class="modal-body">
+                    <form style="padding-right: unset !important;">
+                        <div class="form-group ">
+                                <label for="alasan" class="col-lg-12 control-label">
+                                    Anda yakin akan menolak data SKPD dengan nomor {{valModal()}}{{val}} ?
+                                </label>
+                                <div class="col-md-10" style="margin-right: 0px !important; padding-right: unset !important;">
+                                    <textarea name="alasan" id="alasan" class="form-control" cols="20" rows="10" placeholder="Enter your Message">
+
+                                    </textarea>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal" data-target="#modalReject">
+                        Tutup
+                    </button>
+                    <button type="button" class="btn btn-success rounded" ng-click="doReject(data)" data-target="#modalReject">
+                        Tolak 
+                    </button>
+                </div>
+            </div>
+    
+        </div>
+    </div>
