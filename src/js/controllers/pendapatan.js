@@ -220,8 +220,44 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
         spesifikasiAnggaran: null,
         tahunAnggaran: null,
         tanggalRekamPengguna: null,
-        tanggalUbahPengguna: null
+        tanggalUbahPengguna: null,
     };
+
+    $scope.validationVariable = {
+
+        rincianAnggaranIsValid: false,
+        rincianAnggaranIsTouched: false,
+        namaBarangSatuanTapdIsValid: false,
+        namaBarangSatuanTapdIsTouched: false,
+        volumeIsValid: false,
+        volumeIsTouched: false,
+        hargaIsValid: false,
+        hargaIsTouched: false
+
+    }
+
+    $scope.validateRincianAnggaran = function () {
+        if (!$scope.formRincian.rincianAnggaran) {
+            $scope.validationVariable.rincianAnggaranIsValid = false;
+            $scope.validationVariable.rincianAnggaranIsTouched = true;
+        } else {
+            $scope.validationVariable.rincianAnggaranIsValid = true;
+            $scope.validationVariable.rincianAnggaranIsTouched = false;
+        }
+
+    }
+
+    $scope.validateSatuan = function () {
+
+        if (!$scope.formRincian.namaBarangSatuanTapd) {
+            $scope.validationVariable.namaBarangSatuanTapdIsValid = false;
+            $scope.validationVariable.namaBarangSatuanTapdIsTouched = true;
+        } else {
+            $scope.validationVariable.namaBarangSatuanTapdIsValid = true;
+            $scope.validationVariable.namaBarangSatuanTapdIsTouched = false;
+        }
+
+    }
 
     // Total Harga
     $scope.getTotalHarga = function () {
@@ -483,12 +519,6 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
         $location.path('/pendapatan');
     }
 
-    // Kembali Ke Page Pendapatan List
-    $scope.goToPendapatan = function () {
-        $location.url($location.path());
-        $location.path('/pendapatan');
-    };
-
     $scope.simpanAkb = function () {
         console.log('Save AKB');
         console.log($scope.formAkbPendapatan);
@@ -520,19 +550,6 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
                 console.log(result);
             }
         })
-    };
-
-    // Only Number
-    $scope.onlyNumberKey = function (event) {
-        if (event.charCode > 31 && (event.charCode < 48 || event.charCode > 57)) {
-            toaster.pop({
-                type: 'warning',
-                title: 'Hanya Angka',
-                body: 'Tidak Bisa Input Selain Angka',
-                timeout: 3000
-            });
-            event.preventDefault();
-        }
     };
 
     $scope.kalkulasiSisaAnggaran = function () {

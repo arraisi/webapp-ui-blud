@@ -52,12 +52,13 @@
                                         <input type="text" class="form-control" name="rincianAnggaran"
                                                id="rincianAnggaran"
                                                ng-model="formRincian.rincianAnggaran"
-                                               ng-class="{'is-invalid': rincianForm.rincianAnggaran.$error.required && submitted}"
-                                               required>
+                                               ng-blur="validateRincianAnggaran()"
+                                               ng-class="{'is-invalid': !validationVariable.rincianAnggaranIsValid && validationVariable.rincianAnggaranIsTouched}"
+                                               >
                                         <span class="input-group" style="color:red"
-                                              ng-show="rincianForm.rincianAnggaran.$invalid && submitted">
+                                              ng-show="!validationVariable.rincianAnggaranIsValid && validationVariable.rincianAnggaranIsTouched">
                                             <small>
-                                                <span ng-show="rincianForm.rincianAnggaran.$error.required">Uraian harus diisi.</span>
+                                                <span ng-show="!validationVariable.rincianAnggaranIsValid && validationVariable.rincianAnggaranIsTouched">Uraian harus diisi.</span>
                                             </small>
                                         </span>
                                     </div>
@@ -70,12 +71,13 @@
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="satuan" id="satuan"
                                                ng-model="formRincian.namaBarangSatuanTapd"
-                                               ng-class="{'is-invalid': rincianForm.satuan.$error.required && submitted}"
-                                               required>
+                                               ng-blur="validateSatuan()"
+                                               ng-class="{'is-invalid': !validationVariable.namaBarangSatuanTapdIsValid && validationVariable.namaBarangSatuanTapdIsTouched}"
+                                               >
                                         <span class="input-group" style="color:red"
-                                              ng-show="rincianForm.satuan.$invalid && submitted">
+                                              ng-show="!validationVariable.namaBarangSatuanTapdIsValid && validationVariable.namaBarangSatuanTapdIsTouched">
                                             <small>
-                                                <span ng-show="rincianForm.satuan.$error.required">Satuan harus diisi.</span>
+                                                <span ng-show="!validationVariable.namaBarangSatuanTapdIsValid && validationVariable.namaBarangSatuanTapdIsTouched">Satuan harus diisi.</span>
                                             </small>
                                         </span>
                                     </div>
@@ -145,7 +147,8 @@
                                 <div class="form-group row">
                                     <span class="col-md-4 col-form-label"></span>
                                     <div class="col-md-6 text-right">
-                                        <button class="btn btn-success rounded" ng-click="simpanRincian(rincianForm)">
+                                        <button class="btn btn-success rounded" ng-click="simpanRincian(rincianForm)"
+                                        ng-disabled="!validationVariable.rincianAnggaranIsValid">
                                             Simpan
                                         </button>
                                     </div>
