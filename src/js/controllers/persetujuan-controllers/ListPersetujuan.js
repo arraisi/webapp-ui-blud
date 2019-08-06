@@ -1,6 +1,6 @@
 angular
     .module('app', ['toaster', 'ngAnimate', 'datatables'])
-    .controller('ListPersetujuanController', ListPersetujuanController);
+    .controller('ListPersetujuanController', ListPersetujuanController)
 
 function ListPersetujuanController($scope,$location,globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
@@ -52,10 +52,9 @@ function ListPersetujuanController($scope,$location,globalService) {
         console.log("doReject",valueDpt.idTmrbakasBlud)      
     }
 
-    $scope.doOpenModal = function (valueDpt) {
-        valModal = function (valueDpt) {
-            value = valueDpt.idTmrbakasBlud;
-            return value;
-        }
+    $scope.value = null;
+    $scope.doOpenModal = function (valOpen) {
+        console.log(valOpen.idTmrbakasBlud);
+        $scope.value = valOpen.idTmrbakasBlud;
     }
 }   

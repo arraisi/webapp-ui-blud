@@ -19,6 +19,7 @@
                                         </div>
                                         <input type="text" class="form-control" placeholder="ID"
                                                ng-model="loginForm.username" name="id" required
+                                               ng-blur="getTahunAnggaran()"
                                                ng-class="{'is-invalid': loginform.id.$error.required && submitted}">
                                         <span class="input-group" style="color:red"
                                               ng-show="loginform.id.$invalid && submitted">
@@ -45,16 +46,21 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="icon-calendar"></i></span>
                                         </div>
-                                        <input ng-keypress="onlyNumberKey($event)" type="number" class="form-control"
+                                        <select class="form-control" ng-model="loginForm.tahunAnggaran"
+                                        ng-focus="getTahunAnggaran()">
+                                        <option ng-repeat="item in listTahunAnggaran" ng-value=item>{{item}}</option>
+                                            
+                                        </select>
+                                        <!-- <input ng-keypress="onlyNumberKey($event)" type="number" class="form-control"
                                                placeholder="Tahun Anggaran" ng-model="loginForm.tahunAnggaran"
                                                name="tahunAnggaran" required
-                                               ng-class="{'is-invalid': loginform.tahunAnggaran.$error.required && submitted}">
-                                        <span class="input-group" style="color:red"
+                                               ng-class="{'is-invalid': loginform.tahunAnggaran.$error.required && submitted}"> -->
+                                        <!-- <span class="input-group" style="color:red"
                                               ng-show="loginform.tahunAnggaran.$invalid && submitted">
                                             <small>
                                                 <span ng-show="loginform.tahunAnggaran.$error.required">Tahun Anggaran harus diisi.</span>
                                             </small>
-                                        </span>
+                                        </span> -->
                                     </div>
                                     <div class="input-group form-group">
                                         <div class="input-group-prepend">
