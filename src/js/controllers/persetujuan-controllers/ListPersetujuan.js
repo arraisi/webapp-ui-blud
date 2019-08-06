@@ -12,10 +12,10 @@ function ListPersetujuanController($scope,$location,globalService) {
         console.log('Result Data Detail SKPD');
         console.log(result.data);
         if (result.status === 200) {
-            console.log('Response Result Detail SKPD');
-            console.log(result);
+            // console.log('Response Result Detail SKPD');
+            // console.log(result);
             $scope.skpdDetail = result.data;
-            console.log('Value Data Load Detail SKPD :');
+            // console.log('Value Data Load Detail SKPD :');
         } else {
             console.log('Response Result Load Detail SKPD');
             console.log(result);
@@ -44,11 +44,13 @@ function ListPersetujuanController($scope,$location,globalService) {
         $location.path('/persetujuan/DetailKasPersetujuan');
     }
 
-    
     $scope.doCheck = function (valueDpt) {
         console.log("Setuju",valueDpt.idTmrbakasBlud)
     }
+
     $scope.doReject = function (valueDpt) {
         console.log("Reject",valueDpt.idTmrbakasBlud)
+
     }
+
 }

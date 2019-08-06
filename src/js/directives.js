@@ -61,18 +61,20 @@
 
             // Strip currency related characters from string
             val = val.replace(decimal, '').replace(group, '').replace(currency, '').trim();
-
             return parseInt(val, 10);
         };
         // Displayed in the input to users
         var toView = function (val) {
-            return $filter('currency')(val, '', 0);
+            console.log(accounting.formatMoney(val, "", 0, ".", ","))
+            // return $filter('currency')(val, '', 0);
+            return accounting.formatMoney(val, "", 0, ".", ",")
         };
         // Link to DOM
         var link = function ($scope, $element, $attrs, $ngModel) {
             $ngModel.$formatters.push(toView);
             $ngModel.$parsers.push(toModel);
             $ngModel.$validators.currency = isValid;
+        
             // $ngModel.$parsers.unshift(function (viewValue) {
             //     $element.priceFormat({
             //         prefix: '',
@@ -82,8 +84,9 @@
             //     return $element[0].value;
             // });
 
+            // ketika di klik / onkeyup 
             $element.on('keyup', function () {
-                $ngModel.$viewValue = toView($ngModel.$modelValue);
+                $ngModel.$viewValue = accounting.formatMoney($ngModel.$modelValue, "", 0, ".", ",");
                 // $ngModel.$parsers.unshift(function (viewValue) {
                 //     $element.priceFormat({
                 //         prefix: '',
@@ -92,7 +95,9 @@
                 //     });
                 //     return $element[0].value;
                 // });
+                // console.log("ngmodel",$ngModel.$viewValue)
                 $ngModel.$render();
+
             });
         };
         return {

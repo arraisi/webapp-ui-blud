@@ -11,9 +11,10 @@ function KasController($scope, $location, toaster, globalService, kasService) {
     $scope.formData;
     $scope.valData;
     $scope.amount;
-    $scope.updateData;
 
-    $scope.price;
+    $scope.formatPrice;
+
+
 
     $scope.pop = function () {
         toaster.pop('info', "title", "text");
@@ -24,8 +25,6 @@ function KasController($scope, $location, toaster, globalService, kasService) {
         tahunAnggaran: $scope.tahun,
         skpdId: local.pengguna.skpdId
     }, function (result) {
-        console.log('Result Data Load Kas');
-        console.log(result.data);
         $scope.valData = result.data
         if (result.status === 200) {
         } else {
@@ -37,13 +36,8 @@ function KasController($scope, $location, toaster, globalService, kasService) {
 
     /** Load SKPD By ID SKPD */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
-        console.log('Result Data Detail SKPD');
-        console.log(result.data);
         if (result.status === 200) {
-            console.log('Response Result Detail SKPD');
-            console.log(result);
             $scope.skpdDetail = result.data;
-            console.log('Value Data Load Detail SKPD :');
         } else {
             console.log('Response Result Load Detail SKPD');
             console.log(result);
@@ -52,16 +46,19 @@ function KasController($scope, $location, toaster, globalService, kasService) {
 
     $scope.getTotal = function () {
         var total = 0;
+        var formatPrice = "";
         angular.forEach($scope.valData, function (value, key) {
             $scope.amount = value
             var saldo = $scope.amount.vkasAudited
 
             total += (+saldo); //<-- convert to number
-            $scope.price = total;
+            formatPrice =  accounting.formatMoney(total, "Rp ", 2, ".", ",");
         });
 
-        return total;
+        return formatPrice;
+
     };
+
 
     $scope.saveData = function () {
         $scope.readonlySaldo = false;
