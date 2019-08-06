@@ -16,30 +16,92 @@
                     </div>
 
                     <div class="border rounded">
-                        <div class="row col-12">
-                            <div class="col-8">
-                                <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                                    <label class="col-3 col-form-label">Tahun Anggaran</label>
-                                    <div class="col-9">
-                                        <label class="col-form-label">: tahun</label>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <strong> <u> Data Kegiatan </u> </strong>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 3px !important;">
+                            <div class="col-6">
+                                <div class="form-group row col-12">
+                                    <label for="urusan" class="col-4 col-form-label">Urusan <sup
+                                            style="color: red;">(*)</sup>
+                                    </label>
+                                    <div class="col-8">
+                                        <div class="input-group input-group-prepend">
+                                            <input readonly type="text" class="form-control" name="urusan"
+                                                   id="urusan"
+                                                   ng-model="formTambahKegiatan.urusan.namaUrusan">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
-                                    <label class="col-3 col-form-label">SKPD</label>
-                                    <div class="col-9">
-                                        <label class="col-form-label">: skpd</label>
+                                    <label for="program" class="col-4 col-form-label">Program <sup
+                                            style="color: red;">(*)</sup>
+                                    </label>
+                                    <div class="col-8">
+                                        <div class="input-group input-group-prepend">
+                                            <input readonly type="text" class="form-control" name="program"
+                                                   id="program"
+                                                   ng-model="formTambahKegiatan.program.namaProgram"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
-                                    <label class="col-3 col-form-label">Total Anggaran</label>
-                                    <div class="col-9">
-                                        <label class="col-form-label">: Total</label>
+                                    <label for="noKegiatan" class="col-4 col-form-label">No. Kegiatan <sup
+                                            style="color: red;">(*)</sup>
+                                    </label>
+                                    <div class="col-8">
+                                        <input readonly type="text" class="form-control" name="noKegiatan"
+                                               id="noKegiatan"
+                                               ng-model="formTambahKegiatan.kodeKegiatan">
+                                    </div>
+                                </div>
+                                <div class="form-group row col-12">
+                                    <label for="namaKegiatan" class="col-4 col-form-label">Nama Kegiatan <sup
+                                            style="color: red;">(*)</sup>
+                                    </label>
+                                    <div class="col-8">
+                                        <input readonly type="text" class="form-control" name="namaKegiatan"
+                                               id="namaKegiatan"
+                                               ng-model="formTambahKegiatan.namaKegiatan">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 align-self-center text-right">
-                                <button class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Kegiatan
-                                </button>
+                            <div class="col-6">
+                                <div class="form-group row col-12">
+                                    <label for="paguKegiatan" class="col-4 col-form-label">
+                                        Pagu Kegiatan
+                                    </label>
+                                    <div class="col-8">
+                                        <input type="text" readonly name="paguKegiatan" id="paguKegiatan"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row col-12">
+                                    <label for="belanjaPegawai" class="col-4 col-form-label"> Belanja Pegawai
+                                    </label>
+                                    <div class="col-8">
+                                        <input type="text" readonly name="belanjaPegawai" id="belanjaPegawai"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row col-12">
+                                    <label for="belanjaBarangJasa" class="col-4 col-form-label"> Belanja Barang & Jasa
+                                    </label>
+                                    <div class="col-8">
+                                        <input type="text" readonly name="belanjaBarangJasa" id="belanjaBarangJasa"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row col-12">
+                                    <label for="belanjaModal" class="col-4 col-form-label"> Belanja Modal
+                                    </label>
+                                    <div class="col-8">
+                                        <input type="text" readonly name="belanjaModal" id="belanjaModal"
+                                               class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

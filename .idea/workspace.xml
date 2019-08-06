@@ -4,7 +4,11 @@
     <list default="true" id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-kegiatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-kegiatan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-komponen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-komponen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-rpa-komponen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-rpa-komponen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-kegiatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-komponen.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-komponen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-rpa-komponen.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-rpa-komponen.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +55,7 @@
       <updated>1564999437678</updated>
       <workItem from="1564999438823" duration="433000" />
       <workItem from="1565062393605" duration="361000" />
-      <workItem from="1565064683193" duration="6397000" />
+      <workItem from="1565064683193" duration="13087000" />
     </task>
     <servers />
   </component>
