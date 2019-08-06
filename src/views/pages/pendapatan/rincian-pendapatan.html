@@ -46,18 +46,19 @@
                             <div class="col-md-6">
                                 <!-- Anggaran Rincian Field -->
                                 <div class="form-group row">
-                                    <label for="rincianAnggaran" class="col-md-4 col-form-label">Anggaran Rincian <sup
+                                    <label for="rincianAnggaran" class="col-md-4 col-form-label">Uraian <sup
                                             style="color: red;">(*)</sup></label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="rincianAnggaran"
                                                id="rincianAnggaran"
                                                ng-model="formRincian.rincianAnggaran"
-                                               ng-class="{'is-invalid': rincianForm.rincianAnggaran.$error.required && submitted}"
-                                               required>
+                                               ng-blur="validateRincianAnggaran()"
+                                               ng-class="{'is-invalid': !validationVariable.rincianAnggaranIsValid && validationVariable.rincianAnggaranIsTouched}"
+                                               >
                                         <span class="input-group" style="color:red"
-                                              ng-show="rincianForm.rincianAnggaran.$invalid && submitted">
+                                              ng-show="!validationVariable.rincianAnggaranIsValid && validationVariable.rincianAnggaranIsTouched">
                                             <small>
-                                                <span ng-show="rincianForm.rincianAnggaran.$error.required">Anggaran Rincian harus diisi.</span>
+                                                <span ng-show="!validationVariable.rincianAnggaranIsValid && validationVariable.rincianAnggaranIsTouched">Uraian harus diisi.</span>
                                             </small>
                                         </span>
                                     </div>
@@ -70,12 +71,13 @@
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="satuan" id="satuan"
                                                ng-model="formRincian.namaBarangSatuanTapd"
-                                               ng-class="{'is-invalid': rincianForm.satuan.$error.required && submitted}"
-                                               required>
+                                               ng-blur="validateSatuan()"
+                                               ng-class="{'is-invalid': !validationVariable.namaBarangSatuanTapdIsValid && validationVariable.namaBarangSatuanTapdIsTouched}"
+                                               >
                                         <span class="input-group" style="color:red"
-                                              ng-show="rincianForm.satuan.$invalid && submitted">
+                                              ng-show="!validationVariable.namaBarangSatuanTapdIsValid && validationVariable.namaBarangSatuanTapdIsTouched">
                                             <small>
-                                                <span ng-show="rincianForm.satuan.$error.required">Satuan harus diisi.</span>
+                                                <span ng-show="!validationVariable.namaBarangSatuanTapdIsValid && validationVariable.namaBarangSatuanTapdIsTouched">Satuan harus diisi.</span>
                                             </small>
                                         </span>
                                     </div>
@@ -89,6 +91,7 @@
                                         <input type="text" class="form-control" name="volume" id="volume"
                                                ng-model="formRincian.jumlahBarangTapd"
                                                ng-keypress="onlyNumberKey($event)"
+                                               ng-keyup="getTotalHarga()"
                                                ng-class="{'is-invalid': rincianForm.volume.$error.required && submitted}"
                                                required>
                                         <span class="input-group" style="color:red"
@@ -113,6 +116,7 @@
                                                id="harga"
                                                ng-model="formRincian.hargaBarangSatuanTapd"
                                                ng-keypress="onlyNumberKey($event)"
+                                               ng-keyup="getTotalHarga()"
                                                ng-class="{'is-invalid': rincianForm.harga.$error.required && submitted}"
                                                required>
                                         <span class="input-group" style="color:red"
@@ -135,7 +139,7 @@
                                                class="form-control text-right"
                                                name="totalAnggaran"
                                                id="totalAnggaran" ng-model="formRincian.anggaranTapd"
-                                               ng-click="getTotalHarga()">
+                                               >
                                     </div>
                                 </div>
 
@@ -143,7 +147,8 @@
                                 <div class="form-group row">
                                     <span class="col-md-4 col-form-label"></span>
                                     <div class="col-md-6 text-right">
-                                        <button class="btn btn-success rounded" ng-click="simpanRincian(rincianForm)">
+                                        <button class="btn btn-success rounded" ng-click="simpanRincian(rincianForm)"
+                                        ng-disabled="!validationVariable.rincianAnggaranIsValid">
                                             Simpan
                                         </button>
                                     </div>
@@ -159,11 +164,20 @@
                         <strong> <u> Daftar Rincian Pendapatan </u> </strong>
                     </div>
                     <div class="form-group" style="margin-top: 13px">
-                        <table class="table table-bordered table-striped rounded">
+                        <table style="table-layout: fixed; width: 100%" class="table table-bordered table-striped rounded">
+                            <colgroup>
+                                <col style="width: 5%">
+                                <col style="width: 23%">
+                                <col style="width: 14%">
+                                <col style="width: 14%">
+                                <col style="width: 17%">
+                                <col style="width: 17%">
+                                <col style="width: 10%">
+                            </colgroup>
                             <thead>
                             <tr class="text-center">
                                 <th>No</th>
-                                <th>Anggaran Rinci</th>
+                                <th>Uraian</th>
                                 <th>Satuan</th>
                                 <th>Volume</th>
                                 <th>Harga</th>
@@ -174,7 +188,7 @@
                             <tbody>
                             <tr ng-repeat="data in loadDataRincianPendapatan">
                                 <td class="text-center">{{data.anggaranNoUrut}}</td>
-                                <td>{{data.rincianAnggaran}}</td>
+                                <td style="word-wrap: break-word" >{{data.rincianAnggaran}}</td>
                                 <td>{{data.namaBarangSatuanTapd}}</td>
                                 <td class="text-center">{{data.jumlahBarangTapd}}</td>
                                 <td class="text-right">{{data.hargaBarangSatuanTapd | currency: "Rp. " : 0}}</td>

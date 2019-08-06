@@ -192,8 +192,8 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
         anggaranNoUrut: null,
         rincianAnggaran: null,
         namaBarangSatuanTapd: null,
-        jumlahBarangTapd: null,
-        hargaBarangSatuanTapd: null,
+        jumlahBarangTapd: 0,
+        hargaBarangSatuanTapd: 0,
         anggaranTapd: null,
         anggaranDpa: null,
         hargaBarangSatuanDpa: null,
@@ -220,18 +220,61 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
         spesifikasiAnggaran: null,
         tahunAnggaran: null,
         tanggalRekamPengguna: null,
-        tanggalUbahPengguna: null
+        tanggalUbahPengguna: null,
     };
+
+    $scope.validationVariable = {
+
+        rincianAnggaranIsValid: false,
+        rincianAnggaranIsTouched: false,
+        namaBarangSatuanTapdIsValid: false,
+        namaBarangSatuanTapdIsTouched: false,
+        volumeIsValid: false,
+        volumeIsTouched: false,
+        hargaIsValid: false,
+        hargaIsTouched: false
+
+    }
+
+    $scope.validateRincianAnggaran = function () {
+        if (!$scope.formRincian.rincianAnggaran) {
+            $scope.validationVariable.rincianAnggaranIsValid = false;
+            $scope.validationVariable.rincianAnggaranIsTouched = true;
+        } else {
+            $scope.validationVariable.rincianAnggaranIsValid = true;
+            $scope.validationVariable.rincianAnggaranIsTouched = false;
+        }
+
+    }
+
+    $scope.validateSatuan = function () {
+
+        if (!$scope.formRincian.namaBarangSatuanTapd) {
+            $scope.validationVariable.namaBarangSatuanTapdIsValid = false;
+            $scope.validationVariable.namaBarangSatuanTapdIsTouched = true;
+        } else {
+            $scope.validationVariable.namaBarangSatuanTapdIsValid = true;
+            $scope.validationVariable.namaBarangSatuanTapdIsTouched = false;
+        }
+
+    }
 
     // Total Harga
     $scope.getTotalHarga = function () {
         console.log($scope.formRincian.jumlahBarangTapd);
         console.log($scope.formRincian.hargaBarangSatuanTapd);
+        if (!$scope.formRincian.jumlahBarangTapd) {
+            $scope.formRincian.jumlahBarangTapd = 0;            
+        }
+
+        if (!$scope.formRincian.hargaBarangSatuanTapd) {
+            $scope.formRincian.hargaBarangSatuanTapd = 0;
+        }
         if ($scope.formRincian.hargaBarangSatuanTapd || $scope.formRincian.hargaBarangSatuanTapd < 0) {
-            console.log('Harga Barang Is Null')
+            console.log('Harga Barang Is Null');
         }
         if ($scope.formRincian.jumlahBarangTapd || $scope.formRincian.jumlahBarangTapd < 0) {
-            console.log('Jumlah Barang Is Null')
+            console.log('Jumlah Barang Is Null');
         }
         if ($scope.formRincian.jumlahBarangTapd >= 0 && $scope.formRincian.hargaBarangSatuanTapd >= 0) {
             $scope.formRincian.anggaranTapd = $scope.formRincian.jumlahBarangTapd * $scope.formRincian.hargaBarangSatuanTapd;
@@ -270,6 +313,15 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
         $scope.loadDataRincianPendapatan.splice(index, 1);
         $scope.loadDataRincianPendapatan.map(data => data.anggaranNoUrut = (this.noUrut = this.noUrut + 1));
         this.noUrut = 0;
+        
+        globalService.serviceDeleteData(`/blud-resource-server/api/pendapatan/rincian/delete/${idDpt}/${data.id}` , null, function (result) {
+            if (result.status === 200) {
+                console.log("delete success");
+                console.log(result);
+            } else {
+                console.log(result);
+            }
+        });
     };
 
     // Kembali Ke Page Pendapatan List
@@ -291,17 +343,53 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
         console.log('Form Rincian ==> ');
         console.log($scope.formRincian);
         $scope.formRincian.anggaranTapd = $scope.formRincian.jumlahBarangTapd * $scope.formRincian.hargaBarangSatuanTapd;
-        $scope.loadDataRincianPendapatan.push($scope.formRincian);
-        $scope.formRincian = {
-            anggaranNoUrut: null,
-            rincianAnggaran: null,
-            namaBarangSatuanTapd: null,
-            jumlahBarangTapd: null,
-            hargaBarangSatuanTapd: null,
-            anggaranTapd: null
-        };
-        $scope.loadDataRincianPendapatan.map(data => data.anggaranNoUrut = (this.noUrut = this.noUrut + 1));
-        this.noUrut = 0;
+        if ($scope.formRincian.jumlahBarangTapd > 0 && $scope.formRincian.hargaBarangSatuanTapd > 0) {
+
+            $scope.loadDataRincianPendapatan.push($scope.formRincian);
+            $scope.formRincian = {
+                anggaranNoUrut: null,
+                rincianAnggaran: null,
+                namaBarangSatuanTapd: null,
+                jumlahBarangTapd: 0,
+                hargaBarangSatuanTapd: 0,
+                anggaranTapd: null
+            };
+            $scope.loadDataRincianPendapatan.map(data => data.anggaranNoUrut = (this.noUrut = this.noUrut + 1));
+            this.noUrut = 0;
+            globalService.servicePostData(`/blud-resource-server/api/pendapatan/rincian/save`, { idPendapatan: idDpt }, $scope.loadDataRincianPendapatan, function (result) {
+                console.log('Result Data Save Rincian Pendapatan');
+                console.log(result.data);
+                if (result.status === 201) {
+                    console.log('Response Save Rincian Pendapatan Succes');
+                    console.log(result);
+                    toaster.pop({
+                        type: 'success',
+                        title: 'Berhasil',
+                        body: 'Berhasil menyimpan data',
+                        timeout: 5000
+                    });
+                    // $location.url($location.path());
+                    // $location.path('/pendapatan');
+                } else {
+                    console.log('Response Error Save Rincian Pendapatan');
+                    console.log(result);
+                }
+            });
+        } else if ($scope.formRincian.jumlahBarangTapd <= 0) {
+            toaster.pop({
+                type: 'error',
+                title: 'Input Tidak Tepat',
+                body: 'Volume tidak boleh kurang dari 1',
+                timeout: 5000
+            });
+        } else if ($scope.formRincian.hargaBarangSatuanTapd <= 0) {
+            toaster.pop({
+                type: 'error',
+                title: 'Input Tidak Tepat',
+                body: 'Harga tidak boleh kurang dari 1',
+                timeout: 5000
+            });
+        }
         console.log($scope.formRincian.anggaranTapd);
     };
 
@@ -311,25 +399,25 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
         console.log($scope.loadDataRincianPendapatan);
         console.log('List Id Rincian Delete');
         console.log(listidRincianDelete);
-        globalService.servicePostData(`/blud-resource-server/api/pendapatan/rincian/save`, {idPendapatan: idDpt}, $scope.loadDataRincianPendapatan, function (result) {
-            console.log('Result Data Save Rincian Pendapatan');
-            console.log(result.data);
-            if (result.status === 201) {
-                console.log('Response Save Rincian Pendapatan Succes');
-                console.log(result);
-                toaster.pop({
-                    type: 'success',
-                    title: 'Berhasil',
-                    body: 'Berhasil menyimpan data',
-                    timeout: 5000
-                });
+        // globalService.servicePostData(`/blud-resource-server/api/pendapatan/rincian/save`, { idPendapatan: idDpt }, $scope.loadDataRincianPendapatan, function (result) {
+        //     console.log('Result Data Save Rincian Pendapatan');
+        //     console.log(result.data);
+        //     if (result.status === 201) {
+        //         console.log('Response Save Rincian Pendapatan Succes');
+        //         console.log(result);
+        //         toaster.pop({
+        //             type: 'success',
+        //             title: 'Berhasil',
+        //             body: 'Berhasil menyimpan data',
+        //             timeout: 5000
+        //         });
                 $location.url($location.path());
                 $location.path('/pendapatan');
-            } else {
-                console.log('Response Error Save Rincian Pendapatan');
-                console.log(result);
-            }
-        })
+        //     } else {
+        //         console.log('Response Error Save Rincian Pendapatan');
+        //         console.log(result);
+        //     }
+        // })
     };
 
 }
@@ -431,12 +519,6 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
         $location.path('/pendapatan');
     }
 
-    // Kembali Ke Page Pendapatan List
-    $scope.goToPendapatan = function () {
-        $location.url($location.path());
-        $location.path('/pendapatan');
-    };
-
     $scope.simpanAkb = function () {
         console.log('Save AKB');
         console.log($scope.formAkbPendapatan);
@@ -468,19 +550,6 @@ function AkbPendapatanController($scope, $location, toaster, globalService) {
                 console.log(result);
             }
         })
-    };
-
-    // Only Number
-    $scope.onlyNumberKey = function (event) {
-        if (event.charCode > 31 && (event.charCode < 48 || event.charCode > 57)) {
-            toaster.pop({
-                type: 'warning',
-                title: 'Hanya Angka',
-                body: 'Tidak Bisa Input Selain Angka',
-                timeout: 3000
-            });
-            event.preventDefault();
-        }
     };
 
     $scope.kalkulasiSisaAnggaran = function () {
