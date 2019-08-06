@@ -8,7 +8,8 @@
                         <input type="radio" id="tab1" name="tabGroup1" class="tab" ng-click="tabGoTo('kegiatan')">
                         <label for="tab1">KEGIATAN</label>
 
-                        <input type="radio" id="tab2" name="tabGroup1" class="tab" checked ng-click="tabGoTo('komponen')">
+                        <input type="radio" id="tab2" name="tabGroup1" class="tab" checked
+                            ng-click="tabGoTo('komponen')">
                         <label for="tab2">KOMPONEN</label>
 
                         <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="tabGoTo('rpa')">
@@ -16,74 +17,240 @@
                     </div>
 
                     <div class="border rounded">
-                        <div class="row col-12">
-                            <div class="col-8">
-                                <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                                    <label class="col-3 col-form-label">Tahun Anggaran</label>
-                                    <div class="col-9">
-                                        <label class="col-form-label">: tahun</label>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <strong> <u> Data Kegiatan </u> </strong>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 3px !important;">
+                            <div class="col-6">
+                                <div class="form-group row col-12">
+                                    <label for="urusan" class="col-4 col-form-label">Urusan <sup
+                                            style="color: red;">(*)</sup>
+                                    </label>
+                                    <div class="col-8">
+                                        <div class="input-group input-group-prepend">
+                                            <input type="text" name="urusan" id="urusan" class="form-control">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-success" data-toggle="modal"
+                                                    data-target="#modalUrusan">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
-                                    <label class="col-3 col-form-label">SKPD</label>
-                                    <div class="col-9">
-                                        <label class="col-form-label">: skpd</label>
+                                    <label for="program" class="col-4 col-form-label">Program <sup
+                                            style="color: red;">(*)</sup>
+                                    </label>
+                                    <div class="col-8">
+                                        <div class="input-group input-group-prepend">
+                                            <input type="text" name="program" id="program" class="form-control">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-success" data-toggle="modal"
+                                                    data-target="#modalProgram">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
-                                    <label class="col-3 col-form-label">Total Anggaran</label>
-                                    <div class="col-9">
-                                        <label class="col-form-label">: Total</label>
+                                    <label for="noKegiatan" class="col-4 col-form-label">No. Kegiatan <sup
+                                            style="color: red;">(*)</sup>
+                                    </label>
+                                    <div class="col-8">
+                                        <input type="text" readonly name="noKegiatan" id="noKegiatan"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row col-12">
+                                    <label for="namaKegiatan" class="col-4 col-form-label">Lama Kegiatan <sup
+                                            style="color: red;">(*)</sup>
+                                    </label>
+                                    <div class="col-8">
+                                        <input type="text" name="namaKegiatan" id="namaKegiatan" class="form-control">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 align-self-center text-right">
-                                <button class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Kegiatan
-                                </button>
+                            <div class="col-6">
+                                <div class="form-group row col-12">
+                                    <label for="paguKegiatan" class="col-4 col-form-label">
+                                        Pagu Kegiatan
+                                    </label>
+                                    <div class="col-8">
+                                        <input type="text" readonly name="paguKegiatan" id="paguKegiatan"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row col-12">
+                                    <label for="belanjaPegawai" class="col-4 col-form-label"> Belanja Pegawai
+                                    </label>
+                                    <div class="col-8">
+                                        <input type="text" readonly name="noKegiatan" id="noKegiatan"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row col-12">
+                                    <label for="belanjaBarangJasa" class="col-4 col-form-label"> Belanja Barang & Jasa
+                                    </label>
+                                    <div class="col-8">
+                                        <input type="text" readonly name="belanjaBarangJasa" id="belanjaBarangJasa"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row col-12">
+                                    <label for="belanjaModal" class="col-4 col-form-label"> Belanja Modal
+                                    </label>
+                                    <div class="col-8">
+                                        <input type="text" readonly name="belanjaModal" id="belanjaModal"
+                                            class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <br>
 
-                    <div class="form-group" style="margin-top: 13px">
-                        <table class="table table-bordered table-striped rounded">
-                            <thead>
-                            <tr class="text-center">
-                                <th>No</th>
-                                <th>No Kegiatan</th>
-                                <th>Nama Kegiatan</th>
-                                <th>Nilai Anggaran</th>
-                                <th>Aksi</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>7.14.03.001</td>
-                                <td>Penyuluhan Ketenagakerjaan Masyarakat</td>
-                                <td class="text-right">Rp. 20.524.000</td>
-                                <td class="text-center">
-                                    <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-link" title="Detail"><i class="fa fa-list"></i></button>
-                                    <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i></button>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>7.14.03.002</td>
-                                <td>Penyediaan Alat Kedokteran Gigi</td>
-                                <td class="text-right">Rp. 174.550.000</td>
-                                <td class="text-center">
-                                    <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-link" title="Detail"><i class="fa fa-list"></i></button>
-                                    <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i></button>
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <strong> <u> Daftar Komponen </u> </strong>
+                        </div>
+                    </div>
+
+                    <div class="border rounded">
+                        <div class="tab-wrap">
+                            <input type="radio" id="tab1" name="tabGroup1" class="tab" ng-click="tabGoTo('kegiatan')">
+                            <label for="tab1">Belanja Pegawai</label>
+
+                            <input type="radio" id="tab2" name="tabGroup1" class="tab" ng-click="tabGoTo('komponen')">
+                            <label for="tab2">Belanja Barang & Jasa</label>
+
+                            <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="tabGoTo('rpa')">
+                            <label for="tab3">Belanja Modal</label>
+                        </div>
+
+                        <div class="col-12 text-right">
+                            <button class="btn btn-success" data-toggle="modal"
+                                data-target="#modalSuntingKomponen">Tambah Komponen</button>
+                        </div>
+
+                        <br>
+
+                        <form style="padding-right: unset !important;">
+                            <div class="row col-md-12 justify-content-end"
+                                style="margin-right: 0px !important; padding-right: unset !important;">
+                                <input type="text" name="kodeAkun" id="kodeAkun"
+                                    class="form-control col-md-1 pl-0 pr-0">
+                                <input type="text" name="kodeKomponen" id="kodeKomponen"
+                                    class="form-control col-md-1 pl-0 pr-0">
+                                <input type="text" name="namaKomponen" id="namaKomponen"
+                                    class="form-control col-md-1 pl-0 pr-0">
+                                <input type="text" name="keterangan" id="keterangan"
+                                    class="form-control col-md-1 pl-0 pr-0">
+                                <input type="text" name="spek" id="spek" class="form-control col-md-1 pl-0 pr-0">
+                                <input type="text" name="merk" id="merk" class="form-control col-md-1 pl-0 pr-0">
+                                <input type="text" name="volume" id="volume" class="form-control col-md-1 pl-0 pr-0">
+                                <input type="text" name="koefisien" id="koefisien"
+                                    class="form-control col-md-1 pl-0 pr-0">
+                                <input type="text" name="satuan" id="satuan" class="form-control col-md-1 pl-0 pr-0">
+                                <input type="text" name="harga" id="harga" class="form-control col-md-1 pl-0 pr-0">
+                                <input type="text" name="totalHarga" id="totalHarga"
+                                    class="form-control col-md-1 pl-0 pr-0">
+                                <button type="submit" class="btn btn-success col-md-1 rounded"
+                                    style="margin-right: 0px !important;">Cari
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- <div class="form-group" style="margin-top: 13px">
+                            <table class="table table-bordered table-striped rounded">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>No</th>
+                                        <th>No Kegiatan</th>
+                                        <th>Nama Kegiatan</th>
+                                        <th>Nilai Anggaran</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td>7.14.03.001</td>
+                                        <td>Penyuluhan Ketenagakerjaan Masyarakat</td>
+                                        <td class="text-right">Rp. 20.524.000</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-link" title="Sunting"><i
+                                                    class="fa fa-edit"></i></button>
+                                            <button class="btn btn-link" title="Detail"><i
+                                                    class="fa fa-list"></i></button>
+                                            <button class="btn btn-link" title="Hapus"><i
+                                                    class="fa fa-trash"></i></button>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2</td>
+                                        <td>7.14.03.002</td>
+                                        <td>Penyediaan Alat Kedokteran Gigi</td>
+                                        <td class="text-right">Rp. 174.550.000</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-link" title="Sunting"><i
+                                                    class="fa fa-edit"></i></button>
+                                            <button class="btn btn-link" title="Detail"><i
+                                                    class="fa fa-list"></i></button>
+                                            <button class="btn btn-link" title="Hapus"><i
+                                                    class="fa fa-trash"></i></button>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+                        <div class="card-body collapse show text-center" id="collapseExample1">
+                            <div class="col-12">
+                                <table datatable="ng" class="row-border hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th class="text-left">Jenis Pelanggaran</th>
+                                            <th>Kode</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="val in ::data.master">
+                                            <td>{{ val.id }}</td>
+                                            <td class="text-left">{{ val.jenisPelanggaran }}</td>
+                                            <td>{{ val.kode }}</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm" role="group"
+                                                    aria-label="Button group with nested dropdown">
+                                                    <button id="btnDelete" class="btn btn-link" style="color: #000000"
+                                                        ng-click="openModalDelete()">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                    <button id="btnEdit" class="btn btn-link" style="color: #000000"
+                                                        ng-click="editData(val.id)">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    <div class="btn-group ">
+                        <button class="btn btn-default">Batal</button> &nbsp;
+                        <button class="btn btn-primary">Simpan</button> &nbsp;
+                        <button class="btn btn-success">Kirim</button>
                     </div>
                 </div>
             </div>
@@ -91,3 +258,375 @@
         <!--/.col-->
     </div>
 </div>
+
+<div id="modalUrusan" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-list"></i> Pilih Urusan</h6>
+                <button type="button" class="close" data-dismiss="modal" data-target="#modalUrusan">&times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <form style="padding-right: unset !important;">
+                    <div class="row col-md-12 justify-content-end"
+                        style="margin-right: 0px !important; padding-right: unset !important;">
+                        <input type="text" class="form-control col-md-4" name="kodeUrusan" id="kodeUrusan"
+                            placeholder="Kode Urusan" style="margin-right: 10px">
+                        <input type="text" class="form-control col-md-4" name="namaUrusan" id="namaUrusan"
+                            placeholder="Nama Urusan" style="margin-right: 10px">
+                        <button type="submit" class="btn btn-success col-md-1 rounded"
+                            style="margin-right: 0px !important;">Cari
+                        </button>
+                    </div>
+                </form>
+                <div class="form-group" style="margin-top: 13px">
+                    <table class="table table-bordered table-striped rounded">
+                        <thead>
+                            <tr class="text-center">
+                                <th></th>
+                                <th>No.</th>
+                                <th>Kode Urusan</th>
+                                <th>Nama Urusan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    <div class="form-check col-form-label">
+                                        <input class="form-check-input" type="radio" id="urusan1" name="pilihUrusan">
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1.02</td>
+                                <td>Kesehatan</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <div class="form-check col-form-label">
+                                        <input class="form-check-input" type="radio" id="urusan2" name="pilihUrusan">
+                                    </div>
+                                </td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">1.02</td>
+                                <td>Kesehatan</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <div class="form-check col-form-label">
+                                        <input class="form-check-input" type="radio" id="urusan3" name="pilihUrusan">
+                                    </div>
+                                </td>
+                                <td class="text-center">3</td>
+                                <td class="text-center">1.02</td>
+                                <td>Kesehatan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-dark rounded" data-toggle="modal" data-target="#modalUrusan">
+                    Tutup
+                </button>
+                <button type="button" class="btn btn-success rounded" data-dismiss="modal" data-target="#modalUrusan">
+                    Kirim
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal Look Up Program -->
+<div id="modalProgram" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-list"></i> Pilih Program</h6>
+                <button type="button" class="close" data-dismiss="modal" data-target="#modalProgram">&times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <form style="padding-right: unset !important;">
+                    <div class="row col-md-12 justify-content-end"
+                        style="margin-right: 0px !important; padding-right: unset !important;">
+                        <input type="text" class="form-control col-md-4" name="kodeProgram" id="kodeProgram"
+                            placeholder="Kode Program" style="margin-right: 10px">
+                        <input type="text" class="form-control col-md-4" name="namaProgram" id="namaProgram"
+                            placeholder="Nama Program" style="margin-right: 10px">
+                        <button type="submit" class="btn btn-success col-md-1 rounded"
+                            style="margin-right: 0px !important;">Cari
+                        </button>
+                    </div>
+                </form>
+                <div class="form-group" style="margin-top: 13px">
+                    <table class="table table-bordered table-striped rounded">
+                        <thead>
+                            <tr class="text-center">
+                                <th></th>
+                                <th>No.</th>
+                                <th>Kode Program</th>
+                                <th>Nama Program</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    <div class="form-check col-form-label">
+                                        <input class="form-check-input" type="radio" id="program1" name="pilihProgram">
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1.06.09</td>
+                                <td>Program Pengelolaan Kendaraan Dinas</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <div class="form-check col-form-label">
+                                        <input class="form-check-input" type="radio" id="program2" name="pilihProgram">
+                                    </div>
+                                </td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">1.06.10</td>
+                                <td>Program Peningkatan Disiplin dan Kinerja Aparatur</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <div class="form-check col-form-label">
+                                        <input class="form-check-input" type="radio" id="program3" name="pilihProgram">
+                                    </div>
+                                </td>
+                                <td class="text-center">3</td>
+                                <td class="text-center">1.06.11</td>
+                                <td>Program Fasilitas Pindah / Purna Tugas PNS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-dark rounded" data-toggle="modal" data-target="#modalProgram">
+                    Tutup
+                </button>
+                <button type="button" class="btn btn-success rounded" data-dismiss="modal" data-target="#modalProgram">
+                    Kirim
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal Tambah Komponen -->
+<div id="modalTambahKomponen" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-list"></i> Tambah Komponen</h6>
+                <button type="button" class="close" data-dismiss="modal" data-target="#modalTambahKomponen">&times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row col-md-12">
+                        <input type="text" name="kodeAkun" id="kodeAkun" class="form-control col-md-1"
+                            placeholder="Kode Akun" style="margin-right: 5px">
+                        <input type="text" name="kodeKomponen" id="kodeKomponen" placeholder="Kode Komponen"
+                            class="form-control col-md-2" style="margin-right: 5px">
+                        <input type="text" name="namaKomponen" id="namaKomponen" placeholder="Nama Komponen"
+                            class="form-control col-md-2" style="margin-right: 5px">
+                        <input type="text" name="hargaSatuan" id="hargaSatuan" placeholder="Harga Satuan"
+                            class="form-control col-md-2" style="margin-right: 5px">
+                        <input type="text" name="spek" id="spek" class="form-control col-md-1" placeholder="Spek"
+                            style="margin-right: 5px">
+                        <input type="text" name="merk" id="merk" class="form-control col-md-2" placeholder="Merk"
+                            style="margin-right: 5px">
+                        <input type="text" name="satuan" id="satuan" class="form-control col-md-1" placeholder="Satuan"
+                            style="margin-right: 5px">
+                        <button type="submit" class="btn btn-success col-md-1 rounded"
+                            style="margin-right: 0px !important;">Cari
+                        </button>
+                    </div>
+                </form>
+                <div class="form-group" style="margin-top: 13px">
+                    <table class="table table-bordered table-striped rounded">
+                        <thead>
+                            <tr class="text-center">
+                                <th></th>
+                                <th>No.</th>
+                                <th>Kode Program</th>
+                                <th>Nama Program</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    <div class="form-check col-form-label">
+                                        <input class="form-check-input" type="radio" id="program1" name="pilihProgram">
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1.06.09</td>
+                                <td>Program Pengelolaan Kendaraan Dinas</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <div class="form-check col-form-label">
+                                        <input class="form-check-input" type="radio" id="program2" name="pilihProgram">
+                                    </div>
+                                </td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">1.06.10</td>
+                                <td>Program Peningkatan Disiplin dan Kinerja Aparatur</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <div class="form-check col-form-label">
+                                        <input class="form-check-input" type="radio" id="program3" name="pilihProgram">
+                                    </div>
+                                </td>
+                                <td class="text-center">3</td>
+                                <td class="text-center">1.06.11</td>
+                                <td>Program Fasilitas Pindah / Purna Tugas PNS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                    data-target="#modalTambahKomponen">
+                    Batal
+                </button>
+                <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                    data-target="#modalTambahKomponen">
+                    Kirim
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal Sunting Komponen -->
+<div id="modalSuntingKomponen" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-list"></i> Sunting Komponen</h6>
+                <button type="button" class="close" data-dismiss="modal" data-target="#modalSuntingKomponen">&times;
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="namaAkun" class="col-form-label">Nama Akun</label>
+                        <label for="kodeAkun" class="col-form-label">Kode Akun</label>
+                        <label for="kodeKomponen" class="col-form-label">Kode Komponen</label>
+                        <label for="namaKomponen" class="col-form-label">Nama Komponen</label>
+                    </div>
+                    <div class="col-3">
+    
+                    </div>
+                    <div class="col-3">
+                        <label for="spek" class="col-form-label">Spek</label>
+                        <label for="merk" class="col-form-label">Merk</label>
+                        <label for="satuan" class="col-form-label">Satuan</label>
+                        <label for="harga" class="col-form-label">Harga</label>
+                    </div>
+                    <div class="col-3">
+    
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+
+                    <div class="col-2">
+                        <label for="vol" class="col-form-label">Volume</label>
+                        <label for="koef" class="col-form-label">Koefisien</label>
+                        <label for="vol1" class="col-form-label">Volume 1</label>
+                        <label for="satuan1" class="col-form-label">Satuan 1</label>
+                        <label for="vol2" class="col-form-label">Volume 2</label>
+                        <label for="satuan2" class="col-form-label">Satuan 2</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="vol" id="vol" class="form-control">
+                        <input type="text" name="koef" id="koef" class="form-control">
+                        <input type="text" name="vol1" id="vol1" class="form-control">
+                        <input type="text" name="satuan1" id="satuan1" class="form-control">
+                        <input type="text" name="vol2" id="vol2" class="form-control">
+                        <input type="text" name="satuan2" id="satuan2" class="form-control">
+                    </div>
+                    <div class="col-2">
+                        <label for="vol3" class="col-form-label">Volume 3</label>
+                        <label for="satuan3" class="col-form-label">Satuan 3</label>
+                        <label for="vol4" class="col-form-label">Volume 4</label>
+                        <label for="satuan4" class="col-form-label">Satuan 4</label>
+                        <label for="keterangan" class="col-form-label">Keterangan</label>
+                        <label for="totalHarga" class="col-form-label">Total Harga</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="vol3" id="vol3" class="form-control">
+                        <input type="text" name="satuan3" id="satuan3" class="form-control">
+                        <input type="text" name="vol4" id="vol4" class="form-control">
+                        <input type="text" name="satuan4" id="satuan4" class="form-control">
+                        <input type="text" name="keterangan" id="keterangan" class="form-control">
+                        <input type="text" name="totalHarga" id="totalHarga" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                    data-target="#modalSuntingKomponen">
+                    Batal
+                </button>
+                <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                    data-target="#modalSuntingKomponen">
+                    Simpan
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="modalDeleteComponent" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-list"></i> Sunting Komponen</h6>
+                <button type="button" class="close" data-dismiss="modal" data-target="#modalDeleteComponent">&times;
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <span>Apakah anda yakin akan menghapus data komponen dengan kode komponen X.XX</span>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                    data-target="#modalDeleteComponent">
+                    Batal
+                </button>
+                <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                    data-target="#modalDeleteComponent">
+                    Hapus
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
