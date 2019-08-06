@@ -2,7 +2,7 @@ angular
     .module('app', ['toaster', 'ngAnimate', 'datatables'])
     .controller('DetailKasPersetujuanController', DetailKasPersetujuanController);
 
-function DetailKasPersetujuanController($scope,globalService) {
+function DetailKasPersetujuanController($scope,$location,globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -49,4 +49,9 @@ function DetailKasPersetujuanController($scope,globalService) {
 
         return total;
     }
+
+    $scope.doKembali = function () {
+        $location.url($location.path());
+        $location.path('/ListPersetujuan');
+    };
 }
