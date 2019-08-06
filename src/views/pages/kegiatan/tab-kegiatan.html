@@ -33,7 +33,7 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Urusan <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <div class="input-group input-group-prepend">
                                                     <input readonly type="text" class="form-control" name="urusan"
                                                            id="urusan"
@@ -58,7 +58,7 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Program <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <div class="input-group input-group-prepend">
                                                     <input readonly type="text" class="form-control" name="program"
                                                            id="program"
@@ -84,7 +84,7 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">No. Kegiatan <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <input readonly type="text" class="form-control" name="noKegiatan"
                                                        id="noKegiatan"
                                                        ng-model="formTambahKegiatan.noKegiatan">
@@ -93,7 +93,7 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Nama Kegiatan <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <input type="text" class="form-control" name="namaKegiatan"
                                                        id="namaKegiatan"
                                                        ng-model="formTambahKegiatan.namaKegiatan"
@@ -112,7 +112,7 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Sasaran <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <input type="text" class="form-control" name="sasaran"
                                                        id="sasaran"
                                                        ng-model="formTambahKegiatan.sasaran"
@@ -130,16 +130,22 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Waktu Pelaksanaan <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" name="waktuPelaksanaan"
-                                                       id="waktuPelaksanaan"
-                                                       ng-model="formTambahKegiatan.waktuPelaksanaan"
-                                                       ng-class="{'is-invalid': tambahForm.waktuPelaksanaan.$error.required && submitted}"
+                                            <div class="row col-md-8">
+                                                <input type="text" class="form-control col-md-5" name="bulanMulai"
+                                                       id="bulanMulai"
+                                                       ng-model="formTambahKegiatan.bulanMulai"
+                                                       ng-class="{'is-invalid': tambahForm.bulanMulai.$error.required && submitted}"
+                                                       required>
+                                                <span class="col-md-2"></span>
+                                                <input type="text" class="form-control col-md-5" name="bulanAkhir"
+                                                       id="bulanAkhir"
+                                                       ng-model="formTambahKegiatan.bulanAkhir"
+                                                       ng-class="{'is-invalid': tambahForm.bulanAkhir.$error.required && submitted}"
                                                        required>
                                                 <span class="input-group" style="color:red"
-                                                      ng-show="tambahForm.waktuPelaksanaan.$invalid && submitted">
+                                                      ng-show="tambahForm.bulanAkhir.$invalid && submitted">
                                             <small>
-                                                <span ng-show="tambahForm.waktuPelaksanaan.$error.required">Waktu Pelaksanaan harus diisi.</span>
+                                                <span ng-show="tambahForm.bulanAkhir.$error.required">Waktu Pelaksanaan harus diisi.</span>
                                             </small>
                                         </span>
                                             </div>
@@ -147,7 +153,7 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Lokasi Kegiatan <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <input type="text" class="form-control" name="lokasiKegiatan"
                                                        id="lokasiKegiatan"
                                                        ng-model="formTambahKegiatan.lokasiKegiatan"
@@ -164,7 +170,7 @@
                                         <div class="form-group row col-md-12">
                                             <label class="col-md-4 col-form-label">Sumber Dana <sup
                                                     style="color: red;">(*)</sup></label>
-                                            <div class="col-md-8">
+                                            <div class="row col-md-8">
                                                 <input type="text" class="form-control" name="sumberDana"
                                                        id="sumberDana"
                                                        ng-model="formTambahKegiatan.sumberDana"

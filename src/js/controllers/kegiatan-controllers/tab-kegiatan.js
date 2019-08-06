@@ -103,7 +103,7 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
             } else {
                 console.log('Response Result No Kegiatan Error');
                 console.log(result);
-                $scope.formTambahKegiatan.noKegiatan = 'No. Kegiatan Tidak Ditemukan';
+                $scope.formTambahKegiatan.noKegiatan = `${$scope.program.kodeProgram}.01`;
             }
         });
     };
@@ -122,6 +122,8 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         namaKegiatan: null,
         sasaran: null,
         waktuPelaksanaan: null,
+        bulanMulai: null,
+        bulanAkhir: null,
         lokasiKegiatan: null,
         sumberDana: null
     };
@@ -137,7 +139,8 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
     $scope.programGetId = null;
     $scope.program = {
         id: null,
-        namaProgram: null
+        namaProgram: null,
+        kodeProgram: null
     };
 
 

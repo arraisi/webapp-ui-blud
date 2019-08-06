@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/blud-webapp.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-kegiatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-kegiatan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-kegiatan.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +51,7 @@
       <updated>1564999437678</updated>
       <workItem from="1564999438823" duration="433000" />
       <workItem from="1565062393605" duration="361000" />
-      <workItem from="1565064683193" duration="4892000" />
+      <workItem from="1565064683193" duration="6397000" />
     </task>
     <servers />
   </component>
