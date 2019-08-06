@@ -40,7 +40,7 @@
                                                        required>
                                                 <div class="input-group-prepend">
                                                     <button class="btn btn-success"
-                                                            data-toggle="modal" data-target="#modalTambahKegiatan"><i
+                                                            data-toggle="modal" data-target="#modalUrusan"><i
                                                             class="fa fa-search"></i></button>
                                                 </div>
                                             </div>
@@ -63,7 +63,8 @@
                                                        ng-class="{'is-invalid': tambahForm.program.$error.required && submitted}"
                                                        required>
                                                 <div class="input-group-prepend">
-                                                    <button class="btn btn-success"><i
+                                                    <button class="btn btn-success"
+                                                            data-toggle="modal" data-target="#modalProgram"><i
                                                             class="fa fa-search"></i></button>
                                                 </div>
                                             </div>
@@ -171,6 +172,14 @@
                                         </span>
                                         </div>
                                     </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-12 text-right">
+                                            <button class="btn btn-primary">
+                                                Simpan Kegiatan
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -244,26 +253,84 @@
 
 </div>
 
-<!-- Modal -->
-<div id="modalTambahKegiatan" class="modal fade" role="dialog">
+<!-- Modal Look Up Urusan -->
+<div id="modalUrusan" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Modal Header</h4>
-                <button type="button" class="close" data-dismiss="modal" data-target="#modalTambahKegiatan">&times;
+                <h6 class="modal-title"><i class="fa fa-list"></i> Pilih Urusan</h6>
+                <button type="button" class="close" data-dismiss="modal" data-target="#modalUrusan">&times;
                 </button>
             </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
+                <form style="padding-right: unset !important;">
+                    <div class="row col-md-12 justify-content-end"
+                         style="margin-right: 0px !important; padding-right: unset !important;">
+                        <input type="text" class="form-control col-md-4" name="kodeUrusan" id="kodeUrusan"
+                               placeholder="Kode Urusan" style="margin-right: 10px">
+                        <input type="text" class="form-control col-md-4" name="namaUrusan" id="namaUrusan"
+                               placeholder="Nama Urusan" style="margin-right: 10px">
+                        <button type="submit" class="btn btn-success col-md-1 rounded"
+                                style="margin-right: 0px !important;">Cari
+                        </button>
+                    </div>
+                </form>
+                <div class="form-group" style="margin-top: 13px">
+                    <table class="table table-bordered table-striped rounded">
+                        <thead>
+                        <tr class="text-center">
+                            <th></th>
+                            <th>No.</th>
+                            <th>Kode Urusan</th>
+                            <th>Nama Urusan</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="urusan1"
+                                           name="pilihUrusan">
+                                </div>
+                            </td>
+                            <td class="text-center">1</td>
+                            <td class="text-center">1.02</td>
+                            <td>Kesehatan</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="urusan2"
+                                           name="pilihUrusan">
+                                </div>
+                            </td>
+                            <td class="text-center">2</td>
+                            <td class="text-center">1.02</td>
+                            <td>Kesehatan</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="urusan3"
+                                           name="pilihUrusan">
+                                </div>
+                            </td>
+                            <td class="text-center">3</td>
+                            <td class="text-center">1.02</td>
+                            <td>Kesehatan</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="modal-footer text-center col-12">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTambahKegiatan2">
-                    Open Another
-                </button>
-                <button type="button" class="btn btn-dark" data-dismiss="modal" data-target="#modalTambahKegiatan">
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-dark rounded" data-toggle="modal" data-target="#modalUrusan">
                     Close
+                </button>
+                <button type="button" class="btn btn-success rounded" data-dismiss="modal" data-target="#modalUrusan">
+                    Kirim
                 </button>
             </div>
         </div>
@@ -271,23 +338,84 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div id="modalTambahKegiatan2" class="modal fade" role="dialog">
+<!-- Modal Look Up Program -->
+<div id="modalProgram" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Modal Header 2</h4>
-                <button type="button" class="close" data-dismiss="modal" data-target="#modalTambahKegiatan2">&times;
+                <h6 class="modal-title"><i class="fa fa-list"></i> Pilih Program</h6>
+                <button type="button" class="close" data-dismiss="modal" data-target="#modalProgram">&times;
                 </button>
             </div>
             <div class="modal-body">
-                <p>Some text in the modal 2.</p>
+                <form style="padding-right: unset !important;">
+                    <div class="row col-md-12 justify-content-end"
+                         style="margin-right: 0px !important; padding-right: unset !important;">
+                        <input type="text" class="form-control col-md-4" name="kodeProgram" id="kodeProgram"
+                               placeholder="Kode Program" style="margin-right: 10px">
+                        <input type="text" class="form-control col-md-4" name="namaProgram" id="namaProgram"
+                               placeholder="Nama Program" style="margin-right: 10px">
+                        <button type="submit" class="btn btn-success col-md-1 rounded"
+                                style="margin-right: 0px !important;">Cari
+                        </button>
+                    </div>
+                </form>
+                <div class="form-group" style="margin-top: 13px">
+                    <table class="table table-bordered table-striped rounded">
+                        <thead>
+                        <tr class="text-center">
+                            <th></th>
+                            <th>No.</th>
+                            <th>Kode Program</th>
+                            <th>Nama Program</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="program1"
+                                           name="pilihProgram">
+                                </div>
+                            </td>
+                            <td class="text-center">1</td>
+                            <td class="text-center">1.06.09</td>
+                            <td>Program Pengelolaan Kendaraan Dinas</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="program2"
+                                           name="pilihProgram">
+                                </div>
+                            </td>
+                            <td class="text-center">2</td>
+                            <td class="text-center">1.06.10</td>
+                            <td>Program Peningkatan Disiplin dan Kinerja Aparatur</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <div class="form-check col-form-label">
+                                    <input class="form-check-input" type="radio" id="program3"
+                                           name="pilihProgram">
+                                </div>
+                            </td>
+                            <td class="text-center">3</td>
+                            <td class="text-center">1.06.11</td>
+                            <td>Program Fasilitas Pindah / Purna Tugas PNS</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="modal-footer text-center">
-                <button type="button" class="btn btn-dark" data-dismiss="modal" data-target="#modalTambahKegiatan2">
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-dark rounded" data-toggle="modal" data-target="#modalProgram">
                     Close
+                </button>
+                <button type="button" class="btn btn-success rounded" data-dismiss="modal" data-target="#modalProgram">
+                    Kirim
                 </button>
             </div>
         </div>
