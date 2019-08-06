@@ -2,7 +2,8 @@ angular
     .module('app', ['toaster', 'ngAnimate'])
     .controller("LoginFormController", LoginFormController);
 
-function LoginFormController($scope, $http, $location, authenticationService, toaster) {
+function LoginFormController($scope, $http, $location, authenticationService, toaster, globalService) {
+
     $scope.submitted = false;
     localStorage.clear();
     $scope.loginForm = {
@@ -11,6 +12,7 @@ function LoginFormController($scope, $http, $location, authenticationService, to
         tahunAnggaran: "",
         captcha: null
     };
+
     $scope.captchaValue = "";
 
     $scope.randomCaptcha = function (length) {
@@ -109,4 +111,19 @@ function LoginFormController($scope, $http, $location, authenticationService, to
             event.preventDefault();
         }
     };
+
+    $scope.getTahunAnggaran = function () {
+        authenticationService.getTahunAnggaran($scope.loginForm.username, function (result) {
+            console.log(result);
+            $scope.listTahunAnggaran = result.data;
+            if (result.status == 500) {
+                toaster.pop({
+                    type: 'warning',
+                    title: 'Data tidak terdaftar',
+                    body: 'NRK tidak terdaftar',
+                    timeout: 5000
+                });
+            }
+        });
+    }
 }

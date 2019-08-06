@@ -44,6 +44,23 @@ angular
             logout: function () {
                 delete localStorage.currentUser;
                 $http.defaults.headers.common.Authorization = '';
+            },
+            getTahunAnggaran: function (param, callback) {
+                const authBase64 = btoa('client-web' + ':' + 123456);
+                const req = {
+                    method: 'GET',
+                    url: `/blud-resource-server/api/login/get-tahun-anggaran/${param}`,
+                };
+                $http(req)
+                    .then(
+                        function (response) {
+                            // login successful if there's a token in the response
+                            console.log('service response tahun anggaran:');
+                            console.log(response);
+                            callback(response);
+                        }, function (response) {
+                            callback(response);
+                        });
             }
         }
     }]);
