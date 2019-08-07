@@ -41,6 +41,10 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
                 $scope.listKinerja = result.data;
                 console.log('Value Data Load Kinerja :');
                 console.log($scope.listKinerja);
+                console.log('NO URUT NYA');
+                $scope.noUrutKinerja = Math.max.apply(Math, $scope.listKinerja.map(function (v) {
+                    return v.noUrut;
+                })) + 1;
             } else {
                 console.log('Response Result Load Kinerja');
                 console.log(result);
@@ -53,6 +57,7 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
 
     /** DT Options For Datatables */
     $scope.persons = [];
+    $scope.dtInstanceKinerja = {};
     $scope.dtInstanceUrusan = {};
     $scope.dtInstanceProgram = {};
     $scope.dtOptions = {
@@ -327,6 +332,15 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         });
     };
 
+    $scope.simpanTabKegiatan = function () {
+        $location.path('/kegiatan/komponen');
+    };
+
+    $scope.kembaliKeListKegiatan = function () {
+        $location.url($location.path());
+        $location.path('/kegiatan');
+    };
+
 
     /** For Kinerja*/
 
@@ -371,10 +385,37 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         console.log('Delete Kinerja');
         console.log(data);
     };
-    
-    
-    $scope.simpanKinerja = function (data) {
 
+
+    $scope.simpanKinerja = function () {
+        console.log('Save Kinerja :');
+        console.log($scope.formTambahKinerja);
+        globalService.servicePostData(`/blud-resource-server/api/kinerja/save`, {
+            tahunAnggaran: $scope.tahun,
+            idKegiatan: kegiatanId,
+            idSkpd: local.pengguna.skpdId
+        }, $scope.formTambahKinerja, function (result) {
+            console.log('Result Data Save Kinerja');
+            console.log(result.data);
+            if (result.status === 201) {
+                console.log('Response Save Kinerja Succes');
+                console.log(result);
+                $scope.listKinerja = result.data;
+                $scope.dtInstanceKinerja.rerender();
+                toaster.pop({
+                    type: 'success',
+                    title: 'Berhasil',
+                    body: 'Berhasil menyimpan data',
+                    timeout: 5000
+                });
+                $scope.noUrutKinerja = Math.max.apply(Math, $scope.listKinerja.map(function (v) {
+                    return v.noUrut;
+                })) + 1;
+            } else {
+                console.log('Response Error Save Kinerja');
+                console.log(result);
+            }
+        });
     }
 
 }
