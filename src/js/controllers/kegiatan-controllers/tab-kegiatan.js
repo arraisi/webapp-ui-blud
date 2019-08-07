@@ -5,6 +5,11 @@ angular
 // Function Untuk Kontroller TabKegiatanController
 function TabKegiatanController($scope, $location, toaster, globalService) {
 
+    // ======== Awal Init Porject
+    $scope.tahun = localStorage.getItem('tahunAnggaran');
+    const local = JSON.parse(localStorage.getItem('currentUser'));
+    $scope.urusanList = [];
+
     const kegiatanId = $location.search().idKegiatan;
     if (kegiatanId) {
         $scope.idKegiatan = kegiatanId;
@@ -26,6 +31,21 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
                 console.log(result);
             }
         });
+
+        globalService.serviceGetData(`/blud-resource-server/api/kinerja/list/${$scope.tahun}/${kegiatanId}/${local.pengguna.skpdId}`, null, function (result) {
+            console.log('Result Data Kinerja');
+            console.log(result.data);
+            if (result.status === 200) {
+                console.log('Response Result Kinerja');
+                console.log(result);
+                $scope.listKinerja = result.data;
+                console.log('Value Data Load Kinerja :');
+                console.log($scope.listKinerja);
+            } else {
+                console.log('Response Result Load Kinerja');
+                console.log(result);
+            }
+        });
     } else {
         $location.url($location.path());
         $location.path('/kegiatan/tambah');
@@ -39,23 +59,24 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         paginationType: 'full_numbers',
         searching: true,
         responsive: false,
+        dom: "Bft<'row'<'col-sm-12'ip><'col-sm-12'l>>",
         language: {
-            "sEmptyTable": "No data available in table",
-            "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
-            "sInfoEmpty": "Showing 0 to 0 of 0 entries",
-            "sInfoFiltered": "(filtered from _MAX_ total entries)",
+            "sEmptyTable": "Tidak Ada Data Pada Table",
+            "sInfo": "Menunjukan _START_ sampai _END_ dari _TOTAL_ data",
+            "sInfoEmpty": "Menunjukan 0 sampai 0 dari 0 data",
+            "sInfoFiltered": "(filter dari _MAX_ total data)",
             "sInfoPostFix": "",
             "sInfoThousands": ",",
-            "sLengthMenu": "Show _MENU_ entries",
-            "sLoadingRecords": "Loading...",
-            "sProcessing": "Processing...",
+            "sLengthMenu": "Menunjukkan _MENU_ data",
+            "sLoadingRecords": "Memuat...",
+            "sProcessing": "Mengolah...",
             "sSearch": "Cari:",
-            "sZeroRecords": "No matching records found",
+            "sZeroRecords": "Tidak ada data yang sesuai",
             "oPaginate": {
-                "sFirst": "First",
-                "sLast": "Last",
-                "sNext": "Next",
-                "sPrevious": "Previous"
+                "sFirst": "Pertama",
+                "sLast": "Terakhir",
+                "sNext": "Selanjutnya",
+                "sPrevious": "Sebelumnya"
             },
             "oAria": {
                 "sSortAscending": ": activate to sort column ascending",
@@ -63,11 +84,6 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
             }
         }
     };
-
-    // ======== Awal Init Porject
-    $scope.tahun = localStorage.getItem('tahunAnggaran');
-    const local = JSON.parse(localStorage.getItem('currentUser'));
-    $scope.urusanList = [];
 
     /** Load SKPD By ID SKPD */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
@@ -165,7 +181,7 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         namaKegiatan: null,
         sasaranKegiatan: null,
         bulanMulai: null,
-        bulanAkhir: null,
+        bulanSelesai: null,
         kodeLokasiKegiatan: null,
         namaSumberDana: null
     };
@@ -309,6 +325,56 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
                 });
             }
         });
+    };
+
+
+    /** For Kinerja*/
+
+    /** Load List Kode Indikator / Ref */
+    globalService.serviceGetData(`/blud-resource-server/api/kodefungsi/list`, null, function (result) {
+        console.log('Result Data List Kode Indikator');
+        console.log(result.data);
+        if (result.status === 200) {
+            console.log('Response Result List Kode Indikator');
+            console.log(result);
+            $scope.listKodeIndikator = result.data;
+            console.log('Value Data Load List Kode Indikator :');
+            console.log($scope.listKodeIndikator);
+        } else {
+            console.log('Response Result List Kode Indikator Error');
+            console.log(result);
+        }
+    });
+
+    $scope.kodeIndikatorRef = {
+        kodeFungsi: null,
+        keteranganKode: null
+    };
+
+    $scope.formTambahKinerja = {
+        kodeIndikator: null,
+        kodeRef: {
+            kodeFungsi: null,
+            keteranganKode: null
+        },
+        noUrut: null,
+        keteranganTolakUkur: null,
+        keteranganTargetKinerja: null
+    };
+
+    $scope.editKinerja = function (data) {
+        console.log('Edit Kinerja');
+        console.log(data);
+    };
+
+    $scope.deleteKinerja = function (data) {
+        console.log('Delete Kinerja');
+        console.log(data);
+    };
+    
+    
+    $scope.simpanKinerja = function (data) {
+
     }
 
 }

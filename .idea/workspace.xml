@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vendors/js/accountingJS/accounting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/accounting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendors.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendors.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/kegiatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/kegiatan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-kegiatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-kegiatan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/kegiatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-kegiatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/pendapatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/pendapatan/rincian-pendapatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/pendapatan/rincian-pendapatan.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +65,7 @@
       <workItem from="1564999438823" duration="433000" />
       <workItem from="1565062393605" duration="361000" />
       <workItem from="1565064683193" duration="15099000" />
-      <workItem from="1565150836203" duration="965000" />
+      <workItem from="1565150836203" duration="5890000" />
     </task>
     <servers />
   </component>

@@ -2,7 +2,7 @@
     <div class="animated fadeIn">
         <div class="row">
             <div class="col-lg-12">
-                <form name="tambahForm" ng-submit="simpanRincian(tambahForm)">
+                <form name="tambahForm" ng-submit="saveKegiatan(tambahForm)">
                     <div class="card">
                         <div class="card-body" id="collapseExample1">
 
@@ -42,7 +42,7 @@
                                                            ng-class="{'is-invalid': tambahForm.urusan.$error.required && submitted}"
                                                            required>
                                                     <div class="input-group-prepend">
-                                                        <button class="btn btn-success"
+                                                        <button type="button" class="btn btn-success"
                                                                 data-toggle="modal" data-target="#modalUrusan"
                                                                 ng-click="openUrusanModal()"><i
                                                                 class="fa fa-search"></i></button>
@@ -68,7 +68,7 @@
                                                            required
                                                            oninvalid="this.setCustomValidity('Isian ini wajib diisi')"/>
                                                     <div class="input-group-prepend">
-                                                        <button class="btn btn-success"
+                                                        <button type="button" class="btn btn-success"
                                                                 data-toggle="modal" data-target="#modalProgram"
                                                                 ng-click="openProgramModal()"><i
                                                                 class="fa fa-search"></i></button>
@@ -139,16 +139,16 @@
                                                        ng-class="{'is-invalid': tambahForm.bulanMulai.$error.required && submitted}"
                                                        required>
                                                 <span class="col-md-2"></span>
-                                                <input type="text" class="form-control col-md-5" name="bulanAkhir"
-                                                       id="bulanAkhir"
+                                                <input type="text" class="form-control col-md-5" name="bulanSelesai"
+                                                       id="bulanSelesai"
                                                        placeholder="Bulan Selesai (01-12)"
-                                                       ng-model="formTambahKegiatan.bulanAkhir"
-                                                       ng-class="{'is-invalid': tambahForm.bulanAkhir.$error.required && submitted}"
+                                                       ng-model="formTambahKegiatan.bulanSelesai"
+                                                       ng-class="{'is-invalid': tambahForm.bulanSelesai.$error.required && submitted}"
                                                        required>
                                                 <span class="input-group" style="color:red"
-                                                      ng-show="tambahForm.bulanAkhir.$invalid && submitted">
+                                                      ng-show="tambahForm.bulanSelesai.$invalid && submitted">
                                             <small>
-                                                <span ng-show="tambahForm.bulanAkhir.$error.required">Waktu Pelaksanaan harus diisi.</span>
+                                                <span ng-show="tambahForm.bulanSelesai.$error.required">Waktu Pelaksanaan harus diisi.</span>
                                             </small>
                                         </span>
                                             </div>
@@ -195,7 +195,7 @@
                                         <br>
                                         <div class="form-group">
                                             <div class="col-md-12 text-right">
-                                                <button type="button" class="btn btn-primary" ng-click="saveKegiatan()">
+                                                <button type="submit" class="btn btn-primary">
                                                     Simpan Kegiatan
                                                 </button>
                                             </div>
@@ -206,17 +206,20 @@
 
                             <br>
 
-                            <div class="form-group row">
+                            <div class="form-group row col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 ">
                                 <div class="col-md-6"><strong> <u> Data Kinerja </u> </strong></div>
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-primary" ng-disabled="!idKegiatan"><i
+                                    <button type="button" class="btn btn-primary" ng-disabled="!idKegiatan"
+                                            data-toggle="modal"
+                                            data-target="#modalAddKinerja"><i
                                             class="fa fa-plus"></i>
                                         Tambah Kinerja
                                     </button>
                                 </div>
                             </div>
 
-                            <div class="form-group" style="margin-top: 13px">
+                            <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
+                                 style="margin-top: 13px">
                                 <table class="table table-bordered table-striped rounded">
                                     <thead>
                                     <tr class="text-center">
@@ -228,43 +231,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>01-Masukkan</td>
-                                        <td>1</td>
-                                        <td>Dana Yang Dibutuhkan</td>
-                                        <td>Rp. 85.0000</td>
+                                    <tr ng-repeat="val in ::listKinerja">
+                                        <td>{{val.kodeIndikator}}</td>
+                                        <td class="text-center">{{val.noUrut}}</td>
+                                        <td>{{val.keteranganTolakUkur}}</td>
+                                        <td class="text-right">{{val.keteranganTargetKinerja}}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i>
-                                            </button>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>2</td>
-                                        <td>Panitia Yang Dibutuhkan</td>
-                                        <td>30 Orang</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i>
-                                            </button>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>02-Keluaran</td>
-                                        <td>1</td>
-                                        <td>Jumlah Dokumen Hasil Penyuluhan</td>
-                                        <td>1 Laporan</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i>
-                                            </button>
-                                            </button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-link" title="Sunting"
+                                                        ng-click="editKinerja(val)"><i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-link" title="Hapus"
+                                                        ng-click="deleteKinerja(val)"><i class="fa fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -335,7 +315,7 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-dark rounded" data-toggle="modal" data-target="#modalUrusan">
-                        Close
+                        Kembali
                     </button>
                     <button type="button" class="btn btn-success rounded" data-dismiss="modal"
                             data-target="#modalUrusan"
@@ -394,10 +374,90 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-dark rounded" data-toggle="modal" data-target="#modalProgram">
-                        Close
+                        Kembali
                     </button>
                     <button type="button" class="btn btn-success rounded" data-dismiss="modal"
                             data-target="#modalProgram" ng-click="programGetFunction()">
+                        Kirim
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Add Kinerja -->
+    <div id="modalAddKinerja" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Tambah Kinerja</h6>
+                    <button type="button" class="close" data-dismiss="modal" data-target="#modalAddKinerja">&times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="tambahKinerjaForm" ng-submit="simpanKinerja(tambahForm)">
+                        <div class="form-group">
+                            <div class="form-group row col-md-12">
+                                <label class="col-md-4 col-form-label">Kode Indikator <sup
+                                        style="color: red;">(*)</sup></label>
+                                <div class="row col-md-7">
+                                    <select id="kodeIndikator" name="kodeIndikator"
+                                            class="form-control input-lg"
+                                            ng-model="formTambahKinerja.kodeIndikator"
+                                            ng-class="{'is-invalid': tambahKinerjaForm.kodeIndikator.$error.required && submitted}"
+                                            required>
+                                        <option ng-value=val.kodeFungsi
+                                                ng-repeat="val in ::listKodeIndikator">
+                                            {{val.kodeFungsi}} - {{val.keteranganKode}}
+                                        </option>
+                                    </select>
+                                    <span class="input-group" style="color:red"
+                                          ng-show="tambahForm.lokasiKegiatan.$invalid && submitted">
+                                                <small>
+                                                    <span ng-show="tambahForm.lokasiKegiatan.$error.required">Lokasi Kegiatan harus diisi.</span>
+                                                </small>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row col-md-12">
+                            <label class="col-md-4 col-form-label">No. Urut</label>
+                            <div class="row col-md-7">
+                                <input readonly type="text" class="form-control" name="noUrut"
+                                       id="noUrut"
+                                       ng-model="formTambahKinerja.noUrut">
+                            </div>
+                        </div>
+                        <div class="form-group row col-md-12">
+                            <label class="col-md-4 col-form-label">Keterangan Tolak Ukur <sup
+                                    style="color: red;">(*)</sup></label>
+                            <div class="row col-md-7">
+                                <input type="text" class="form-control" name="keteranganTolakUkur"
+                                       id="keteranganTolakUkur"
+                                       ng-model="formTambahKinerja.keteranganTolakUkur">
+                            </div>
+                        </div>
+                        <div class="form-group row col-md-12">
+                            <label class="col-md-4 col-form-label">Keterangan Target Kinerja <sup
+                                    style="color: red;">(*)</sup></label>
+                            <div class="row col-md-7">
+                                <input type="text" class="form-control" name="keteranganTargetKinerja"
+                                       id="keteranganTargetKinerja"
+                                       ng-model="formTambahKinerja.keteranganTargetKinerja">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalAddKinerja">
+                        Kembali
+                    </button>
+                    <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                            data-target="#modalAddKinerja" ng-click="programGetFunction()">
                         Kirim
                     </button>
                 </div>
