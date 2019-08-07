@@ -1,7 +1,8 @@
+<div ng-controller="ListPersetujuanController as List">
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-lg-12">
-            <div class="card" ng-controller="ListPersetujuanController as List">
+            <div class="card" >
                 <div class="card-body" id="collapseExample1">
                     <div class="border rounded">
                         <div class="form-group row col-12" style="margin-bottom: 1px !important;">
@@ -69,18 +70,28 @@
             <!-- Modal content-->
             <div class="modal-content" >
                 <div class="modal-header">
-                        <h6 class="modal-title"><i class="fa fa-list"></i> Penolakan {{value}} </h6>
+                        <h6 class="modal-title"><i class="fa fa-list"></i> Penolakan</h6>
                 </div>
                 <div class="modal-body">
-                    <form style="padding-right: unset !important;">
+                    <form style="padding-right: unset !important;" name="tolakForm" ng-submit="tolakPersetujuan(tolakForm)">
                         <div class="form-group ">
                                 <label for="alasan" class="col-lg-12 control-label">
-                                    Anda yakin akan menolak data SKPD dengan nomor {{valModal}} ?
+                                    Anda yakin akan menolak data SKPD dengan nomor <b>{{value}}</b>  ?
                                 </label>
                                 <div class="col-md-10" style="margin-right: 0px !important; padding-right: unset !important;">
-                                    <textarea name="alasan" id="alasan" class="form-control" placeholder="Enter your Message">
+                                    <textarea name="alasanTolak" id="alasanTolak" class="form-control"
+                                    ng-model="formAlasanTolak.alasanTolak"
+                                    ng-blur="validateTolak()"
+                                     placeholder="Enter your Message">
 
                                     </textarea>
+
+                                    <span class="input-group" style="color:red"
+                                    ng-show="!validationPenolakan.alasanTolakIsValid && validationPenolakan.alasanTolakIsTouched">
+                                  <small>
+                                      <span ng-show="!validationPenolakan.alasanTolakIsValid && validationPenolakan.alasanTolakIsTouched">Alasan harus di Isi.</span>
+                                  </small>
+                              </span>
                                 </div>
                         </div>
                     </form>
@@ -89,10 +100,12 @@
                     <button type="button" class="btn btn-dark rounded" data-toggle="modal" data-target="#modalReject">
                         Tutup
                     </button>
-                    <button type="button" class="btn btn-success rounded" ng-click="doReject()" data-target="#modalReject">
+                    <button type="button" class="btn btn-success rounded" ng-click="tolakPersetujuan(tolakForm)"
+                     data-target="#modalReject"  ng-disabled="!validationPenolakan.alasanTolakIsValid">
                         Tolak 
                     </button>
                 </div>
             </div>
         </div>
-    </div>
+</div>
+</div>

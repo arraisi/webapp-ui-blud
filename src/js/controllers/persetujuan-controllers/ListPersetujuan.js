@@ -6,6 +6,26 @@ function ListPersetujuanController($scope,$location,globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
     const token = 'Bearer ' + local.access_token;
+
+    $scope.formAlasanTolak = {
+        alasanTolak: null
+    };
+
+    $scope.validationPenolakan = {
+        alasanTolakIsValid: false,
+        alasanTolakIsTouched: false,
+    }
+
+    $scope.validateTolak = function () {
+        if (!$scope.formAlasanTolak.alasanTolak) {
+            $scope.validationPenolakan.alasanTolakIsValid = false;
+            $scope.validationPenolakan.alasanTolakIsTouched = true;
+        } else {
+            $scope.validationPenolakan.alasanTolakIsValid = true;
+            $scope.validationPenolakan.alasanTolakIsTouched = false;
+        }
+
+    }
     
        /** Get Data Pengguna */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
@@ -48,8 +68,21 @@ function ListPersetujuanController($scope,$location,globalService) {
         console.log("Setuju",valueDpt.idTmrbakasBlud)
     }
 
-    $scope.doReject = function (valueDpt) {
-        console.log("doReject",valueDpt.idTmrbakasBlud)      
+    $scope.tolakPersetujuan = function (valTolak) {
+      console.log(valTolak.$valid);
+      if (!valTolak.$valid) {
+          console.log('Form Not Valid');
+          $scope.submitted = true;
+          return;
+      }
+      $scope.submitted = false;
+      /**
+       * Form Persetujuan
+       */
+
+      console.log($scope.formAlasanTolak);
+
+      
     }
 
     $scope.value = null;
