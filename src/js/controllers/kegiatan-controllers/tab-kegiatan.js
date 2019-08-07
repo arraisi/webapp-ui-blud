@@ -89,6 +89,36 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
             }
         }
     };
+    $scope.dtOptionsKinerja = {
+        paginationType: 'full_numbers',
+        searching: true,
+        responsive: false,
+        order: [[ 1, "asc" ]],
+        dom: "Bft<'row'<'col-sm-12'ip><'col-sm-12'l>>",
+        language: {
+            "sEmptyTable": "Tidak Ada Data Pada Table",
+            "sInfo": "Menunjukan _START_ sampai _END_ dari _TOTAL_ data",
+            "sInfoEmpty": "Menunjukan 0 sampai 0 dari 0 data",
+            "sInfoFiltered": "(filter dari _MAX_ total data)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ",",
+            "sLengthMenu": "Menunjukkan _MENU_ data",
+            "sLoadingRecords": "Memuat...",
+            "sProcessing": "Mengolah...",
+            "sSearch": "Cari:",
+            "sZeroRecords": "Tidak ada data yang sesuai",
+            "oPaginate": {
+                "sFirst": "Pertama",
+                "sLast": "Terakhir",
+                "sNext": "Selanjutnya",
+                "sPrevious": "Sebelumnya"
+            },
+            "oAria": {
+                "sSortAscending": ": activate to sort column ascending",
+                "sSortDescending": ": activate to sort column descending"
+            }
+        }
+    };
 
     /** Load SKPD By ID SKPD */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
@@ -344,6 +374,9 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
 
     /** For Kinerja*/
 
+    $scope.submittedKinerja = false;
+    $scope.submittedEditKinerja = false;
+
     /** Load List Kode Indikator / Ref */
     globalService.serviceGetData(`/blud-resource-server/api/kodefungsi/list`, null, function (result) {
         console.log('Result Data List Kode Indikator');
@@ -376,18 +409,31 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         keteranganTargetKinerja: null
     };
 
+    $scope.formEditKinerja = {
+        kodeIndikator: null,
+        kodeRef: {
+            kodeFungsi: null,
+            keteranganKode: null
+        },
+        noUrut: null,
+        keteranganTolakUkur: null,
+        keteranganTargetKinerja: null
+    };
+
     $scope.editKinerja = function (data) {
         console.log('Edit Kinerja');
         console.log(data);
+        $scope.formEditKinerja = data;
     };
-
-    $scope.deleteKinerja = function (data) {
-        console.log('Delete Kinerja');
-        console.log(data);
-    };
-
 
     $scope.simpanKinerja = function () {
+        const v = $scope.formTambahKinerja;
+        if (v.kodeIndikator == null || (v.keteranganTolakUkur == null || v.keteranganTolakUkur == '') || (v.keteranganTargetKinerja == null || v.keteranganTargetKinerja == '')) {
+            console.log('Form Not Valid');
+            $scope.submittedKinerja = true;
+            return;
+        }
+        $scope.submittedKinerja = false;
         console.log('Save Kinerja :');
         console.log($scope.formTambahKinerja);
         globalService.servicePostData(`/blud-resource-server/api/kinerja/save`, {
@@ -414,8 +460,120 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
             } else {
                 console.log('Response Error Save Kinerja');
                 console.log(result);
+                toaster.pop({
+                    type: 'error',
+                    title: 'Gagal',
+                    body: 'Gagal menyimpan data',
+                    timeout: 5000
+                });
             }
         });
+        $scope.formTambahKinerja = {
+            id: null,
+            idKegiatanKinerja: null,
+            kodeIndikator: null,
+            kodeRef: {
+                kodeFungsi: null,
+                keteranganKode: null
+            },
+            noUrut: null,
+            keteranganTolakUkur: null,
+            keteranganTargetKinerja: null
+        };
+        angular.element('#modalAddKinerja').trigger('click');
+    };
+
+    $scope.updateKinerja = function () {
+        console.log('Update Kinerja');
+        $scope.formEditKinerja.id = $scope.formEditKinerja.idKegiatanKinerja;
+        const e = $scope.formEditKinerja;
+        if (e.kodeIndikator == null || (e.keteranganTolakUkur == null || e.keteranganTolakUkur == '') || (e.keteranganTargetKinerja == null || e.keteranganTargetKinerja == '')) {
+            console.log('Form Not Valid');
+            $scope.submittedEditKinerja = true;
+            return;
+        }
+        $scope.submittedEditKinerja = false;
+        console.log('Update Kinerja :');
+        console.log($scope.formEditKinerja);
+        globalService.servicePostData(`/blud-resource-server/api/kinerja/update`, {
+            tahunAnggaran: $scope.tahun,
+            idKegiatan: kegiatanId,
+            idSkpd: local.pengguna.skpdId
+        }, $scope.formEditKinerja, function (result) {
+            console.log('Result Data update Kinerja');
+            console.log(result.data);
+            if (result.status === 201) {
+                console.log('Response update Kinerja Succes');
+                console.log(result);
+                $scope.listKinerja = result.data;
+                $scope.dtInstanceKinerja.rerender();
+                toaster.pop({
+                    type: 'success',
+                    title: 'Berhasil',
+                    body: 'Berhasil sunting data',
+                    timeout: 5000
+                });
+                $scope.noUrutKinerja = Math.max.apply(Math, $scope.listKinerja.map(function (v) {
+                    return v.noUrut;
+                })) + 1;
+            } else {
+                console.log('Response Error update Kinerja');
+                console.log(result);
+                toaster.pop({
+                    type: 'error',
+                    title: 'Gagal',
+                    body: 'Gagal sunting data',
+                    timeout: 5000
+                });
+            }
+        });
+        angular.element('#modalEditKinerja').trigger('click');
+    };
+
+    let idKinerjaDelete = null;
+
+    $scope.deleteNotif = function (data) {
+        console.log('Delete Notif');
+        console.log(data);
+        idKinerjaDelete = data.idKegiatanKinerja;
+    };
+
+    $scope.deleteKinerja = function (data) {
+        console.log('Delete Kinerja');
+        console.log(data);
+        globalService.serviceDeleteData(`/blud-resource-server/api/kinerja/delete`, {
+            tahunAnggaran: $scope.tahun,
+            idKegiatan: kegiatanId,
+            idSkpd: local.pengguna.skpdId,
+            idKinerja: idKinerjaDelete
+        }, function (result) {
+            if (result.status === 200) {
+                console.log("delete success");
+                console.log(result);
+                $scope.listKinerja = result.data;
+                $scope.dtInstanceKinerja.rerender();
+                toaster.pop({
+                    type: 'success',
+                    title: 'Berhasil',
+                    body: 'Berhasil menghapus data',
+                    timeout: 5000
+                });
+                $scope.noUrutKinerja = Math.max.apply(Math, $scope.listKinerja.map(function (v) {
+                    return v.noUrut;
+                })) + 1;
+                idKinerjaDelete = null;
+            } else {
+                console.log(result);
+                toaster.pop({
+                    type: 'error',
+                    title: 'Gagal',
+                    body: 'Gagal menghapus data',
+                    timeout: 5000
+                });
+                idKinerjaDelete = null;
+            }
+        });
+
     }
 
 }

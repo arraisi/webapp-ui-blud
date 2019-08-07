@@ -220,7 +220,7 @@
 
                             <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
                                  style="margin-top: 13px">
-                                <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
+                                <table datatable="ng" dt-options="dtOptionsKinerja" dt-column-defs="dtColumnDefs"
                                        dt-instance="dtInstanceKinerja"
                                        class="table table-bordered table-striped row-border hover rounded">
                                     <thead>
@@ -241,10 +241,12 @@
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-link" title="Sunting"
-                                                        ng-click="editKinerja(val)"><i class="fa fa-edit"></i>
+                                                        ng-click="editKinerja(val)" data-toggle="modal"
+                                                        data-target="#modalEditKinerja"><i class="fa fa-edit"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-link" title="Hapus"
-                                                        ng-click="deleteKinerja(val)"><i class="fa fa-trash"></i>
+                                                        ng-click="deleteNotif(val)" data-toggle="modal"
+                                                        data-target="#modalDeleteKinerja"><i class="fa fa-trash"></i>
                                                 </button>
                                             </div>
                                         </td>
@@ -396,6 +398,36 @@
         </div>
     </div>
 
+
+    <!-- Modal Look Up Delete Konfirmasi -->
+    <div id="modalDeleteKinerja" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Hapus Kinerja</h6>
+                    <button type="button" class="close" data-dismiss="modal" data-target="#modalDeleteKinerja">&times;
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Anda Yakin Ingin Menghapus Data?</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalDeleteKinerja">
+                        Kembali
+                    </button>
+                    <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                            data-target="#modalDeleteKinerja" ng-click="deleteKinerja()">
+                        Hapus
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <!-- Modal Add Kinerja -->
     <div id="modalAddKinerja" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -417,19 +449,18 @@
                                     <select id="kodeIndikator" name="kodeIndikator"
                                             class="form-control input-lg"
                                             ng-model="formTambahKinerja.kodeIndikator"
-                                            ng-class="{'is-invalid': tambahKinerjaForm.kodeIndikator.$error.required && submitted}"
-                                            required>
+                                            ng-class="{'is-invalid': formTambahKinerja.kodeIndikator == null && submittedKinerja}">
                                         <option ng-value=val.kodeFungsi
                                                 ng-repeat="val in ::listKodeIndikator">
                                             {{val.kodeFungsi}} - {{val.keteranganKode}}
                                         </option>
                                     </select>
                                     <span class="input-group" style="color:red"
-                                          ng-show="tambahForm.lokasiKegiatan.$invalid && submitted">
-                                                <small>
-                                                    <span ng-show="tambahForm.lokasiKegiatan.$error.required">Lokasi Kegiatan harus diisi.</span>
-                                                </small>
-                                            </span>
+                                          ng-show="formTambahKinerja.kodeIndikator == null && submittedKinerja">
+                                        <small>
+                                            <span ng-show="formTambahKinerja.kodeIndikator == null">Kode Indikator harus diisi.</span>
+                                        </small>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -447,7 +478,14 @@
                             <div class="row col-md-7">
                                 <input type="text" class="form-control" name="keteranganTolakUkur"
                                        id="keteranganTolakUkur"
-                                       ng-model="formTambahKinerja.keteranganTolakUkur">
+                                       ng-model="formTambahKinerja.keteranganTolakUkur"
+                                       ng-class="{'is-invalid': formTambahKinerja.keteranganTolakUkur == null && submittedKinerja}">
+                                <span class="input-group" style="color:red"
+                                      ng-show="formTambahKinerja.keteranganTolakUkur == null && submittedKinerja">
+                                    <small>
+                                        <span ng-show="formTambahKinerja.keteranganTolakUkur == null">Keterangan tolak ukur harus diisi.</span>
+                                    </small>
+                                </span>
                             </div>
                         </div>
                         <div class="form-group row col-md-12">
@@ -456,7 +494,14 @@
                             <div class="row col-md-7">
                                 <input type="text" class="form-control" name="keteranganTargetKinerja"
                                        id="keteranganTargetKinerja"
-                                       ng-model="formTambahKinerja.keteranganTargetKinerja">
+                                       ng-model="formTambahKinerja.keteranganTargetKinerja"
+                                       ng-class="{'is-invalid': formTambahKinerja.keteranganTargetKinerja == null && submittedKinerja}">
+                                <span class="input-group" style="color:red"
+                                      ng-show="formTambahKinerja.keteranganTargetKinerja == null && submittedKinerja">
+                                    <small>
+                                        <span ng-show="formTambahKinerja.keteranganTargetKinerja == null">Keterangan target kinerja harus diisi.</span>
+                                    </small>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -465,14 +510,103 @@
                                 data-target="#modalAddKinerja">
                             Kembali
                         </button>
-                        <button type="submit" class="btn btn-success rounded" data-dismiss="modal"
-                                data-target="#modalAddKinerja" ng-click="simpanKinerja()">
+                        <button type="submit" class="btn btn-success rounded" ng-click="simpanKinerja()">
                             Kirim
                         </button>
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
 
+    <!-- Modal Edit Kinerja -->
+    <div id="modalEditKinerja" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Sunting Kinerja</h6>
+                    <button type="button" class="close" data-dismiss="modal" data-target="#modalEditKinerja">&times;
+                    </button>
+                </div>
+                <form name="updateKinerjaForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="form-group row col-md-12">
+                                <label class="col-md-4 col-form-label">Kode Indikator <sup
+                                        style="color: red;">(*)</sup></label>
+                                <div class="row col-md-7">
+                                    <select id="kodeIndikatorEdit" name="kodeIndikator"
+                                            class="form-control input-lg"
+                                            ng-model="formEditKinerja.kodeIndikator"
+                                            ng-class="{'is-invalid': formEditKinerja.kodeIndikator == null && submittedEditKinerja}">
+                                        <option ng-value=val.kodeFungsi
+                                                ng-repeat="val in ::listKodeIndikator">
+                                            {{val.kodeFungsi}} - {{val.keteranganKode}}
+                                        </option>
+                                    </select>
+                                    <span class="input-group" style="color:red"
+                                          ng-show="formEditKinerja.kodeIndikator == null && submittedEditKinerja">
+                                        <small>
+                                            <span ng-show="formEditKinerja.kodeIndikator == null">Kode Indikator harus diisi.</span>
+                                        </small>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row col-md-12">
+                            <label class="col-md-4 col-form-label">No. Urut</label>
+                            <div class="row col-md-7">
+                                <input readonly type="text" class="form-control" name="noUrut"
+                                       id="noUrutEdit"
+                                       ng-model="formEditKinerja.noUrut">
+                            </div>
+                        </div>
+                        <div class="form-group row col-md-12">
+                            <label class="col-md-4 col-form-label">Keterangan Tolak Ukur <sup
+                                    style="color: red;">(*)</sup></label>
+                            <div class="row col-md-7">
+                                <input type="text" class="form-control" name="keteranganTolakUkur"
+                                       id="keteranganTolakUkurEdit"
+                                       ng-model="formEditKinerja.keteranganTolakUkur"
+                                       ng-class="{'is-invalid': formEditKinerja.keteranganTolakUkur == null && submittedEditKinerja}">
+                                <span class="input-group" style="color:red"
+                                      ng-show="formEditKinerja.keteranganTolakUkur == null && submittedEditKinerja">
+                                    <small>
+                                        <span ng-show="formEditKinerja.keteranganTolakUkur == null">Keterangan tolak ukur harus diisi.</span>
+                                    </small>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row col-md-12">
+                            <label class="col-md-4 col-form-label">Keterangan Target Kinerja <sup
+                                    style="color: red;">(*)</sup></label>
+                            <div class="row col-md-7">
+                                <input type="text" class="form-control" name="keteranganTargetKinerja"
+                                       id="keteranganTargetKinerjaEdit"
+                                       ng-model="formEditKinerja.keteranganTargetKinerja"
+                                       ng-class="{'is-invalid': formEditKinerja.keteranganTargetKinerja == null && submittedEditKinerja}">
+                                <span class="input-group" style="color:red"
+                                      ng-show="formEditKinerja.keteranganTargetKinerja == null && submittedEditKinerja">
+                                    <small>
+                                        <span ng-show="formEditKinerja.keteranganTargetKinerja == null">Keterangan target kinerja harus diisi.</span>
+                                    </small>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                                data-target="#modalEditKinerja">
+                            Kembali
+                        </button>
+                        <button type="submit" class="btn btn-success rounded" ng-click="updateKinerja()">
+                            Kirim
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
