@@ -43,6 +43,6 @@
     "node_modules/angularjs-toaster/toaster.min.js",
     "node_modules/angular-datatables/dist/angular-datatables.min.js",
     "node_modules/underscore/underscore-min.js",
-    "vendors/js/accountingJS/accounting.js"
+    "src/js/accounting.js"
   ]
 }
