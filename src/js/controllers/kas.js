@@ -7,14 +7,12 @@ function KasController($scope, $location, toaster, globalService, kasService) {
     const local = JSON.parse(localStorage.getItem('currentUser'));
 
     $scope.readonlySaldo = false;
-    //formBuild
+
     $scope.formData;
     $scope.valData;
     $scope.amount;
 
     $scope.formatPrice;
-
-
 
     $scope.pop = function () {
         toaster.pop('info', "title", "text");
@@ -56,7 +54,6 @@ function KasController($scope, $location, toaster, globalService, kasService) {
         });
 
         return formatPrice;
-
     };
 
 

@@ -69,13 +69,14 @@ function ListPersetujuanController($scope,$location,globalService) {
     }
 
     $scope.tolakPersetujuan = function (valTolak) {
-      console.log(valTolak.$valid);
+     
       if (!valTolak.$valid) {
           console.log('Form Not Valid');
           $scope.submitted = true;
           return;
       }
       $scope.submitted = false;
+      
       /**
        * Form Persetujuan
        */

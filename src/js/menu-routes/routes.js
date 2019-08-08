@@ -92,6 +92,22 @@ angular
                     }]
                 }
             })
+            
+            .state('app.DetailKomponenPersetujuan', {
+                url: '/DetailKomponenPersetujuan',
+                templateUrl: 'views/pages/persetujuan-view/DetailKomponenPersetujuan.html',
+                ncyBreadcrumb: {
+                    label: 'DetailKomponenPersetujuan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/DetailKomponenPersetujuan.js']
+                        });
+                    }]
+                }
+            })
             .state('app.DetailKasPersetujuan', {
                 url: '/persetujuan/DetailKasPersetujuan',
                 templateUrl: 'views/pages/persetujuan-view/DetailKasPersetujuan.html',

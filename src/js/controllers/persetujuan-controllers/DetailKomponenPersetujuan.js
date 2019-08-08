@@ -1,8 +1,8 @@
 angular
     .module('app', ['toaster', 'ngAnimate', 'datatables'])
-    .controller('DetailKasPersetujuanController', DetailKasPersetujuanController);
+    .controller('DetailKomponenPersetujuanController', DetailKomponenPersetujuanController);
 
-function DetailKasPersetujuanController($scope,$location,globalService) {
+function DetailKomponenPersetujuanController($scope,$location,globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -50,16 +50,14 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
         return total;
     }
 
-    
-
     $scope.doKembali = function () {
         $location.url($location.path());
         $location.path('/ListPersetujuan');
     };
 
-    $scope.goToKomponen = function () {
-        $location.search('idTmrbakasBlud', valueDpt.idTmrbakasBlud);
-        $location.url($location.path());
-        $location.path('/DetailKomponenPersetujuan');
+    $scope.tabGoTo = function (path) {
+        console.log(path)
+        // $location.url($location.path());
+        // $location.path('/ListPersetujuan');
     };
 }
