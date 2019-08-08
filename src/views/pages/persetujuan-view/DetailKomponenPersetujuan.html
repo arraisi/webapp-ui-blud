@@ -5,7 +5,7 @@
                         <div>
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                <a class="nav-link disabled">Kas BLUD</a>
+                                <a class="nav-link " ng-click="doGoTo('Kas')">Kas BLUD</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link disabled">Pendapatan</a>
@@ -17,14 +17,14 @@
                                     <a class="nav-link disabled">Kegiatan</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" ng-click="goToKomponen()">Komponen</a>
+                                    <a class="nav-link active" ng-click="doGoTo('Komponen')">Komponen</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link disabled">Laporan</a>
                                 </li>
                             </ul>
                         </div>
-                    <div class="card-body" id="collapseExample1">
+                    <div class="card-body" id="komponen">
                         <div class="form-group">
                             <strong> <u> Daftar Komponen </u> </strong>
                         </div>
@@ -42,50 +42,167 @@
                             <label for="tab3">Belanja Modal</label>
                         </div>
                         <hr>
+                        <form>
+                            <div class="row col-md-12">
+                                <input type="text" class="form-control col-md-1" name="noSkpd" id="noSkpd"
+                                       placeholder="Kode Akun" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="namaSkpd" id="namaSkpd"
+                                       placeholder="Kode Komponen" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-2" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Nama Komponen" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Keterangan" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Spek" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Merk" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="noSkpd" id="noSkpd"
+                                       placeholder="Volume" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="namaSkpd" id="namaSkpd"
+                                       placeholder="Satuan" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Harga" style="margin-right: 5px">
+                                <button type="submit" class="btn btn-success col-md-1 rounded"><i class="fa fa-search"></i>
+                                    Cari
+                                </button>
+                            </div>
+                        </form>
                         <div class="form-group" style="margin-top: 13px">
-                            <table class="table table-bordered table-striped rounded " style="width:100%">
-                                <thead>
+                            <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
+                               dt-instance="dtInstanceProgram"
+                               class="table table-bordered table-striped row-border hover rounded">
+                            <thead>
+                            <tr class="text-center">
+                                <th>No</th>
+                                <th>Kode Akun</th>
+                                <th>Kode Komponen</th>
+                                <th>Nama Komponen</th>
+                                <th>Keterangan</th>
+                                <th>Spek</th>
+                                <th>Merk</th>
+                                <th>Volume</th>
+                                <th>Koefisien</th>
+                                <th>Satuan</th>
+                                <th>Harga</th>
+                                <th>Total Harga</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="val in ::listKegiatan">
+                                <td class="text-center">{{val.idKegiatan}}</td>
+                                <td>{{val.kodeKegiatan}}</td>
+                                <td>{{val.namaKegiatan}}</td>
+                                <td class="text-right">{{val.anggaranTapd | currency: "" : 0}}</td>
+                                <td class="text-center">{{val.idKegiatan}}</td>
+                                <td>{{val.kodeKegiatan}}</td>
+                                <td>{{val.namaKegiatan}}</td>
+                                <td class="text-right">{{val.anggaranTapd | currency: "" : 0}}</td>
+                                <td class="text-center">{{val.idKegiatan}}</td>
+                                <td>{{val.kodeKegiatan}}</td>
+                                <td>{{val.namaKegiatan}}</td>
+                                <td class="text-right">{{val.anggaranTapd | currency: "" : 0}}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th class="text-right" colspan="11">Total</th>
+                                <th class="text-right"><strong>banyak</strong></th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                        </div>
+                    </div>
+
+                    <div class="card-body" id="rpa">
+                        <div class="form-group">
+                            <strong> <u> Daftar RPA per Komponen </u> </strong>
+                        </div>
+                        <div class="tab-wrap">
+                            <input type="radio" id="tab1" name="tabGroup2" class="tab" checked
+                                   ng-click="tabGoTo('pegawai')">
+                            <label for="tab1">Belanja Pegawai</label>
+
+                            <input type="radio" id="tab2" name="tabGroup2" class="tab"
+                                   ng-click="tabGoTo('barangJasa')" >
+                            <label for="tab2">Belanja Barang dan Jasa </label>
+
+                            <input type="radio" id="tab3" name="tabGroup2" class="tab" ng-click="tabGoTo('modal')"
+                                   >
+                            <label for="tab3">Belanja Modal</label>
+                        </div>
+                        <hr>
+                        <!-- <form>
+                            <div class="row col-md-12">
+                                <input type="text" class="form-control col-md-1" name="noSkpd" id="noSkpd"
+                                       placeholder="Kode Akun" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="namaSkpd" id="namaSkpd"
+                                       placeholder="Kode Komponen" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-2" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Nama Komponen" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Keterangan" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Spek" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Merk" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="noSkpd" id="noSkpd"
+                                       placeholder="Volume" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="namaSkpd" id="namaSkpd"
+                                       placeholder="Satuan" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-1" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Harga" style="margin-right: 5px">
+                                <button type="submit" class="btn btn-success col-md-1 rounded"><i class="fa fa-search"></i>
+                                    Cari
+                                </button>
+                            </div>
+                        </form> -->
+                        <div class="form-group" style="margin-top: 13px">
+                            <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
+                               dt-instance="dtInstanceProgram"
+                               class="table table-bordered table-striped row-border hover rounded">
+                               <thead>
                                 <tr class="text-center">
-                                    <th colspan="3">Saldo Kas Tahun : {{tahun}}</th>
-                                </tr>
-                                <tr class="text-center">
-                                    <th colspan="2">Kode Akun</th>
-                                    <th>Perkiraan Saldo Kas Per 31 Desember {{tahun}}</th>
-                                </tr>
-                                <tr hidden>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-    
+                                    <th>No</th>
+                                    <th>Kode Akun</th>
+                                    <th>Kode Komponen</th>
+                                    <th>Nama Komponen</th>
+                                    <th>Keterangan</th>
+                                    <th>Spek</th>
+                                    <th>Nilai</th>
+                                    <th>Januari</th>
+                                    <th>Februari</th>
+                                    <th>Maret</th>
+                                    <th>April</th>
+                                    <th>Mei</th>
+                                    <th>Juni</th>
+                                    <th>Juli</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="data in valData">
-                                    <td style="width:25%">{{ data.cakun }}</td>
-                                    <td style="width:25%">{{ data.nakun }}</td>
-                                    <td>
-                                        <div class="controls col-9 float-right">
-                                            <div class="input-prepend input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Rp</span>
-                                                </div>
-                                                <input type="text" class="form-control text-right"
-                                                       input-currency
-                                                       ng-readonly="!readonlySaldo"
-                                                       ng-model="data.vkasAudited"
-                                                       ng-keypress="onlyNumberKey($event)">
-                                            </div>
-                                        </div>
-                                    </td>
+                                <tr ng-repeat="val in ::listKegiatan">
+                                    <td class="text-center">{{val.idKegiatan}}</td>
+                                    <td>{{val.kodeKegiatan}}</td>
+                                    <td>{{val.namaKegiatan}}</td>
+                                    <td class="text-right">{{val.anggaranTapd | currency: "" : 0}}</td>
+                                    <td class="text-center">{{val.idKegiatan}}</td>
+                                    <td>{{val.kodeKegiatan}}</td>
+                                    <td>{{val.namaKegiatan}}</td>
+                                    <td class="text-right">{{val.anggaranTapd | currency: "" : 0}}</td>
+                                    <td class="text-center">{{val.idKegiatan}}</td>
+                                    <td>{{val.kodeKegiatan}}</td>
+                                    <td>{{val.namaKegiatan}}</td>
+                                    <td>{{val.kodeKegiatan}}</td>
+                                    <td>{{val.namaKegiatan}}</td>
+                                    <td class="text-right">{{val.anggaranTapd | currency: "" : 0}}</td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
-                                <tr>
-                                    <th class="text-center" colspan="2">Total</th>
-                                    <th class="text-right"><strong>Rp {{ getTotal() | number:0 }}</strong></th>
-                                </tr>
+                                    <tr>
+                                        <th class="text-right" colspan="13">Total</th>
+                                        <th class="text-right"><strong>banyak</strong></th>
+                                    </tr>
                                 </tfoot>
-                            </table>
+                        </table>
                         </div>
                         <br>
                         <div class="card-footer text-center">

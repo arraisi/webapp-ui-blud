@@ -60,7 +60,7 @@ function ListPersetujuanController($scope,$location,globalService) {
 
     $scope.goToList = function (valueDpt) {
         console.log("Detail",valueDpt.idTmrbakasBlud)
-        $location.search('idTmrbakasBlud', valueDpt.idTmrbakasBlud);
+        // $location.search('idTmrbakasBlud', valueDpt.idTmrbakasBlud);
         $location.path('/persetujuan/DetailKasPersetujuan');
     }
 

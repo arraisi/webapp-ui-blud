@@ -57,9 +57,19 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
         $location.path('/ListPersetujuan');
     };
 
-    $scope.goToKomponen = function () {
-        $location.search('idTmrbakasBlud', valueDpt.idTmrbakasBlud);
-        $location.url($location.path());
-        $location.path('/DetailKomponenPersetujuan');
+    $scope.doGoTo = function (path) {
+        console.log(path);
+        switch (path) {
+            case 'Kas':
+                // $location.search('idDpt', valueDpt.idTrx);
+                $location.path('/persetujuan/DetailKasPersetujuan');
+                break;
+            case 'Komponen':
+                // $location.search('idDpt', valueDpt.idTrx);
+                $location.path('persetujuan/DetailKomponenPersetujuan');
+                break;
+        }
+     
     };
+
 }

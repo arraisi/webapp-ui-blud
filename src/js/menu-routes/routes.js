@@ -94,7 +94,7 @@ angular
             })
             
             .state('app.DetailKomponenPersetujuan', {
-                url: '/DetailKomponenPersetujuan',
+                url: '/persetujuan/DetailKomponenPersetujuan',
                 templateUrl: 'views/pages/persetujuan-view/DetailKomponenPersetujuan.html',
                 ncyBreadcrumb: {
                     label: 'DetailKomponenPersetujuan'
