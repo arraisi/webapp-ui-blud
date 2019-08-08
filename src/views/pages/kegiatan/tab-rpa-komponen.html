@@ -1,7 +1,7 @@
-<div class="animated fadeIn">
+<div class="animated fadeIn" ng-controller="TabRpaKomponenController">
     <div class="row">
         <div class="col-lg-12">
-            <div class="card" ng-controller="TabRpaKomponenController">
+            <div class="card">
                 <div class="card-body" id="collapseExample1">
 
                     <div class="tab-wrap">
@@ -108,40 +108,59 @@
 
                     <br>
 
-                    <div class="form-group" style="margin-top: 13px">
+                    <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
+                         style="margin-top: 13px">
                         <table class="table table-bordered table-striped rounded">
                             <thead>
                             <tr class="text-center">
                                 <th>No</th>
-                                <th>No Kegiatan</th>
-                                <th>Nama Kegiatan</th>
-                                <th>Nilai Anggaran</th>
+                                <th>Kode Akun</th>
+                                <th>Kode Komponen</th>
+                                <th>Nama Komponen</th>
+                                <th>Keterangan</th>
+                                <th>Spek</th>
+                                <th>Nilai</th>
+                                <th>Januari</th>
+                                <th>Februari</th>
+                                <th>Maret</th>
+                                <th>April</th>
+                                <th>Mei</th>
+                                <th>Juni</th>
+                                <th>Juli</th>
+                                <th>Agustus</th>
+                                <th>September</th>
+                                <th>Oktober</th>
+                                <th>November</th>
+                                <th>Desember</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td class="text-center">1</td>
-                                <td>7.14.03.001</td>
-                                <td>Penyuluhan Ketenagakerjaan Masyarakat</td>
-                                <td class="text-right">Rp. 20.524.000</td>
+                                <td>5.2.1.02.01</td>
+                                <td>9.1.2.26.01.002.002.48</td>
+                                <td class="text-left">Gunting Kertas Besar</td>
+                                <td class="text-left">Keterangan 1</td>
+                                <td class="text-left">Spek 1</td>
+                                <td class="text-right">Rp. 750.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
+                                <td class="text-right">Rp. 100.000</td>
                                 <td class="text-center">
-                                    <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-link" title="Detail"><i class="fa fa-list"></i></button>
-                                    <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i></button>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>7.14.03.002</td>
-                                <td>Penyediaan Alat Kedokteran Gigi</td>
-                                <td class="text-right">Rp. 174.550.000</td>
-                                <td class="text-center">
-                                    <button class="btn btn-link" title="Sunting"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-link" title="Detail"><i class="fa fa-list"></i></button>
-                                    <button class="btn btn-link" title="Hapus"><i class="fa fa-trash"></i></button>
-                                    </button>
+                                    <div class="btn-group">
+                                        <button class="btn btn-link" title="Sunting" data-toggle="modal"
+                                                data-target="#modalEditRpa"><i class="fa fa-edit"></i></button>
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>
@@ -152,4 +171,499 @@
         </div>
         <!--/.col-->
     </div>
+
+    <!-- Modal Edit RPA -->
+    <div id="modalEditRpa" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-xl">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Rencana Pelaksanaan Anggaran</h6>
+                    <button type="button" class="close" data-dismiss="modal" data-target="#modalEditRpa">&times;
+                    </button>
+                </div>
+                <form name="editRpaKomponen">
+                    <div class="modal-body">
+
+                        <div class="row" style="margin-top: 13px">
+                            <div class="col-md-6">
+                                <div class="form-group row"
+                                     style="margin-bottom: 0px !important; padding: 0px !important;">
+                                    <label class="col-md-3 col-form-label">Kode Akun</label>
+                                    <div class="col-md-8">
+                                        <label class="col-form-label">: -</label>
+                                    </div>
+                                </div>
+                                <div class="form-group row"
+                                     style="margin-bottom: 0px !important; padding: 0px !important;">
+                                    <label class="col-md-3 col-form-label">Kode Komponen</label>
+                                    <div class="col-md-8">
+                                        <label class="col-form-label">: -</label>
+                                    </div>
+                                </div>
+                                <div class="form-group row"
+                                     style="margin-bottom: 0px !important; padding: 0px !important;">
+                                    <label class="col-md-3 col-form-label">Nama Komponen</label>
+                                    <div class="col-md-8">
+                                        <label class="col-form-label">: -</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row"
+                                     style="margin-bottom: 0px !important; padding: 0px !important;">
+                                    <label class="col-md-3 col-form-label">Nilai</label>
+                                    <div class="col-md-8">
+                                        <label class="col-form-label">: -</label>
+                                    </div>
+                                </div>
+                                <div class="form-group row"
+                                     style="margin-bottom: 0px !important; padding: 0px !important;">
+                                    <label class="col-md-3 col-form-label">Sisa</label>
+                                    <div class="col-md-8">
+                                        <label class="col-form-label">: -</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group row" style="margin-top: 13px">
+                            <div class="col-md-6">
+                                <!-- Januari -->
+                                <div class="form-group col-md-12 row">
+                                    <label class="col-md-2 col-form-label">Januari</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="januari" name="januari"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan1"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Februari -->
+                                <div class="form-group col-md-12 row">
+                                    <label class="col-md-2 col-form-label">Februari</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="februari" name="februari"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan2"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Maret -->
+                                <div class="form-group col-md-12 row">
+                                    <label for="maret" class="col-md-2 col-form-label">Maret</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="maret" name="maret"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan3"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- April -->
+                                <div class="form-group col-md-12 row">
+                                    <label for="april" class="col-md-2 col-form-label">April</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="april" name="april"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan4"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Mei -->
+                                <div class="form-group col-md-12 row">
+                                    <label for="mei" class="col-md-2 col-form-label">Mei</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="mei" name="mei"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan5"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Juni -->
+                                <div class="form-group col-md-12 row">
+                                    <label for="juni" class="col-md-2 col-form-label">Juni</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="juni" name="juni"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan6"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <!-- Juli -->
+                                <div class="form-group col-md-12 row">
+                                    <label for="juli" class="col-md-3 col-form-label">Juli</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="juli" name="juli"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan7"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Agustus -->
+                                <div class="form-group col-md-12 row">
+                                    <label for="agustus" class="col-md-3 col-form-label">Agustus</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="agustus" name="agustus"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan8"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- September -->
+                                <div class="form-group col-md-12 row">
+                                    <label for="september" class="col-md-3 col-form-label">September</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="september" name="september"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan9"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Oktober -->
+                                <div class="form-group col-md-12 row">
+                                    <label for="oktober" class="col-md-3 col-form-label">Oktober</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="oktober" name="oktober"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan10"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- November -->
+                                <div class="form-group col-md-12 row">
+                                    <label for="november" class="col-md-3 col-form-label">November</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="november" name="november"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan11"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Desember -->
+                                <div class="form-group col-md-12 row">
+                                    <label for="desember" class="col-md-3 col-form-label">Desember</label>
+                                    <div class="controls col-md-9">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input input-currency type="text" id="desember" name="desember"
+                                                   class="form-control text-right"
+                                                   ng-model="formEditRpa.rpaBulan12"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                                data-target="#modalEditRpa">
+                            Kembali
+                        </button>
+                        <button type="submit" class="btn btn-success rounded" ng-click="simpanRpa()">
+                            Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--    <div class="form-group row" style="margin-top: 13px">-->
+    <!--        <div class="col-md-6">-->
+    <!--            &lt;!&ndash; Januari &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8"-->
+    <!--                 style="margin-bottom: 0px !important; padding-bottom: 0px !important;">-->
+    <!--                <label class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>Januari</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="januari" name="januari"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan1">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; Februari &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>Februari</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="februari" name="februari"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan2"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; Maret &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label for="maret" class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>Maret</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="maret" name="maret"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan3"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; April &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label for="april" class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>April</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="april" name="april"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan4"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; Mei &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label for="mei" class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;">-->
+    <!--                    <smal>Mei</smal>-->
+    <!--                </label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="mei" name="mei"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan5"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; Juni &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label for="juni" class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>Juni</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="juni" name="juni"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan6"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+
+    <!--        <div class="col-md-6">-->
+    <!--            &lt;!&ndash; Juli &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label for="juli" class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>Juli</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="juli" name="juli"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan7"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; Agustus &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label for="agustus" class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>Agustus</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="agustus" name="agustus"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan8"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; September &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label for="september" class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>September</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="september" name="september"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan9"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; Oktober &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label for="oktober" class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>Oktober</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="oktober" name="oktober"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan10"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; November &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label for="november" class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>November</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="november" name="november"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan11"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            &lt;!&ndash; Desember &ndash;&gt;-->
+    <!--            <div class="form-group col-md-8">-->
+    <!--                <label for="desember" class="col-form-label"-->
+    <!--                       style="margin-bottom: 0px !important; padding-bottom: 0px !important;"><small>Desember</small></label>-->
+    <!--                <div class="controls">-->
+    <!--                    <div class="input-prepend input-group">-->
+    <!--                        <div class="input-group-prepend">-->
+    <!--                            <span class="input-group-text">Rp</span>-->
+    <!--                        </div>-->
+    <!--                        <input input-currency type="text" id="desember" name="desember"-->
+    <!--                               class="form-control text-right"-->
+    <!--                               ng-model="formEditRpa.rpaBulan12"-->
+    <!--                               ng-keypress="onlyNumberKey($event)"-->
+    <!--                               ng-blur="kalkulasiSisaAnggaran()">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
 </div>

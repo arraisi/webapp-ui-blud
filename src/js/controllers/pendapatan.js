@@ -8,6 +8,7 @@ angular
 function PendapatanController($scope, $location, toaster, globalService) {
 
     // ======== Awal Init Porject
+    $scope.accounting = accounting;
     console.log('Init Controller Form Pendapatan');
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
@@ -136,6 +137,7 @@ function PendapatanController($scope, $location, toaster, globalService) {
 function RincianPendapatanController($scope, $location, toaster, globalService) {
     $scope.noUrut = 0;
     $scope.submitted = false;
+    $scope.accounting = accounting;
     const idDpt = $location.search().idDpt;
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
@@ -424,6 +426,7 @@ function RincianPendapatanController($scope, $location, toaster, globalService) 
 
 // Function Untuk Controller AKB Pendapatan
 function AkbPendapatanController($scope, $location, toaster, globalService) {
+    $scope.accounting = accounting;
     $scope.formAkbPendapatan = {
         anggaranDpa: null,
         anggaranTapd: null,

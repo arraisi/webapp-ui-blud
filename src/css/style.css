@@ -12733,6 +12733,9 @@ hr.transparent {
 .modal-xl {
   max-width: 80%; }
 
+.overflow-datatable {
+  overflow-x: auto; }
+
 required {
   oninvalid: "this.setCustomValidity('Please Enter valid email')"; }
 
