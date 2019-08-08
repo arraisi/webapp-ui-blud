@@ -71,7 +71,9 @@
                                 <td class="text-center">{{val.idKegiatan}}</td>
                                 <td>{{val.kodeKegiatan}}</td>
                                 <td>{{val.namaKegiatan}}</td>
-                                <td class="text-right">{{val.anggaranTapd | currency: "" : 0}}</td>
+                                <td class="text-right">{{accounting.formatMoney(val.anggaranTapd, "", 2,
+                                    ".", ",")}}
+                                </td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-link" title="Sunting"

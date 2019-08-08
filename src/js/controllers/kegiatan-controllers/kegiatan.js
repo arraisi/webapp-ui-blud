@@ -5,6 +5,8 @@ angular
 // Function Untuk Kontroller Kegiatan List
 function KegiatanController($scope, $location, toaster, globalService) {
 
+    $scope.accounting = accounting;
+
     /** DT Options For Datatables */
     $scope.persons = [];
     $scope.dtInstanceUrusan = {};
