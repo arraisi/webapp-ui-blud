@@ -22,7 +22,8 @@
                     <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12">
                         <strong> <u> Target Pendapatan </u> </strong>
                     </div>
-                    <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable" style="margin-top: 13px">
+                    <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
+                         style="margin-top: 13px">
                         <table class="table table-bordered table-striped rounded">
                             <thead>
                             <tr class="text-center">
@@ -35,7 +36,9 @@
                             <tr ng-repeat="data in loadDataPendapatan">
                                 <td>{{data.kodeAkun}}</td>
                                 <td>{{data.namaAkun}}</td>
-                                <td class="text-right">{{data.anggaranTapd | currency: "Rp. " : 0}}</td>
+                                <td class="text-right">{{accounting.formatMoney(data.anggaranTapd, "Rp ", 2,
+                                    ".", ",")}}
+                                </td>
                                 <td class="text-center">
                                     <button class="btn btn-success rounded" ng-click="goToRincian(data)"> Rincian
                                     </button>
@@ -48,7 +51,8 @@
                             <tfoot>
                             <tr>
                                 <td colspan="2" class="text-center"><b>Total</b></td>
-                                <td class="text-right"><b>Rp. {{totalTargetPendapatan | currency: "Rp. " : 0}}</b></td>
+                                <td class="text-right"><b>Rp. {{accounting.formatMoney(totalTargetPendapatan, "Rp ", 2,
+                                    ".", ",")}}</b></td>
                                 <td class="text-right"></td>
                             </tr>
                             </tfoot>
