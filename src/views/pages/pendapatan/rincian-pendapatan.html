@@ -54,7 +54,7 @@
                                                ng-model="formRincian.rincianAnggaran"
                                                ng-blur="validateRincianAnggaran()"
                                                ng-class="{'is-invalid': !validationVariable.rincianAnggaranIsValid && validationVariable.rincianAnggaranIsTouched}"
-                                               >
+                                        >
                                         <span class="input-group" style="color:red"
                                               ng-show="!validationVariable.rincianAnggaranIsValid && validationVariable.rincianAnggaranIsTouched">
                                             <small>
@@ -73,7 +73,7 @@
                                                ng-model="formRincian.namaBarangSatuanTapd"
                                                ng-blur="validateSatuan()"
                                                ng-class="{'is-invalid': !validationVariable.namaBarangSatuanTapdIsValid && validationVariable.namaBarangSatuanTapdIsTouched}"
-                                               >
+                                        >
                                         <span class="input-group" style="color:red"
                                               ng-show="!validationVariable.namaBarangSatuanTapdIsValid && validationVariable.namaBarangSatuanTapdIsTouched">
                                             <small>
@@ -139,7 +139,7 @@
                                                class="form-control text-right"
                                                name="totalAnggaran"
                                                id="totalAnggaran" ng-model="formRincian.anggaranTapd"
-                                               >
+                                        >
                                     </div>
                                 </div>
 
@@ -148,7 +148,7 @@
                                     <span class="col-md-4 col-form-label"></span>
                                     <div class="col-md-6 text-right">
                                         <button class="btn btn-success rounded" ng-click="simpanRincian(rincianForm)"
-                                        ng-disabled="!validationVariable.rincianAnggaranIsValid">
+                                                ng-disabled="!validationVariable.rincianAnggaranIsValid">
                                             Simpan
                                         </button>
                                     </div>
@@ -163,8 +163,10 @@
                     <div class="form-group">
                         <strong> <u> Daftar Rincian Pendapatan </u> </strong>
                     </div>
-                    <div class="form-group" style="margin-top: 13px">
-                        <table style="table-layout: fixed; width: 100%" class="table table-bordered table-striped rounded">
+                    <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
+                         style="margin-top: 13px">
+                        <table style="table-layout: fixed; width: 100%"
+                               class="table table-bordered table-striped rounded">
                             <colgroup>
                                 <col style="width: 5%">
                                 <col style="width: 23%">
@@ -188,11 +190,15 @@
                             <tbody>
                             <tr ng-repeat="data in loadDataRincianPendapatan">
                                 <td class="text-center">{{data.anggaranNoUrut}}</td>
-                                <td style="word-wrap: break-word" >{{data.rincianAnggaran}}</td>
+                                <td style="word-wrap: break-word">{{data.rincianAnggaran}}</td>
                                 <td>{{data.namaBarangSatuanTapd}}</td>
                                 <td class="text-center">{{data.jumlahBarangTapd}}</td>
-                                <td class="text-right">{{data.hargaBarangSatuanTapd | currency: "Rp. " : 0}}</td>
-                                <td class="text-right">{{data.anggaranTapd | currency: "Rp. " : 0}}</td>
+                                <td class="text-right">{{accounting.formatMoney(data.hargaBarangSatuanTapd, "Rp ", 2,
+                                    ".", ",")}}
+                                </td>
+                                <td class="text-right">{{accounting.formatMoney(data.anggaranTapd, "Rp ", 2, ".",
+                                    ",")}}
+                                </td>
                                 <td class="text-center">
                                     <button class="btn btn-link" title="Sunting Rinci" ng-click="editRincian(data)"><i
                                             class="fa fa-edit"></i>
