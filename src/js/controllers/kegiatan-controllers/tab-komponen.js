@@ -95,7 +95,7 @@ function TabKomponenController($scope, $location, toaster, globalService) {
 
         console.log($scope.idKomponenBelanjaPegawai);
 
-        globalService.servicePostData(`/blud-resource-server/api/komponen/belanja-pegawai/save`, { idKegiatan: kegiatanId, 
+        globalService.servicePostData(`/blud-resource-server/api/komponen-belanja/save`, { idKegiatan: kegiatanId, 
             idSkpd: local.pengguna.skpdId, 
             tahunAnggaran: $scope.tahun, 
             kodeKegiatan: $scope.formTambahKegiatan.kodeKegiatan
