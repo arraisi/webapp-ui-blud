@@ -39,9 +39,9 @@
         };
     }
 
-    inputCurrency.$inject = ['$filter'];
+    inputCurrencyOld.$inject = ['$filter'];
 
-    function inputCurrency($filter) {
+    function inputCurrencyOld($filter) {
 
         // For input validation
         var isValid = function (val) {
@@ -74,7 +74,7 @@
             $ngModel.$formatters.push(toView);
             $ngModel.$parsers.push(toModel);
             $ngModel.$validators.currency = isValid;
-        
+
             // $ngModel.$parsers.unshift(function (viewValue) {
             //     $element.priceFormat({
             //         prefix: '',
@@ -104,6 +104,107 @@
             restrict: 'A',
             require: '?ngModel',
             link: link
+        };
+    }
+
+    inputCurrency.$inject = ["$filter", "$locale"];
+
+    function inputCurrency($filter, $locale) {
+        $locale.NUMBER_FORMATS.GROUP_SEP = '.';
+        $locale.NUMBER_FORMATS.DECIMAL_SEP = ',';
+
+        //#region helper methods
+        function getCaretPosition(inputField) {
+            // Initialize
+            var position = 0;
+            // IE Support
+            if (document.selection) {
+                inputField.focus();
+                // To get cursor position, get empty selection range
+                var emptySelection = document.selection.createRange();
+                // Move selection start to 0 position
+                emptySelection.moveStart('character', -inputField.value.length);
+                // The caret position is selection length
+                position = emptySelection.text.length;
+            } else if (inputField.selectionStart || inputField.selectionStart === 0) {
+                position = inputField.selectionStart;
+            }
+            return position;
+        }
+
+        function setCaretPosition(inputElement, position) {
+            if (inputElement.createTextRange) {
+                var range = inputElement.createTextRange();
+                range.move('character', position);
+                range.select();
+            } else {
+                if (inputElement.selectionStart) {
+                    inputElement.focus();
+                    inputElement.setSelectionRange(position, position);
+                } else {
+                    inputElement.focus();
+                }
+            }
+        }
+
+        function countNonNumericChars(value) {
+            return (value.match(/[^0-9]/gi) || []).length;
+        }
+
+        //#endregion helper methods
+
+        return {
+            require: "ngModel",
+            restrict: "A",
+            link: function ($scope, element, attrs, ctrl) {
+                var fractionSize = parseInt(attrs['fractionSize']) || 0;
+                var numberFilter = $filter('number');
+                // var numberFilter = accounting.format;
+                //format the view value
+                ctrl.$formatters.push(function (modelValue) {
+                    var retVal = numberFilter(modelValue, fractionSize);
+                    var isValid = !isNaN(modelValue);
+                    ctrl.$setValidity(attrs.name, isValid);
+                    return retVal;
+                });
+                //parse user's input
+                ctrl.$parsers.push(function (viewValue) {
+                    var caretPosition = getCaretPosition(element[0]), nonNumericCount = countNonNumericChars(viewValue);
+                    //Replace all possible group separators
+                    var trimmedValue = viewValue.trim().replace(/\./g, '').replace(/`/g, '').replace(/'/g, '').replace(/\u00a0/g, '').replace(/ /g, '');
+                    viewValue = viewValue || '';
+                    //If numericValue contains more decimal places than is allowed by fractionSize, then numberFilter would round the value up
+                    //Thus 123.109 would become 123.11
+                    //We do not want that, therefore I strip the extra decimal numbers
+                    var separator = ',';
+                    var arr = trimmedValue.split(separator);
+                    var decimalPlaces = arr[1];
+                    if (decimalPlaces != null && decimalPlaces.length > fractionSize) {
+                        //Trim extra decimal places
+                        decimalPlaces = decimalPlaces.substring(0, fractionSize);
+                        trimmedValue = arr[0] + '.' + decimalPlaces;
+                    }
+                    var numericValue = parseFloat(trimmedValue.trim().replace(/,/g, '.'));
+                    var isEmpty = numericValue == null || viewValue.trim() === "";
+                    var isRequired = attrs.required || false;
+                    var isValid = true;
+                    if (isEmpty && isRequired || !isEmpty && isNaN(numericValue)) {
+                        isValid = false;
+                    }
+                    ctrl.$setValidity(attrs.name, isValid);
+                    if (!isNaN(numericValue) && isValid) {
+                        var newViewValue = numberFilter(numericValue, fractionSize);
+                        // var newViewValue = accounting.formatMoney(numericValue, "", 0, ".", ",");
+                        element.val(newViewValue);
+                        var newNonNumbericCount = countNonNumericChars(newViewValue);
+                        var diff = newNonNumbericCount - nonNumericCount;
+                        var newCaretPosition = caretPosition + diff;
+                        // if (nonNumericCount === 0 && newCaretPosition > 0) newCaretPosition--;
+                        setCaretPosition(element[0], newCaretPosition);
+                    }
+                    return !isNaN(numericValue) ? numericValue : null;
+                });
+            } //end of link function
         };
     }
 
