@@ -17,7 +17,7 @@ function KegiatanController($scope, $location, toaster, globalService) {
         responsive: false,
         dom: "Bft<'row'<'col-sm-12'ip><'col-sm-12'l>>",
         language: {
-            "sEmptyTable": "Tidak Ada Data Pada Table",
+            "sEmptyTable": "Tidak Ada Data Yang Ditemukan",
             "sInfo": "Menunjukan _START_ sampai _END_ dari _TOTAL_ data",
             "sInfoEmpty": "Menunjukan 0 sampai 0 dari 0 data",
             "sInfoFiltered": "(filter dari _MAX_ total data)",
