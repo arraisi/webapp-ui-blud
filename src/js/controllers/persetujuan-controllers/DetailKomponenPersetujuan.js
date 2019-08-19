@@ -5,6 +5,8 @@ angular
 function DetailKomponenPersetujuanController($scope,$location,globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
+    $scope.urlParam =  $location.search().idTmrbakasBlud
+    console.log("URL PARAM",$scope.urlParam)
 
        /** Get Data Pengguna */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
@@ -20,6 +22,7 @@ function DetailKomponenPersetujuanController($scope,$location,globalService) {
             console.log(result);
         }
     });
+    
 
     /** DT Options For Datatables */
     $scope.persons = [];

@@ -5,7 +5,8 @@ angular
 function DetailKasPersetujuanController($scope,$location,globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
-
+    $scope.urlParam =  $location.search().idTmrbakasBlud
+    console.log("URL PARAM",$scope.urlParam)
        /** Get Data Pengguna */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
         console.log('Result Data Detail SKPD');
@@ -20,7 +21,7 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
             console.log(result);
         }
     });
-
+    
     /** Load Kas */
     
     globalService.serviceGetData(`/blud-resource-server/api/kasController/findAll`, {
@@ -33,7 +34,7 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
         if (result.status === 200) {
         } else {
             console.log('Response Result Load Kas');
-            console.log(result);
+
         }
     });
 
@@ -62,10 +63,12 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
         switch (path) {
             case 'Kas':
                 // $location.search('idDpt', valueDpt.idTrx);
+               
                 $location.path('/persetujuan/DetailKasPersetujuan');
                 break;
             case 'Komponen':
                 // $location.search('idDpt', valueDpt.idTrx);
+                $scope.urlParam
                 $location.path('persetujuan/DetailKomponenPersetujuan');
                 break;
         }
