@@ -1,0 +1,148 @@
+<div ng-controller="DetailSkpdPersetujuanController as List">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="tambahForm" ng-submit="saveKegiatan(tambahForm)">
+                        <div class="card">
+                            <div class="card-body" id="collapseExample1">
+        
+                                <div class="border rounded">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <small class="text-red">Batas Akhir Pengisian: -- </small>
+                                        </div>
+                                        <div class="form-group">
+                                            <strong> <u> Data Kegiatan </u></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 3px !important;">
+                                        <div class="col-md-6">
+                                            <div class="form-group row col-md-12">
+                                                <label class="col-md-4 col-form-label">Urusan <sup
+                                                        style="color: red;">(*)</sup></label>
+                                                <div class="row col-md-8">
+                                                    <div class="input-group input-group-prepend">
+                                                        <input readonly type="text" class="form-control" name="urusan"
+                                                               id="urusan"
+                                                               ng-model="formTambahKegiatan.urusan.namaUrusan"
+                                                               ng-class="{'is-invalid': tambahForm.urusan.$error.required && submitted}"
+                                                               required>
+                                                        <div class="input-group-prepend">
+                                                            <button type="button" class="btn btn-success"
+                                                                    data-toggle="modal" data-target="#modalUrusan"
+                                                                    ng-click="openUrusanModal()"><i
+                                                                    class="fa fa-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <span class="input-group" style="color:red"
+                                                          ng-show="tambahForm.urusan.$invalid && submitted">
+                                                <small>
+                                                    <span ng-show="tambahForm.urusan.$error.required">Urusan harus diisi.</span>
+                                                </small>
+                                            </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row col-md-12">
+                                                <label class="col-md-4 col-form-label">Program <sup
+                                                        style="color: red;">(*)</sup></label>
+                                                <div class="row col-md-8">
+                                                    <div class="input-group input-group-prepend">
+                                                        <input readonly type="text" class="form-control" name="program"
+                                                               id="program"
+                                                               ng-model="formTambahKegiatan.program.namaProgram"
+                                                               ng-class="{'is-invalid': tambahForm.program.$error.required && submitted}"
+                                                               required
+                                                               oninvalid="this.setCustomValidity('Isian ini wajib diisi')"/>
+                                                        <div class="input-group-prepend">
+                                                            <button type="button" class="btn btn-success"
+                                                                    data-toggle="modal" data-target="#modalProgram"
+                                                                    ng-click="openProgramModal()"><i
+                                                                    class="fa fa-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <span class="input-group" style="color:red"
+                                                          ng-show="tambahForm.program.$invalid && submitted">
+                                                <small>
+                                                    <span ng-show="tambahForm.program.$error.required">Program harus diisi.</span>
+                                                </small>
+                                            </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row col-md-12">
+                                                <label class="col-md-4 col-form-label">No. Kegiatan <sup
+                                                        style="color: red;">(*)</sup></label>
+                                                <div class="row col-md-8">
+                                                    <input readonly type="text" class="form-control" name="noKegiatan"
+                                                           id="noKegiatan"
+                                                           ng-model="formTambahKegiatan.kodeKegiatan">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row col-md-12">
+                                                <label class="col-md-4 col-form-label">Nama Kegiatan <sup
+                                                        style="color: red;">(*)</sup></label>
+                                                <div class="row col-md-8">
+                                                    <input type="text" class="form-control" name="namaKegiatan"
+                                                           id="namaKegiatan"
+                                                           ng-model="formTambahKegiatan.namaKegiatan"
+                                                           ng-class="{'is-invalid': tambahForm.namaKegiatan.$error.required && submitted}"
+                                                           required>
+                                                    <span class="input-group" style="color:red"
+                                                          ng-show="tambahForm.namaKegiatan.$invalid && submitted">
+                                                <small>
+                                                    <span ng-show="tambahForm.namaKegiatan.$error.required">Nama Kegiatan harus diisi.</span>
+                                                </small>
+                                            </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <br>
+    
+                                <div class="form-group row col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 ">
+                                    <div class="col-md-6"><strong> <u> Data Kinerja </u> </strong></div>
+                                </div>
+    
+                                <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
+                                     style="margin-top: 13px">
+                                    <table datatable="ng" dt-options="dtOptionsKinerja" dt-column-defs="dtColumnDefs"
+                                           dt-instance="dtInstanceKinerja"
+                                           class="table table-bordered table-striped row-border hover rounded">
+                                        <thead>
+                                        <tr class="text-center">
+                                            <th>Kode Indikator</th>
+                                            <th>No Urut</th>
+                                            <th>Tolak Ukur</th>
+                                            <th>Target Kinerja</th>
+                                         
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="val in ::listKinerja">
+                                            <td>{{val.kodeIndikator}}</td>
+                                            <td class="text-center">{{val.noUrut}}</td>
+                                            <td>{{val.keteranganTolakUkur}}</td>
+                                            <td class="text-right">{{val.keteranganTargetKinerja}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button type="button" class="btn btn-secondary rounded" title="Kembali"
+                                        ng-click="kembaliKeListKegiatan()">Kembali
+                                </button>
+                                <button type="button" class="btn btn-primary rounded" title="Simpan"
+                                        ng-click="simpanTabKegiatan()">Simpan
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--/.col-->
+            </div>
+    
+        </div>
+        <toaster-container toaster-options="{'close-button': true}"></toaster-container>
+</div>

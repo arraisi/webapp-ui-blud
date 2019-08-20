@@ -1,0 +1,64 @@
+<div ng-controller="DetailKegiatanPersetujuanController as List">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card" >
+                    <div class="card-body" id="collapseExample1">
+                        <form>
+                            <div class="row col-md-12">
+                                <input type="text" class="form-control col-md-3" name="noSkpd" id="noSkpd"
+                                       placeholder="No. SKPD" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-3" name="namaSkpd" id="namaSkpd"
+                                       placeholder="Nama SKPD" style="margin-right: 10px">
+                                <input type="text" class="form-control col-md-3" name="nilaiAnggaran" id="nilaiAnggaran"
+                                       placeholder="Nilai Anggaran" style="margin-right: 10px">
+                                <button type="submit" class="btn btn-success col-md-1 rounded"><i class="fa fa-search"></i>
+                                    Cari
+                                </button>
+                            </div>
+                        </form>
+                        <div class="form-group" style="margin-top: 13px">
+                            <table class="table table-bordered table-striped rounded">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>No</th>
+                                        <th>No Kegiatan</th>
+                                        <th>Nama Kegiatan</th>
+                                        <th>Nilai Anggaran</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="data in valData">
+                                        <td>123456789</td>
+                                        <td>{{data.cakun}}</td>
+                                        <td>{{data.nakun}}</td>
+                                        <!-- <td class="text-right" >{{data.vkasAudited | currency: "Rp. " : 0}}</td> -->
+                                        <td>
+                                            <div class="controls col-9 float-right">
+                                                <div class="input-prepend input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Rp</span>
+                                                    </div>
+                                                    <input type="text" class="form-control text-right" input-currency
+                                                        ng-readonly="!readonlySaldo" ng-model="data.vkasAudited">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn  rounded" ng-click="goToDetail(data)"> <i
+                                                    class="fa fa-list"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <toaster-container toaster-options="{'close-button': true}"></toaster-container>
+</div>

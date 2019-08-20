@@ -1,8 +1,8 @@
 angular
     .module('app', ['toaster', 'ngAnimate', 'datatables'])
-    .controller('DetailKasPersetujuanController', DetailKasPersetujuanController);
+    .controller('DetailPendapatanPersetujuanController', DetailPendapatanPersetujuanController);
 
-function DetailKasPersetujuanController($scope,$location,globalService) {
+function DetailPendapatanPersetujuanController($scope,$location,globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
     $scope.urlParam =  $location.search().idTmrbakasBlud

@@ -1,8 +1,8 @@
 angular
     .module('app', ['toaster', 'ngAnimate', 'datatables'])
-    .controller('DetailKasPersetujuanController', DetailKasPersetujuanController);
+    .controller('DetailSkpdPersetujuanController', DetailSkpdPersetujuanController);
 
-function DetailKasPersetujuanController($scope,$location,globalService) {
+function DetailSkpdPersetujuanController($scope,$location,globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
     $scope.urlParam =  $location.search().idTmrbakasBlud
@@ -57,6 +57,14 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
         $location.url($location.path());
         $location.path('/ListPersetujuan');
     };
+
+    $scope.goToDetail = function (data) {
+        console.log(data)
+        $location.search('idTmrbakasBlud', data.idTmrbakasBlud);
+        $location.path('/persetujuan/DetailKasPersetujuan/DetailSkpd');
+    };
+
+    
 
     $scope.doGoTo = function (path) {
         console.log(path);

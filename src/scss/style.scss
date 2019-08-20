@@ -27,7 +27,7 @@
   max-width: 80%;
 }
 
-.overflow-datatable{
+.overflow-datatable {
   overflow-x: auto;
 }
 
@@ -197,6 +197,54 @@ required {
   border-style: solid;
   border-width: 1px;
 }
+
+// For Nav top baru
+
+ul.topnav-baru {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+
+}
+
+ul.topnav-baru li {
+  float: left;
+  color: white;
+  text-align: center;
+}
+
+ul.topnav-baru li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.topnav-baru li a:hover:not(.active) {
+  background-color: rgb(9, 100, 190);
+  color: white;
+}
+
+ul.topnav-baru li a.active {
+  background-color: rgb(6, 91, 177);
+  color: white;
+}
+
+ul.topnav-baru li.right {
+  float: right;
+}
+
+@media screen and (max-width: 600px) {
+  ul.topnav-baru li.right,
+  ul.topnav-baru li {
+    float: none;
+  }
+}
+
 
 /* MODAL STYLES
 -------------------------------*/

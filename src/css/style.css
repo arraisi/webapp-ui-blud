@@ -12872,5 +12872,41 @@ required {
   border-style: solid;
   border-width: 1px; }
 
+ul.topnav-baru {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: black; }
+
+ul.topnav-baru li {
+  float: left;
+  color: white;
+  text-align: center; }
+
+ul.topnav-baru li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none; }
+
+ul.topnav-baru li a:hover:not(.active) {
+  background-color: #0964be;
+  color: white; }
+
+ul.topnav-baru li a.active {
+  background-color: #065bb1;
+  color: white; }
+
+ul.topnav-baru li.right {
+  float: right; }
+
+@media screen and (max-width: 600px) {
+  ul.topnav-baru li.right,
+  ul.topnav-baru li {
+    float: none; } }
+
 /* MODAL STYLES
 -------------------------------*/

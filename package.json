@@ -27,6 +27,7 @@
     "moment": "^2.24.0",
     "ng-mask": "^3.1.1",
     "ngstorage": "^0.3.11",
+    "numeral": "^2.0.6",
     "oclazyload": "^1.1.0",
     "popper.js": "1.12.9",
     "proxy-middleware": "^0.15.0",
