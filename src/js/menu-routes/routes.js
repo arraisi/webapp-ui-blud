@@ -92,7 +92,51 @@ angular
                     }]
                 }
             })
-            
+            .state('app.DetailPendapatanPersetujuan', {
+                url: '/persetujuan/DetailPendapatanPersetujuan',
+                templateUrl: 'views/pages/persetujuan-view/DetailPendapatanPersetujuan.html',
+                ncyBreadcrumb: {
+                    label: 'DetailPendapatanPersetujuan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/DetailPendapatanPersetujuan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.DetailKegiatanPersetujuan', {
+                url: '/persetujuan/DetailKegiatanPersetujuan',
+                templateUrl: 'views/pages/persetujuan-view/DetailKegiatanPersetujuan.html',
+                ncyBreadcrumb: {
+                    label: 'DetailKegiatanPersetujuan'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/DetailKegiatanPersetujuan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.DetailSkpd', {
+                url: '/persetujuan/DetailKegiatanPersetujuan/DetailSkpd',
+                templateUrl: 'views/pages/persetujuan-view/DetailSkpd.html',
+                ncyBreadcrumb: {
+                    label: 'DetailSkpd'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/DetailSkpd.js']
+                        });
+                    }]
+                }
+            })
             .state('app.DetailKomponenPersetujuan', {
                 url: '/persetujuan/DetailKomponenPersetujuan',
                 templateUrl: 'views/pages/persetujuan-view/DetailKomponenPersetujuan.html',

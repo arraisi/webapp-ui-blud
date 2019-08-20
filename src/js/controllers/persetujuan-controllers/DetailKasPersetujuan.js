@@ -63,8 +63,19 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
         switch (path) {
             case 'Kas':
                 // $location.search('idDpt', valueDpt.idTrx);
-               
                 $location.path('/persetujuan/DetailKasPersetujuan');
+                break;
+            case 'Pendapatan':
+                $scope.urlParam   
+                $location.path('/persetujuan/DetailPendapatanPersetujuan');
+                break;
+            case 'Rincian':
+                $scope.urlParam   
+                $location.path('/persetujuan/DetailRincianPersetujuan');
+                break;
+            case 'Kegiatan':
+                $scope.urlParam   
+                $location.path('/persetujuan/DetailKegiatanPersetujuan');
                 break;
             case 'Komponen':
                 // $location.search('idDpt', valueDpt.idTrx);
