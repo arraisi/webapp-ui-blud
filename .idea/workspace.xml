@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-rpa-komponen.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-rpa-komponen.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +62,7 @@
       <workItem from="1565925019137" duration="264000" />
       <workItem from="1565925987101" duration="5063000" />
       <workItem from="1565937258157" duration="7164000" />
-      <workItem from="1566188409960" duration="1093000" />
+      <workItem from="1566188409960" duration="1482000" />
     </task>
     <servers />
   </component>
