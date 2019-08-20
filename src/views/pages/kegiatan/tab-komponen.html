@@ -17,93 +17,97 @@
                             <label for="tab3">RPA PER KOMPONEN</label>
                         </div>
 
-                        <div class="border rounded">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <strong> <u> Data Kegiatan </u> </strong>
+                        <form name="formInfoKegiatan">
+
+                            <div class="border rounded">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <strong> <u> Data Kegiatan </u> </strong>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row" style="margin-bottom: 3px !important;">
-                                <div class="col-6">
-                                    <div class="form-group row col-12">
-                                        <label for="urusan" class="col-4 col-form-label">Urusan <sup
-                                                style="color: red;">(*)</sup>
-                                        </label>
-                                        <div class="col-8">
-                                            <div class="input-group input-group-prepend">
-                                                <input readonly type="text" class="form-control" name="urusan"
-                                                    id="urusan" ng-model="formTambahKegiatan.urusan.namaUrusan">
+                                <div class="row" style="margin-bottom: 3px !important;">
+                                    <div class="col-6">
+                                        <div class="form-group row col-12">
+                                            <label for="urusan" class="col-4 col-form-label">Urusan <sup
+                                                    style="color: red;">(*)</sup>
+                                            </label>
+                                            <div class="col-8">
+                                                <div class="input-group input-group-prepend">
+                                                    <input readonly type="text" class="form-control" name="urusan"
+                                                        id="urusan" ng-model="formInfoKegiatan.urusan.namaUrusan">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-12">
+                                            <label for="program" class="col-4 col-form-label">Program <sup
+                                                    style="color: red;">(*)</sup>
+                                            </label>
+                                            <div class="col-8">
+                                                <div class="input-group input-group-prepend">
+                                                    <input readonly type="text" class="form-control" name="program"
+                                                        id="program" ng-model="formInfoKegiatan.program.namaProgram" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-12">
+                                            <label for="noKegiatan" class="col-4 col-form-label">No. Kegiatan <sup
+                                                    style="color: red;">(*)</sup>
+                                            </label>
+                                            <div class="col-8">
+                                                <input readonly type="text" class="form-control" name="noKegiatan"
+                                                    id="noKegiatan" ng-model="formInfoKegiatan.kodeKegiatan">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-12">
+                                            <label for="namaKegiatan" class="col-4 col-form-label">Nama Kegiatan <sup
+                                                    style="color: red;">(*)</sup>
+                                            </label>
+                                            <div class="col-8">
+                                                <input readonly type="text" class="form-control" name="namaKegiatan"
+                                                    id="namaKegiatan" ng-model="formInfoKegiatan.namaKegiatan">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row col-12">
-                                        <label for="program" class="col-4 col-form-label">Program <sup
-                                                style="color: red;">(*)</sup>
-                                        </label>
-                                        <div class="col-8">
-                                            <div class="input-group input-group-prepend">
-                                                <input readonly type="text" class="form-control" name="program"
-                                                    id="program" ng-model="formTambahKegiatan.program.namaProgram" />
+                                    <div class="col-6">
+                                        <div class="form-group row col-12">
+                                            <label for="paguKegiatan" class="col-4 col-form-label">
+                                                Pagu Kegiatan
+                                            </label>
+                                            <div class="col-8">
+                                                <input type="text" ng-model="formInfoKegiatan.anggaranDpa" readonly name="paguKegiatan" id="paguKegiatan"
+                                                    class="form-control">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row col-12">
-                                        <label for="noKegiatan" class="col-4 col-form-label">No. Kegiatan <sup
-                                                style="color: red;">(*)</sup>
-                                        </label>
-                                        <div class="col-8">
-                                            <input readonly type="text" class="form-control" name="noKegiatan"
-                                                id="noKegiatan" ng-model="formTambahKegiatan.kodeKegiatan">
+                                        <div class="form-group row col-12">
+                                            <label for="belanjaPegawai" class="col-4 col-form-label"> Belanja Pegawai
+                                            </label>
+                                            <div class="col-8">
+                                                <input type="text" readonly name="belanjaPegawai" id="belanjaPegawai"
+                                                    class="form-control">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row col-12">
-                                        <label for="namaKegiatan" class="col-4 col-form-label">Nama Kegiatan <sup
-                                                style="color: red;">(*)</sup>
-                                        </label>
-                                        <div class="col-8">
-                                            <input readonly type="text" class="form-control" name="namaKegiatan"
-                                                id="namaKegiatan" ng-model="formTambahKegiatan.namaKegiatan">
+                                        <div class="form-group row col-12">
+                                            <label for="belanjaBarangJasa" class="col-4 col-form-label"> Belanja Barang
+                                                &
+                                                Jasa
+                                            </label>
+                                            <div class="col-8">
+                                                <input type="text" readonly name="belanjaBarangJasa"
+                                                    id="belanjaBarangJasa" class="form-control">
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group row col-12">
-                                        <label for="paguKegiatan" class="col-4 col-form-label">
-                                            Pagu Kegiatan
-                                        </label>
-                                        <div class="col-8">
-                                            <input type="text" readonly name="paguKegiatan" id="paguKegiatan"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row col-12">
-                                        <label for="belanjaPegawai" class="col-4 col-form-label"> Belanja Pegawai
-                                        </label>
-                                        <div class="col-8">
-                                            <input type="text" readonly name="belanjaPegawai" id="belanjaPegawai"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row col-12">
-                                        <label for="belanjaBarangJasa" class="col-4 col-form-label"> Belanja Barang &
-                                            Jasa
-                                        </label>
-                                        <div class="col-8">
-                                            <input type="text" readonly name="belanjaBarangJasa" id="belanjaBarangJasa"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row col-12">
-                                        <label for="belanjaModal" class="col-4 col-form-label"> Belanja Modal
-                                        </label>
-                                        <div class="col-8">
-                                            <input type="text" readonly name="belanjaModal" id="belanjaModal"
-                                                class="form-control">
+                                        <div class="form-group row col-12">
+                                            <label for="belanjaModal" class="col-4 col-form-label"> Belanja Modal
+                                            </label>
+                                            <div class="col-8">
+                                                <input type="text" readonly name="belanjaModal" id="belanjaModal"
+                                                    class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
 
                         <br>
 
@@ -115,16 +119,16 @@
 
                         <div class="border rounded">
                             <div class="tab-wrap">
-                                <input type="radio" id="tab1" name="tabGroup1" class="tab"
-                                    ng-click="tabGoTo('kegiatan')" checked>
-                                <label for="tab1">Belanja Pegawai</label>
+                                <input type="radio" id="tabPeg" name="tabBelanja" class="tab" ng-click="switchTab(1)"
+                                    checked>
+                                <label for="tabPeg">Belanja Pegawai</label>
 
-                                <input type="radio" id="tab2" name="tabGroup1" class="tab"
-                                    ng-click="tabGoTo('komponen')">
-                                <label for="tab2">Belanja Barang & Jasa</label>
+                                <input type="radio" id="tabBarang" name="tabBelanja" class="tab"
+                                    ng-click="switchTab(2)">
+                                <label for="tabBarang">Belanja Barang & Jasa</label>
 
-                                <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="tabGoTo('rpa')">
-                                <label for="tab3">Belanja Modal</label>
+                                <input type="radio" id="tabModal" name="tabBelanja" class="tab" ng-click="switchTab(3)">
+                                <label for="tabModal">Belanja Modal</label>
                             </div>
 
                             <div class="col-12 text-right">
@@ -135,55 +139,10 @@
 
                             <br>
 
-                            <!-- <div class="form-group" style="margin-top: 13px">
-                                        <table class="table table-bordered table-striped rounded">
-                                            <thead>
-                                                <tr class="text-center">
-                                                    <th>No</th>
-                                                    <th>No Kegiatan</th>
-                                                    <th>Nama Kegiatan</th>
-                                                    <th>Nilai Anggaran</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td>7.14.03.001</td>
-                                                    <td>Penyuluhan Ketenagakerjaan Masyarakat</td>
-                                                    <td class="text-right">Rp. 20.524.000</td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-link" title="Sunting"><i
-                                                                class="fa fa-edit"></i></button>
-                                                        <button class="btn btn-link" title="Detail"><i
-                                                                class="fa fa-list"></i></button>
-                                                        <button class="btn btn-link" title="Hapus"><i
-                                                                class="fa fa-trash"></i></button>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">2</td>
-                                                    <td>7.14.03.002</td>
-                                                    <td>Penyediaan Alat Kedokteran Gigi</td>
-                                                    <td class="text-right">Rp. 174.550.000</td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-link" title="Sunting"><i
-                                                                class="fa fa-edit"></i></button>
-                                                        <button class="btn btn-link" title="Detail"><i
-                                                                class="fa fa-list"></i></button>
-                                                        <button class="btn btn-link" title="Hapus"><i
-                                                                class="fa fa-trash"></i></button>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div> -->
                             <div class="card-body collapse show text-center" id="collapseExample1">
                                 <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable">
                                     <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
-                                        dt-instance="dtIntanceBelanjaPegawai"
+                                        dt-instance="dtInstanceBelanja"
                                         class="table table-bordered table-striped row-border hover rounded">
                                         <thead>
                                             <tr>
@@ -203,28 +162,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="val in ::belanjaPegawaiList">
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <tr ng-repeat="belanja in ::belanjaList">
+                                                <td>{{belanja.idAnggaranNoUrut}}</td>
+                                                <td>{{belanja.kodeAkun}}</td>
+                                                <td>{{belanja.kodeKomponen}}</td>
+                                                <td>{{belanja.namaKomponen}}</td>
+                                                <td>{{belanja.entryAnggaranRinci}}</td>
+                                                <td>{{belanja.spek}}</td>
+                                                <td>{{belanja.merk}}</td>
+                                                <td>{{belanja.volume}}</td>
+                                                <td>{{belanja.koefisien}}</td>
+                                                <td>{{belanja.satuan}}</td>
+                                                <td>{{belanja.komponenHarga}}</td>
+                                                <td>{{belanja.anggaranDpa}}</td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm" role="group"
                                                         aria-label="Button group with nested dropdown">
                                                         <button id="btnDelete" class="btn btn-link"
-                                                            style="color: #000000" ng-click="openModalDelete()">
+                                                            style="color: #000000" data-toggle="modal"
+                                                            data-target="#modalDeleteComponent">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                         <button id="btnEdit" class="btn btn-link" style="color: #000000"
-                                                            ng-click="editData(val.id)">
+                                                            data-toggle="modal" data-target="#modalSuntingKomponen"
+                                                            ng-click="getById(belanja)">
                                                             <i class="fa fa-edit"></i>
                                                         </button>
                                                     </div>
@@ -278,10 +239,8 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="val in ::tambahKomponenList">
-                                    <td><input type="checkbox"
-                                        ng-value=val.idBas
-                                        ng-model="val.selected"
-                                        name="pilihId" id="pilihId"></td>
+                                    <td><input type="checkbox" ng-value=val.idBas ng-model="val.selected" name="pilihId"
+                                            id="pilihId"></td>
                                     <td>{{val.kodeAkun}}</td>
                                     <td>{{val.kodeKomponen}}</td>
                                     <td>{{val.namaAkun}}</td>
@@ -300,7 +259,7 @@
                         Batal
                     </button>
                     <button type="button" class="btn btn-success rounded" data-dismiss="modal"
-                        data-target="#modalTambahKomponen" ng-click="getKomponenId()">
+                        data-target="#modalTambahKomponen" ng-click="save()">
                         Kirim
                     </button>
                 </div>
@@ -311,7 +270,7 @@
 
     <!-- Modal Sunting Komponen -->
     <div id="modalSuntingKomponen" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -321,75 +280,141 @@
                     </button>
                 </div>
 
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-3">
-                            <label for="namaAkun" class="col-form-label">Nama Akun</label>
-                            <label for="kodeAkun" class="col-form-label">Kode Akun</label>
-                            <label for="kodeKomponen" class="col-form-label">Kode Komponen</label>
-                            <label for="namaKomponen" class="col-form-label">Nama Komponen</label>
-                        </div>
-                        <div class="col-3">
+                <form name="formSunting">
 
-                        </div>
-                        <div class="col-3">
-                            <label for="spek" class="col-form-label">Spek</label>
-                            <label for="merk" class="col-form-label">Merk</label>
-                            <label for="satuan" class="col-form-label">Satuan</label>
-                            <label for="harga" class="col-form-label">Harga</label>
-                        </div>
-                        <div class="col-3">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-2"><span>Nama Akun</span></div>
+                            <div class="col-4"><span>{{formSuntingKomponen.namaAkun}}</span></div>
 
+                            <div class="col-2"><span>Spek</span></div>
+                            <div class="col-4"><span>{{formSuntingKomponen.spek}}</span></div>
+
+                            <div class="col-2"><span>Kode Akun</span></div>
+                            <div class="col-4"><span>{{formSuntingKomponen.kodeAkun}}</span></div>
+
+                            <div class="col-2"><span>Merk</span></div>
+                            <div class="col-4"><span>{{formSuntingKomponen.merk}}</span></div>
+
+                            <div class="col-2"><span>Kode Komponen</span></div>
+                            <div class="col-4"><span>{{formSuntingKomponen.kodeKomponen}}</span></div>
+
+                            <div class="col-2"><span>Satuan</span></div>
+                            <div class="col-4"><span>{{formSuntingKomponen.satuan}}</span></div>
+
+                            <div class="col-2"><span>Nama Komponen</span></div>
+                            <div class="col-4"><span>{{formSuntingKomponen.namaKomponen}}</span></div>
+
+                            <div class="col-2"><span>Harga</span></div>
+                            <div class="col-4"><span>{{formSuntingKomponen.harga}}</span></div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="vol" class="col-form-label">Volume</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="vol" id="vol" ng-model="formSuntingKomponen.volume"
+                                    readonly class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="vol3" class="col-form-label">Volume 3</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="vol3" id="vol3" ng-model="formSuntingKomponen.volume3"
+                                ng-blur="setKoefisien()" class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="koef" class="col-form-label">Koefisien</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="koef" id="koef" ng-model="formSuntingKomponen.koefisien"
+                                    readonly class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="satuan3" class="col-form-label">Satuan 3</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="satuan3" id="satuan3" ng-model="formSuntingKomponen.satuan3"
+                                ng-blur="setKoefisien()" class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="vol1" class="col-form-label">Volume 1</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="vol1" id="vol1" ng-model="formSuntingKomponen.volume1" ng-blur="setKoefisien()"
+                                    class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="vol4" class="col-form-label">Volume 4</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="vol4" id="vol4" ng-model="formSuntingKomponen.volume4"
+                                ng-blur="setKoefisien()" class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="satuan1" class="col-form-label">Satuan 1</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="satuan1" id="satuan1" ng-model="formSuntingKomponen.satuan1" ng-blur="setKoefisien()"
+                                    class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="satuan4" class="col-form-label">Satuan 4</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="satuan4" id="satuan4" ng-model="formSuntingKomponen.satuan4"
+                                ng-blur="setKoefisien()" class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="vol2" class="col-form-label">Volume 2</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="vol2" id="vol2" ng-model="formSuntingKomponen.volume2" ng-blur="setKoefisien()"
+                                    class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="keterangan" class="col-form-label">Keterangan</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="keterangan" id="keterangan"
+                                    ng-model="formSuntingKomponen.keterangan" class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="satuan2" class="col-form-label">Satuan 2</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="satuan2" id="satuan2" ng-model="formSuntingKomponen.satuan2" ng-blur="setKoefisien()"
+                                    class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="pajak" class="col-form-label">Pajak</label>
+                            </div>
+                            <div class="col-4" ng-show="formSuntingKomponen.pajak == 0">
+                                <input type="text" placeholder="dalam persen(%)" name="pajak" id="pajak" ng-model="formSuntingKomponen.nilaiPajak" ng-blur="setKoefisien()"
+                                    class="form-control pb-1">
+                            </div>
+                            <div class="col-2">
+                                <label for="totalHarga" class="col-form-label">Total Harga</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="totalHarga" id="totalHarga"
+                                    ng-model="formSuntingKomponen.totalHarga" class="form-control pb-1">
+                            </div>
                         </div>
                     </div>
-                    <hr>
-
-                    <div class="row">
-
-                        <div class="col-2">
-                            <label for="vol" class="col-form-label">Volume</label>
-                            <label for="koef" class="col-form-label">Koefisien</label>
-                            <label for="vol1" class="col-form-label">Volume 1</label>
-                            <label for="satuan1" class="col-form-label">Satuan 1</label>
-                            <label for="vol2" class="col-form-label">Volume 2</label>
-                            <label for="satuan2" class="col-form-label">Satuan 2</label>
-                        </div>
-                        <div class="col-4">
-                            <input type="text" name="vol" id="vol" class="form-control">
-                            <input type="text" name="koef" id="koef" class="form-control">
-                            <input type="text" name="vol1" id="vol1" class="form-control">
-                            <input type="text" name="satuan1" id="satuan1" class="form-control">
-                            <input type="text" name="vol2" id="vol2" class="form-control">
-                            <input type="text" name="satuan2" id="satuan2" class="form-control">
-                        </div>
-                        <div class="col-2">
-                            <label for="vol3" class="col-form-label">Volume 3</label>
-                            <label for="satuan3" class="col-form-label">Satuan 3</label>
-                            <label for="vol4" class="col-form-label">Volume 4</label>
-                            <label for="satuan4" class="col-form-label">Satuan 4</label>
-                            <label for="keterangan" class="col-form-label">Keterangan</label>
-                            <label for="totalHarga" class="col-form-label">Total Harga</label>
-                        </div>
-                        <div class="col-4">
-                            <input type="text" name="vol3" id="vol3" class="form-control">
-                            <input type="text" name="satuan3" id="satuan3" class="form-control">
-                            <input type="text" name="vol4" id="vol4" class="form-control">
-                            <input type="text" name="satuan4" id="satuan4" class="form-control">
-                            <input type="text" name="keterangan" id="keterangan" class="form-control">
-                            <input type="text" name="totalHarga" id="totalHarga" class="form-control">
-                        </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalSuntingKomponen">
+                            Batal
+                        </button>
+                        <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                            data-target="#modalSuntingKomponen" ng-click="editVolume()">
+                            Simpan
+                        </button>
                     </div>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
-                        data-target="#modalSuntingKomponen">
-                        Batal
-                    </button>
-                    <button type="button" class="btn btn-success rounded" data-dismiss="modal"
-                        data-target="#modalSuntingKomponen">
-                        Simpan
-                    </button>
-                </div>
+                </form>
             </div>
 
         </div>
