@@ -115,12 +115,20 @@ function LoginFormController($scope, $http, $location, authenticationService, to
     $scope.getTahunAnggaran = function () {
         authenticationService.getTahunAnggaran($scope.loginForm.username, function (result) {
             console.log(result);
-            $scope.listTahunAnggaran = result.data;
-            if (result.status == 500) {
+            if (result.status == 200) {
+                $scope.listTahunAnggaran = result.data;
+            } else if (result.status == 204) {
                 toaster.pop({
                     type: 'warning',
-                    title: 'Data tidak terdaftar',
-                    body: 'NRK tidak terdaftar',
+                    title: 'Tahun Anggaran',
+                    body: `Tahun Anggaran Tidak Ditemukan Untuk NRK ${$scope.loginForm.username}`,
+                    timeout: 5000
+                });
+            } else {
+                toaster.pop({
+                    type: 'warning',
+                    title: 'Terjadi Kesalahan',
+                    body: `NRK ${$scope.loginForm.username} Tidak Ditemukan / Terjadi Kesalahan Lainnya, Silahkan Hubungi Admin`,
                     timeout: 5000
                 });
             }
