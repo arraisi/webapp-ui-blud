@@ -192,7 +192,7 @@ function TabKomponenController($scope, $location, toaster, globalService) {
                 $scope.anggaran = response.data;        
             });
         }
-    }
+    };
 
     /** Open Tambah Komponen Modal */
     $scope.showTambahModal = function () {
@@ -242,7 +242,7 @@ function TabKomponenController($scope, $location, toaster, globalService) {
             });
         }
         
-    }
+    };
 
     $scope.formSuntingKomponen = {
         id: null,
@@ -268,7 +268,7 @@ function TabKomponenController($scope, $location, toaster, globalService) {
         pajak: null,
         nilaiPajak: null,
         totalHarga: null
-    }
+    };
 
     $scope.getById = function(val) {
         globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/get-by-id/${val.id}`, null, function (result) {
