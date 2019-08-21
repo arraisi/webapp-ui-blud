@@ -5,29 +5,32 @@ angular
 // Function Untuk Kontroller TabKomponenController
 function TabRpaKomponenController($scope, $location, toaster, globalService) {
 
+    $scope.accounting = accounting;
+
     // ======== Awal Init Porject
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
 
     /** DT Options For Datatables */
-    $scope.dtInstance = {};
+    // DT Options
+    $scope.dtInstanceTambahKomponen = {};
+    $scope.dtInstanceBelanja = {};
     $scope.dtOptions = {
         paginationType: 'full_numbers',
         searching: true,
         responsive: false,
-        dom: "Bft<'row'<'col-sm-12'ip><'col-sm-12'l>>",
         language: {
-            "sEmptyTable": "Tidak Ada Data Yang Ditemukan",
+            "sEmptyTable": "Tidak ada data yang ditemukan",
             "sInfo": "Menunjukan _START_ sampai _END_ dari _TOTAL_ data",
             "sInfoEmpty": "Menunjukan 0 sampai 0 dari 0 data",
-            "sInfoFiltered": "(filter dari _MAX_ total data)",
+            "sInfoFiltered": "(filtered from _MAX_ total entries)",
             "sInfoPostFix": "",
             "sInfoThousands": ",",
-            "sLengthMenu": "Menunjukkan _MENU_ data",
+            "sLengthMenu": "Menunjukan _MENU_ data",
             "sLoadingRecords": "Memuat...",
-            "sProcessing": "Mengolah...",
+            "sProcessing": "Memproses...",
             "sSearch": "Cari:",
-            "sZeroRecords": "Tidak ada data yang sesuai",
+            "sZeroRecords": "Tidak ada data yang cocok",
             "oPaginate": {
                 "sFirst": "Pertama",
                 "sLast": "Terakhir",
@@ -40,6 +43,8 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
             }
         }
     };
+
+    $scope.belanjaList = [];
 
     const kegiatanId = $location.search().idKegiatan;
     if (kegiatanId) {
@@ -106,12 +111,28 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
 
     /** Form Edit RPA */
     $scope.formEditRpa = {
+        anggaranDpa: null,
+        anggaranTapd: null,
+        entryAnggaranRinci: null,
+        entryAnggaranSpesifikasi: null,
+        id: null,
+        idAnggaranNoUrut: null,
+        idBas: null,
+        idBasKomponen: null,
+        idKegiatan: null,
+        idPenggunaRekam: null,
+        idPenggunaUbah: null,
+        idSkpd: null,
         kodeAkun: null,
+        kodeKegiatan: null,
         kodeKomponen: null,
+        koefisien: null,
+        komponenHarga: null,
+        merk: null,
         namaKomponen: null,
-        nilai: null,
-        sisa: null,
-        jenis: null,
+        pajak: null,
+        rmks: null,
+        rmksSubrincian: null,
         rpaBulan1: null,
         rpaBulan2: null,
         rpaBulan3: null,
@@ -124,6 +145,46 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
         rpaBulan10: null,
         rpaBulan11: null,
         rpaBulan12: null,
+        satuan1: null,
+        satuan2: null,
+        satuan3: null,
+        satuan4: null,
+        spek: null,
+        swakelola: null,
+        tahunAnggaran: null,
+        tglPenggunaRekam: null,
+        tglPenggunaUbah: null,
+        volume: null,
+        volume1: null,
+        volume2: null,
+        volume3: null,
+        volume4: null
+    };
+
+    $scope.formSuntingKomponen = {
+        id: null,
+        namaAkun: null,
+        kodeAkun: null,
+        kodeKomponen: null,
+        namaKomponen: null,
+        spek: null,
+        merk: null,
+        satuan: null,
+        harga: null,
+        volume: 1,
+        koefisien: null,
+        volume1: 1,
+        satuan1: null,
+        volume2: 1,
+        satuan2: null,
+        volume3: 1,
+        satuan3: null,
+        volume4: 1,
+        satuan4: null,
+        keterangan: null,
+        pajak: null,
+        nilaiPajak: null,
+        totalHarga: null
     };
 
     $scope.tabGoTo = function (jenisTab) {
@@ -161,6 +222,178 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
     $scope.simpanRpa = function () {
         console.log('Simpan RPA :');
         console.log($scope.formEditRpa);
+        globalService.servicePostData(`/blud-resource-server/api/komponen-belanja/rpa/update`, null, $scope.formEditRpa, function (result) {
+            console.log('Result Data Save RPA');
+            console.log(result.data);
+            if (result.status === 201) {
+                console.log('Response Save RPA');
+                console.log(result);
+                angular.element('#modalEditRpa').trigger('click');
+                toaster.pop({
+                    type: 'success',
+                    title: 'Berhasil',
+                    body: 'Berhasil Simpan Data RPA',
+                    timeout: 3000
+                });
+                rerenderRpaTable();
+            } else {
+                console.log('Response Error Save RPA');
+                console.log(result);
+                toaster.pop({
+                    type: 'warning',
+                    title: 'Gagal',
+                    body: 'Gagal Simpan Data RPA',
+                    timeout: 3000
+                });
+            }
+        });
+    };
+
+    $scope.getById = function (val) {
+        console.log("val edit RPA");
+        console.log(val);
+        globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/${val.id}`, null, function (result) {
+            console.log(result.data);
+            const data = result.data;
+            $scope.formEditRpa = data;
+            $scope.sisaAnggaran = $scope.formEditRpa.anggaranDpa - totalRpaBulanAdded();
+
+        });
+    };
+
+    $scope.switchTab = function (tabIndex) {
+        $scope.currentTabIndex = tabIndex;
+        if (tabIndex == 1) {
+            // load data for datatables tambah komponen belanja pegawai
+            globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/pegawai`, {
+                tahunAnggaran: $scope.tahun,
+                idSkpd: local.pengguna.skpdId
+            }, function (response) {
+                console.log(response);
+                $scope.tambahKomponenList = response.data;
+            });
+
+            // load data for datatables daftar komponen belanja pegawai
+            globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/pegawai`, {
+                idKegiatan: kegiatanId,
+                tahunAngg: $scope.tahun
+            }, function (response) {
+                console.log(response);
+                $scope.belanjaList = response.data;
+                $scope.dtInstanceBelanja.rerender();
+            });
+        } else if (tabIndex == 2) {
+            // load data for datatables tambah komponen belanja barang dan jasa
+            globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/barang`, {
+                tahunAnggaran: $scope.tahun,
+                idSkpd: local.pengguna.skpdId
+            }, function (response) {
+                console.log(response);
+                $scope.tambahKomponenList = response.data;
+            });
+
+            // load data for datatables daftar komponen belanja barang dan jasa
+            globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/barang`, {
+                idKegiatan: kegiatanId,
+                tahunAngg: $scope.tahun
+            }, function (response) {
+                console.log(response);
+                $scope.belanjaList = response.data;
+                $scope.dtInstanceBelanja.rerender();
+            });
+        } else if (tabIndex == 3) {
+            // load data for datatables tambah komponen belanja modal
+            globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/modal`, {
+                tahunAnggaran: $scope.tahun,
+                idSkpd: local.pengguna.skpdId
+            }, function (response) {
+                console.log(response);
+                $scope.tambahKomponenList = response.data;
+            });
+
+            // load data for datatables daftar komponen belanja modal
+            globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/modal`, {
+                idKegiatan: kegiatanId,
+                tahunAngg: $scope.tahun
+            }, function (response) {
+                console.log(response);
+                $scope.belanjaList = response.data;
+                $scope.dtInstanceBelanja.rerender();
+            });
+        }
+    };
+
+    $scope.kalkulasiSisaAnggaran = function () {
+        console.log('Total RPA BULAN');
+        console.log(totalRpaBulanAdded());
+        if (totalRpaBulanAdded()) {
+            const sisa = $scope.formEditRpa.anggaranDpa - totalRpaBulanAdded();
+            if (sisa < 0) {
+                toaster.pop({
+                    type: 'error',
+                    title: 'Anggaran',
+                    body: 'Sisa Anggaran Tidak Mencukupi',
+                    timeout: 5000
+                });
+                $scope.sisaAnggaranMinus = true;
+            } else {
+                $scope.sisaAnggaran = sisa;
+                $scope.sisaAnggaranMinus = false;
+            }
+        }
+    };
+
+    const totalRpaBulanAdded = function () {
+        console.log($scope.formEditRpa);
+        const b1 = $scope.formEditRpa.rpaBulan1 ? $scope.formEditRpa.rpaBulan1 : 0;
+        const b2 = $scope.formEditRpa.rpaBulan2 ? $scope.formEditRpa.rpaBulan2 : 0;
+        const b3 = $scope.formEditRpa.rpaBulan3 ? $scope.formEditRpa.rpaBulan3 : 0;
+        const b4 = $scope.formEditRpa.rpaBulan4 ? $scope.formEditRpa.rpaBulan4 : 0;
+        const b5 = $scope.formEditRpa.rpaBulan5 ? $scope.formEditRpa.rpaBulan5 : 0;
+        const b6 = $scope.formEditRpa.rpaBulan6 ? $scope.formEditRpa.rpaBulan6 : 0;
+        const b7 = $scope.formEditRpa.rpaBulan7 ? $scope.formEditRpa.rpaBulan7 : 0;
+        const b8 = $scope.formEditRpa.rpaBulan8 ? $scope.formEditRpa.rpaBulan8 : 0;
+        const b9 = $scope.formEditRpa.rpaBulan9 ? $scope.formEditRpa.rpaBulan9 : 0;
+        const b10 = $scope.formEditRpa.rpaBulan10 ? $scope.formEditRpa.rpaBulan10 : 0;
+        const b11 = $scope.formEditRpa.rpaBulan11 ? $scope.formEditRpa.rpaBulan11 : 0;
+        const b12 = $scope.formEditRpa.rpaBulan12 ? $scope.formEditRpa.rpaBulan12 : 0;
+        const total = (b1 + b2 + b3 + b4 + b5 + b6 + b7 + b8 + b9 + b10 + b11 + b12);
+        return total;
+    };
+
+    const rerenderRpaTable = function () {
+        const tabIndex = $scope.currentTabIndex;
+        if (tabIndex == 1) {
+            // load data for datatables daftar komponen belanja pegawai
+            globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/pegawai`, {
+                idKegiatan: kegiatanId,
+                tahunAngg: $scope.tahun
+            }, function (response) {
+                console.log(response);
+                $scope.belanjaList = response.data;
+                $scope.dtInstanceBelanja.rerender();
+            });
+        } else if (tabIndex == 2) {
+            // load data for datatables daftar komponen belanja barang dan jasa
+            globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/barang`, {
+                idKegiatan: kegiatanId,
+                tahunAngg: $scope.tahun
+            }, function (response) {
+                console.log(response);
+                $scope.belanjaList = response.data;
+                $scope.dtInstanceBelanja.rerender();
+            });
+        } else if (tabIndex == 3) {
+            // load data for datatables daftar komponen belanja modal
+            globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/modal`, {
+                idKegiatan: kegiatanId,
+                tahunAngg: $scope.tahun
+            }, function (response) {
+                console.log(response);
+                $scope.belanjaList = response.data;
+                $scope.dtInstanceBelanja.rerender();
+            });
+        }
     }
 
 }
