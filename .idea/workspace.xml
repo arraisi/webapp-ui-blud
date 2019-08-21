@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-komponen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-komponen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-rpa-komponen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-rpa-komponen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-komponen.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-komponen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-rpa-komponen.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/tab-rpa-komponen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/common/sidebar-nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/common/sidebar-nav.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +67,8 @@
       <workItem from="1566188409960" duration="1482000" />
       <workItem from="1566292202251" duration="83000" />
       <workItem from="1566292306338" duration="1504000" />
-      <workItem from="1566366573317" duration="5321000" />
+      <workItem from="1566366573317" duration="5500000" />
+      <workItem from="1566375167665" duration="2093000" />
     </task>
     <servers />
   </component>

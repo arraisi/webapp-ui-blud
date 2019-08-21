@@ -29,10 +29,29 @@ angular
         $rootScope.$state = $state;
         return $rootScope.$stateParams = $stateParams;
     }])
-    .controller('NavBarController', ['$scope', '$location', function ($scope, $location) {
+    .controller('NavBarController', ['$scope', '$location', 'globalService', function ($scope, $location, globalService) {
         const local = JSON.parse(localStorage.getItem('currentUser'));
         $scope.namaLogin = local.pengguna.nama ? local.pengguna.nama : 'nama';
         $scope.logout = function () {
+            console.log('Log Out');
+            $location.url($location.path());
             $location.path('/login');
-        }
+        };
+
+        console.log("APP MAIN JS");
+
+        globalService.serviceGetData(`/blud-auth-server/api/menu/list`, null, function (result) {
+            console.log('Result Data Menu');
+            console.log(result.data);
+            if (result.status === 200) {
+                console.log('Response Result List Menu');
+                console.log(result);
+                $scope.listMenu = result.data;
+                console.log('Value Data Load List Menu :');
+                console.log($scope.listMenu);
+            } else {
+                console.log('Response Result Load List Menu');
+                console.log(result);
+            }
+        });
     }]);
