@@ -71,7 +71,7 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
                 break;
             case 'Rincian':
                 $scope.urlParam   
-                $location.path('/persetujuan/DetailRincianPersetujuan');
+                $location.path('/persetujuan/DetailRincian');
                 break;
             case 'Kegiatan':
                 $scope.urlParam   
