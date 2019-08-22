@@ -75,7 +75,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" readonly name="paguKegiatan" id="paguKegiatan"
-                                               class="form-control">
+                                               ng-model="paguKegiatan" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
@@ -83,7 +83,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" readonly name="belanjaPegawai" id="belanjaPegawai"
-                                               class="form-control">
+                                               ng-model="anggaranPegawai" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
@@ -91,7 +91,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" readonly name="belanjaBarangJasa" id="belanjaBarangJasa"
-                                               class="form-control">
+                                               ng-model="anggaranBarang" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row col-12">
@@ -99,7 +99,7 @@
                                     </label>
                                     <div class="col-8">
                                         <input type="text" readonly name="belanjaModal" id="belanjaModal"
-                                               class="form-control">
+                                               ng-model="anggaranModal" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -232,6 +232,14 @@
                                     </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+
+                        <div class="card-footer text-right">
+                            <div class="btn-group ">
+                                <!-- <button class="btn btn-default">Batal</button> &nbsp;
+                                <button class="btn btn-primary">Simpan</button> &nbsp; -->
+                                <button class="btn btn-success" ng-click="kirim()">Kirim</button>
                             </div>
                         </div>
                     </div>
