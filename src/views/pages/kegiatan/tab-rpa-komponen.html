@@ -108,81 +108,134 @@
 
                     <br>
 
-                    <div class="col-md-12">
-                        <ul class="topnav-baru">
-                            <li>
-                                <a class="active">Belanja Pegawai</a>
-                            </li>
-                            <li>
-                                <a>Belanja Barang & Jasa</a>
-                            </li>
-                            <li>
-                                <a>Belanja Modal</a>
-                            </li>
-                        </ul>
-
+                    <div class="col-12">
+                        <div class="form-group">
+                            <strong> <u> Daftar Komponen </u> </strong>
+                        </div>
                     </div>
 
-                    <br>
+                    <div class="border rounded">
+                        <div class="tab-wrap">
+                            <input type="radio" id="tabPeg" name="tabBelanja" class="tab" ng-click="switchTab(1)"
+                                   checked>
+                            <label for="tabPeg">Belanja Pegawai</label>
 
-                    <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
-                         style="margin-top: 13px">
-                        <table class="table table-bordered table-striped rounded">
-                            <thead>
-                            <tr class="text-center">
-                                <th>No</th>
-                                <th>Kode Akun</th>
-                                <th>Kode Komponen</th>
-                                <th>Nama Komponen</th>
-                                <th>Keterangan</th>
-                                <th>Spek</th>
-                                <th>Nilai</th>
-                                <th>Januari</th>
-                                <th>Februari</th>
-                                <th>Maret</th>
-                                <th>April</th>
-                                <th>Mei</th>
-                                <th>Juni</th>
-                                <th>Juli</th>
-                                <th>Agustus</th>
-                                <th>September</th>
-                                <th>Oktober</th>
-                                <th>November</th>
-                                <th>Desember</th>
-                                <th>Aksi</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>5.2.1.02.01</td>
-                                <td>9.1.2.26.01.002.002.48</td>
-                                <td class="text-left">Gunting Kertas Besar</td>
-                                <td class="text-left">Keterangan 1</td>
-                                <td class="text-left">Spek 1</td>
-                                <td class="text-right">Rp. 750.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-right">Rp. 100.000</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn btn-link" title="Sunting" data-toggle="modal"
-                                                data-target="#modalEditRpa"><i class="fa fa-edit"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            <input type="radio" id="tabBarang" name="tabBelanja" class="tab"
+                                   ng-click="switchTab(2)">
+                            <label for="tabBarang">Belanja Barang & Jasa</label>
+
+                            <input type="radio" id="tabModal" name="tabBelanja" class="tab" ng-click="switchTab(3)">
+                            <label for="tabModal">Belanja Modal</label>
+                        </div>
+
+                        <br>
+
+                        <div class="card-body collapse show text-center" id="collapseExample1">
+                            <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable">
+                                <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
+                                       dt-instance="dtInstanceBelanja"
+                                       class="table table-bordered table-striped row-border hover rounded">
+                                    <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Kode Akun</th>
+                                        <th>Kode Komponen</th>
+                                        <th>Nama Komponen</th>
+                                        <th>Keterangan</th>
+                                        <th>Spek</th>
+                                        <th>Nilai</th>
+                                        <th>Januari</th>
+                                        <th>Februari</th>
+                                        <th>Maret</th>
+                                        <th>April</th>
+                                        <th>Mei</th>
+                                        <th>Juni</th>
+                                        <th>Juli</th>
+                                        <th>Agustus</th>
+                                        <th>September</th>
+                                        <th>Oktober</th>
+                                        <th>November</th>
+                                        <th>Desember</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="belanja in ::belanjaList">
+                                        <td>{{belanja.idAnggaranNoUrut}}</td>
+                                        <td>{{belanja.kodeAkun}}</td>
+                                        <td>{{belanja.kodeKomponen}}</td>
+                                        <td>{{belanja.namaKomponen}}</td>
+                                        <td>{{belanja.entryAnggaranRinci}}</td>
+                                        <td>{{belanja.spek}}</td>
+                                        <td>{{accounting.formatMoney(belanja.anggaranDpa,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </td>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan1,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan2,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan3,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan4,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan5,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan6,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan7,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan8,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan9,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan10,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan11,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <th>{{accounting.formatMoney(belanja.rpaBulan12,
+                                            "", 2,
+                                            ".", ",")}}
+                                        </th>
+                                        <td>
+                                            <div class="btn-group btn-group-sm" role="group"
+                                                 aria-label="Button group with nested dropdown">
+                                                <button id="btnEdit" class="btn btn-link" style="color: #000000"
+                                                        data-toggle="modal" data-target="#modalEditRpa"
+                                                        ng-click="getById(belanja)">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -209,21 +262,21 @@
                                      style="margin-bottom: 0px !important; padding: 0px !important;">
                                     <label class="col-md-3 col-form-label">Kode Akun</label>
                                     <div class="col-md-8">
-                                        <label class="col-form-label">: -</label>
+                                        <label class="col-form-label">: {{formEditRpa.kodeAkun}}</label>
                                     </div>
                                 </div>
                                 <div class="form-group row"
                                      style="margin-bottom: 0px !important; padding: 0px !important;">
                                     <label class="col-md-3 col-form-label">Kode Komponen</label>
                                     <div class="col-md-8">
-                                        <label class="col-form-label">: -</label>
+                                        <label class="col-form-label">: {{formEditRpa.kodeKomponen}}</label>
                                     </div>
                                 </div>
                                 <div class="form-group row"
                                      style="margin-bottom: 0px !important; padding: 0px !important;">
                                     <label class="col-md-3 col-form-label">Nama Komponen</label>
                                     <div class="col-md-8">
-                                        <label class="col-form-label">: -</label>
+                                        <label class="col-form-label">: {{formEditRpa.namaKomponen}}</label>
                                     </div>
                                 </div>
                             </div>
@@ -232,14 +285,20 @@
                                      style="margin-bottom: 0px !important; padding: 0px !important;">
                                     <label class="col-md-3 col-form-label">Nilai</label>
                                     <div class="col-md-8">
-                                        <label class="col-form-label">: -</label>
+                                        <label class="col-form-label">:
+                                            {{accounting.formatMoney(formEditRpa.anggaranDpa,
+                                            "Rp ", 2,
+                                            ".", ",")}}</label>
                                     </div>
                                 </div>
                                 <div class="form-group row"
                                      style="margin-bottom: 0px !important; padding: 0px !important;">
                                     <label class="col-md-3 col-form-label">Sisa</label>
                                     <div class="col-md-8">
-                                        <label class="col-form-label">: -</label>
+                                        <label class="col-form-label">: {{accounting.formatMoney(sisaAnggaran, "Rp ", 2,
+                                            ".", ",")}}</label>
+                                        <span ng-if="sisaAnggaranMinus"><b><i
+                                                class="fa fa-warning text-red"></i></b></span>
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +319,7 @@
                                             <input input-currency type="text" id="januari" name="januari"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan1"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -276,7 +335,7 @@
                                             <input input-currency type="text" id="februari" name="februari"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan2"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -292,7 +351,7 @@
                                             <input input-currency type="text" id="maret" name="maret"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan3"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -308,7 +367,7 @@
                                             <input input-currency type="text" id="april" name="april"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan4"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -324,7 +383,7 @@
                                             <input input-currency type="text" id="mei" name="mei"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan5"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -340,7 +399,7 @@
                                             <input input-currency type="text" id="juni" name="juni"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan6"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -358,7 +417,7 @@
                                             <input input-currency type="text" id="juli" name="juli"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan7"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -374,7 +433,7 @@
                                             <input input-currency type="text" id="agustus" name="agustus"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan8"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -390,7 +449,7 @@
                                             <input input-currency type="text" id="september" name="september"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan9"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -406,7 +465,7 @@
                                             <input input-currency type="text" id="oktober" name="oktober"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan10"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -422,7 +481,7 @@
                                             <input input-currency type="text" id="november" name="november"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan11"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
@@ -438,7 +497,7 @@
                                             <input input-currency type="text" id="desember" name="desember"
                                                    class="form-control text-right"
                                                    ng-model="formEditRpa.rpaBulan12"
-                                                   ng-keypress="onlyNumberKey($event)">
+                                                   ng-blur="kalkulasiSisaAnggaran()">
                                         </div>
                                     </div>
                                 </div>
