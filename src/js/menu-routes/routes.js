@@ -92,6 +92,21 @@ angular
                     }]
                 }
             })
+            .state('app.DetailRincianPersetujuan', {
+                url: '/persetujuan/DetailRincian',
+                templateUrl: 'views/pages/persetujuan-view/DetailRincian.html',
+                ncyBreadcrumb: {
+                    label: 'Rincian Biaya'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/DetailRincian.js']
+                        });
+                    }]
+                }
+            })
             .state('app.DetailPendapatanPersetujuan', {
                 url: '/persetujuan/DetailPendapatanPersetujuan',
                 templateUrl: 'views/pages/persetujuan-view/DetailPendapatanPersetujuan.html',
