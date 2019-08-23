@@ -122,5 +122,33 @@ angular
                         callback(response);
                     });
             },
+            serviceReport: function (url, params, body, callback) {
+                const local = JSON.parse(localStorage.getItem('currentUser'));
+                const token = 'Bearer ' + local.access_token;
+                const req = {
+                    method: 'POST',
+                    url: url,
+                    headers: {
+                        'Authorization': token,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json;charset=utf-8",
+                        responseType: 'arraybuffer'
+                    },
+                    params: params,
+                    data: body
+                };
+                $http(req)
+                    .then(function (response) {
+                        // login successful if there's a token in the response
+                        console.log(`service response api get ${url} :`);
+                        console.log(response);
+                        callback(response);
+                    }, function (response) {
+                        // login failed
+                        console.log('service error response');
+                        console.log(response);
+                        callback(response);
+                    });
+            },
         }
     }]);

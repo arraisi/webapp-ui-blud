@@ -44,6 +44,7 @@
     "node_modules/angular-datatables/dist/angular-datatables.min.js",
     "node_modules/angularjs-toaster/toaster.min.js",
     "node_modules/underscore/underscore-min.js",
+    "node_modules/angular-pdf/dist/angular-pdf.js",
     "src/js/accounting.js"
   ]
 }

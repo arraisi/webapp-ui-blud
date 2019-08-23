@@ -87,7 +87,7 @@ gulp.task('webserver', function() {
                     source: '/blud-resource-server', target: 'http://localhost:9090/blud-resource-server'
                 },
                 {
-                    source: '/dkipp', target: 'http://192.168.1.50:80/dkipp'
+                    source: '/blud-report-server', target: 'http://localhost:7070/blud-report-server'
                 }
             ]
         }));
