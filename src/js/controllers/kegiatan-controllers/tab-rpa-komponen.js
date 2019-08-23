@@ -87,6 +87,17 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
         }
     });
 
+    globalService.serviceGetData(`/blud-resource-server/api/belanja-langsung/anggaran/all`, {
+        idKegiatan: kegiatanId,
+        tahunAnggaran: $scope.tahun,
+        idSkpd: local.pengguna.skpdId
+    }, function (response) {
+        $scope.anggaranPegawai = response.data.anggaranDpaBp;
+        $scope.anggaranBarang = response.data.anggaranDpaBbj;
+        $scope.anggaranModal = response.data.anggaranDpaBm;
+        $scope.paguKegiatan = $scope.anggaranPegawai + $scope.anggaranBarang + $scope.anggaranModal;
+    });
+
     /** Form Tambah Kegiatan */
     $scope.formTambahKegiatan = {
         urusan: {
@@ -394,6 +405,14 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
                 $scope.dtInstanceBelanja.rerender();
             });
         }
+    }
+
+    $scope.kirim = function () {
+        globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/update-anggaran-kegiatan/${kegiatanId}`, { anggaran: $scope.paguKegiatan }, function (response) {
+            if (response.status == 200) {
+                $location.path('/kegiatan');
+            }
+        });
     }
 
 }

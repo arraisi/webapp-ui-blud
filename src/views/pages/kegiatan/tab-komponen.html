@@ -74,7 +74,7 @@
                                                 Pagu Kegiatan
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" ng-model="formInfoKegiatan.anggaranDpa" readonly name="paguKegiatan" id="paguKegiatan"
+                                                <input type="text" readonly name="paguKegiatan" id="paguKegiatan" ng-model="paguKegiatan"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                             <label for="belanjaPegawai" class="col-4 col-form-label"> Belanja Pegawai
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" readonly name="belanjaPegawai" id="belanjaPegawai"
+                                                <input type="text" ng-model="anggaranPegawai" readonly name="belanjaPegawai" id="belanjaPegawai"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@
                                                 Jasa
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" readonly name="belanjaBarangJasa"
+                                                <input type="text" ng-model="anggaranBarang" readonly name="belanjaBarangJasa"
                                                     id="belanjaBarangJasa" class="form-control">
                                             </div>
                                         </div>
@@ -100,7 +100,7 @@
                                             <label for="belanjaModal" class="col-4 col-form-label"> Belanja Modal
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" readonly name="belanjaModal" id="belanjaModal"
+                                                <input type="text" ng-model="anggaranModal" readonly name="belanjaModal" id="belanjaModal"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -197,13 +197,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
+                    <!-- <div class="card-footer text-right">
                         <div class="btn-group ">
                             <button class="btn btn-default">Batal</button> &nbsp;
                             <button class="btn btn-primary">Simpan</button> &nbsp;
                             <button class="btn btn-success">Kirim</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!--/.col-->
