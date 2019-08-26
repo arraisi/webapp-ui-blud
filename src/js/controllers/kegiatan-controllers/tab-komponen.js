@@ -5,6 +5,7 @@ angular
 // Function Untuk Kontroller TabKomponenController
 function TabKomponenController($scope, $location, toaster, globalService) {
 
+    $scope.accounting = accounting;
 
     // ======== Awal Init Porject
     $scope.tahun = localStorage.getItem('tahunAnggaran');
