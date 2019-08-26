@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/laporan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/laporan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/services/global.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/services/global.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/laporan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/laporan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendors.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendors.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +75,7 @@
       <workItem from="1566541367384" duration="2141000" />
       <workItem from="1566544558341" duration="2389000" />
       <workItem from="1566550434755" duration="6131000" />
-      <workItem from="1566789265629" duration="8661000" />
+      <workItem from="1566789265629" duration="9852000" />
     </task>
     <servers />
   </component>
