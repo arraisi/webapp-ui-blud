@@ -40,7 +40,7 @@ angular
 
         console.log("APP MAIN JS");
 
-        globalService.serviceGetData(`/blud-auth-server/api/menu/list`, null, function (result) {
+        globalService.serviceGetData(`/blud-resource-server/api/menu/list`, null, function (result) {
             console.log('Result Data Menu');
             console.log(result.data);
             if (result.status === 200) {

@@ -45,6 +45,7 @@
     "node_modules/angularjs-toaster/toaster.min.js",
     "node_modules/underscore/underscore-min.js",
     "node_modules/angular-pdf/dist/angular-pdf.js",
+    "node_modules/angular-file-saver/dist/angular-file-saver.bundle.js",
     "src/js/accounting.js"
   ]
 }
