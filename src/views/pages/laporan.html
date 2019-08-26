@@ -6,16 +6,27 @@
                     <i class="fa fa-list"></i>Card Laporan
                 </div>
                 <div class="card-body">
-                    <div class="col-md-12">
-                        <div>
-                            <button type="button" class="btn btn-primary" ng-click="downloadPdf()">Testing Download
-                            </button>
+                    <div class="col-md-12 row">
+                        <div class="col-md-7">
+                            <label class="col-form-label">Pilih Jenis Laporan</label>
+                            <div class="row col-md-8 input-group input-group-prepend">
+                                <select id="jenisLaporan" name="jenisLaporan"
+                                        class="form-control input-lg"
+                                        ng-model="laporanJenis">
+                                    <option ng-value=val
+                                            ng-repeat="val in ::listJenisLaporan">
+                                        {{val.laporanViewName}}
+                                    </option>
+                                </select>
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-primary rounded" ng-click="getLaporan()">Kirim
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <!--                        <div class="wrapper">-->
-                        <!--                            <ng-pdf template-url={{pdfViewer}}></ng-pdf>-->
-                        <!--                        </div>-->
-                        <embed ng-src="{{pdfViewer}}" style="width:90%;height:1000px;">
                     </div>
+                    <br>
+                    <embed ng-src="{{pdfLink}}" type="application/pdf" style="width:100%;height:1000px;">
                 </div>
             </div>
         </div>
