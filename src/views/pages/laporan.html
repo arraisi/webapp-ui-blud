@@ -1,18 +1,21 @@
-<div class="animated fadeIn">
+<div class="animated fadeIn" ng-controller="LaporanController">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-list"></i>Card Laporan
-                    <div class="card-actions">
-                        <button class="btn btn-minimize" type="button" data-toggle="collapse"
-                                data-target="#collapseExample1" aria-expanded="true" aria-controls="collapseExample1">
-                            <i class="icon-arrow-up"></i>
-                        </button>
-                    </div>
                 </div>
-                <div class="card-body collapse show text-center" id="collapseExample1">
-                    <h6>Laporan</h6>
+                <div class="card-body">
+                    <div class="col-md-12">
+                        <div>
+                            <button type="button" class="btn btn-primary" ng-click="downloadPdf()">Testing Download
+                            </button>
+                        </div>
+                        <!--                        <div class="wrapper">-->
+                        <!--                            <ng-pdf template-url={{pdfViewer}}></ng-pdf>-->
+                        <!--                        </div>-->
+                        <embed ng-src="{{pdfViewer}}" style="width:90%;height:1000px;">
+                    </div>
                 </div>
             </div>
         </div>

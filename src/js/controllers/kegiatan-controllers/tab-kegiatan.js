@@ -9,9 +9,12 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
     $scope.urusanList = [];
+    $scope.idKegiatan = null;
+    $scope.noUrutKinerja = 1;
 
     const kegiatanId = $location.search().idKegiatan;
     if (kegiatanId) {
+        console.log("ini id Kegiatan ada ");
         $scope.idKegiatan = kegiatanId;
         globalService.serviceGetData(`/blud-resource-server/api/kegiatan/${kegiatanId}`, null, function (result) {
             console.log('Result Data Kegiatan');
@@ -93,7 +96,7 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         paginationType: 'full_numbers',
         searching: true,
         responsive: false,
-        order: [[ 1, "asc" ]],
+        order: [[1, "asc"]],
         dom: "Bft<'row'<'col-sm-12'ip><'col-sm-12'l>>",
         language: {
             "sEmptyTable": "Tidak Ada Data Yang Ditemukan",
@@ -168,7 +171,10 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
 
     /** Get List Program */
     $scope.getProgram = function (idUrusan) {
-        globalService.serviceGetData(`/blud-resource-server/api/program/list/by-id-urusan/${idUrusan}`, {tahunAnggaran: $scope.tahun}, function (result) {
+        globalService.serviceGetData(`/blud-resource-server/api/program/list/by-id-urusan/${idUrusan}`, {
+            tahunAnggaran: $scope.tahun,
+            idSkpd: local.pengguna.skpdId
+        }, function (result) {
             console.log('Result Data Program');
             console.log(result.data);
             if (result.status === 200) {
@@ -218,7 +224,8 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
         bulanMulai: null,
         bulanSelesai: null,
         kodeLokasiKegiatan: null,
-        namaSumberDana: null
+        namaSumberDana: null,
+        tahunAnggaran: $scope.tahun
     };
 
     /** For Get Urusan */

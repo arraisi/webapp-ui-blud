@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/laporan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/laporan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/services/global.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/services/global.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendors.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendors.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +25,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pdf" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -28,6 +34,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pdf" />
       <recent name="$PROJECT_DIR$/src/js" />
     </key>
   </component>
@@ -67,6 +74,14 @@
       <workItem from="1566292306338" duration="1504000" />
       <workItem from="1566366573317" duration="5500000" />
       <workItem from="1566375167665" duration="4417000" />
+      <workItem from="1566455155482" duration="9218000" />
+      <workItem from="1566529418300" duration="2277000" />
+      <workItem from="1566533619884" duration="2247000" />
+      <workItem from="1566540858695" duration="2000" />
+      <workItem from="1566541367384" duration="2141000" />
+      <workItem from="1566544558341" duration="2389000" />
+      <workItem from="1566550434755" duration="6131000" />
+      <workItem from="1566789265629" duration="554000" />
     </task>
     <servers />
   </component>

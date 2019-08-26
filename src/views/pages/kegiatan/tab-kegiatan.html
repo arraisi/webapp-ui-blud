@@ -2,7 +2,7 @@
     <div class="animated fadeIn">
         <div class="row">
             <div class="col-lg-12">
-                <form name="tambahForm" ng-submit="saveKegiatan(tambahForm)">
+                <form name="tambahForm">
                     <div class="card">
                         <div class="card-body" id="collapseExample1">
 
@@ -195,7 +195,7 @@
                                         <br>
                                         <div class="form-group">
                                             <div class="col-md-12 text-right">
-                                                <button type="submit" class="btn btn-primary rounded">
+                                                <button type="submit" class="btn btn-primary rounded" ng-click="saveKegiatan()">
                                                     Simpan Kegiatan
                                                 </button>
                                             </div>
@@ -209,7 +209,7 @@
                             <div class="form-group row col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 ">
                                 <div class="col-md-6"><strong> <u> Data Kinerja </u> </strong></div>
                                 <div class="col-md-6 text-right">
-                                    <button type="button" class="btn btn-primary rounded" ng-disabled="!idKegiatan"
+                                    <button type="button" class="btn btn-primary rounded" ng-disabled="idKegiatan == null"
                                             data-toggle="modal"
                                             data-target="#modalAddKinerja"><i
                                             class="fa fa-plus"></i>
