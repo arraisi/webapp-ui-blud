@@ -180,7 +180,8 @@
                                                         aria-label="Button group with nested dropdown">
                                                         <button id="btnDelete" class="btn btn-link"
                                                             style="color: #000000" data-toggle="modal"
-                                                            data-target="#modalDeleteComponent">
+                                                            data-target="#modalDeleteComponent"
+                                                            ng-click="getById(belanja)">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                         <button id="btnEdit" class="btn btn-link" style="color: #000000"
@@ -440,7 +441,7 @@
                         Batal
                     </button>
                     <button type="button" class="btn btn-success rounded" data-dismiss="modal"
-                        data-target="#modalDeleteComponent">
+                        data-target="#modalDeleteComponent" ng-click="deleteKomponen()">
                         Hapus
                     </button>
                 </div>
