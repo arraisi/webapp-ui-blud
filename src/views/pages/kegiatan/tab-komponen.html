@@ -388,11 +388,11 @@
                                 <input type="text" name="satuan2" id="satuan2" ng-model="formSuntingKomponen.satuan2" ng-blur="setKoefisien()"
                                     class="form-control pb-1">
                             </div>
-                            <div class="col-2">
+                            <div class="col-2" ng-show="formSuntingKomponen.nonPajak == 0">
                                 <label for="pajak" class="col-form-label">Pajak</label>
                             </div>
-                            <div class="col-4" ng-show="formSuntingKomponen.pajak == 0">
-                                <input type="text" placeholder="dalam persen(%)" name="pajak" id="pajak" ng-model="formSuntingKomponen.nilaiPajak" ng-blur="setKoefisien()"
+                            <div class="col-4" ng-show="formSuntingKomponen.nonPajak == 0">
+                                <input type="text" placeholder="dalam persen(%)" name="pajak" id="pajak" ng-model="formSuntingKomponen.pajak" ng-blur="setKoefisien()"
                                     class="form-control pb-1">
                             </div>
                             <div class="col-2">
