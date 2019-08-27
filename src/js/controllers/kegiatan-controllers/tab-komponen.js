@@ -5,6 +5,7 @@ angular
 // Function Untuk Kontroller TabKomponenController
 function TabKomponenController($scope, $location, toaster, globalService) {
 
+    $scope.accounting = accounting;
 
     // ======== Awal Init Porject
     $scope.tahun = localStorage.getItem('tahunAnggaran');
@@ -88,7 +89,7 @@ function TabKomponenController($scope, $location, toaster, globalService) {
     $scope.belanjaList = [];
     $scope.tambahKomponenList = [];
     $scope.idKomponenBelanjaPegawai = [];
-    
+
     // get belanja pegawai for lookup
     $scope.lookUpPegawai = function () {
         globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/pegawai`, { tahunAnggaran: $scope.tahun, idSkpd: local.pengguna.skpdId }, function (response) {
@@ -96,26 +97,19 @@ function TabKomponenController($scope, $location, toaster, globalService) {
         });
     }
 
+    // get belanja barang for lookup
     $scope.lookUpBarang = function () {
         globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/barang`, { tahunAnggaran: $scope.tahun, idSkpd: local.pengguna.skpdId }, function (response) {
-            console.log(response);
             $scope.tambahKomponenList = response.data;
         });
     }
 
+    // get belanja modal for lookup
     $scope.lookUpModal = function () {
         globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/modal`, { tahunAnggaran: $scope.tahun, idSkpd: local.pengguna.skpdId }, function (response) {
-            console.log(response);
             $scope.tambahKomponenList = response.data;
         });
     }
-
-    $scope.lookUpPegawai();
-
-    globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/pegawai`, { idKegiatan: kegiatanId, tahunAngg: $scope.tahun }, function (response) {
-        $scope.belanjaList = response.data;
-        $scope.dtInstanceBelanja.rerender();
-    });
 
     // get all anggaran
     $scope.getAnggaran = function (idKegiatan, tahunAnggaran, idSkpd) {
@@ -131,6 +125,16 @@ function TabKomponenController($scope, $location, toaster, globalService) {
         });
     }
 
+    // initiate lookup data
+    $scope.lookUpPegawai();
+
+    // initiate datatables data
+    globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/pegawai`, { idKegiatan: kegiatanId, tahunAngg: $scope.tahun }, function (response) {
+        $scope.belanjaList = response.data;
+        $scope.dtInstanceBelanja.rerender();
+    });
+
+    // get data anggaran
     $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
 
     $scope.switchTab = function (tabIndex) {
@@ -152,7 +156,6 @@ function TabKomponenController($scope, $location, toaster, globalService) {
 
             // load data for datatables daftar komponen belanja barang dan jasa
             globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/barang`, { idKegiatan: kegiatanId, tahunAngg: $scope.tahun }, function (response) {
-                console.log(response);
                 $scope.belanjaList = response.data;
                 $scope.dtInstanceBelanja.rerender();
             });
@@ -163,7 +166,6 @@ function TabKomponenController($scope, $location, toaster, globalService) {
 
             // load data for datatables daftar komponen belanja modal
             globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/modal`, { idKegiatan: kegiatanId, tahunAngg: $scope.tahun }, function (response) {
-                console.log(response);
                 $scope.belanjaList = response.data;
                 $scope.dtInstanceBelanja.rerender();
             });
@@ -231,6 +233,7 @@ function TabKomponenController($scope, $location, toaster, globalService) {
         id: null,
         namaAkun: null,
         kodeAkun: null,
+        idKomponen: null,
         kodeKomponen: null,
         namaKomponen: null,
         spek: null,
@@ -259,6 +262,7 @@ function TabKomponenController($scope, $location, toaster, globalService) {
             $scope.formSuntingKomponen.id = data.id;
             $scope.formSuntingKomponen.namaAkun = data.namaAkun;
             $scope.formSuntingKomponen.kodeAkun = data.kodeAkun;
+            $scope.formSuntingKomponen.idKomponen = data.idKomponen;
             $scope.formSuntingKomponen.kodeKomponen = data.kodeKomponen;
             $scope.formSuntingKomponen.namaKomponen = data.namaKomponen;
             $scope.formSuntingKomponen.spek = data.spek;
@@ -366,22 +370,44 @@ function TabKomponenController($scope, $location, toaster, globalService) {
         }
     }
 
-    /** Load SKPD By ID SKPD */
-    globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
-        console.log('Result Data Detail SKPD');
-        console.log(result.data);
-        if (result.status === 200) {
-            console.log('Response Result Detail SKPD');
-            console.log(result);
-            $scope.skpdDetail = result.data;
-            console.log('Value Data Load Detail SKPD :');
-        } else {
-            console.log('Response Result Load Detail SKPD');
-            console.log(result);
+    $scope.deleteKomponen = function () {
+
+        if ($scope.currentTabIndex == 1) {
+
+            globalService.serviceDeleteData(`/blud-resource-server/api/komponen-belanja/delete/pegawai/${$scope.formSuntingKomponen.idKomponen}`, {
+                idKegiatan: kegiatanId,
+                tahunAnggaran: $scope.tahun,
+                idSkpd: local.pengguna.skpdId
+            }, function (response) {
+                $scope.belanjaList = response.data;
+                $scope.dtInstanceBelanja.rerender();
+                $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                $scope.lookUpPegawai();
+            });
+        } else if ($scope.currentTabIndex == 2) {
+            globalService.serviceDeleteData(`/blud-resource-server/api/komponen-belanja/delete/barang/${$scope.formSuntingKomponen.idKomponen}`, {
+                idKegiatan: kegiatanId,
+                tahunAnggaran: $scope.tahun,
+                idSkpd: local.pengguna.skpdId
+            }, function (response) {
+                $scope.belanjaList = response.data;
+                $scope.dtInstanceBelanja.rerender();
+                $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                $scope.lookUpBarang();
+            });
+        } else if ($scope.currentTabIndex == 3) {
+            globalService.serviceDeleteData(`/blud-resource-server/api/komponen-belanja/delete/modal/${$scope.formSuntingKomponen.idKomponen}`, {
+                idKegiatan: kegiatanId,
+                tahunAnggaran: $scope.tahun,
+                idSkpd: local.pengguna.skpdId
+            }, function (response) {
+                $scope.belanjaList = response.data;
+                $scope.dtInstanceBelanja.rerender();
+                $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                $scope.lookUpModal();
+            });
         }
-    });
-
-
+    }
 
     $scope.tabGoTo = function (jenisTab) {
         console.log(jenisTab);

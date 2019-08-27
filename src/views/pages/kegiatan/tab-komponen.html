@@ -75,7 +75,7 @@
                                             </label>
                                             <div class="col-8">
                                                 <input type="text" readonly name="paguKegiatan" id="paguKegiatan" ng-model="paguKegiatan"
-                                                    class="form-control">
+                                                  input-currency class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row col-12">
@@ -83,7 +83,7 @@
                                             </label>
                                             <div class="col-8">
                                                 <input type="text" ng-model="anggaranPegawai" readonly name="belanjaPegawai" id="belanjaPegawai"
-                                                    class="form-control">
+                                                input-currency class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row col-12">
@@ -92,7 +92,7 @@
                                                 Jasa
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" ng-model="anggaranBarang" readonly name="belanjaBarangJasa"
+                                                <input type="text" ng-model="anggaranBarang" readonly name="belanjaBarangJasa" input-currency
                                                     id="belanjaBarangJasa" class="form-control">
                                             </div>
                                         </div>
@@ -100,7 +100,7 @@
                                             <label for="belanjaModal" class="col-4 col-form-label"> Belanja Modal
                                             </label>
                                             <div class="col-8">
-                                                <input type="text" ng-model="anggaranModal" readonly name="belanjaModal" id="belanjaModal"
+                                                <input type="text" input-currency ng-model="anggaranModal" readonly name="belanjaModal" id="belanjaModal"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -173,14 +173,15 @@
                                                 <td>{{belanja.volume}}</td>
                                                 <td>{{belanja.koefisien}}</td>
                                                 <td>{{belanja.satuan}}</td>
-                                                <td>{{belanja.komponenHarga}}</td>
-                                                <td>{{belanja.anggaranDpa}}</td>
+                                                <td>{{accounting.formatMoney(belanja.komponenHarga, "Rp ", 2, ".", ",")}}</td>
+                                                <td>{{accounting.formatMoney(belanja.anggaranDpa, "Rp ", 2, ".", ",")}}</td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm" role="group"
                                                         aria-label="Button group with nested dropdown">
                                                         <button id="btnDelete" class="btn btn-link"
                                                             style="color: #000000" data-toggle="modal"
-                                                            data-target="#modalDeleteComponent">
+                                                            data-target="#modalDeleteComponent"
+                                                            ng-click="getById(belanja)">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                         <button id="btnEdit" class="btn btn-link" style="color: #000000"
@@ -244,7 +245,7 @@
                                     <td>{{val.kodeAkun}}</td>
                                     <td>{{val.kodeKomponen}}</td>
                                     <td>{{val.namaAkun}}</td>
-                                    <td>{{val.komponenHarga}}</td>
+                                    <td>{{accounting.formatMoney(val.komponenHarga, "Rp ", 2, ".", ",")}}</td>
                                     <td>{{val.komponenSpek}}</td>
                                     <td>{{val.komponenMerk}}</td>
                                     <td>{{val.namaSatuan}}</td>
@@ -306,7 +307,8 @@
                             <div class="col-4"><span>{{formSuntingKomponen.namaKomponen}}</span></div>
 
                             <div class="col-2"><span>Harga</span></div>
-                            <div class="col-4"><span>{{formSuntingKomponen.harga}}</span></div>
+                            <div class="col-4"><span>
+                                {{accounting.formatMoney(formSuntingKomponen.harga,"Rp ", 2, ".", ",")}}</span></div>
                         </div>
                         <hr>
 
@@ -399,8 +401,7 @@
                                 <label for="totalHarga" class="col-form-label">Total Harga</label>
                             </div>
                             <div class="col-4">
-                                <input type="text" name="totalHarga" id="totalHarga"
-                                    ng-model="formSuntingKomponen.totalHarga" class="form-control pb-1">
+                                <input type="text" name="totalHarga" id="totalHarga" input-currency ng-model="formSuntingKomponen.totalHarga" class="form-control pb-1">
                             </div>
                         </div>
                     </div>
@@ -432,7 +433,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <span>Apakah anda yakin akan menghapus data komponen dengan kode komponen X.XX</span>
+                    <span>Apakah anda yakin akan menghapus data komponen dengan kode {{formSuntingKomponen.kodeKomponen}}</span>
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-dark rounded" data-toggle="modal"
@@ -440,7 +441,7 @@
                         Batal
                     </button>
                     <button type="button" class="btn btn-success rounded" data-dismiss="modal"
-                        data-target="#modalDeleteComponent">
+                        data-target="#modalDeleteComponent" ng-click="deleteKomponen()">
                         Hapus
                     </button>
                 </div>
