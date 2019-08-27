@@ -19,7 +19,11 @@
                                     </option>
                                 </select>
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary rounded" ng-click="getLaporan()">Kirim
+                                    <button id="button-kirim-laporan" type="button" class="btn btn-primary rounded" ng-click="getLaporan()">
+                                        Kirim
+                                        <span id="kirim-laporan" style="display: none">
+                                          <i class="fa fa-spinner fa-spin"></i>
+                                        </span>
                                     </button>
                                 </div>
                             </div>

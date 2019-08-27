@@ -35,6 +35,8 @@ function LaporanController($scope, $location, $sce, toaster, globalService, $htt
     });
 
     $scope.getLaporan = function () {
+        document.getElementById('kirim-laporan').style.display = 'inline';
+        document.getElementById('button-kirim-laporan').disabled = true;
         console.log($scope.laporanJenis);
         globalService.serviceReport(`/blud-report-server/api/laporan/by-jenis`, {
             laporan: $scope.laporanJenis.jasperFileUrl,
@@ -54,6 +56,8 @@ function LaporanController($scope, $location, $sce, toaster, globalService, $htt
                 console.log('PDF VIEWER');
                 console.log(fileURL);
                 console.log($scope.pdfLink);
+                document.getElementById('kirim-laporan').style.display = 'none';
+                document.getElementById('button-kirim-laporan').disabled = false;
                 // angular.element('#modalEditRpa').trigger('click');
                 // toaster.pop({
                 //     type: 'success',
@@ -62,6 +66,8 @@ function LaporanController($scope, $location, $sce, toaster, globalService, $htt
                 //     timeout: 3000
                 // });
             } else {
+                document.getElementById('kirim-laporan').style.display = 'none';
+                document.getElementById('button-kirim-laporan').disabled = false;
                 console.log(`Response Error Laporan ${$scope.laporanJenis.laporanViewName}`);
                 console.log(result);
                 toaster.pop({
