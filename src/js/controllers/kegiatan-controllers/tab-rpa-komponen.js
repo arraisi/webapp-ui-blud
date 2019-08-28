@@ -45,6 +45,7 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
     };
 
     $scope.belanjaList = [];
+    $scope.currentTabIndex = 1;
 
     const kegiatanId = $location.search().idKegiatan;
     if (kegiatanId) {
@@ -96,6 +97,16 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
         $scope.anggaranBarang = response.data.anggaranDpaBbj;
         $scope.anggaranModal = response.data.anggaranDpaBm;
         $scope.paguKegiatan = $scope.anggaranPegawai + $scope.anggaranBarang + $scope.anggaranModal;
+    });
+
+    // load pertama datatable tab belanja pegawai
+    globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/pegawai`, {
+        idKegiatan: kegiatanId,
+        tahunAngg: $scope.tahun
+    }, function (response) {
+        console.log(response);
+        $scope.belanjaList = response.data;
+        $scope.dtInstanceBelanja.rerender();
     });
 
     /** Form Tambah Kegiatan */
@@ -233,7 +244,7 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
     $scope.simpanRpa = function () {
         console.log('Simpan RPA :');
         console.log($scope.formEditRpa);
-        globalService.servicePostData(`/blud-resource-server/api/komponen-belanja/rpa/update`, null, $scope.formEditRpa, function (result) {
+        globalService.servicePostData(`/blud-resource-server/api/komponen-belanja/rpa/updateAnggaran`, null, $scope.formEditRpa, function (result) {
             console.log('Result Data Save RPA');
             console.log(result.data);
             if (result.status === 201) {
@@ -373,6 +384,7 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
     };
 
     const rerenderRpaTable = function () {
+        console.log('Rerender RPA TAble');
         const tabIndex = $scope.currentTabIndex;
         if (tabIndex == 1) {
             // load data for datatables daftar komponen belanja pegawai
@@ -408,7 +420,7 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
     }
 
     $scope.kirim = function () {
-        globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/update-anggaran-kegiatan/${kegiatanId}`, { anggaran: $scope.paguKegiatan }, function (response) {
+        globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/update-anggaran-kegiatan/${kegiatanId}`, {anggaran: $scope.paguKegiatan}, function (response) {
             if (response.status == 200) {
                 $location.path('/kegiatan');
             }

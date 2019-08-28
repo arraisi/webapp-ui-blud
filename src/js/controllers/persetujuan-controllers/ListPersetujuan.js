@@ -2,7 +2,7 @@ angular
     .module('app', ['toaster', 'ngAnimate', 'datatables'])
     .controller('ListPersetujuanController', ListPersetujuanController)
 
-function ListPersetujuanController($scope,$location,globalService) {
+function ListPersetujuanController($scope, $location, globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
     const token = 'Bearer ' + local.access_token;
@@ -14,7 +14,7 @@ function ListPersetujuanController($scope,$location,globalService) {
     $scope.validationPenolakan = {
         alasanTolakIsValid: false,
         alasanTolakIsTouched: false,
-    }
+    };
 
     $scope.validateTolak = function () {
         if (!$scope.formAlasanTolak.alasanTolak) {
@@ -25,9 +25,9 @@ function ListPersetujuanController($scope,$location,globalService) {
             $scope.validationPenolakan.alasanTolakIsTouched = false;
         }
 
-    }
-    
-       /** Get Data Pengguna */
+    };
+
+    /** Get Data Pengguna */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
         console.log('Result Data Detail SKPD');
         console.log(result.data);
@@ -59,32 +59,32 @@ function ListPersetujuanController($scope,$location,globalService) {
 
 
     $scope.goToList = function (valueDpt) {
-        console.log("Detail",valueDpt.idTmrbakasBlud)
-        $location.search('idTmrbakasBlud', valueDpt.idTmrbakasBlud);
-        $location.path('/persetujuan/DetailKasPersetujuan');
-    }
+        // console.log("Detail", valueDpt.idTmrbakasBlud);
+        // $location.search('idTmrbakasBlud', valueDpt.idTmrbakasBlud);
+        $location.path('/persetujuan/kas-blud/detail');
+    };
 
     $scope.doCheck = function (valueDpt) {
-        console.log("Setuju",valueDpt.idTmrbakasBlud)
-    }
+        console.log("Setuju", valueDpt.idTmrbakasBlud)
+    };
 
     $scope.tolakPersetujuan = function (valTolak) {
-     
-      if (!valTolak.$valid) {
-          console.log('Form Not Valid');
-          $scope.submitted = true;
-          return;
-      }
-      $scope.submitted = false;
-      
-      /**
-       * Form Persetujuan
-       */
 
-      console.log($scope.formAlasanTolak);
+        if (!valTolak.$valid) {
+            console.log('Form Not Valid');
+            $scope.submitted = true;
+            return;
+        }
+        $scope.submitted = false;
 
-      
-    }
+        /**
+         * Form Persetujuan
+         */
+
+        console.log($scope.formAlasanTolak);
+
+
+    };
 
     $scope.value = null;
     $scope.doOpenModal = function (valOpen) {

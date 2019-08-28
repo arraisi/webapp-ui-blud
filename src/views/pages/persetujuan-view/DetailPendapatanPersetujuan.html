@@ -1,88 +1,83 @@
 <div class="animated fadeIn">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card" ng-controller="DetailPendapatanPersetujuanController">
-                        <div>
-                            <ul class="nav nav-tabs">
-                                <li class="nav-item">
-                                <a class="nav-link " ng-click="doGoTo('Kas')">Kas BLUD</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active">Pendapatan</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " ng-click="doGoTo('Rincian')" >Rincian Biaya</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " ng-click="doGoTo('Kegiatan')">Kegiatan</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" ng-click="doGoTo('Komponen')">Komponen</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link"  ng-click="doGoTo('Laporan')">Laporan</a>
-                                </li>
-                            </ul>
-                        </div>
-                    <div class="card-body" id="collapseExample1">
-                        <div class="form-group">
-                            <strong> <u> Target Pendapatan </u> </strong>
-                            <button class="btn btn-primary rounded float-right">AKB Bulan</button>
-                        </div>
-                        <br>
-                        <div class="form-group" style="margin-top: 13px">
-                            <table class="table table-bordered table-striped rounded " style="width:100%">
-                                <thead>
-                                <tr class="text-center">
-                                    <th colspan="2">Kode Akun</th>
-                                    <th>Target Pendapatan</th>
-                                </tr>
-                                <tr hidden>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-    
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="data in valData">
-                                    <td style="width:25%">{{ data.cakun }}</td>
-                                    <td style="width:25%">{{ data.nakun }}</td>
-                                    <td>
-                                        <div class="controls col-9 float-right">
-                                            <div class="input-prepend input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Rp</span>
-                                                </div>
-                                                <input type="text" class="form-control text-right"
-                                                       input-currency
-                                                       ng-readonly="!readonlySaldo"
-                                                       ng-model="data.vkasAudited"
-                                                       ng-keypress="onlyNumberKey($event)">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th class="text-center" colspan="2">Total</th>
-                                    <th class="text-right"><strong>Rp {{ getTotal() | number:0 }}</strong></th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <br>
-                        <div class="card-footer text-center">
-                                <button class="btn btn-secondary rounded" ng-click="doKembali()">Kembali</button>
-                                <button class="btn btn-success rounded" ng-click="doLanjut()">Lanjut</button>
-                            </div>
-                    </div>
-              
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card" ng-controller="DetailPendapatanPersetujuanController">
+                <div class="tab-wrap">
+                    <input type="radio" id="tab1" name="tabGroup1" class="tab"
+                           ng-click="doGoTo('Kas')">
+                    <label for="tab1">Kas BLUD</label>
+
+                    <input type="radio" id="tab2" name="tabGroup1" class="tab" checked ng-click="doGoTo('Pendapatan')">
+                    <label for="tab2">Pendapatan</label>
+
+                    <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="doGoTo('Rincian')">
+                    <label for="tab3">Rincian Biaya</label>
+
+                    <input type="radio" id="tab4" name="tabGroup1" class="tab" ng-click="doGoTo('Kegiatan')">
+                    <label for="tab4">Kegiatan</label>
+
+                    <input type="radio" id="tab5" name="tabGroup1" class="tab" ng-click="doGoTo('Laporan')">
+                    <label for="tab5">Laporan</label>
                 </div>
+                <div class="card-body" id="collapseExample1">
+                    <div class="form-group">
+                        <strong> <u> Target Pendapatan </u> </strong>
+                        <button class="btn btn-primary rounded float-right">AKB Bulan</button>
+                    </div>
+                    <br>
+                    <div class="form-group" style="margin-top: 13px">
+                        <table class="table table-bordered table-striped rounded " style="width:100%">
+                            <thead>
+                            <tr class="text-center">
+                                <th colspan="2">Kode Akun</th>
+                                <th>Target Pendapatan</th>
+                            </tr>
+                            <tr hidden>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="data in valData">
+                                <td style="width:25%">{{ data.cakun }}</td>
+                                <td style="width:25%">{{ data.nakun }}</td>
+                                <td>
+                                    <div class="controls col-9 float-right">
+                                        <div class="input-prepend input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Rp</span>
+                                            </div>
+                                            <input type="text" class="form-control text-right"
+                                                   input-currency
+                                                   ng-readonly="!readonlySaldo"
+                                                   ng-model="data.vkasAudited"
+                                                   ng-keypress="onlyNumberKey($event)">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th class="text-center" colspan="2">Total</th>
+                                <th class="text-right"><strong>Rp {{ getTotal() | number:0 }}</strong></th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-secondary rounded" ng-click="doKembali()">Kembali</button>
+                        <button class="btn btn-success rounded" ng-click="doLanjut()">Lanjut</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-    
-    <toaster-container toaster-options="{'close-button': true}"></toaster-container>
+</div>
+
+<toaster-container toaster-options="{'close-button': true}"></toaster-container>
     

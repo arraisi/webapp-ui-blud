@@ -3,6 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-rpa-komponen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/tab-rpa-komponen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailKasPersetujuan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailKasPersetujuan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailKegiatanPersetujuan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailKegiatanPersetujuan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailKomponenPersetujuan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailKomponenPersetujuan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailPendapatanPersetujuan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailPendapatanPersetujuan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailRincian.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailRincian.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailSkpd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailSkpd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/ListPersetujuan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/ListPersetujuan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/menu-routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/menu-routes/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/kegiatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/persetujuan-view/DetailKasPersetujuan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/persetujuan-view/DetailKasPersetujuan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/persetujuan-view/DetailKegiatanPersetujuan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/persetujuan-view/DetailKegiatanPersetujuan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/persetujuan-view/DetailPendapatanPersetujuan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/persetujuan-view/DetailPendapatanPersetujuan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/persetujuan-view/DetailRincian.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/persetujuan-view/DetailRincian.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +38,9 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -78,7 +96,8 @@
       <workItem from="1566789265629" duration="11594000" />
       <workItem from="1566879674635" duration="1586000" />
       <workItem from="1566897427743" duration="52000" />
-      <workItem from="1566897487595" duration="27000" />
+      <workItem from="1566897487595" duration="765000" />
+      <workItem from="1566943728193" duration="6625000" />
     </task>
     <servers />
   </component>

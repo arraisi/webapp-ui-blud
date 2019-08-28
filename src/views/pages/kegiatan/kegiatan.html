@@ -64,6 +64,7 @@
                                 <th>Nama Kegiatan</th>
                                 <th>Nilai Anggaran</th>
                                 <th>Aksi</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -85,10 +86,16 @@
                                                 class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
+                                <td class="text-center">
+                                    <span class="badge {{val.statusBadgeColor}} rounded">{{val.statusName}}</span>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-primary">Kirim Kegiatan</button>
                 </div>
             </div>
         </div>

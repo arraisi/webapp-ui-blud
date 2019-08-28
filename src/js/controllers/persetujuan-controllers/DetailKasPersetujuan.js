@@ -2,12 +2,12 @@ angular
     .module('app', ['toaster', 'ngAnimate', 'datatables'])
     .controller('DetailKasPersetujuanController', DetailKasPersetujuanController);
 
-function DetailKasPersetujuanController($scope,$location,globalService) {
+function DetailKasPersetujuanController($scope, $location, globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
-    $scope.urlParam =  $location.search().idTmrbakasBlud
-    console.log("URL PARAM",$scope.urlParam)
-       /** Get Data Pengguna */
+    $scope.urlParam = $location.search().idTmrbakasBlud
+    console.log("URL PARAM", $scope.urlParam)
+    /** Get Data Pengguna */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
         console.log('Result Data Detail SKPD');
         console.log(result.data);
@@ -21,9 +21,9 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
             console.log(result);
         }
     });
-    
+
     /** Load Kas */
-    
+
     globalService.serviceGetData(`/blud-resource-server/api/kasController/findAll`, {
         tahunAnggaran: $scope.tahun,
         skpdId: local.pengguna.skpdId
@@ -51,7 +51,6 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
         return total;
     }
 
-    
 
     $scope.doKembali = function () {
         $location.url($location.path());
@@ -63,27 +62,27 @@ function DetailKasPersetujuanController($scope,$location,globalService) {
         switch (path) {
             case 'Kas':
                 // $location.search('idDpt', valueDpt.idTrx);
-                $location.path('/persetujuan/DetailKasPersetujuan');
+                $location.path('/persetujuan/kas-blud/detail');
                 break;
             case 'Pendapatan':
-                $scope.urlParam   
-                $location.path('/persetujuan/DetailPendapatanPersetujuan');
+                // $scope.urlParam
+                $location.path('/persetujuan/pendapatan/detail');
                 break;
             case 'Rincian':
-                $scope.urlParam   
-                $location.path('/persetujuan/DetailRincian');
+                // $scope.urlParam
+                $location.path('/persetujuan/rincian-biaya/detail');
                 break;
             case 'Kegiatan':
-                $scope.urlParam   
-                $location.path('/persetujuan/DetailKegiatanPersetujuan');
+                // $scope.urlParam
+                $location.path('/persetujuan/kegiatan/detail');
                 break;
             case 'Komponen':
                 // $location.search('idDpt', valueDpt.idTrx);
-                $scope.urlParam
-                $location.path('persetujuan/DetailKomponenPersetujuan');
+                // $scope.urlParam
+                $location.path('persetujuan/kegiatan/komponen/detail');
                 break;
         }
-     
+
     };
 
 }

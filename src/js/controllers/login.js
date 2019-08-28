@@ -55,7 +55,7 @@ function LoginFormController($scope, $http, $location, authenticationService, to
                 if (result.data.pengguna.otor == '1') {
                     $location.path('/kas-blud');
                 } else {
-                    $location.path('/ListPersetujuan');
+                    $location.path('/persetujuan/list');
                 }
             } else if (result.status === 400) {
                 toaster.pop({

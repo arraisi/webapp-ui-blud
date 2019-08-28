@@ -77,11 +77,11 @@ angular
                     }]
                 }
             })
-            .state('app.ListPersetujuan', {
-                url: '/ListPersetujuan',
+            .state('app.persetujuan', {
+                url: '/persetujuan/list',
                 templateUrl: 'views/pages/persetujuan-view/ListPersetujuan.html',
                 ncyBreadcrumb: {
-                    label: 'ListPersetujuan'
+                    label: 'Persetujuan / List'
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -93,10 +93,10 @@ angular
                 }
             })
             .state('app.DetailRincianPersetujuan', {
-                url: '/persetujuan/DetailRincian',
+                url: '/persetujuan/rincian-biaya/detail',
                 templateUrl: 'views/pages/persetujuan-view/DetailRincian.html',
                 ncyBreadcrumb: {
-                    label: 'Rincian Biaya'
+                    label: 'Persetujuan / Detail Rincian Biaya'
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -108,10 +108,10 @@ angular
                 }
             })
             .state('app.DetailPendapatanPersetujuan', {
-                url: '/persetujuan/DetailPendapatanPersetujuan',
+                url: '/persetujuan/pendapatan/detail',
                 templateUrl: 'views/pages/persetujuan-view/DetailPendapatanPersetujuan.html',
                 ncyBreadcrumb: {
-                    label: 'DetailPendapatanPersetujuan'
+                    label: 'Persetujuan / Pendapatan / Detail'
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -123,10 +123,10 @@ angular
                 }
             })
             .state('app.DetailKegiatanPersetujuan', {
-                url: '/persetujuan/DetailKegiatanPersetujuan',
+                url: '/persetujuan/kegiatan/detail',
                 templateUrl: 'views/pages/persetujuan-view/DetailKegiatanPersetujuan.html',
                 ncyBreadcrumb: {
-                    label: 'DetailKegiatanPersetujuan'
+                    label: 'Persetujuan / Kegiatan / Detail'
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -138,10 +138,10 @@ angular
                 }
             })
             .state('app.DetailSkpd', {
-                url: '/persetujuan/DetailKegiatanPersetujuan/DetailSkpd',
+                url: '/persetujuan/kegiatan/skp/detail',
                 templateUrl: 'views/pages/persetujuan-view/DetailSkpd.html',
                 ncyBreadcrumb: {
-                    label: 'DetailSkpd'
+                    label: 'Persetujuan / Kegiatan / SKP / Detail'
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -153,10 +153,10 @@ angular
                 }
             })
             .state('app.DetailKomponenPersetujuan', {
-                url: '/persetujuan/DetailKomponenPersetujuan',
+                url: '/persetujuan/kegiatan/komponen/detail',
                 templateUrl: 'views/pages/persetujuan-view/DetailKomponenPersetujuan.html',
                 ncyBreadcrumb: {
-                    label: 'DetailKomponenPersetujuan'
+                    label: 'Persetujuan / Kegiatan / Komponen / Detail'
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -168,10 +168,10 @@ angular
                 }
             })
             .state('app.DetailKasPersetujuan', {
-                url: '/persetujuan/DetailKasPersetujuan',
+                url: '/persetujuan/kas-blud/detail',
                 templateUrl: 'views/pages/persetujuan-view/DetailKasPersetujuan.html',
                 ncyBreadcrumb: {
-                    label: 'Persetujuan / Detail Kas '
+                    label: 'Persetujuan / KAS BLUD / Detail '
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {

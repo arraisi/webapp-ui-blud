@@ -2,29 +2,25 @@
     <div class="animated fadeIn">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card" >
-                        <div>
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-item">
-                                    <a class="nav-link ">Kas BLUD</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link " ng-click="doGoTo('Pendapatan')">Pendapatan</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link " ng-click="doGoTo('Rincian')" >Rincian Biaya</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active " ng-click="doGoTo('Kegiatan')">Kegiatan</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" ng-click="doGoTo('Komponen')">Komponen</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"  ng-click="doGoTo('Laporan')">Laporan</a>
-                                    </li>
-                                </ul>
-                            </div>
+                <div class="card">
+                    <div class="tab-wrap">
+                        <input type="radio" id="tab1" name="tabGroup1" class="tab"
+                               ng-click="doGoTo('Kas')">
+                        <label for="tab1">Kas BLUD</label>
+
+                        <input type="radio" id="tab2" name="tabGroup1" class="tab" ng-click="doGoTo('Pendapatan')">
+                        <label for="tab2">Pendapatan</label>
+
+                        <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="doGoTo('Rincian')">
+                        <label for="tab3">Rincian Biaya</label>
+
+                        <input type="radio" id="tab4" name="tabGroup1" class="tab" checked
+                               ng-click="doGoTo('Kegiatan')">
+                        <label for="tab4">Kegiatan</label>
+
+                        <input type="radio" id="tab5" name="tabGroup1" class="tab" ng-click="doGoTo('Laporan')">
+                        <label for="tab5">Laporan</label>
+                    </div>
                     <div class="card-body" id="collapseExample1">
                         <form>
                             <div class="row col-md-12">
@@ -34,7 +30,8 @@
                                        placeholder="Nama SKPD" style="margin-right: 10px">
                                 <input type="text" class="form-control col-md-3" name="nilaiAnggaran" id="nilaiAnggaran"
                                        placeholder="Nilai Anggaran" style="margin-right: 10px">
-                                <button type="submit" class="btn btn-success col-md-1 rounded"><i class="fa fa-search"></i>
+                                <button type="submit" class="btn btn-success col-md-1 rounded"><i
+                                        class="fa fa-search"></i>
                                     Cari
                                 </button>
                             </div>
@@ -42,37 +39,37 @@
                         <div class="form-group" style="margin-top: 13px">
                             <table class="table table-bordered table-striped rounded">
                                 <thead>
-                                    <tr class="text-center">
-                                        <th>No</th>
-                                        <th>No Kegiatan</th>
-                                        <th>Nama Kegiatan</th>
-                                        <th>Nilai Anggaran</th>
-                                        <th>Aksi</th>
-                                    </tr>
+                                <tr class="text-center">
+                                    <th>No</th>
+                                    <th>No Kegiatan</th>
+                                    <th>Nama Kegiatan</th>
+                                    <th>Nilai Anggaran</th>
+                                    <th>Aksi</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="data in valData">
-                                        <td>123456789</td>
-                                        <td>{{data.cakun}}</td>
-                                        <td>{{data.nakun}}</td>
-                                        <!-- <td class="text-right" >{{data.vkasAudited | currency: "Rp. " : 0}}</td> -->
-                                        <td>
-                                            <div class="controls col-9 float-right">
-                                                <div class="input-prepend input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Rp</span>
-                                                    </div>
-                                                    <input type="text" class="form-control text-right" input-currency
-                                                        ng-readonly="!readonlySaldo" ng-model="data.vkasAudited">
+                                <tr ng-repeat="data in valData">
+                                    <td>123456789</td>
+                                    <td>{{data.cakun}}</td>
+                                    <td>{{data.nakun}}</td>
+                                    <!-- <td class="text-right" >{{data.vkasAudited | currency: "Rp. " : 0}}</td> -->
+                                    <td>
+                                        <div class="controls col-9 float-right">
+                                            <div class="input-prepend input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Rp</span>
                                                 </div>
+                                                <input type="text" class="form-control text-right" input-currency
+                                                       ng-readonly="!readonlySaldo" ng-model="data.vkasAudited">
                                             </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn  rounded" ng-click="goToDetail(data)"> <i
-                                                    class="fa fa-list"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn  rounded" ng-click="goToDetail(data)"><i
+                                                class="fa fa-list"></i>
+                                        </button>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
