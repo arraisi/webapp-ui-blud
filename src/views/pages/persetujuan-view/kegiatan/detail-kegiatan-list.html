@@ -1,0 +1,92 @@
+<div ng-controller="DetailKegiatanPersetujuanController as List">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="tab-wrap">
+                        <input type="radio" id="tab1" name="tabGroup1" class="tab"
+                               ng-click="doGoTo('Kas')">
+                        <label for="tab1">Kas BLUD</label>
+
+                        <input type="radio" id="tab2" name="tabGroup1" class="tab" ng-click="doGoTo('Pendapatan')">
+                        <label for="tab2">Pendapatan</label>
+
+                        <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="doGoTo('Rencana')">
+                        <label for="tab3">Rencana Belanja</label>
+
+                        <input type="radio" id="tab4" name="tabGroup1" class="tab" checked
+                               ng-click="doGoTo('Kegiatan')">
+                        <label for="tab4">Kegiatan</label>
+
+                        <input type="radio" id="tab5" name="tabGroup1" class="tab" ng-click="doGoTo('Laporan')">
+                        <label for="tab5">Laporan</label>
+                    </div>
+
+                    <div class="border rounded" style="margin: 10px !important;">
+                        <div class="form-group row col-12" style="margin-bottom: 1px !important;">
+                            <label class="col-2 col-form-label">Tahun Anggaran</label>
+                            <div class="col-8">
+                                <label class="col-form-label">: {{tahun}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row col-12" style="margin-bottom: 1px !important;">
+                            <label class="col-2 col-form-label">SKPD</label>
+                            <div class="col-8">
+                                <label class="col-form-label">: {{skpdDetail.kodeSkpd}} /
+                                    {{skpdDetail.namaSkpd}}</label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body" id="collapseExample1">
+                        <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
+                             style="margin-top: 13px">
+                            <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
+                                   dt-instance="dtInstanceProgram"
+                                   class="table table-bordered table-striped row-border hover rounded">
+                                <thead>
+                                <tr class="text-center">
+<!--                                    <th>No</th>-->
+                                    <th>No Kegiatan</th>
+                                    <th>Nama Kegiatan</th>
+                                    <th>Nilai Anggaran</th>
+                                    <th>Aksi</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="val in ::listKegiatan">
+<!--                                    <td class="text-center">{{val.idKegiatan}}</td>-->
+                                    <td>{{val.kodeKegiatan}}</td>
+                                    <td>{{val.namaKegiatan}}</td>
+                                    <td class="text-right">{{accounting.formatMoney(val.anggaranTapd, "", 2,
+                                        ".", ",")}}
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-link" title="Detail"
+                                                    ng-click="detailKegiatan(val)"><i
+                                                    class="fa fa-list"></i></button>
+                                            <button type="button" class="btn btn-link" title="Setuju"
+                                                    ng-click="setujuKegiatan(val)"><i
+                                                    class="fa fa-check"></i></button>
+                                            <button type="button" class="btn btn-link" title="Tolak"
+                                                    ng-click="tolakKegiatan(val)"><i
+                                                    class="fa fa-close"></i></button>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge {{val.statusBadgeColor}} rounded">{{val.statusName}}</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <toaster-container toaster-options="{'close-button': true}"></toaster-container>
+</div>

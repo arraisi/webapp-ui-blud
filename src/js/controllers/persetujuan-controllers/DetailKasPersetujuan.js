@@ -5,10 +5,13 @@ angular
 function DetailKasPersetujuanController($scope, $location, globalService) {
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
-    $scope.urlParam = $location.search().idTmrbakasBlud
-    console.log("URL PARAM", $scope.urlParam)
+    const skpdIdUrlParam = $location.search().skpd;
+    console.log("URL PARAM", $scope.skpdIdUrlParam);
+    $scope.otoritasPengguna = local.pengguna.otor;
+
+
     /** Get Data Pengguna */
-    globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
+    globalService.serviceGetData(`/blud-resource-server/api/skpd/${skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId}`, null, function (result) {
         console.log('Result Data Detail SKPD');
         console.log(result.data);
         if (result.status === 200) {
@@ -21,12 +24,10 @@ function DetailKasPersetujuanController($scope, $location, globalService) {
             console.log(result);
         }
     });
-
     /** Load Kas */
-
     globalService.serviceGetData(`/blud-resource-server/api/kasController/findAll`, {
         tahunAnggaran: $scope.tahun,
-        skpdId: local.pengguna.skpdId
+        skpdId: skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId
     }, function (result) {
         console.log('Result Data Load Kas');
         console.log(result.data);
@@ -49,12 +50,16 @@ function DetailKasPersetujuanController($scope, $location, globalService) {
         });
 
         return total;
-    }
+    };
 
 
     $scope.doKembali = function () {
         $location.url($location.path());
-        $location.path('/ListPersetujuan');
+        $location.path('/persetujuan/list');
+    };
+
+    $scope.doLanjut = function () {
+        $location.path('/persetujuan/pendapatan/detail');
     };
 
     $scope.doGoTo = function (path) {
@@ -68,9 +73,9 @@ function DetailKasPersetujuanController($scope, $location, globalService) {
                 // $scope.urlParam
                 $location.path('/persetujuan/pendapatan/detail');
                 break;
-            case 'Rincian':
+            case 'Rencana':
                 // $scope.urlParam
-                $location.path('/persetujuan/rincian-biaya/detail');
+                $location.path('/persetujuan/rencana-belanja/detail');
                 break;
             case 'Kegiatan':
                 // $scope.urlParam

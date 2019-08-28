@@ -1,0 +1,94 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" ng-controller="DetailRincianPendapatanPersetujuanController">
+                <div class="tab-wrap">
+                    <input type="radio" id="tab1" name="tabGroup1" class="tab"
+                           ng-click="doGoTo('Kas')">
+                    <label for="tab1">Kas BLUD</label>
+
+                    <input type="radio" id="tab2" name="tabGroup1" class="tab" checked ng-click="doGoTo('Pendapatan')">
+                    <label for="tab2">Pendapatan</label>
+
+                    <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="doGoTo('Rencana')">
+                    <label for="tab3">Rencana Belanja</label>
+
+                    <input type="radio" id="tab4" name="tabGroup1" class="tab" ng-click="doGoTo('Kegiatan')">
+                    <label for="tab4">Kegiatan</label>
+
+                    <input type="radio" id="tab5" name="tabGroup1" class="tab" ng-click="doGoTo('Laporan')">
+                    <label for="tab5">Laporan</label>
+                </div>
+                <div class="border rounded">
+                    <div class="form-group row col-12" style="margin-bottom: 1px !important;">
+                        <label class="col-2 col-form-label">Tahun Anggaran</label>
+                        <div class="col-8">
+                            <label class="col-form-label">: {{tahun}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row col-12" style="margin-bottom: 1px !important;">
+                        <label class="col-2 col-form-label">SKPD</label>
+                        <div class="col-8">
+                            <label class="col-form-label">: {{skpdDetail.kodeSkpd}} /
+                                {{skpdDetail.namaSkpd}}</label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" id="collapseExample1">
+                    <div class="form-group">
+                        <strong> <u> Daftar Rincian Pendapatan </u> </strong>
+                    </div>
+                    <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
+                         style="margin-top: 13px">
+                        <table style="table-layout: fixed; width: 100%"
+                               class="table table-bordered table-striped rounded">
+                            <thead>
+                            <colgroup>
+                                <col style="width: 5%">
+                                <col style="width: 35%">
+                                <col style="width: 10%">
+                                <col style="width: 10%">
+                                <col style="width: 20%">
+                                <col style="width: 20%">
+                            </colgroup>
+                            <tr class="text-center">
+                                <th>No</th>
+                                <th>Uraian</th>
+                                <th>Satuan</th>
+                                <th>Volume</th>
+                                <th>Harga</th>
+                                <th>Total Anggaran</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="data in loadDataRincianPendapatan">
+                                <td class="text-center">{{data.anggaranNoUrut}}</td>
+                                <td style="word-wrap: break-word">{{data.rincianAnggaran}}</td>
+                                <td>{{data.namaBarangSatuanTapd}}</td>
+                                <td class="text-center">{{data.jumlahBarangTapd}}</td>
+                                <td class="text-right">{{accounting.formatMoney(data.hargaBarangSatuanTapd, "Rp ", 2,
+                                    ".", ",")}}
+                                </td>
+                                <td class="text-right">{{accounting.formatMoney(data.anggaranTapd, "Rp ", 2, ".",
+                                    ",")}}
+                                </td>
+                            </tr>
+                            <tr ng-if="loadDataRincianPendapatan.length <= 0">
+                                <td colspan="6" class="text-center"><b>Tidak Ada Data Rincian</b></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-secondary rounded" ng-click="doKembali()">Kembali</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<toaster-container toaster-options="{'close-button': true}"></toaster-container>
+    

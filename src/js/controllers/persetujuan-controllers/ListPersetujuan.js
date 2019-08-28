@@ -7,6 +7,10 @@ function ListPersetujuanController($scope, $location, globalService) {
     const local = JSON.parse(localStorage.getItem('currentUser'));
     const token = 'Bearer ' + local.access_token;
 
+    if (local.pengguna.otor < 3) {
+        $location.path('/persetujuan/kas-blud/detail');
+    }
+
     $scope.formAlasanTolak = {
         alasanTolak: null
     };
@@ -49,7 +53,7 @@ function ListPersetujuanController($scope, $location, globalService) {
     }, function (result) {
         console.log('Result Data Load Kas');
         console.log(result.data);
-        $scope.valData = result.data
+        $scope.valData = result.data;
         if (result.status === 200) {
         } else {
             console.log('Response Result Load Kas');

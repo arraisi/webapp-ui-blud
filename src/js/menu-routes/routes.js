@@ -93,10 +93,10 @@ angular
                 }
             })
             .state('app.DetailRincianPersetujuan', {
-                url: '/persetujuan/rincian-biaya/detail',
+                url: '/persetujuan/rencana-belanja/detail',
                 templateUrl: 'views/pages/persetujuan-view/DetailRincian.html',
                 ncyBreadcrumb: {
-                    label: 'Persetujuan / Detail Rincian Biaya'
+                    label: 'Persetujuan / Rencana Belanja / Detail'
                 },
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -109,7 +109,7 @@ angular
             })
             .state('app.DetailPendapatanPersetujuan', {
                 url: '/persetujuan/pendapatan/detail',
-                templateUrl: 'views/pages/persetujuan-view/DetailPendapatanPersetujuan.html',
+                templateUrl: 'views/pages/persetujuan-view/pendapatan/detail-pendapatan-list.html',
                 ncyBreadcrumb: {
                     label: 'Persetujuan / Pendapatan / Detail'
                 },
@@ -117,14 +117,44 @@ angular
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
-                            files: ['js/controllers/persetujuan-controllers/DetailPendapatanPersetujuan.js']
+                            files: ['js/controllers/persetujuan-controllers/detail-pendapatan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.DetailRincianPendapatanPersetujuan', {
+                url: '/persetujuan/pendapatan/rincian/detail',
+                templateUrl: 'views/pages/persetujuan-view/pendapatan/detail-rincian-pendapatan.html',
+                ncyBreadcrumb: {
+                    label: 'Persetujuan / Pendapatan / Rincian / Detail'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/detail-pendapatan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.DetailAkbPendapatanPersetujuan', {
+                url: '/persetujuan/pendapatan/akb/detail',
+                templateUrl: 'views/pages/persetujuan-view/pendapatan/detail-akb-pendapatan.html',
+                ncyBreadcrumb: {
+                    label: 'Persetujuan / Pendapatan / AKB / Detail'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/detail-pendapatan.js']
                         });
                     }]
                 }
             })
             .state('app.DetailKegiatanPersetujuan', {
                 url: '/persetujuan/kegiatan/detail',
-                templateUrl: 'views/pages/persetujuan-view/DetailKegiatanPersetujuan.html',
+                templateUrl: 'views/pages/persetujuan-view/kegiatan/detail-kegiatan-list.html',
                 ncyBreadcrumb: {
                     label: 'Persetujuan / Kegiatan / Detail'
                 },
@@ -132,7 +162,52 @@ angular
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         // you can lazy load files for an existing module
                         return $ocLazyLoad.load({
-                            files: ['js/controllers/persetujuan-controllers/DetailKegiatanPersetujuan.js']
+                            files: ['js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.persetujuan-kegiatan-tab-kegiatan', {
+                url: '/kegiatan/detail',
+                templateUrl: 'views/pages/persetujuan-view/kegiatan/detail-tab-kegiatan.html',
+                ncyBreadcrumb: {
+                    label: 'Kegiatan / Detail'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan-tab-kegiatan.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.persetujuan-kegiatan-tab-komponen', {
+                url: '/kegiatan/komponen/detail',
+                templateUrl: 'views/pages/persetujuan-view/kegiatan/detail-tab-komponen.html',
+                ncyBreadcrumb: {
+                    label: 'Kegiatan / Komponen / Detail'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan-tab-komponen.js']
+                        });
+                    }]
+                }
+            })
+            .state('app.persetujuan-kegiatan-tab-rpa', {
+                url: '/kegiatan/komponen/rpa/detail',
+                templateUrl: 'views/pages/persetujuan-view/kegiatan/detail-tab-rpa-komponen.html',
+                ncyBreadcrumb: {
+                    label: 'Kegiatan / Komponen/ RPA / Detail'
+                },
+                resolve: {
+                    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        // you can lazy load files for an existing module
+                        return $ocLazyLoad.load({
+                            files: ['js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan-tab-rpa.js']
                         });
                     }]
                 }

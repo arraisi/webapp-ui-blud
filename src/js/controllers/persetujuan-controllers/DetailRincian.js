@@ -8,19 +8,19 @@ function DetailRincianController($scope, $location, toaster, globalService) {
     const local = JSON.parse(localStorage.getItem('currentUser'));
 
     /** Load Rincian Belanja */
-    globalService.serviceGetData(`/blud-resource-server/api/rincianCtrl/findAll`, {
-        tahunAnggaran: $scope.tahun,
-        skpdId: local.pengguna.skpdId
-    }, function (result) {
-        console.log('Result Data Load Kas');
-        console.log(result.data);
-        $scope.valData = result.data
-        if (result.status === 200) {
-        } else {
-            console.log('Response Result Load Rincian Belanja');
-            console.log(result);
-        }
-    });
+    // globalService.serviceGetData(`/blud-resource-server/api/rincianCtrl/findAll`, {
+    //     tahunAnggaran: $scope.tahun,
+    //     skpdId: local.pengguna.skpdId
+    // }, function (result) {
+    //     console.log('Result Data Load Kas');
+    //     console.log(result.data);
+    //     $scope.valData = result.data
+    //     if (result.status === 200) {
+    //     } else {
+    //         console.log('Response Result Load Rincian Belanja');
+    //         console.log(result);
+    //     }
+    // });
 
 
     /** Load SKPD By ID SKPD */
@@ -49,9 +49,9 @@ function DetailRincianController($scope, $location, toaster, globalService) {
                 // $scope.urlParam
                 $location.path('/persetujuan/pendapatan/detail');
                 break;
-            case 'Rincian':
+            case 'Rencana':
                 // $scope.urlParam
-                $location.path('/persetujuan/rincian-biaya/detail');
+                $location.path('/persetujuan/rencana-belanja/detail');
                 break;
             case 'Kegiatan':
                 // $scope.urlParam

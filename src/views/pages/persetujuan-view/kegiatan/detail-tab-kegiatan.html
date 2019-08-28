@@ -1,0 +1,150 @@
+<div ng-controller="DetailKegiatanTabKegiatanController">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body" id="collapseExample1">
+
+                        <div class="tab-wrap">
+                            <input type="radio" id="tab1" name="tabGroup1" class="tab" checked
+                                   ng-click="tabGoTo('kegiatan')">
+                            <label for="tab1">KEGIATAN</label>
+
+                            <input type="radio" id="tab2" name="tabGroup1" class="tab"
+                                   ng-click="tabGoTo('komponen')" ng-disabled="!idKegiatan">
+                            <label for="tab2">KOMPONEN</label>
+
+                            <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="tabGoTo('rpa')">
+                            <label for="tab3">RPA PER KOMPONEN</label>
+                        </div>
+
+                        <div class="border rounded">
+                            <fieldset disabled>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <strong> <u> Data Kegiatan </u></strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 3px !important;">
+                                    <div class="col-md-6">
+                                        <div class="form-group row col-md-12">
+                                            <label class="col-md-4 col-form-label">Urusan</label>
+                                            <div class="row col-md-8">
+                                                <div class="input-group input-group-prepend">
+                                                    <input readonly type="text" class="form-control" name="urusan"
+                                                           id="urusan"
+                                                           ng-model="formTambahKegiatan.urusan.namaUrusan">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-md-12">
+                                            <label class="col-md-4 col-form-label">Program</label>
+                                            <div class="row col-md-8">
+                                                <div class="input-group input-group-prepend">
+                                                    <input readonly type="text" class="form-control" name="program"
+                                                           id="program"
+                                                           ng-model="formTambahKegiatan.program.namaProgram"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-md-12">
+                                            <label class="col-md-4 col-form-label">No. Kegiatan</label>
+                                            <div class="row col-md-8">
+                                                <input readonly type="text" class="form-control" name="noKegiatan"
+                                                       id="noKegiatan"
+                                                       ng-model="formTambahKegiatan.kodeKegiatan">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-md-12">
+                                            <label class="col-md-4 col-form-label">Nama Kegiatan</label>
+                                            <div class="row col-md-8">
+                                                <input type="text" class="form-control" name="namaKegiatan"
+                                                       id="namaKegiatan"
+                                                       ng-model="formTambahKegiatan.namaKegiatan">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row col-md-12">
+                                            <label class="col-md-4 col-form-label">Sasaran</label>
+                                            <div class="row col-md-8">
+                                                <input type="text" class="form-control" name="sasaran"
+                                                       id="sasaran"
+                                                       ng-model="formTambahKegiatan.sasaranKegiatan"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-md-12">
+                                            <label class="col-md-4 col-form-label">Waktu Pelaksanaan</label>
+                                            <div class="row col-md-8">
+                                                <input type="text" class="form-control col-md-5" name="bulanMulai"
+                                                       id="bulanMulai"
+                                                       placeholder="Bulan Mulai (01-12)"
+                                                       ng-model="formTambahKegiatan.bulanMulai">
+                                                <span class="col-md-2 col-form-label text-center">-</span>
+                                                <input type="text" class="form-control col-md-5" name="bulanSelesai"
+                                                       id="bulanSelesai"
+                                                       placeholder="Bulan Selesai (01-12)"
+                                                       ng-model="formTambahKegiatan.bulanSelesai">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-md-12">
+                                            <label class="col-md-4 col-form-label">Lokasi Kegiatan</label>
+                                            <div class="row col-md-8">
+                                                <select id="lokasiKegiatan" name="lokasiKegiatan"
+                                                        class="form-control input-lg"
+                                                        ng-model="formTambahKegiatan.kodeLokasiKegiatan">
+                                                    <option ng-value=val.kodeLokasi
+                                                            ng-repeat="val in ::lokasiKegiatanList">
+                                                        {{val.kodeLokasi}} - {{val.namaLokasi}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-md-12">
+                                            <label class="col-md-4 col-form-label">Sumber Dana</label>
+                                            <div class="row col-md-8">
+                                                <input type="text" class="form-control" name="sumberDana"
+                                                       id="sumberDana"
+                                                       ng-model="formTambahKegiatan.namaSumberDana">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <br>
+                        <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
+                             style="margin-top: 13px">
+                            <table datatable="ng" dt-options="dtOptionsKinerja" dt-column-defs="dtColumnDefs"
+                                   dt-instance="dtInstanceKinerja"
+                                   class="table table-bordered table-striped row-border hover rounded">
+                                <thead>
+                                <tr class="text-center">
+                                    <th>Kode Indikator</th>
+                                    <th>No Urut</th>
+                                    <th>Tolak Ukur</th>
+                                    <th>Target Kinerja</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="val in ::listKinerja">
+                                    <td>{{val.kodeIndikator}}</td>
+                                    <td class="text-center">{{val.noUrut}}</td>
+                                    <td>{{val.keteranganTolakUkur}}</td>
+                                    <td class="text-right">{{val.keteranganTargetKinerja}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="button" class="btn btn-secondary rounded" title="Kembali"
+                                ng-click="kembaliKeListKegiatan()">Kembali
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <toaster-container toaster-options="{'close-button': true}"></toaster-container>
+</div>

@@ -1,0 +1,246 @@
+<div ng-controller="DetailKegiatanTabRpaController">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="tab-wrap">
+                            <input type="radio" id="tab1" name="tabGroup1" class="tab" ng-click="tabGoTo('kegiatan')">
+                            <label for="tab1">KEGIATAN</label>
+
+                            <input type="radio" id="tab2" name="tabGroup1" class="tab" ng-click="tabGoTo('komponen')">
+                            <label for="tab2">KOMPONEN</label>
+
+                            <input type="radio" id="tab3" name="tabGroup1" class="tab" checked ng-click="tabGoTo('rpa')">
+                            <label for="tab3">RPA PER KOMPONEN</label>
+                        </div>
+
+                        <div class="border rounded">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <strong> <u> Data Kegiatan </u> </strong>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 3px !important;">
+                                <div class="col-6">
+                                    <div class="form-group row col-12">
+                                        <label for="urusan" class="col-4 col-form-label">Urusan <sup
+                                                style="color: red;">(*)</sup>
+                                        </label>
+                                        <div class="col-8">
+                                            <div class="input-group input-group-prepend">
+                                                <input readonly type="text" class="form-control" name="urusan"
+                                                       id="urusan"
+                                                       ng-model="formTambahKegiatan.urusan.namaUrusan">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label for="program" class="col-4 col-form-label">Program <sup
+                                                style="color: red;">(*)</sup>
+                                        </label>
+                                        <div class="col-8">
+                                            <div class="input-group input-group-prepend">
+                                                <input readonly type="text" class="form-control" name="program"
+                                                       id="program"
+                                                       ng-model="formTambahKegiatan.program.namaProgram"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label for="noKegiatan" class="col-4 col-form-label">No. Kegiatan <sup
+                                                style="color: red;">(*)</sup>
+                                        </label>
+                                        <div class="col-8">
+                                            <input readonly type="text" class="form-control" name="noKegiatan"
+                                                   id="noKegiatan"
+                                                   ng-model="formTambahKegiatan.kodeKegiatan">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label for="namaKegiatan" class="col-4 col-form-label">Nama Kegiatan <sup
+                                                style="color: red;">(*)</sup>
+                                        </label>
+                                        <div class="col-8">
+                                            <input readonly type="text" class="form-control" name="namaKegiatan"
+                                                   id="namaKegiatan"
+                                                   ng-model="formTambahKegiatan.namaKegiatan">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row col-12">
+                                        <label for="paguKegiatan" class="col-4 col-form-label">
+                                            Pagu Kegiatan
+                                        </label>
+                                        <div class="col-8">
+                                            <input type="text" readonly name="paguKegiatan" id="paguKegiatan"
+                                                   ng-model="paguKegiatan" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label for="belanjaPegawai" class="col-4 col-form-label"> Belanja Pegawai
+                                        </label>
+                                        <div class="col-8">
+                                            <input type="text" readonly name="belanjaPegawai" id="belanjaPegawai"
+                                                   ng-model="anggaranPegawai" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label for="belanjaBarangJasa" class="col-4 col-form-label"> Belanja Barang & Jasa
+                                        </label>
+                                        <div class="col-8">
+                                            <input type="text" readonly name="belanjaBarangJasa" id="belanjaBarangJasa"
+                                                   ng-model="anggaranBarang" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label for="belanjaModal" class="col-4 col-form-label"> Belanja Modal
+                                        </label>
+                                        <div class="col-8">
+                                            <input type="text" readonly name="belanjaModal" id="belanjaModal"
+                                                   ng-model="anggaranModal" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <strong> <u> Daftar Komponen </u> </strong>
+                            </div>
+                        </div>
+
+                        <div class="border rounded">
+                            <div class="tab-wrap">
+                                <input type="radio" id="tabPeg" name="tabBelanja" class="tab" ng-click="switchTab(1)"
+                                       checked>
+                                <label for="tabPeg">Belanja Pegawai</label>
+
+                                <input type="radio" id="tabBarang" name="tabBelanja" class="tab"
+                                       ng-click="switchTab(2)">
+                                <label for="tabBarang">Belanja Barang & Jasa</label>
+
+                                <input type="radio" id="tabModal" name="tabBelanja" class="tab" ng-click="switchTab(3)">
+                                <label for="tabModal">Belanja Modal</label>
+                            </div>
+
+                            <br>
+
+                            <div class="card-body collapse show text-center" id="collapseExample1">
+                                <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable">
+                                    <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
+                                           dt-instance="dtInstanceBelanja"
+                                           class="table table-bordered table-striped row-border hover rounded">
+                                        <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kode Akun</th>
+                                            <th>Kode Komponen</th>
+                                            <th>Nama Komponen</th>
+                                            <th>Keterangan</th>
+                                            <th>Spek</th>
+                                            <th>Nilai</th>
+                                            <th>Januari</th>
+                                            <th>Februari</th>
+                                            <th>Maret</th>
+                                            <th>April</th>
+                                            <th>Mei</th>
+                                            <th>Juni</th>
+                                            <th>Juli</th>
+                                            <th>Agustus</th>
+                                            <th>September</th>
+                                            <th>Oktober</th>
+                                            <th>November</th>
+                                            <th>Desember</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="belanja in ::belanjaList">
+                                            <td>{{belanja.idAnggaranNoUrut}}</td>
+                                            <td>{{belanja.kodeAkun}}</td>
+                                            <td>{{belanja.kodeKomponen}}</td>
+                                            <td>{{belanja.namaKomponen}}</td>
+                                            <td>{{belanja.entryAnggaranRinci}}</td>
+                                            <td>{{belanja.spek}}</td>
+                                            <td>{{accounting.formatMoney(belanja.anggaranDpa,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </td>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan1,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan2,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan3,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan4,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan5,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan6,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan7,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan8,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan9,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan10,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan11,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <th>{{accounting.formatMoney(belanja.rpaBulan12,
+                                                "", 2,
+                                                ".", ",")}}
+                                            </th>
+                                            <td>
+                                                <div class="btn-group btn-group-sm" role="group"
+                                                     aria-label="Button group with nested dropdown">
+                                                    <button id="btnEdit" class="btn btn-link" style="color: #000000"
+                                                            data-toggle="modal" data-target="#modalEditRpa"
+                                                            ng-click="getById(belanja)">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <toaster-container toaster-options="{'close-button': true}"></toaster-container>
+</div>

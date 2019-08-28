@@ -9,8 +9,8 @@
                     <input type="radio" id="tab2" name="tabGroup1" class="tab" ng-click="doGoTo('Pendapatan')">
                     <label for="tab2">Pendapatan</label>
 
-                    <input type="radio" id="tab3" name="tabGroup1" class="tab" checked ng-click="doGoTo('Rincian')">
-                    <label for="tab3">Rincian Biaya</label>
+                    <input type="radio" id="tab3" name="tabGroup1" class="tab" checked ng-click="doGoTo('Rencana')">
+                    <label for="tab3">Rencana Belanja</label>
 
                     <input type="radio" id="tab4" name="tabGroup1" class="tab" ng-click="doGoTo('Kegiatan')">
                     <label for="tab4">Kegiatan</label>
@@ -55,15 +55,9 @@
                                 <th>Belanja Barang dan Jasa</th>
                                 <th>Belanja Modal</th>
                             </tr>
-                            <!-- <tr hidden>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-
-                            </tr> -->
                             </thead>
                             <tbody>
-                            <tr ng-repeat="data in valData">
+                            <tr ng-if="valData && valData.length >= 1" ng-repeat="data in valData">
                                 <td style="width:25%">{{ data.cakun }}</td>
                                 <td style="width:25%">{{ data.nakun }}</td>
                                 <td>
@@ -84,8 +78,11 @@
                                 <td></td>
                                 <td></td>
                             </tr>
+                            <tr ng-if="valData.length <= 0 || !valData">
+                                <td colspan="6" class="text-center"><b>Tidak Ditemukan Data Rencana Belanja</b></td>
+                            </tr>
                             </tbody>
-                            <tfoot>
+                            <tfoot ng-if="valData && valData.length >= 1">
                             <tr>
                                 <th class="text-center" colspan="2">Total</th>
                                 <th class="text-right"><strong>{{ getTotal() | number:0 }}</strong></th>

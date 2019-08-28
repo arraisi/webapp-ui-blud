@@ -11,8 +11,8 @@
                            ng-click="doGoTo('Pendapatan')">
                     <label for="tab2">Pendapatan</label>
 
-                    <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="doGoTo('Rincian')">
-                    <label for="tab3">Rincian Biaya</label>
+                    <input type="radio" id="tab3" name="tabGroup1" class="tab" ng-click="doGoTo('Rencana')">
+                    <label for="tab3">Rencana Belanja</label>
 
                     <input type="radio" id="tab4" name="tabGroup1" class="tab" ng-click="doGoTo('Kegiatan')">
                     <label for="tab4">Kegiatan</label>
@@ -20,24 +20,23 @@
                     <input type="radio" id="tab5" name="tabGroup1" class="tab" ng-click="doGoTo('Laporan')">
                     <label for="tab5">Laporan</label>
                 </div>
-                <div class="card-body" id="collapseExample1">
-                    <div class="border rounded">
-                        <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                            <label class="col-2 col-form-label">Tahun Anggaran</label>
-                            <div class="col-8">
-                                <label class="col-form-label">: {{tahun}}</label>
-                            </div>
-                        </div>
-                        <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                            <label class="col-2 col-form-label">SKPD</label>
-                            <div class="col-8">
-                                <label class="col-form-label">: {{skpdDetail.kodeSkpd}} /
-                                    {{skpdDetail.namaSkpd}}</label>
-
-                            </div>
+                <div class="border rounded">
+                    <div class="form-group row col-12" style="margin-bottom: 1px !important;">
+                        <label class="col-2 col-form-label">Tahun Anggaran</label>
+                        <div class="col-8">
+                            <label class="col-form-label">: {{tahun}}</label>
                         </div>
                     </div>
-                    <hr>
+                    <div class="form-group row col-12" style="margin-bottom: 1px !important;">
+                        <label class="col-2 col-form-label">SKPD</label>
+                        <div class="col-8">
+                            <label class="col-form-label">: {{skpdDetail.kodeSkpd}} /
+                                {{skpdDetail.namaSkpd}}</label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" id="collapseExample1">
                     <div class="form-group">
                         <strong> <u> Anggaran Murni </u> </strong>
                     </div>
@@ -88,10 +87,14 @@
                         </table>
                     </div>
                     <br>
-                    <div class="card-footer text-center">
-                        <button class="btn btn-secondary rounded" ng-click="doKembali()">Kembali</button>
-                        <button class="btn btn-success rounded" ng-click="doLanjut()">Lanjut</button>
-                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button ng-if="otoritasPengguna >= 3" class="btn btn-secondary rounded" ng-click="doKembali()">
+                        Kembali
+                    </button>
+                    <button class="btn btn-success rounded" ng-click="doLanjut()"><i class="fa fa-arrow-right"></i>
+                        Lanjut
+                    </button>
                 </div>
 
             </div>

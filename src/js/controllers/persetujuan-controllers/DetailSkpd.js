@@ -77,9 +77,9 @@ function DetailSkpdPersetujuanController($scope,$location,globalService) {
                 // $scope.urlParam
                 $location.path('/persetujuan/pendapatan/detail');
                 break;
-            case 'Rincian':
+            case 'Rencana':
                 // $scope.urlParam
-                $location.path('/persetujuan/rincian-biaya/detail');
+                $location.path('/persetujuan/rencana-belanja/detail');
                 break;
             case 'Kegiatan':
                 // $scope.urlParam

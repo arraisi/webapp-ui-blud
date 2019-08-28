@@ -52,7 +52,7 @@ function LoginFormController($scope, $http, $location, authenticationService, to
                     timeout: 3000
                 });
                 // $http.defaults.headers.common.Authorization = 'Bearer ' + result.data.access_token;
-                if (result.data.pengguna.otor == '1') {
+                if (result.data.pengguna.otor == '0') {
                     $location.path('/kas-blud');
                 } else {
                     $location.path('/persetujuan/list');

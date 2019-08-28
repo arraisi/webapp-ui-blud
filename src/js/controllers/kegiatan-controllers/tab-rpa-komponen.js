@@ -417,7 +417,7 @@ function TabRpaKomponenController($scope, $location, toaster, globalService) {
                 $scope.dtInstanceBelanja.rerender();
             });
         }
-    }
+    };
 
     $scope.kirim = function () {
         globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/update-anggaran-kegiatan/${kegiatanId}`, {anggaran: $scope.paguKegiatan}, function (response) {
