@@ -38,6 +38,10 @@ function DetailRincianController($scope, $location, toaster, globalService) {
         }
     });
 
+    $scope.doLanjut = function () {
+        $location.path('/persetujuan/kegiatan/detail');
+    };
+
     $scope.doGoTo = function (path) {
         console.log(path);
         switch (path) {

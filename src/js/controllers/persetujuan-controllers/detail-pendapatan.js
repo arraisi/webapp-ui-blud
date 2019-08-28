@@ -58,6 +58,10 @@ function DetailPendapatanPersetujuanController($scope, $location, toaster, globa
         $location.path('/persetujuan/list');
     };
 
+    $scope.doLanjut = function () {
+        $location.path('/persetujuan/rencana-belanja/detail');
+    };
+
     $scope.goToRincianPersetujuan = function (valueDpt) {
         $location.search('idDpt', valueDpt.idTrx);
         $location.path('/persetujuan/pendapatan/rincian/detail');
