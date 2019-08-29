@@ -4,14 +4,18 @@
     <list default="true" id="dfc9524d-19e5-483a-a408-1c355d84dba3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/kegiatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/kegiatan-controllers/kegiatan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailKasPersetujuan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailKasPersetujuan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailRincian.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/DetailRincian.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/ListPersetujuan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/ListPersetujuan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/detail-pendapatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/detail-pendapatan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan-tab-kegiatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan-tab-kegiatan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan-tab-komponen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan-tab-komponen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan-tab-rpa.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan-tab-rpa.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/controllers/persetujuan-controllers/kegiatan/detail-kegiatan.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/kegiatan/kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/kegiatan/kegiatan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/persetujuan-view/DetailKasPersetujuan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/persetujuan-view/DetailKasPersetujuan.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/persetujuan-view/ListPersetujuan.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/persetujuan-view/ListPersetujuan.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/persetujuan-view/kegiatan/detail-kegiatan-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/persetujuan-view/kegiatan/detail-kegiatan-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/persetujuan-view/pendapatan/detail-pendapatan-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/persetujuan-view/pendapatan/detail-pendapatan-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/persetujuan-view/kegiatan/detail-tab-komponen.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/persetujuan-view/kegiatan/detail-tab-komponen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/persetujuan-view/kegiatan/detail-tab-rpa-komponen.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/persetujuan-view/kegiatan/detail-tab-rpa-komponen.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +106,7 @@
       <workItem from="1566897427743" duration="52000" />
       <workItem from="1566897487595" duration="765000" />
       <workItem from="1566943728193" duration="7217000" />
-      <workItem from="1566976307717" duration="29067000" />
+      <workItem from="1566976307717" duration="32577000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,4 @@
-<div ng-controller="DetailKegiatanPersetujuanController as List">
+<div ng-controller="DetailKegiatanPersetujuanController">
     <div class="animated fadeIn">
         <div class="row">
             <div class="col-lg-12">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <div class="form-group row col-md-12">
+                                <div class="form-group row col-md-12" ng-if="penggunaLogin.otor != '3'">
                                     <label class="col-md-6 col-form-label">Persetujuan Kepala SKPD</label>
                                     <div class="col-md-6">
                                         <button class="btn {{statusAppvKepalaDanDinas.statusButtonAppvKepala}} rounded"
@@ -126,36 +126,41 @@
                     <div class="card-footer text-center">
 
                         <!-- Button Submit Bendahara-->
-                        <button ng-if="penggunaLogin.otor == '1'"
-                                ng-disabled="statusAppvKepalaDanDinas.statusAppvKepala == '1' || statusAppvKepalaDanDinas.statusAppvKepala == '2' || statusAppvKepalaDanDinas.statusAppvKepala == '4'"
-                                type="button" class="btn btn-primary rounded"
-                                data-toggle="modal" data-target="#modalKirimKegiatan">
-                            Terima Kegiatan
-                        </button>
+                        <div ng-if="penggunaLogin.otor == '1'">
+                            <button ng-disabled="statusAppvKepalaDanDinas.statusAppvKepala == '1' || statusAppvKepalaDanDinas.statusAppvKepala == '2' || statusAppvKepalaDanDinas.statusAppvKepala == '4'"
+                                    type="button" class="btn btn-primary rounded"
+                                    data-toggle="modal" data-target="#modalKirimKegiatan">
+                                Terima Kegiatan
+                            </button>
+                        </div>
 
                         <!-- Button Submit Kepala-->
-                        <button ng-if="penggunaLogin.otor == '2'" type="button" class="btn btn-danger rounded"
-                                data-toggle="modal" data-target="#modalTolakKegiatanKepalaDinas"
-                                ng-disabled="statusAppvKepalaDanDinas.statusAppvKepala == '2' || statusAppvKepalaDanDinas.statusAppvKepala == '3'">
-                            Tolak Kegiatan
-                        </button>
-                        <button ng-if="penggunaLogin.otor == '2'" type="button" class="btn btn-primary rounded"
-                                data-toggle="modal" data-target="#modalTerimaKegiatanKepalaDinas"
-                                ng-disabled="statusAppvKepalaDanDinas.statusAppvKepala == '2' || statusAppvKepalaDanDinas.statusAppvKepala == '3'">
-                            Terima Kegiatan
-                        </button>
+                        <div ng-if="penggunaLogin.otor == '2'">
+                            <button type="button" class="btn btn-danger rounded"
+                                    data-toggle="modal" data-target="#modalTolakKegiatanKepalaDinas"
+                                    ng-disabled="(statusAppvKepalaDanDinas.statusAppvKepala == '2' || statusAppvKepalaDanDinas.statusAppvKepala == '3') && statusAppvKepalaDanDinas.statusAppvDinas != '3'">
+                                Tolak Kegiatan
+                            </button>
+                            <button type="button" class="btn btn-primary rounded"
+                                    data-toggle="modal" data-target="#modalTerimaKegiatanKepalaDinas"
+                                    ng-disabled="(statusAppvKepalaDanDinas.statusAppvKepala == '2' || statusAppvKepalaDanDinas.statusAppvKepala == '3') && statusAppvKepalaDanDinas.statusAppvDinas != '3'">
+                                Terima Kegiatan
+                            </button>
+                        </div>
 
                         <!-- Button Submit Dinas-->
-                        <button ng-if="penggunaLogin.otor == '3'" type="button" class="btn btn-danger rounded"
-                                data-toggle="modal" data-target="#modalTolakKegiatanKepalaDinas"
-                                ng-disabled="statusAppvKepalaDanDinas.statusAppvDinas == '2' || statusAppvKepalaDanDinas.statusAppvDinas == '3'">
-                            Tolak Kegiatan
-                        </button>
-                        <button ng-if="penggunaLogin.otor == '3'" type="button" class="btn btn-primary rounded"
-                                data-toggle="modal" data-target="#modalTerimaKegiatanKepalaDinas"
-                                ng-disabled="statusAppvKepalaDanDinas.statusAppvDinas == '2' || statusAppvKepalaDanDinas.statusAppvDinas == '3'">
-                            Terima Kegiatan
-                        </button>
+                        <div ng-if="penggunaLogin.otor == '3'">
+                            <button type="button" class="btn btn-danger rounded"
+                                    data-toggle="modal" data-target="#modalTolakKegiatanKepalaDinas"
+                                    ng-disabled="statusAppvKepalaDanDinas.statusAppvDinas == '2' || statusAppvKepalaDanDinas.statusAppvDinas == '3'">
+                                Tolak Kegiatan
+                            </button>
+                            <button type="button" class="btn btn-primary rounded"
+                                    data-toggle="modal" data-target="#modalTerimaKegiatanKepalaDinas"
+                                    ng-disabled="statusAppvKepalaDanDinas.statusAppvDinas == '2' || statusAppvKepalaDanDinas.statusAppvDinas == '3'">
+                                Terima Kegiatan
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -76,6 +76,36 @@ function KegiatanController($scope, $location, toaster, globalService) {
         }
     });
 
+    $scope.statusAppvKepalaDanDinas = {
+        catatanAppvDinas: '-',
+        catatanAppvKepala: '-',
+        statusAppvDinas: null,
+        statusAppvKepala: null,
+        statusButtonAppvDinas: 'btn-secondary',
+        statusButtonAppvKepala: 'btn-secondary',
+        statusNameAppvDinas: '-',
+        statusNameAppvKepala: '-'
+    };
+
+    /** Get Approval Kepala SKPD dan Dinas Teknis */
+    globalService.serviceGetData('blud-resource-server/api/persetujuan/status/appv/kepala-dinas', {
+        idSkpd: local.pengguna.skpdId,
+        tahunAnggaran: $scope.tahun
+    }, function (result) {
+        console.log('Result Data Approval Kepala SKPD dan Dinas Teknik');
+        console.log(result);
+        if (result.status === 200) {
+            console.log('Response Result Approval Kepala SKPD dan Dinas Teknik');
+            console.log(result.data);
+            $scope.statusAppvKepalaDanDinas = result.data;
+            console.log('Data Result Approval Kepala SKPD dan Dinas Teknik');
+            console.log($scope.statusAppvKepalaDanDinas);
+        } else {
+            console.log('Response Result Approval Kepala SKPD dan Dinas Teknik Error');
+            console.log(result);
+        }
+    });
+
     $scope.goToTambahKegiatan = function () {
         console.log('Go To Tambah Kegiatan');
         $location.path('/kegiatan/tambah');

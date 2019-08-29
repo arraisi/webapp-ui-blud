@@ -85,6 +85,7 @@ function DetailKegiatanTabRpaController($scope, $location, globalService) {
         });
     } else {
         $location.url($location.path());
+        skpdIdUrlParam ? $location.search('skpd', skpdIdUrlParam) : console.log(skpdIdUrlParam);
         $location.path('/persetujuan/kegiatan/detail');
     }
 
@@ -115,7 +116,7 @@ function DetailKegiatanTabRpaController($scope, $location, globalService) {
             // load data for datatables tambah komponen belanja pegawai
             globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/pegawai`, {
                 tahunAnggaran: $scope.tahun,
-                idSkpd: local.pengguna.skpdId
+                idSkpd: skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId
             }, function (response) {
                 console.log(response);
                 $scope.tambahKomponenList = response.data;
@@ -134,7 +135,7 @@ function DetailKegiatanTabRpaController($scope, $location, globalService) {
             // load data for datatables tambah komponen belanja barang dan jasa
             globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/barang`, {
                 tahunAnggaran: $scope.tahun,
-                idSkpd: local.pengguna.skpdId
+                idSkpd: skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId
             }, function (response) {
                 console.log(response);
                 $scope.tambahKomponenList = response.data;
@@ -153,7 +154,7 @@ function DetailKegiatanTabRpaController($scope, $location, globalService) {
             // load data for datatables tambah komponen belanja modal
             globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/modal`, {
                 tahunAnggaran: $scope.tahun,
-                idSkpd: local.pengguna.skpdId
+                idSkpd: skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId
             }, function (response) {
                 console.log(response);
                 $scope.tambahKomponenList = response.data;
@@ -207,6 +208,11 @@ function DetailKegiatanTabRpaController($scope, $location, globalService) {
         }
     };
 
+    $scope.kembaliKeListKegiatan = function () {
+        $location.url($location.path());
+        skpdIdUrlParam ? $location.search('skpd', skpdIdUrlParam) : console.log(skpdIdUrlParam);
+        $location.path('/persetujuan/kegiatan/detail');
+    };
 
     $scope.tabGoTo = function (jenisTab) {
         console.log(jenisTab);

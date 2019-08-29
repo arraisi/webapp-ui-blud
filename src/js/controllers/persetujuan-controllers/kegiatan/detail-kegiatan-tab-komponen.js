@@ -51,6 +51,7 @@ function DetailKegiatanTabKomponenController($scope, $location, globalService) {
         });
     } else {
         $location.url($location.path());
+        skpdIdUrlParam ? $location.search('skpd', skpdIdUrlParam) : console.log(skpdIdUrlParam);
         $location.path('/persetujuan/kegiatan/detail');
     }
 
@@ -184,6 +185,12 @@ function DetailKegiatanTabKomponenController($scope, $location, globalService) {
     // initiate lookup data
     $scope.lookUpPegawai();
     $scope.getAnggaran(kegiatanId, $scope.tahun, skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId);
+
+    $scope.kembaliKeListKegiatan = function () {
+        $location.url($location.path());
+        skpdIdUrlParam ? $location.search('skpd', skpdIdUrlParam) : console.log(skpdIdUrlParam);
+        $location.path('/persetujuan/kegiatan/detail');
+    };
 
     $scope.tabGoTo = function (jenisTab) {
         console.log(jenisTab);

@@ -120,6 +120,7 @@ function DetailRincianPendapatanPersetujuanController($scope, $location, toaster
             console.log(result);
             $scope.skpdDetail = result.data;
             console.log('Value Data Load Detail SKPD :');
+            console.log($scope.skpdDetail);
         } else {
             console.log('Response Result Load Detail SKPD');
             console.log(result);
@@ -173,6 +174,7 @@ function DetailRincianPendapatanPersetujuanController($scope, $location, toaster
 
     $scope.doKembali = function () {
         $location.url($location.path());
+        skpdIdUrlParam ? $location.search('skpd', skpdIdUrlParam) : console.log(skpdIdUrlParam);
         $location.path('/persetujuan/pendapatan/detail');
     };
 
@@ -323,6 +325,7 @@ function DetailAkbPendapatanPersetujuanController($scope, $location, toaster, gl
 
     $scope.doKembali = function () {
         $location.url($location.path());
+        skpdIdUrlParam ? $location.search('skpd', skpdIdUrlParam) : console.log(skpdIdUrlParam);
         $location.path('/persetujuan/pendapatan/detail');
     };
 

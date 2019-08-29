@@ -58,6 +58,7 @@ function DetailKegiatanTabKegiatanController($scope, $location, globalService) {
         });
     } else {
         $location.url($location.path());
+        skpdIdUrlParam ? $location.search('skpd', skpdIdUrlParam) : console.log(skpdIdUrlParam);
         $location.path('/persetujuan/kegiatan/detail');
     }
 
@@ -180,6 +181,7 @@ function DetailKegiatanTabKegiatanController($scope, $location, globalService) {
 
     $scope.kembaliKeListKegiatan = function () {
         $location.url($location.path());
+        skpdIdUrlParam ? $location.search('skpd', skpdIdUrlParam) : console.log(skpdIdUrlParam);
         $location.path('/persetujuan/kegiatan/detail');
     };
 

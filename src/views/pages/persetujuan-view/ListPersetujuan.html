@@ -56,21 +56,22 @@
                                                     class="fa fa-list"></i>
                                             </button>
                                             <button ng-if="penggunaLogin.otor == '3'"
-                                                    ng-disabled="data.statusDinasId == '2' || data.statusDinasId == '3'"
+                                                    ng-disabled="data.statusDinasId == '2' || data.statusDinasId == '3' || data.statusDinasId == null"
                                                     type="button" class="btn btn-link" title="Setuju"
                                                     ng-click="pilihSkpd(data)" data-toggle="modal"
                                                     data-target="#modalTerimaKegiatan"><i
                                                     class="fa fa-check"></i></button>
                                             <button ng-if="penggunaLogin.otor == '3'"
-                                                    ng-disabled="data.statusDinasId == '2' || data.statusDinasId == '3'"
+                                                    ng-disabled="data.statusDinasId == '2' || data.statusDinasId == '3' || data.statusDinasId == null"
                                                     type="button" class="btn btn-link" title="Tolak"
                                                     ng-click="pilihSkpd(data)" data-toggle="modal"
                                                     data-target="#modalTolakKegiatan"><i
                                                     class="fa fa-close"></i></button>
                                         </div>
                                     </td>
-                                    <td>
-                                        <span class="badge {{data.statusDinasBadge}} badge-pill rounded btn">{{data.statusDinasName}}</span>
+                                    <td class="text-center">
+                                        <span ng-if="data.statusDinasId != null" class="badge {{data.statusDinasBadge}} badge-pill rounded btn">{{data.statusDinasName}}</span>
+                                        <span ng-if="data.statusDinasId == null">-</span>
                                     </td>
                                 </tr>
                                 </tbody>

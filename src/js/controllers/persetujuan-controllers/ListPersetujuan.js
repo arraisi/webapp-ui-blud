@@ -1,8 +1,8 @@
 angular
     .module('app', ['toaster', 'ngAnimate', 'datatables'])
-    .controller('ListPersetujuanController', ListPersetujuanController)
+    .controller('ListPersetujuanController', ListPersetujuanController);
 
-function ListPersetujuanController($scope, $location, globalService) {
+function ListPersetujuanController($scope, $location, toaster, globalService) {
 
     $scope.accounting = accounting;
 
@@ -56,72 +56,105 @@ function ListPersetujuanController($scope, $location, globalService) {
         $location.path('/persetujuan/kas-blud/detail');
     }
 
-    $scope.formAlasanTolak = {
-        alasanTolak: null
-    };
-
-    $scope.validationPenolakan = {
-        alasanTolakIsValid: false,
-        alasanTolakIsTouched: false,
-    };
-
-    $scope.validateTolak = function () {
-        if (!$scope.formAlasanTolak.alasanTolak) {
-            $scope.validationPenolakan.alasanTolakIsValid = false;
-            $scope.validationPenolakan.alasanTolakIsTouched = true;
-        } else {
-            $scope.validationPenolakan.alasanTolakIsValid = true;
-            $scope.validationPenolakan.alasanTolakIsTouched = false;
-        }
-
-    };
-
     /** Get Data Pengguna */
-    globalService.serviceGetData(`/blud-resource-server/api/skpd/list`, {tahunAnggaran: $scope.tahun}, function (result) {
-        console.log('Result Data Detail SKPD');
-        console.log(result.data);
-        if (result.status === 200) {
-            console.log('Response Result List SKPD');
-            console.log(result);
-            $scope.listSkpd = result.data;
-            console.log('Value Data Load List SKPD :');
-            console.log($scope.listSkpd);
-        } else {
-            console.log('Response Result Load Detail SKPD');
-            console.log(result);
-        }
-    });
+    function getSkpdList() {
+        globalService.serviceGetData(`/blud-resource-server/api/skpd/list`, {tahunAnggaran: $scope.tahun}, function (result) {
+            console.log('Result Data Detail SKPD');
+            console.log(result.data);
+            if (result.status === 200) {
+                console.log('Response Result List SKPD');
+                console.log(result);
+                $scope.listSkpd = result.data;
+                console.log('Value Data Load List SKPD :');
+                console.log($scope.listSkpd);
+            } else {
+                console.log('Response Result Load Detail SKPD');
+                console.log(result);
+            }
+        });
+    }
+
+    getSkpdList();
 
     $scope.goToList = function (val) {
         $location.search('skpd', val.id);
         $location.path('/persetujuan/kas-blud/detail');
     };
 
-    $scope.doCheck = function (valueDpt) {
-        console.log("Setuju", valueDpt.idTmrbakasBlud)
+    $scope.terimaKegiatan = function () {
+        console.log('Setuju SKPD');
+        globalService.servicePostData(`/blud-resource-server/api/persetujuan/dinas/terima`, {
+            tahunAnggaran: $scope.tahun,
+            idSkpd: $scope.skpd.id
+        }, null, function (result) {
+            console.log('Result Data Terima Dinas Teknis');
+            console.log(result.data);
+            if (result.status === 201) {
+                console.log('Response Terima Dinas Teknis');
+                console.log(result);
+                getSkpdList();
+                $scope.dtInstance.rerender();
+                toaster.pop({
+                    type: 'success',
+                    title: 'Berhasil',
+                    body: `Berhasil Terima Kegiatan ${$scope.skpd.namaSkpd}`,
+                    timeout: 3000
+                });
+            } else {
+                console.log('Response Error Terima Dinas Teknis');
+                console.log(result);
+                toaster.pop({
+                    type: 'warning',
+                    title: 'Gagal',
+                    body: `Gagal Terima Kegiatan ${$scope.skpd.namaSkpd}`,
+                    timeout: 3000
+                });
+            }
+        });
     };
 
-    $scope.tolakPersetujuan = function (valTolak) {
-
-        if (!valTolak.$valid) {
-            console.log('Form Not Valid');
-            $scope.submitted = true;
-            return;
+    $scope.tolakKegiatan = function () {
+        console.log('Tolak SKPD');
+        const catatan = $scope.catatanPenolakan;
+        console.log(catatan);
+        if (catatan) {
+            globalService.servicePostData(`/blud-resource-server/api/persetujuan/dinas/tolak`, {
+                tahunAnggaran: $scope.tahun,
+                idSkpd: $scope.skpd.id
+            }, catatan, function (result) {
+                console.log('Result Data Tolak Dinas Teknis');
+                console.log(result.data);
+                if (result.status === 201) {
+                    console.log('Response Tolak Dinas Teknis');
+                    console.log(result);
+                    getSkpdList();
+                    $scope.dtInstance.rerender();
+                    toaster.pop({
+                        type: 'success',
+                        title: 'Berhasil',
+                        body: `Berhasil Tolak Kegiatan SKPD ${$scope.skpd.namaSkpd}`,
+                        timeout: 3000
+                    });
+                    angular.element('#modalTolakKegiatan').trigger('click');
+                } else {
+                    console.log('Response Error Tolak Kegiatan');
+                    console.log(result);
+                    toaster.pop({
+                        type: 'warning',
+                        title: 'Gagal',
+                        body: `Gagal Tolak Kegiatan SKPD ${$scope.skpd.namaSkpd}`,
+                        timeout: 3000
+                    });
+                    angular.element('#modalTolakKegiatan').trigger('click');
+                }
+            });
+        } else {
+            toaster.pop({
+                type: 'warning',
+                title: 'Catatan Kosong',
+                body: `Silahkan Tinggalkan Catatan Penolakan`,
+                timeout: 3000
+            });
         }
-        $scope.submitted = false;
-
-        /**
-         * Form Persetujuan
-         */
-
-        console.log($scope.formAlasanTolak);
-
-
     };
-
-    $scope.value = null;
-    $scope.doOpenModal = function (valOpen) {
-        console.log(valOpen.idTmrbakasBlud);
-        $scope.value = valOpen.idTmrbakasBlud;
-    }
 }   

@@ -30,6 +30,9 @@ function DetailKegiatanPersetujuanController($scope, $location, toaster, globalS
     $scope.otoritasPengguna = local.pengguna.otor;
     $scope.penggunaLogin = local.pengguna;
 
+    console.log('PENGGUNA TEST');
+    console.log($scope.penggunaLogin);
+
     /** Get Data Pengguna */
     globalService.serviceGetData(`/blud-resource-server/api/skpd/${skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId}`, null, function (result) {
         console.log('Result Data Detail SKPD');
@@ -266,7 +269,7 @@ function DetailKegiatanPersetujuanController($scope, $location, toaster, globalS
     $scope.kirimKegiatan = function () {
         console.log('Kirim Kegiatan');
         globalService.serviceGetData('blud-resource-server/api/kegiatan/verifikasi/anggaran', {
-            idSkpd: local.pengguna.skpdId,
+            idSkpd: skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId,
             tahunAnggaran: $scope.tahun
         }, function (result) {
             console.log('Result Data Verifikasi Pagu');

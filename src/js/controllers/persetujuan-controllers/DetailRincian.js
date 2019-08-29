@@ -6,11 +6,14 @@ function DetailRincianController($scope, $location, toaster, globalService) {
 
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
+    const skpdIdUrlParam = $location.search().skpd;
+    console.log("URL PARAM", $scope.skpdIdUrlParam);
+    $scope.otoritasPengguna = local.pengguna.otor;
 
     /** Load Rincian Belanja */
     // globalService.serviceGetData(`/blud-resource-server/api/rincianCtrl/findAll`, {
     //     tahunAnggaran: $scope.tahun,
-    //     skpdId: local.pengguna.skpdId
+    //     skpdId: skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId
     // }, function (result) {
     //     console.log('Result Data Load Kas');
     //     console.log(result.data);
@@ -24,7 +27,7 @@ function DetailRincianController($scope, $location, toaster, globalService) {
 
 
     /** Load SKPD By ID SKPD */
-    globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
+    globalService.serviceGetData(`/blud-resource-server/api/skpd/${skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId}`, null, function (result) {
         console.log('Result Data Detail SKPD');
         console.log(result.data);
         if (result.status === 200) {
