@@ -22,42 +22,73 @@
                         <label for="tab5">Laporan</label>
                     </div>
 
-                    <div class="border rounded" style="margin: 10px !important;">
-                        <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                            <label class="col-2 col-form-label">Tahun Anggaran</label>
-                            <div class="col-8">
-                                <label class="col-form-label">: {{tahun}}</label>
-                            </div>
-                        </div>
-                        <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                            <label class="col-2 col-form-label">SKPD</label>
-                            <div class="col-8">
-                                <label class="col-form-label">: {{skpdDetail.kodeSkpd}} /
-                                    {{skpdDetail.namaSkpd}}</label>
+                    <div class="border rounded">
+                        <div class="row col-md-12" style="margin-top: 10px !important;">
+                            <div class="col-md-7">
+                                <div class="form-group row col-md-12">
+                                    <label class="col-md-4 col-form-label">Tahun Anggaran</label>
+                                    <div class="col-md-8">
+                                        <label class="col-form-label">: {{tahun}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-12">
+                                    <label class="col-md-4 col-form-label">SKPD</label>
+                                    <div class="col-md-8">
+                                        <label class="col-form-label">: {{skpdDetail.kodeSkpd}} /
+                                            {{skpdDetail.namaSkpd}}</label>
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group row col-md-12">
+                                    <label class="col-md-6 col-form-label">Persetujuan Kepala SKPD</label>
+                                    <div class="col-md-6">
+                                        <button class="btn {{statusAppvKepalaDanDinas.statusButtonAppvKepala}} rounded"
+                                                data-toggle="modal"
+                                                data-target="#modalStatusPenolakanKegiatan"
+                                                ng-click="catatanKepalaDinasShow('kepala')">
+                                            {{statusAppvKepalaDanDinas.statusNameAppvKepala == '-' ? 'Belum Dikirim
+                                            Bendahara' : statusAppvKepalaDanDinas.statusNameAppvKepala}}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-12">
+                                    <label class="col-md-6 col-form-label">Persetujuan Dinas Teknis</label>
+                                    <div class="col-md-6">
+                                        <button class="btn {{statusAppvKepalaDanDinas.statusButtonAppvDinas}} rounded"
+                                                data-toggle="modal"
+                                                data-target="#modalStatusPenolakanKegiatan"
+                                                ng-click="catatanKepalaDinasShow('dinas')">
+                                            {{statusAppvKepalaDanDinas.statusNameAppvDinas == '-' ? 'Belum Dikirim
+                                            Kepala SKPD' : statusAppvKepalaDanDinas.statusNameAppvDinas}}
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="card-body" id="collapseExample1">
                         <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
                              style="margin-top: 13px">
                             <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
-                                   dt-instance="dtInstanceProgram"
+                                   dt-instance="dtInstance"
                                    class="table table-bordered table-striped row-border hover rounded">
                                 <thead>
                                 <tr class="text-center">
-<!--                                    <th>No</th>-->
+                                    <!--                                    <th>No</th>-->
                                     <th>No Kegiatan</th>
                                     <th>Nama Kegiatan</th>
                                     <th>Nilai Anggaran</th>
                                     <th>Aksi</th>
-                                    <th>Status</th>
+                                    <th ng-if="penggunaLogin.otor == '1'">Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="val in ::listKegiatan">
-<!--                                    <td class="text-center">{{val.idKegiatan}}</td>-->
+                                    <!--                                    <td class="text-center">{{val.idKegiatan}}</td>-->
                                     <td>{{val.kodeKegiatan}}</td>
                                     <td>{{val.namaKegiatan}}</td>
                                     <td class="text-right">{{accounting.formatMoney(val.anggaranTapd, "", 2,
@@ -68,25 +99,257 @@
                                             <button type="button" class="btn btn-link" title="Detail"
                                                     ng-click="detailKegiatan(val)"><i
                                                     class="fa fa-list"></i></button>
-                                            <button type="button" class="btn btn-link" title="Setuju"
-                                                    ng-click="setujuKegiatan(val)"><i
+                                            <button ng-if="penggunaLogin.otor == '1'"
+                                                    ng-disabled="val.statusPersetujuan == '2' || val.statusPersetujuan == '3'"
+                                                    type="button" class="btn btn-link" title="Setuju"
+                                                    ng-click="pilihKegiatan(val)" data-toggle="modal"
+                                                    data-target="#modalTerimaKegiatan"><i
                                                     class="fa fa-check"></i></button>
-                                            <button type="button" class="btn btn-link" title="Tolak"
-                                                    ng-click="tolakKegiatan(val)"><i
+                                            <button ng-if="penggunaLogin.otor == '1'"
+                                                    ng-disabled="val.statusPersetujuan == '3' || statusAppvKepalaDanDinas.statusAppvKepala == '2' || statusAppvKepalaDanDinas.statusAppvKepala == '1'"
+                                                    type="button" class="btn btn-link" title="Tolak"
+                                                    ng-click="pilihKegiatan(val)" data-toggle="modal"
+                                                    data-target="#modalTolakKegiatan"><i
                                                     class="fa fa-close"></i></button>
                                         </div>
                                     </td>
-                                    <td class="text-center">
-                                        <span class="badge {{val.statusBadgeColor}} rounded">{{val.statusName}}</span>
+                                    <td class="text-center" ng-if="penggunaLogin.otor == '1'">
+                                        <span class="badge {{val.statusBadgeColor}} badge-pill rounded btn"
+                                              ng-click="statusClick(val)" data-toggle="modal"
+                                              data-target="#modalStatusPenolakanKegiatan">{{val.statusName}}</span>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <div class="card-footer text-center">
+
+                        <!-- Button Submit Bendahara-->
+                        <button ng-if="penggunaLogin.otor == '1'"
+                                ng-disabled="statusAppvKepalaDanDinas.statusAppvKepala == '1' || statusAppvKepalaDanDinas.statusAppvKepala == '2' || statusAppvKepalaDanDinas.statusAppvKepala == '4'"
+                                type="button" class="btn btn-primary rounded"
+                                data-toggle="modal" data-target="#modalKirimKegiatan">
+                            Terima Kegiatan
+                        </button>
+
+                        <!-- Button Submit Kepala-->
+                        <button ng-if="penggunaLogin.otor == '2'" type="button" class="btn btn-danger rounded"
+                                data-toggle="modal" data-target="#modalTolakKegiatanKepalaDinas"
+                                ng-disabled="statusAppvKepalaDanDinas.statusAppvKepala == '2' || statusAppvKepalaDanDinas.statusAppvKepala == '3'">
+                            Tolak Kegiatan
+                        </button>
+                        <button ng-if="penggunaLogin.otor == '2'" type="button" class="btn btn-primary rounded"
+                                data-toggle="modal" data-target="#modalTerimaKegiatanKepalaDinas"
+                                ng-disabled="statusAppvKepalaDanDinas.statusAppvKepala == '2' || statusAppvKepalaDanDinas.statusAppvKepala == '3'">
+                            Terima Kegiatan
+                        </button>
+
+                        <!-- Button Submit Dinas-->
+                        <button ng-if="penggunaLogin.otor == '3'" type="button" class="btn btn-danger rounded"
+                                data-toggle="modal" data-target="#modalTolakKegiatanKepalaDinas"
+                                ng-disabled="statusAppvKepalaDanDinas.statusAppvDinas == '2' || statusAppvKepalaDanDinas.statusAppvDinas == '3'">
+                            Tolak Kegiatan
+                        </button>
+                        <button ng-if="penggunaLogin.otor == '3'" type="button" class="btn btn-primary rounded"
+                                data-toggle="modal" data-target="#modalTerimaKegiatanKepalaDinas"
+                                ng-disabled="statusAppvKepalaDanDinas.statusAppvDinas == '2' || statusAppvKepalaDanDinas.statusAppvDinas == '3'">
+                            Terima Kegiatan
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal Look Up Kirim Kegiatan -->
+    <div id="modalKirimKegiatan" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Kirim Kegiatan</h6>
+                    <button type="button" class="close" data-dismiss="modal" data-target="#modalKirimKegiatan">&times;
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Anda Yakin Ingin Megirim Kegiatan?</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalKirimKegiatan">
+                        Batal
+                    </button>
+                    <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                            data-target="#modalKirimKegiatan" ng-click="kirimKegiatan()">
+                        Kirim
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Look Up Terima Kegiatan -->
+    <div id="modalTerimaKegiatan" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Terima Kegiatan</h6>
+                    <button type="button" class="close" data-dismiss="modal" data-target="#modalTerimaKegiatan">&times;
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Anda Yakin Ingin Terima Kegiatan {{kegiatanPilih.kodeKegiatan}}?</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalTerimaKegiatan">
+                        Batal
+                    </button>
+                    <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                            data-target="#modalTerimaKegiatan" ng-click="terimaKegiatan()">
+                        Terima
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Look Up Terima Kegiatan KEPALA SKPD / DINAS TEKNIS -->
+    <div id="modalTerimaKegiatanKepalaDinas" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Terima Kegiatan</h6>
+                    <button type="button" class="close" data-dismiss="modal"
+                            data-target="#modalTerimaKegiatanKepalaDinas">&times;
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Anda Yakin Ingin Terima Kegiatan?</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalTerimaKegiatanKepalaDinas">
+                        Batal
+                    </button>
+                    <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                            data-target="#modalTerimaKegiatanKepalaDinas" ng-click="terimaKegiatanKepalaDinas()">
+                        Terima
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Look Up Tolak Kegiatan KEPALA SKPD / DINAS TEKNIS -->
+    <div id="modalTolakKegiatanKepalaDinas" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Tolak Kegiatan</h6>
+                    <button type="button" class="close" data-dismiss="modal"
+                            data-target="#modalTolakKegiatanKepalaDinas">&times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-md-12">
+                        <label class="col-form-label">Anda Yakin Ingin Tolak Kegiatan</label>
+                        <div>
+                            <textarea type="text" class="form-control" name="catatanKepala" ng-model="catatanPenolakan"
+                                      id="catatanKepala" placeholder="Catatan Penolakan" rows="5"
+                                      maxlength="255"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalTolakKegiatanKepalaDinas">
+                        Batal
+                    </button>
+                    <button type="button" class="btn btn-success rounded" ng-click="tolakKegiatanKepalaDinas()">
+                        Tolak
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Look Up Tolak Kegiatan -->
+    <div id="modalTolakKegiatan" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Tolak Kegiatan</h6>
+                    <button type="button" class="close" data-dismiss="modal" data-target="#modalTolakKegiatan">&times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-md-12">
+                        <label class="col-form-label">Anda Yakin Ingin Tolak Kegiatan
+                            <b>{{kegiatanPilih.kodeKegiatan}}</b>?</label>
+                        <div>
+                            <textarea type="text" class="form-control" name="catatan" ng-model="catatanPenolakan"
+                                      id="catatan" placeholder="Catatan Penolakan" rows="3" maxlength="255"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalTolakKegiatan">
+                        Batal
+                    </button>
+                    <button type="button" class="btn btn-success rounded" ng-click="tolakKegiatan()">
+                        Tolak
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Look Up Status Penolakan -->
+    <div id="modalStatusPenolakanKegiatan" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Catatan</h6>
+                    <button type="button" class="close" data-dismiss="modal"
+                            data-target="#modalStatusPenolakanKegiatan">&times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-md-12">
+                        <label class="col-form-label">Catatan:</label>
+                        <div>
+                            <textarea readonly type="text" class="form-control" name="showCatatan"
+                                      ng-model="showCatatan"
+                                      id="showCatatan" placeholder="Catatan Penolakan" rows="3"
+                                      maxlength="255" style="background: none; outline: none;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary rounded" data-dismiss="modal"
+                            data-target="#modalStatusPenolakanKegiatan">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <toaster-container toaster-options="{'close-button': true}"></toaster-container>
 </div>

@@ -3,9 +3,54 @@ angular
     .controller('ListPersetujuanController', ListPersetujuanController)
 
 function ListPersetujuanController($scope, $location, globalService) {
+
+    $scope.accounting = accounting;
+
     $scope.tahun = localStorage.getItem('tahunAnggaran');
     const local = JSON.parse(localStorage.getItem('currentUser'));
-    const token = 'Bearer ' + local.access_token;
+    $scope.otoritasPengguna = local.pengguna.otor;
+    $scope.penggunaLogin = local.pengguna;
+
+    $scope.catatanPenolakan = null;
+
+    $scope.pilihSkpd = function (val) {
+        console.log(val);
+        $scope.skpd = val;
+    };
+
+
+    /** DT Options For Datatables */
+    $scope.persons = [];
+    $scope.dtInstance = {};
+    $scope.dtOptions = {
+        paginationType: 'full_numbers',
+        searching: true,
+        responsive: false,
+        dom: "Bft<'row'<'col-sm-12'ip><'col-sm-12'l>>",
+        language: {
+            "sEmptyTable": "Tidak Ada Data Yang Ditemukan",
+            "sInfo": "Menunjukan _START_ sampai _END_ dari _TOTAL_ data",
+            "sInfoEmpty": "Menunjukan 0 sampai 0 dari 0 data",
+            "sInfoFiltered": "(filter dari _MAX_ total data)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ",",
+            "sLengthMenu": "Menunjukkan _MENU_ data",
+            "sLoadingRecords": "Memuat...",
+            "sProcessing": "Mengolah...",
+            "sSearch": "Cari:",
+            "sZeroRecords": "Tidak ada data yang sesuai",
+            "oPaginate": {
+                "sFirst": "Pertama",
+                "sLast": "Terakhir",
+                "sNext": "Selanjutnya",
+                "sPrevious": "Sebelumnya"
+            },
+            "oAria": {
+                "sSortAscending": ": activate to sort column ascending",
+                "sSortDescending": ": activate to sort column descending"
+            }
+        }
+    };
 
     if (local.pengguna.otor < 3) {
         $location.path('/persetujuan/kas-blud/detail');
@@ -32,39 +77,23 @@ function ListPersetujuanController($scope, $location, globalService) {
     };
 
     /** Get Data Pengguna */
-    globalService.serviceGetData(`/blud-resource-server/api/skpd/${local.pengguna.skpdId}`, null, function (result) {
+    globalService.serviceGetData(`/blud-resource-server/api/skpd/list`, {tahunAnggaran: $scope.tahun}, function (result) {
         console.log('Result Data Detail SKPD');
         console.log(result.data);
         if (result.status === 200) {
-            // console.log('Response Result Detail SKPD');
-            // console.log(result);
-            $scope.skpdDetail = result.data;
-            // console.log('Value Data Load Detail SKPD :');
+            console.log('Response Result List SKPD');
+            console.log(result);
+            $scope.listSkpd = result.data;
+            console.log('Value Data Load List SKPD :');
+            console.log($scope.listSkpd);
         } else {
             console.log('Response Result Load Detail SKPD');
             console.log(result);
         }
     });
 
-    /** Load Kas */
-    globalService.serviceGetData(`/blud-resource-server/api/kasController/findAll`, {
-        tahunAnggaran: $scope.tahun,
-        skpdId: local.pengguna.skpdId
-    }, function (result) {
-        console.log('Result Data Load Kas');
-        console.log(result.data);
-        $scope.valData = result.data;
-        if (result.status === 200) {
-        } else {
-            console.log('Response Result Load Kas');
-            console.log(result);
-        }
-    });
-
-
-    $scope.goToList = function (valueDpt) {
-        // console.log("Detail", valueDpt.idTmrbakasBlud);
-        // $location.search('idTmrbakasBlud', valueDpt.idTmrbakasBlud);
+    $scope.goToList = function (val) {
+        $location.search('skpd', val.id);
         $location.path('/persetujuan/kas-blud/detail');
     };
 

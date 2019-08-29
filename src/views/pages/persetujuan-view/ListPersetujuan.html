@@ -1,124 +1,149 @@
-<div ng-controller="ListPersetujuanController as List">
-<div class="animated fadeIn">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card" >
-                <div class="card-body" id="collapseExample1">
-                    <div class="border rounded">
-                        <div class="form-group row col-12" style="margin-bottom: 1px !important;">
-                            <label class="col-2 col-form-label">Tahun Anggaran</label>
-                            <div class="col-8">
-                                <label class="col-form-label">: {{tahun}}</label>
+<div ng-controller="ListPersetujuanController">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body" id="collapseExample1">
+                        <div class="border rounded">
+                            <div class="form-group row col-12" style="margin-bottom: 1px !important;">
+                                <label class="col-2 col-form-label">Tahun Anggaran</label>
+                                <div class="col-8">
+                                    <label class="col-form-label">: {{tahun}}</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <hr>
-                    <form>
-                        <div class="row col-md-12">
-                            <input type="text" class="form-control col-md-3" name="noSkpd" id="noSkpd"
-                                   placeholder="No. SKPD" style="margin-right: 10px">
-                            <input type="text" class="form-control col-md-3" name="namaSkpd" id="namaSkpd"
-                                   placeholder="Nama SKPD" style="margin-right: 10px">
-                            <input type="text" class="form-control col-md-3" name="nilaiAnggaran" id="nilaiAnggaran"
-                                   placeholder="Nilai Anggaran" style="margin-right: 10px">
-                            <button type="submit" class="btn btn-success col-md-1 rounded"><i class="fa fa-search"></i>
-                                Cari
-                            </button>
-                        </div>
-                    </form>
-                    <div class="form-group" style="margin-top: 13px">
-                        <table class="table table-bordered table-striped rounded">
-                            <thead>
+                        <hr>
+                        <!--                        <form>-->
+                        <!--                            <div class="row col-md-12">-->
+                        <!--                                <input type="text" class="form-control col-md-3" name="noSkpd" id="noSkpd"-->
+                        <!--                                       placeholder="No. SKPD" style="margin-right: 10px">-->
+                        <!--                                <input type="text" class="form-control col-md-3" name="namaSkpd" id="namaSkpd"-->
+                        <!--                                       placeholder="Nama SKPD" style="margin-right: 10px">-->
+                        <!--                                <input type="text" class="form-control col-md-3" name="nilaiAnggaran" id="nilaiAnggaran"-->
+                        <!--                                       placeholder="Nilai Anggaran" style="margin-right: 10px">-->
+                        <!--                                <button type="submit" class="btn btn-success col-md-1 rounded"><i-->
+                        <!--                                        class="fa fa-search"></i>-->
+                        <!--                                    Cari-->
+                        <!--                                </button>-->
+                        <!--                            </div>-->
+                        <!--                        </form>-->
+                        <div class="form-group col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 overflow-datatable"
+                             style="margin-top: 13px">
+                            <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
+                                   dt-instance="dtInstance"
+                                   class="table table-bordered table-striped row-border hover rounded">
+                                <thead>
                                 <tr class="text-center">
-                                    <th>No</th>
                                     <th>No SKPD</th>
                                     <th>Nama SKPD</th>
                                     <th>Nilai Anggaran</th>
                                     <th>Aksi</th>
+                                    <th>Status</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="data in valData">
-                                    <td>123456789</td>
-                                    <td>{{data.cakun}}</td>
-                                    <td>{{data.nakun}}</td>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="data in listSkpd">
+                                    <td>{{data.kodeSkpd}}</td>
+                                    <td>{{data.namaSkpd}}</td>
                                     <!-- <td class="text-right" >{{data.vkasAudited | currency: "Rp. " : 0}}</td> -->
-                                    <td>
-                                        <div class="controls col-9 float-right">
-                                            <div class="input-prepend input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Rp</span>
-                                                </div>
-                                                <input type="text" class="form-control text-right" input-currency
-                                                    ng-readonly="!readonlySaldo" ng-model="data.vkasAudited">
-                                            </div>
-                                        </div>
+                                    <td class="text-right">
+                                        {{accounting.formatMoney(data.totalAnggaran, "", 2,
+                                        ".", ",")}}
                                     </td>
                                     <td class="text-center">
-                                        <button class="btn  rounded" ng-click="goToList(data)"> <i
-                                                class="fa fa-list"></i>
-                                        </button>
-                                        <button class="btn  rounded" ng-click="doCheck(data)"> <i
-                                                class="fa fa-check"></i>
-                                        </button>
-                                        <button class="btn  rounded" data-toggle="modal" href="#modalReject" data-target="#modalReject" ng-click="doOpenModal(data)"> <i
-                                                class="fa fa-times"></i>
-                                        </button>
+                                        <div class="btn-group">
+                                            <button class="btn btn-link" ng-click="goToList(data)"><i
+                                                    class="fa fa-list"></i>
+                                            </button>
+                                            <button ng-if="penggunaLogin.otor == '3'"
+                                                    ng-disabled="data.statusDinasId == '2' || data.statusDinasId == '3'"
+                                                    type="button" class="btn btn-link" title="Setuju"
+                                                    ng-click="pilihSkpd(data)" data-toggle="modal"
+                                                    data-target="#modalTerimaKegiatan"><i
+                                                    class="fa fa-check"></i></button>
+                                            <button ng-if="penggunaLogin.otor == '3'"
+                                                    ng-disabled="data.statusDinasId == '2' || data.statusDinasId == '3'"
+                                                    type="button" class="btn btn-link" title="Tolak"
+                                                    ng-click="pilihSkpd(data)" data-toggle="modal"
+                                                    data-target="#modalTolakKegiatan"><i
+                                                    class="fa fa-close"></i></button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge {{data.statusDinasBadge}} badge-pill rounded btn">{{data.statusDinasName}}</span>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
                     </div>
-                    <br>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<toaster-container toaster-options="{'close-button': true}"></toaster-container>
+    <toaster-container toaster-options="{'close-button': true}"></toaster-container>
 
-<!-- Modal Look Up Urusan -->
-<div id="modalReject" class="modal fade" role="dialog" >
+    <!-- Modal Look Up Terima Kegiatan -->
+    <div id="modalTerimaKegiatan" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
+
             <!-- Modal content-->
-            <div class="modal-content" >
+            <div class="modal-content">
                 <div class="modal-header">
-                        <h6 class="modal-title"><i class="fa fa-list"></i> Penolakan</h6>
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Terima Kegiatan</h6>
+                    <button type="button" class="close" data-dismiss="modal" data-target="#modalTerimaKegiatan">&times;
+                    </button>
                 </div>
-                <div class="modal-body">
-                    <form style="padding-right: unset !important;" name="tolakForm" ng-submit="tolakPersetujuan(tolakForm)">
-                        <div class="form-group ">
-                                <label for="alasan" class="col-lg-12 control-label">
-                                    Anda yakin akan menolak data SKPD dengan nomor <b>{{value}}</b>  ?
-                                </label>
-                                <div class="col-md-10" style="margin-right: 0px !important; padding-right: unset !important;">
-                                    <textarea name="alasanTolak" id="alasanTolak" class="form-control"
-                                    ng-model="formAlasanTolak.alasanTolak"
-                                    ng-blur="validateTolak()"
-                                     placeholder="Enter your Message">
-
-                                    </textarea>
-
-                                    <span class="input-group" style="color:red"
-                                    ng-show="!validationPenolakan.alasanTolakIsValid && validationPenolakan.alasanTolakIsTouched">
-                                  <small>
-                                      <span ng-show="!validationPenolakan.alasanTolakIsValid && validationPenolakan.alasanTolakIsTouched">Alasan harus di Isi.</span>
-                                  </small>
-                              </span>
-                                </div>
-                        </div>
-                    </form>
+                <div class="modal-body text-center">
+                    <p>Anda Yakin Ingin Terima <b>{{skpd.namaSkpd}}</b>?</p>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-dark rounded" data-toggle="modal" data-target="#modalReject">
-                        Tutup
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalTerimaKegiatan">
+                        Batal
                     </button>
-                    <button type="button" class="btn btn-success rounded" ng-click="tolakPersetujuan(tolakForm)"
-                     data-target="#modalReject"  ng-disabled="!validationPenolakan.alasanTolakIsValid">
-                        Tolak 
+                    <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                            data-target="#modalTerimaKegiatan" ng-click="terimaKegiatan()">
+                        Terima
                     </button>
                 </div>
             </div>
         </div>
-</div>
+    </div>
+
+    <!-- Modal Look Up Tolak Kegiatan -->
+    <div id="modalTolakKegiatan" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Tolak Kegiatan</h6>
+                    <button type="button" class="close" data-dismiss="modal" data-target="#modalTolakKegiatan">&times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-md-12">
+                        <label class="col-form-label">Anda Yakin Ingin Tolak
+                            <b>{{skpd.namaSkpd}}</b>?</label>
+                        <div>
+                            <textarea type="text" class="form-control" name="catatan" ng-model="catatanPenolakan"
+                                      id="catatan" placeholder="Catatan Penolakan" rows="3" maxlength="255"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalTolakKegiatan">
+                        Batal
+                    </button>
+                    <button type="button" class="btn btn-success rounded" ng-click="tolakKegiatan()">
+                        Tolak
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

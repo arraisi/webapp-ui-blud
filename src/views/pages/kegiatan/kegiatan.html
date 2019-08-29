@@ -55,7 +55,7 @@
                         <br>-->
 
                         <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
-                               dt-instance="dtInstanceProgram"
+                               dt-instance="dtInstance"
                                class="table table-bordered table-striped row-border hover rounded">
                             <thead>
                             <tr class="text-center">
@@ -77,17 +77,22 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-link" title="Sunting"
+                                        <button ng-disabled="val.statusPersetujuan == '1' || val.statusPersetujuan == '2' || val.statusPersetujuan == '4'"
+                                                type="button" class="btn btn-link"
+                                                title="Sunting"
                                                 ng-click="editButton(val)"><i class="fa fa-edit"></i>
                                         </button>
                                         <button type="button" class="btn btn-link" title="Detail"><i
                                                 class="fa fa-list"></i></button>
-                                        <button type="button" class="btn btn-link" title="Hapus"><i
-                                                class="fa fa-trash"></i></button>
+                                        <button type="button" class="btn btn-link" title="Hapus"
+                                                ng-disabled="val.statusPersetujuan == '1' || val.statusPersetujuan == '2' || val.statusPersetujuan == '4'">
+                                            <i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <span class="badge {{val.statusBadgeColor}} rounded">{{val.statusName}}</span>
+                                    <span class="badge {{val.statusBadgeColor}} rounded btn"
+                                          ng-click="statusClick(val)" data-toggle="modal"
+                                          data-target="#modalStatusPenolakanKegiatan">{{val.statusName}}</span>
                                 </td>
                             </tr>
                             </tbody>
@@ -95,11 +100,75 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button class="btn btn-primary">Kirim Kegiatan</button>
+                    <button class="btn btn-primary rounded" data-toggle="modal" data-target="#modalKirimKegiatan">Kirim
+                        Kegiatan
+                    </button>
                 </div>
             </div>
         </div>
         <!--/.col-->
+    </div>
+
+    <!-- Modal Look Up Kirim Kegiatan -->
+    <div id="modalKirimKegiatan" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Kirim Kegiatan</h6>
+                    <button type="button" class="close" data-dismiss="modal" data-target="#modalKirimKegiatan">&times;
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Anda Yakin Ingin Megirim Kegiatan?</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-dark rounded" data-toggle="modal"
+                            data-target="#modalKirimKegiatan">
+                        Batal
+                    </button>
+                    <button type="button" class="btn btn-success rounded" data-dismiss="modal"
+                            data-target="#modalKirimKegiatan" ng-click="kirimKegiatan()">
+                        Kirim
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Look Up Status Penolakan -->
+    <div id="modalStatusPenolakanKegiatan" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title"><i class="fa fa-list"></i> Catatan</h6>
+                    <button type="button" class="close" data-dismiss="modal"
+                            data-target="#modalStatusPenolakanKegiatan">&times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-md-12">
+                        <label class="col-form-label">Catatan:</label>
+                        <div>
+                            <textarea readonly type="text" class="form-control" name="showCatatan"
+                                      ng-model="showCatatan"
+                                      id="showCatatan" placeholder="Catatan Penolakan" rows="3"
+                                      maxlength="255" style="background: none; outline: none;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary rounded" data-dismiss="modal"
+                            data-target="#modalStatusPenolakanKegiatan">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

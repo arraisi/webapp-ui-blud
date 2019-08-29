@@ -50,7 +50,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="data in loadDataPendapatan">
+                            <tr ng-repeat="data in loadDataPendapatan" ng-if="loadDataPendapatan && loadDataPendapatan.length >= 1">
                                 <td>{{data.kodeAkun}}</td>
                                 <td>{{data.namaAkun}}</td>
                                 <td class="text-right">{{accounting.formatMoney(data.anggaranTapd, "Rp ", 2,
@@ -64,8 +64,11 @@
                                     </button>
                                 </td>
                             </tr>
+                            <tr ng-if="loadDataPendapatan.length <= 0 || !loadDataPendapatan">
+                                <td colspan="4" class="text-center"><b>Tidak Ada Data Yang Ditemukan</b></td>
+                            </tr>
                             </tbody>
-                            <tfoot>
+                            <tfoot ng-if="loadDataPendapatan && loadDataPendapatan.length >= 1">
                             <tr>
                                 <td colspan="2" class="text-center"><b>Total</b></td>
                                 <td class="text-right"><b>{{accounting.formatMoney(totalTargetPendapatan, "Rp ", 2,

@@ -59,7 +59,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="data in valData">
+                            <tr ng-repeat="data in valData" ng-if="valData && valData.length >= 1">
                                 <td style="width:25%">{{ data.cakun }}</td>
                                 <td style="width:25%">{{ data.nakun }}</td>
                                 <td>
@@ -77,8 +77,11 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr ng-if="valData.length <= 0 || !valData">
+                                <td colspan="3" class="text-center"><b>Tidak Ada Data Yang Ditemukan</b></td>
+                            </tr>
                             </tbody>
-                            <tfoot>
+                            <tfoot ng-if="valData && valData.length >= 1">
                             <tr>
                                 <th class="text-center" colspan="2">Total</th>
                                 <th class="text-right"><strong>Rp {{ getTotal() | number:0 }}</strong></th>
