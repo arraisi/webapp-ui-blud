@@ -174,7 +174,7 @@
                                                 <td>{{belanja.koefisien}}</td>
                                                 <td>{{belanja.satuan}}</td>
                                                 <td>{{accounting.formatMoney(belanja.komponenHarga, "Rp ", 2, ".", ",")}}</td>
-                                                <td>{{accounting.formatMoney(belanja.anggaranDpa, "Rp ", 2, ".", ",")}}</td>
+                                                <td>{{accounting.formatMoney(belanja.anggaranTapd, "Rp ", 2, ".", ",")}}</td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm" role="group"
                                                         aria-label="Button group with nested dropdown">
@@ -449,4 +449,5 @@
 
         </div>
     </div>
+    <toaster-container toaster-options="{'close-button': true}"></toaster-container>
 </div>

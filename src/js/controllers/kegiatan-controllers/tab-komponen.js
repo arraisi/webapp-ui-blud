@@ -92,24 +92,63 @@ function TabKomponenController($scope, $location, toaster, globalService) {
 
     // get belanja pegawai for lookup
     $scope.lookUpPegawai = function () {
-        globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/pegawai`, { tahunAnggaran: $scope.tahun, idSkpd: local.pengguna.skpdId }, function (response) {
+        globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/pegawai`, {
+            tahunAnggaran: $scope.tahun,
+            idSkpd: local.pengguna.skpdId
+        }, function (response) {
             $scope.tambahKomponenList = response.data;
         });
     }
 
     // get belanja barang for lookup
     $scope.lookUpBarang = function () {
-        globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/barang`, { tahunAnggaran: $scope.tahun, idSkpd: local.pengguna.skpdId }, function (response) {
+        globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/barang`, {
+            tahunAnggaran: $scope.tahun,
+            idSkpd: local.pengguna.skpdId
+        }, function (response) {
             $scope.tambahKomponenList = response.data;
         });
     }
 
     // get belanja modal for lookup
     $scope.lookUpModal = function () {
-        globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/modal`, { tahunAnggaran: $scope.tahun, idSkpd: local.pengguna.skpdId }, function (response) {
+        globalService.serviceGetData(`/blud-resource-server/api/komponen/load/belanja/modal`, {
+            tahunAnggaran: $scope.tahun,
+            idSkpd: local.pengguna.skpdId
+        }, function (response) {
             $scope.tambahKomponenList = response.data;
         });
     }
+
+    const listBelanjaPegawai = function () {
+        globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/pegawai`, {
+            idKegiatan: kegiatanId,
+            tahunAngg: $scope.tahun
+        }, function (response) {
+            $scope.belanjaList = response.data;
+            $scope.dtInstanceBelanja.rerender();
+        });
+    };
+
+    const listBelanjaBarang = function () {
+        globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/barang`, {
+            idKegiatan: kegiatanId,
+            tahunAngg: $scope.tahun
+        }, function (response) {
+            $scope.belanjaList = response.data;
+            $scope.dtInstanceBelanja.rerender();
+        });
+    };
+
+    const listBelanjaModal = function () {
+        globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/modal`, {
+            idKegiatan: kegiatanId,
+            tahunAngg: $scope.tahun
+        }, function (response) {
+            $scope.belanjaList = response.data;
+            $scope.dtInstanceBelanja.rerender();
+        });
+    };
 
     // get all anggaran
     $scope.getAnggaran = function (idKegiatan, tahunAnggaran, idSkpd) {
@@ -129,7 +168,10 @@ function TabKomponenController($scope, $location, toaster, globalService) {
     $scope.lookUpPegawai();
 
     // initiate datatables data
-    globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/pegawai`, { idKegiatan: kegiatanId, tahunAngg: $scope.tahun }, function (response) {
+    globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/pegawai`, {
+        idKegiatan: kegiatanId,
+        tahunAngg: $scope.tahun
+    }, function (response) {
         $scope.belanjaList = response.data;
         $scope.dtInstanceBelanja.rerender();
     });
@@ -144,32 +186,20 @@ function TabKomponenController($scope, $location, toaster, globalService) {
             $scope.lookUpPegawai();
 
             // load data for datatables daftar komponen belanja pegawai
-            globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/pegawai`, { idKegiatan: kegiatanId, tahunAngg: $scope.tahun }, function (response) {
-                $scope.belanjaList = response.data;
-                $scope.dtInstanceBelanja.rerender();
-            });
-
-
+            listBelanjaPegawai();
         } else if (tabIndex == 2) {
             // load data for datatables tambah komponen belanja barang dan jasa
             $scope.lookUpBarang();
 
             // load data for datatables daftar komponen belanja barang dan jasa
-            globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/barang`, { idKegiatan: kegiatanId, tahunAngg: $scope.tahun }, function (response) {
-                $scope.belanjaList = response.data;
-                $scope.dtInstanceBelanja.rerender();
-            });
+            listBelanjaBarang();
 
         } else if (tabIndex == 3) {
             // load data for datatables tambah komponen belanja modal
             $scope.lookUpModal();
 
             // load data for datatables daftar komponen belanja modal
-            globalService.serviceGetData(`/blud-resource-server/api/komponen-belanja/load/modal`, { idKegiatan: kegiatanId, tahunAngg: $scope.tahun }, function (response) {
-                $scope.belanjaList = response.data;
-                $scope.dtInstanceBelanja.rerender();
-            });
-
+            listBelanjaModal();
         }
     };
 
@@ -196,10 +226,25 @@ function TabKomponenController($scope, $location, toaster, globalService) {
                 idSkpd: local.pengguna.skpdId,
                 tahunAnggaran: $scope.tahun
             }, $scope.idKomponenBelanjaPegawai, function (result) {
-                $scope.belanjaList = result.data;
-                $scope.dtInstanceBelanja.rerender();
-                $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
-                $scope.lookUpPegawai();
+                if (result.status === 200) {
+                    $scope.belanjaList = result.data;
+                    $scope.dtInstanceBelanja.rerender();
+                    $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                    $scope.lookUpPegawai();
+                    toaster.pop({
+                        type: 'success',
+                        title: 'Berhasil',
+                        body: 'Berhasil Simpan Komponen Belanja Pegawai',
+                        timeout: 3000
+                    });
+                } else {
+                    toaster.pop({
+                        type: 'warning',
+                        title: 'Gagal',
+                        body: 'Gagal Simpan Komponen Belanja Pegawai',
+                        timeout: 3000
+                    });
+                }
             });
         } else if ($scope.currentTabIndex == 2) {
             // SAVE BELANJA BARANG DAN JASA
@@ -208,10 +253,25 @@ function TabKomponenController($scope, $location, toaster, globalService) {
                 idSkpd: local.pengguna.skpdId,
                 tahunAnggaran: $scope.tahun
             }, $scope.idKomponenBelanjaPegawai, function (result) {
-                $scope.belanjaList = result.data;
-                $scope.dtInstanceBelanja.rerender();
-                $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
-                $scope.lookUpBarang();
+                if (result.status === 200) {
+                    $scope.belanjaList = result.data;
+                    $scope.dtInstanceBelanja.rerender();
+                    $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                    $scope.lookUpBarang();
+                    toaster.pop({
+                        type: 'success',
+                        title: 'Berhasil',
+                        body: 'Berhasil Simpan Komponen Belanja Barang & Jasa',
+                        timeout: 3000
+                    });
+                } else {
+                    toaster.pop({
+                        type: 'warning',
+                        title: 'Gagal',
+                        body: 'Gagal Simpan Komponen Belanja Barang & Jasa',
+                        timeout: 3000
+                    });
+                }
             });
         } else if ($scope.currentTabIndex == 3) {
             // SAVE BELANJA MODAL
@@ -220,10 +280,25 @@ function TabKomponenController($scope, $location, toaster, globalService) {
                 idSkpd: local.pengguna.skpdId,
                 tahunAnggaran: $scope.tahun
             }, $scope.idKomponenBelanjaPegawai, function (result) {
-                $scope.belanjaList = result.data;
-                $scope.dtInstanceBelanja.rerender();
-                $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
-                $scope.lookUpModal();
+                if (result.status === 200) {
+                    $scope.belanjaList = result.data;
+                    $scope.dtInstanceBelanja.rerender();
+                    $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                    $scope.lookUpModal();
+                    toaster.pop({
+                        type: 'success',
+                        title: 'Berhasil',
+                        body: 'Berhasil Simpan Komponen Belanja Modal',
+                        timeout: 3000
+                    });
+                } else {
+                    toaster.pop({
+                        type: 'warning',
+                        title: 'Gagal',
+                        body: 'Gagal Simpan Komponen Belanja Modal',
+                        timeout: 3000
+                    });
+                }
             });
         }
 
@@ -292,21 +367,69 @@ function TabKomponenController($scope, $location, toaster, globalService) {
 
         if ($scope.currentTabIndex == 1) {
             globalService.servicePostData(`/blud-resource-server/api/komponen-belanja/edit-volume/pegawai`, null, $scope.formSuntingKomponen, function (result) {
-                $scope.dtInstanceBelanja.rerender();
-                $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                if (result.status === 200) {
+                    $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                    listBelanjaPegawai();
+                    $scope.dtInstanceBelanja.rerender();
+                    toaster.pop({
+                        type: 'success',
+                        title: 'Berhasil',
+                        body: 'Berhasil Sunting Volume',
+                        timeout: 3000
+                    });
+                } else {
+                    toaster.pop({
+                        type: 'warning',
+                        title: 'Gagal',
+                        body: 'Gagal Sunting Volume',
+                        timeout: 3000
+                    });
+                }
             });
         } else if ($scope.currentTabIndex == 2) {
             globalService.servicePostData(`/blud-resource-server/api/komponen-belanja/edit-volume/barang`, null, $scope.formSuntingKomponen, function (result) {
-                $scope.dtInstanceBelanja.rerender();
-                $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                if (result.status === 200) {
+                    $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                    listBelanjaBarang();
+                    $scope.dtInstanceBelanja.rerender();
+                    toaster.pop({
+                        type: 'success',
+                        title: 'Berhasil',
+                        body: 'Berhasil Sunting Volume',
+                        timeout: 3000
+                    });
+                } else {
+                    toaster.pop({
+                        type: 'warning',
+                        title: 'Gagal',
+                        body: 'Gagal Sunting Volume',
+                        timeout: 3000
+                    });
+                }
             })
         } else if ($scope.currentTabIndex == 3) {
             globalService.servicePostData(`/blud-resource-server/api/komponen-belanja/edit-volume/modal`, null, $scope.formSuntingKomponen, function (result) {
-                $scope.dtInstanceBelanja.rerender();
-                $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                if (result.status === 200) {
+                    $scope.getAnggaran(kegiatanId, $scope.tahun, local.pengguna.skpdId);
+                    listBelanjaModal();
+                    $scope.dtInstanceBelanja.rerender();
+                    toaster.pop({
+                        type: 'success',
+                        title: 'Berhasil',
+                        body: 'Berhasil Sunting Volume',
+                        timeout: 3000
+                    });
+                } else {
+                    toaster.pop({
+                        type: 'warning',
+                        title: 'Gagal',
+                        body: 'Gagal Sunting Volume',
+                        timeout: 3000
+                    });
+                }
             });
         }
-    }
+    };
 
     $scope.setKoefisien = function () {
         $scope.formSuntingKomponen.koefisien = '';
