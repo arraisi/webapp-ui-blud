@@ -76,6 +76,30 @@ function KegiatanController($scope, $location, toaster, globalService) {
         }
     });
 
+    $scope.verifikasiPaguAnggaran = {
+        sisa: 0,
+        totalAnggPendapatan: 0,
+        totalAnggaranKegiatan: 0,
+        totalKas: 0,
+        totalKasPendapatan: 0
+    };
+
+    globalService.serviceGetData('/blud-resource-server/api/kegiatan/verifikasi/anggaran', {
+        idSkpd: local.pengguna.skpdId,
+        tahunAnggaran: $scope.tahun
+    }, function (result) {
+        console.log('Result Data Verifikasi Pagu');
+        console.log(result);
+        if (result.status === 200) {
+            console.log('Response Result Verifikasi Data Pagu');
+            console.log(result.data);
+            $scope.verifikasiPaguAnggaran = result.data;
+        } else {
+            console.log('Response Result Verifikasi Pagu');
+            console.log(result);
+        }
+    });
+
     $scope.statusAppvKepalaDanDinas = {
         catatanAppvDinas: '-',
         catatanAppvKepala: '-',

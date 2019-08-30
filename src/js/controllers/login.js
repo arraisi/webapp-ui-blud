@@ -26,12 +26,23 @@ function LoginFormController($scope, $http, $location, authenticationService, to
         return result;
     };
     $scope.randomCaptcha(5);
-    $scope.loginFunction = function (form) {
+    $scope.loginFunction = function () {
+        const form = $scope.loginForm;
         document.getElementById('login-loader').style.display = 'inline';
-        console.log(form.$valid);
-        if (!form.$valid) {
+        console.log(form);
+        if (!form.username || !form.password || !form.tahunAnggaran || !form.captcha) {
             console.log('Form Not Valid');
             $scope.submitted = true;
+            document.getElementById('login-loader').style.display = 'none';
+            return;
+        }
+        if (form.captcha !== $scope.captchaValue) {
+            toaster.pop({
+                type: 'warning',
+                title: 'Captcha',
+                body: 'Captcha Tidak Sesuai / Belum Terisi',
+                timeout: 3000
+            });
             document.getElementById('login-loader').style.display = 'none';
             return;
         }
@@ -52,7 +63,7 @@ function LoginFormController($scope, $http, $location, authenticationService, to
                     timeout: 3000
                 });
                 // $http.defaults.headers.common.Authorization = 'Bearer ' + result.data.access_token;
-                if (result.data.pengguna.otor == '0') {
+                if (result.data.pengguna.otor === '0') {
                     $location.path('/kas-blud');
                 } else {
                     $location.path('/persetujuan/list');

@@ -11,6 +11,7 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
     $scope.urusanList = [];
     $scope.idKegiatan = null;
     $scope.noUrutKinerja = 1;
+    $scope.submitted = false;
 
     const kegiatanId = $location.search().idKegiatan;
     if (kegiatanId) {
@@ -342,6 +343,11 @@ function TabKegiatanController($scope, $location, toaster, globalService) {
     $scope.saveKegiatan = function () {
         console.log('JSON Save Kegiatan: ');
         console.log($scope.formTambahKegiatan);
+        const form = $scope.formTambahKegiatan;
+        if (!form.urusan || !form.program || !form.namaKegiatan || !form.sasaranKegiatan || !form.bulanMulai || !form.bulanSelesai || !form.lokasiKegiatanList || !form.namaSumberDana) {
+            $scope.submitted = true;
+            return;
+        }
         globalService.servicePostData(`/blud-resource-server/api/kegiatan/save`, null, $scope.formTambahKegiatan, function (result) {
             console.log('Result Data Save Kegiatan');
             console.log(result.data);

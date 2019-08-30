@@ -39,8 +39,7 @@
                                                     <input readonly type="text" class="form-control" name="urusan"
                                                            id="urusan"
                                                            ng-model="formTambahKegiatan.urusan.namaUrusan"
-                                                           ng-class="{'is-invalid': tambahForm.urusan.$error.required && submitted}"
-                                                           required>
+                                                           ng-class="{'is-invalid': !formTambahKegiatan.urusan.id && submitted}">
                                                     <div class="input-group-prepend">
                                                         <button type="button" class="btn btn-success"
                                                                 data-toggle="modal" data-target="#modalUrusan"
@@ -49,9 +48,9 @@
                                                     </div>
                                                 </div>
                                                 <span class="input-group" style="color:red"
-                                                      ng-show="tambahForm.urusan.$invalid && submitted">
+                                                      ng-show="!formTambahKegiatan.urusan.id && submitted">
                                             <small>
-                                                <span ng-show="tambahForm.urusan.$error.required">Urusan harus diisi.</span>
+                                                <span ng-show="!formTambahKegiatan.urusan.id">Urusan harus diisi.</span>
                                             </small>
                                         </span>
                                             </div>
@@ -64,8 +63,7 @@
                                                     <input readonly type="text" class="form-control" name="program"
                                                            id="program"
                                                            ng-model="formTambahKegiatan.program.namaProgram"
-                                                           ng-class="{'is-invalid': tambahForm.program.$error.required && submitted}"
-                                                           required
+                                                           ng-class="{'is-invalid': !formTambahKegiatan.program.id && submitted}"
                                                            oninvalid="this.setCustomValidity('Isian ini wajib diisi')"/>
                                                     <div class="input-group-prepend">
                                                         <button type="button" class="btn btn-success"
@@ -75,9 +73,9 @@
                                                     </div>
                                                 </div>
                                                 <span class="input-group" style="color:red"
-                                                      ng-show="tambahForm.program.$invalid && submitted">
+                                                      ng-show="!formTambahKegiatan.program.id && submitted">
                                             <small>
-                                                <span ng-show="tambahForm.program.$error.required">Program harus diisi.</span>
+                                                <span ng-show="!formTambahKegiatan.program.id">Program harus diisi.</span>
                                             </small>
                                         </span>
                                             </div>
@@ -98,12 +96,11 @@
                                                 <input type="text" class="form-control" name="namaKegiatan"
                                                        id="namaKegiatan"
                                                        ng-model="formTambahKegiatan.namaKegiatan"
-                                                       ng-class="{'is-invalid': tambahForm.namaKegiatan.$error.required && submitted}"
-                                                       required>
+                                                       ng-class="{'is-invalid': !formTambahKegiatan.namaKegiatan && submitted}">
                                                 <span class="input-group" style="color:red"
-                                                      ng-show="tambahForm.namaKegiatan.$invalid && submitted">
+                                                      ng-show="!formTambahKegiatan.namaKegiatan && submitted">
                                             <small>
-                                                <span ng-show="tambahForm.namaKegiatan.$error.required">Nama Kegiatan harus diisi.</span>
+                                                <span ng-show="!formTambahKegiatan.namaKegiatan">Nama Kegiatan harus diisi.</span>
                                             </small>
                                         </span>
                                             </div>
@@ -117,13 +114,12 @@
                                                 <input type="text" class="form-control" name="sasaran"
                                                        id="sasaran"
                                                        ng-model="formTambahKegiatan.sasaranKegiatan"
-                                                       ng-class="{'is-invalid': tambahForm.sasaran.$error.required && submitted}"
-                                                       oninvalid="this.setCustomValidity('Isian ini wajib diisi')"
-                                                       required/>
+                                                       ng-class="{'is-invalid': !formTambahKegiatan.sasaranKegiatan && submitted}"
+                                                       oninvalid="this.setCustomValidity('Isian ini wajib diisi')"/>
                                                 <span class="input-group" style="color:red"
-                                                      ng-show="tambahForm.sasaran.$invalid && submitted">
+                                                      ng-show="!formTambahKegiatan.sasaranKegiatan && submitted">
                                             <small>
-                                                <span ng-show="tambahForm.sasaran.$error.required">Sasaran harus diisi.</span>
+                                                <span ng-show="!formTambahKegiatan.sasaranKegiatan">Sasaran harus diisi.</span>
                                             </small>
                                         </span>
                                             </div>
@@ -136,21 +132,19 @@
                                                        id="bulanMulai"
                                                        placeholder="Bulan Mulai (01-12)"
                                                        ng-model="formTambahKegiatan.bulanMulai"
-                                                       ng-class="{'is-invalid': tambahForm.bulanMulai.$error.required && submitted}"
-                                                       required>
+                                                       ng-class="{'is-invalid': !formTambahKegiatan.bulanMulai && submitted}">
                                                 <span class="col-md-2"></span>
                                                 <input type="text" class="form-control col-md-5" name="bulanSelesai"
                                                        id="bulanSelesai"
                                                        placeholder="Bulan Selesai (01-12)"
                                                        ng-model="formTambahKegiatan.bulanSelesai"
-                                                       ng-class="{'is-invalid': tambahForm.bulanSelesai.$error.required && submitted}"
-                                                       required>
+                                                       ng-class="{'is-invalid': !formTambahKegiatan.bulanSelesai && submitted}">
                                                 <span class="input-group" style="color:red"
-                                                      ng-show="tambahForm.bulanSelesai.$invalid && submitted">
-                                            <small>
-                                                <span ng-show="tambahForm.bulanSelesai.$error.required">Waktu Pelaksanaan harus diisi.</span>
-                                            </small>
-                                        </span>
+                                                      ng-show="(!formTambahKegiatan.bulanSelesai || !formTambahKegiatan.bulanMulai) && submitted">
+                                                    <small>
+                                                        <span ng-show="(!formTambahKegiatan.bulanSelesai || !formTambahKegiatan.bulanMulai)">Waktu Pelaksanaan harus diisi.</span>
+                                                    </small>
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="form-group row col-md-12">
@@ -160,17 +154,16 @@
                                                 <select id="lokasiKegiatan" name="lokasiKegiatan"
                                                         class="form-control input-lg"
                                                         ng-model="formTambahKegiatan.kodeLokasiKegiatan"
-                                                        ng-class="{'is-invalid': tambahForm.lokasiKegiatan.$error.required && submitted}"
-                                                        required>
+                                                        ng-class="{'is-invalid': !formTambahKegiatan.kodeLokasiKegiatan && submitted}">
                                                     <option ng-value=val.kodeLokasi
                                                             ng-repeat="val in ::lokasiKegiatanList">
                                                         {{val.kodeLokasi}} - {{val.namaLokasi}}
                                                     </option>
                                                 </select>
                                                 <span class="input-group" style="color:red"
-                                                      ng-show="tambahForm.lokasiKegiatan.$invalid && submitted">
+                                                      ng-show="!formTambahKegiatan.kodeLokasiKegiatan && submitted">
                                             <small>
-                                                <span ng-show="tambahForm.lokasiKegiatan.$error.required">Lokasi Kegiatan harus diisi.</span>
+                                                <span ng-show="!formTambahKegiatan.kodeLokasiKegiatan">Lokasi Kegiatan harus diisi.</span>
                                             </small>
                                         </span>
                                             </div>
@@ -182,20 +175,20 @@
                                                 <input type="text" class="form-control" name="sumberDana"
                                                        id="sumberDana"
                                                        ng-model="formTambahKegiatan.namaSumberDana"
-                                                       ng-class="{'is-invalid': tambahForm.sumberDana.$error.required && submitted}"
-                                                       required>
+                                                       ng-class="{'is-invalid': !formTambahKegiatan.namaSumberDana && submitted}">
                                                 <span class="input-group" style="color:red"
-                                                      ng-show="tambahForm.sumberDana.$invalid && submitted">
-                                            <small>
-                                                <span ng-show="tambahForm.sumberDana.$error.required">Sumber Dana harus diisi.</span>
-                                            </small>
-                                        </span>
+                                                      ng-show="!formTambahKegiatan.namaSumberDana && submitted">
+                                                    <small>
+                                                        <span ng-show="!formTambahKegiatan.namaSumberDana">Sumber Dana harus diisi.</span>
+                                                    </small>
+                                                </span>
                                             </div>
                                         </div>
                                         <br>
                                         <div class="form-group">
                                             <div class="col-md-12 text-right">
-                                                <button type="submit" class="btn btn-primary rounded" ng-click="saveKegiatan()">
+                                                <button type="submit" class="btn btn-primary rounded"
+                                                        ng-click="saveKegiatan()">
                                                     Simpan Kegiatan
                                                 </button>
                                             </div>
@@ -209,7 +202,8 @@
                             <div class="form-group row col-md-12 col-sm-12 col-lg-12 col-xs-push-12 col-xl-12 ">
                                 <div class="col-md-6"><strong> <u> Data Kinerja </u> </strong></div>
                                 <div class="col-md-6 text-right">
-                                    <button type="button" class="btn btn-primary rounded" ng-disabled="idKegiatan == null"
+                                    <button type="button" class="btn btn-primary rounded"
+                                            ng-disabled="idKegiatan == null"
                                             data-toggle="modal"
                                             data-target="#modalAddKinerja"><i
                                             class="fa fa-plus"></i>
@@ -283,18 +277,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!--                <form style="padding-right: unset !important;">-->
-                    <!--                    <div class="row col-md-12 justify-content-end"-->
-                    <!--                         style="margin-right: 0px !important; padding-right: unset !important;">-->
-                    <!--                        <input type="text" class="form-control col-md-4" name="kodeUrusan" id="kodeUrusan"-->
-                    <!--                               placeholder="Kode Urusan" style="margin-right: 10px">-->
-                    <!--                        <input type="text" class="form-control col-md-4" name="namaUrusan" id="namaUrusan"-->
-                    <!--                               placeholder="Nama Urusan" style="margin-right: 10px">-->
-                    <!--                        <button type="submit" class="btn btn-success col-md-1 rounded"-->
-                    <!--                                style="margin-right: 0px !important;">Cari-->
-                    <!--                        </button>-->
-                    <!--                    </div>-->
-                    <!--                </form>-->
                     <div class="form-group" style="margin-top: 13px">
                         <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs"
                                dt-instance="dtInstanceUrusan"

@@ -10,7 +10,7 @@
                     <div class="card-group col-12 p-0">
                         <div class="card center">
                             <div class="card-body">
-                                <form name="loginform" ng-submit="loginFunction(loginform)">
+                                <form name="formLogin">
                                     <p class="lead">Masuk ke akun anda</p>
                                     <br>
                                     <div class="input-group form-group">
@@ -18,13 +18,13 @@
                                             <span class="input-group-text"><i class="icon-user"></i></span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="ID"
-                                               ng-model="loginForm.username" name="id" required
+                                               ng-model="loginForm.username" name="id"
                                                ng-blur="getTahunAnggaran()"
-                                               ng-class="{'is-invalid': loginform.id.$error.required && submitted}">
+                                               ng-class="{'is-invalid': !loginForm.username && submitted}">
                                         <span class="input-group" style="color:red"
-                                              ng-show="loginform.id.$invalid && submitted">
+                                              ng-show="!loginForm.username && submitted">
                                             <small>
-                                                <span ng-show="loginform.id.$error.required">ID harus diisi.</span>
+                                                <span ng-show="!loginForm.username">ID harus diisi.</span>
                                             </small>
                                         </span>
                                     </div>
@@ -33,12 +33,12 @@
                                             <span class="input-group-text"><i class="icon-lock"></i></span>
                                         </div>
                                         <input type="password" class="form-control" placeholder="Kata Kunci"
-                                               ng-model="loginForm.password" name="kataKunci" required
-                                               ng-class="{'is-invalid': loginform.kataKunci.$error.required && submitted}">
+                                               ng-model="loginForm.password" name="password"
+                                               ng-class="{'is-invalid': !loginForm.password && submitted}">
                                         <span class="input-group" style="color:red"
-                                              ng-show="loginform.kataKunci.$invalid && submitted">
+                                              ng-show="!loginForm.password && submitted">
                                             <small>
-                                                <span ng-show="loginform.kataKunci.$error.required">Kata Kunci harus diisi.</span>
+                                                <span ng-show="!loginForm.password">Kata Kunci harus diisi.</span>
                                             </small>
                                         </span>
                                     </div>
@@ -47,27 +47,38 @@
                                             <span class="input-group-text"><i class="icon-calendar"></i></span>
                                         </div>
                                         <select class="form-control" ng-model="loginForm.tahunAnggaran"
-                                        ng-focus="getTahunAnggaran()">
-                                        <option ng-repeat="item in listTahunAnggaran" ng-value=item>{{item}}</option>
-                                            
+                                                ng-focus="getTahunAnggaran()"
+                                                ng-class="{'is-invalid': !loginForm.tahunAnggaran && submitted}">
+                                            <option ng-repeat="item in listTahunAnggaran" ng-value=item>{{item}}
+                                            </option>
                                         </select>
-                                        <!-- <input ng-keypress="onlyNumberKey($event)" type="number" class="form-control"
-                                               placeholder="Tahun Anggaran" ng-model="loginForm.tahunAnggaran"
-                                               name="tahunAnggaran" required
-                                               ng-class="{'is-invalid': loginform.tahunAnggaran.$error.required && submitted}"> -->
-                                        <!-- <span class="input-group" style="color:red"
-                                              ng-show="loginform.tahunAnggaran.$invalid && submitted">
+                                        <span class="input-group" style="color:red"
+                                              ng-show="!loginForm.tahunAnggaran && submitted">
                                             <small>
-                                                <span ng-show="loginform.tahunAnggaran.$error.required">Tahun Anggaran harus diisi.</span>
+                                                <span ng-show="!loginForm.tahunAnggaran">Tahun anggaran harus diisi.</span>
                                             </small>
-                                        </span> -->
+                                        </span>
                                     </div>
                                     <div class="input-group form-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="icon-puzzle"></i></span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="Ketik Captcha"
-                                               ng-model="loginForm.captcha">
+                                               ng-model="loginForm.captcha"
+                                               ng-class="{'is-invalid': (!loginForm.captcha && submitted) || (loginForm.captcha != captchaValue && loginForm.captcha.length >= 5)}">
+                                        <span class="input-group" style="color:red"
+                                              ng-show="!loginForm.captcha && submitted">
+                                            <small>
+                                                <span ng-show="!loginForm.captcha">Captcha harus diisi.</span>
+                                            </small>
+                                        </span>
+                                        <span class="input-group" style="color:red"
+                                              ng-show="loginForm.captcha != captchaValue && loginForm.captcha.length >= 5">
+                                            <small>
+                                                <span ng-show="loginForm.captcha != captchaValue">Captcha Tidak Sesuai.</span>
+                                            </small>
+                                        </span>
+
                                     </div>
                                     <div class="input-group form-group row">
                                         <div class="col-6" ng-click="randomCaptcha(5)">
@@ -86,8 +97,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-lg btn-block"
-                                            ng-click="loginFunction(loginform)"
-                                            ng-disabled="loginForm.captcha != captchaValue">
+                                            ng-click="loginFunction()">
                                         <span style="color: white"><b>LOGIN</b></span>
                                         <span id="login-loader" style="display: none">
                                           <i class="fa fa-spinner fa-spin"></i>
