@@ -60,7 +60,7 @@ function DetailKegiatanPersetujuanController($scope, $location, toaster, globalS
     };
 
     /** Get Approval Kepala SKPD dan Dinas Teknis */
-    globalService.serviceGetData('blud-resource-server/api/persetujuan/status/appv/kepala-dinas', {
+    globalService.serviceGetData('/blud-resource-server/api/persetujuan/status/appv/kepala-dinas', {
         idSkpd: skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId,
         tahunAnggaran: $scope.tahun
     }, function (result) {
@@ -79,7 +79,7 @@ function DetailKegiatanPersetujuanController($scope, $location, toaster, globalS
     });
 
     const checkStatusAppvKepalaSkpdDinas = function () {
-        globalService.serviceGetData('blud-resource-server/api/persetujuan/status/appv/kepala-dinas', {
+        globalService.serviceGetData('/blud-resource-server/api/persetujuan/status/appv/kepala-dinas', {
             idSkpd: skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId,
             tahunAnggaran: $scope.tahun
         }, function (result) {
@@ -268,7 +268,7 @@ function DetailKegiatanPersetujuanController($scope, $location, toaster, globalS
 
     $scope.kirimKegiatan = function () {
         console.log('Kirim Kegiatan');
-        globalService.serviceGetData('blud-resource-server/api/kegiatan/verifikasi/anggaran', {
+        globalService.serviceGetData('/blud-resource-server/api/kegiatan/verifikasi/anggaran', {
             idSkpd: skpdIdUrlParam ? skpdIdUrlParam : local.pengguna.skpdId,
             tahunAnggaran: $scope.tahun
         }, function (result) {
@@ -296,7 +296,7 @@ function DetailKegiatanPersetujuanController($scope, $location, toaster, globalS
     };
 
     function checkTotalKegiatanBelumDiTerima() {
-        globalService.serviceGetData('blud-resource-server/api/persetujuan/kegiatan/status/tidak-terima', {
+        globalService.serviceGetData('/blud-resource-server/api/persetujuan/kegiatan/status/tidak-terima', {
             tahunAnggaran: $scope.tahun
         }, function (result) {
             console.log('Result Data Kegiatan Belum Disetujui');

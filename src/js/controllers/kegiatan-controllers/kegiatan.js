@@ -88,7 +88,7 @@ function KegiatanController($scope, $location, toaster, globalService) {
     };
 
     /** Get Approval Kepala SKPD dan Dinas Teknis */
-    globalService.serviceGetData('blud-resource-server/api/persetujuan/status/appv/kepala-dinas', {
+    globalService.serviceGetData('/blud-resource-server/api/persetujuan/status/appv/kepala-dinas', {
         idSkpd: local.pengguna.skpdId,
         tahunAnggaran: $scope.tahun
     }, function (result) {
@@ -118,7 +118,7 @@ function KegiatanController($scope, $location, toaster, globalService) {
 
     $scope.kirimKegiatan = function () {
         console.log('Kirim Kegiatan');
-        globalService.serviceGetData('blud-resource-server/api/kegiatan/verifikasi/anggaran', {
+        globalService.serviceGetData('/blud-resource-server/api/kegiatan/verifikasi/anggaran', {
             idSkpd: local.pengguna.skpdId,
             tahunAnggaran: $scope.tahun
         }, function (result) {
